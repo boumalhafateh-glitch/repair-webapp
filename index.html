@@ -10,7 +10,6 @@
 
 <style>
 :root{
-    --bg:#050505;
     --panel:#141414;
     --panel2:#1b1b1b;
     --text:#ffffff;
@@ -22,9 +21,7 @@
     --green:#27c46b;
     --red:#b00020;
 }
-
 *{box-sizing:border-box;}
-
 body{
     margin:0;
     min-height:100vh;
@@ -36,529 +33,180 @@ body{
         radial-gradient(circle at bottom, rgba(176,0,32,.12), transparent 35%),
         linear-gradient(180deg,#0d0d0d 0%,#050505 100%);
 }
-
 body[dir="rtl"]{direction:rtl;}
-
-.app{
-    width:100%;
-    max-width:560px;
-    margin:0 auto;
-    padding:14px;
-}
-
-.topbar{
-    display:grid;
-    grid-template-columns:42px 1fr 42px;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-}
-
+.app{width:100%;max-width:560px;margin:0 auto;padding:14px;}
+.topbar{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;gap:10px;margin-bottom:14px;}
 .logo{text-align:center;}
-
 .logo-mark{
-    width:34px;
-    height:34px;
-    margin:0 auto 5px;
-    border-radius:12px;
+    width:34px;height:34px;margin:0 auto 5px;border-radius:12px;
     border:1px solid rgba(56,189,248,.55);
     background:radial-gradient(circle, rgba(56,189,248,.25), transparent 60%), #101010;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--cyan);
-    font-size:17px;
-    font-weight:900;
-    box-shadow:0 0 18px rgba(56,189,248,.26);
+    display:flex;align-items:center;justify-content:center;color:var(--cyan);
+    font-size:17px;font-weight:900;box-shadow:0 0 18px rgba(56,189,248,.26);
 }
-
 .logo h1{
-    margin:0;
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:.6px;
-    color:#eafaff;
+    margin:0;font-size:18px;font-weight:900;letter-spacing:.6px;color:#eafaff;
     text-shadow:0 0 8px rgba(56,189,248,.48), 0 0 18px rgba(242,201,76,.16);
 }
-
 .logo h1 span{color:var(--gold);}
-
-.status{
-    margin-top:3px;
-    color:var(--muted);
-    font-size:11px;
-    font-weight:700;
-}
-
+.status{margin-top:3px;color:var(--muted);font-size:11px;font-weight:700;}
 .icon-btn,.lang-btn{
-    width:42px;
-    height:42px;
-    border:1px solid var(--line);
-    border-radius:13px;
-    background:rgba(18,18,18,.92);
-    color:white;
-    font-size:15px;
-    font-weight:900;
-    cursor:pointer;
+    width:42px;height:42px;border:1px solid var(--line);border-radius:13px;
+    background:rgba(18,18,18,.92);color:white;font-size:15px;font-weight:900;cursor:pointer;
 }
-
 .lang-btn{color:var(--gold);font-size:13px;}
-
 .page{display:none;animation:fade .18s ease;}
 .page.active{display:block;}
-
-@keyframes fade{
-    from{opacity:.45; transform:translateY(6px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
+@keyframes fade{from{opacity:.45;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 .hero,.panel{
-    border:1px solid var(--line);
-    border-radius:16px;
-    background:rgba(20,20,20,.94);
-    padding:17px;
-    margin-bottom:12px;
-    text-align:center;
-    box-shadow:0 14px 35px rgba(0,0,0,.24);
+    border:1px solid var(--line);border-radius:16px;background:rgba(20,20,20,.94);
+    padding:17px;margin-bottom:12px;text-align:center;box-shadow:0 14px 35px rgba(0,0,0,.24);
 }
-
-.hero{
-    background:linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)), rgba(20,20,20,.96);
-}
-
-.title{
-    margin:0;
-    font-size:22px;
-    font-weight:900;
-    line-height:1.25;
-}
-
-body[dir="rtl"] .title{
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:21px;
-}
-
-.text{
-    margin:9px 0 0;
-    color:var(--soft);
-    font-size:14px;
-    line-height:1.65;
-    font-weight:600;
-}
-
-body[dir="rtl"] .text{
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    line-height:1.9;
-}
-
-.progress-wrap{
-    height:10px;
-    overflow:hidden;
-    border-radius:999px;
-    background:#080808;
-    border:1px solid var(--line);
-    margin-top:14px;
-}
-
-.progress{
-    height:100%;
-    width:0%;
-    border-radius:999px;
-    background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));
-    transition:.25s ease;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-    margin:11px 0;
-}
-
-.stat{
-    border:1px solid var(--line);
-    border-radius:13px;
-    padding:11px 6px;
-    background:rgba(20,20,20,.9);
-    text-align:center;
-}
-
-.stat strong{
-    display:block;
-    color:var(--gold);
-    font-size:18px;
-    font-weight:900;
-}
-
-.stat small{
-    display:block;
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.45;
-    font-weight:700;
-}
-
+.hero{background:linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)),rgba(20,20,20,.96);}
+.title{margin:0;font-size:22px;font-weight:900;line-height:1.25;}
+body[dir="rtl"] .title{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:21px;}
+.text{margin:9px 0 0;color:var(--soft);font-size:14px;line-height:1.65;font-weight:600;}
+body[dir="rtl"] .text{font-family:"IBM Plex Sans Arabic",sans-serif;line-height:1.9;}
+.progress-wrap{height:10px;overflow:hidden;border-radius:999px;background:#080808;border:1px solid var(--line);margin-top:14px;}
+.progress{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));transition:.25s ease;}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:11px 0;}
+.stat{border:1px solid var(--line);border-radius:13px;padding:11px 6px;background:rgba(20,20,20,.9);text-align:center;}
+.stat strong{display:block;color:var(--gold);font-size:18px;font-weight:900;}
+.stat small{display:block;color:var(--muted);font-size:12px;line-height:1.45;font-weight:700;}
 button{
-    min-height:44px;
-    padding:11px;
-    border-radius:13px;
-    border:1px solid var(--line);
-    background:#111;
-    color:white;
-    font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
-    font-size:14px;
-    font-weight:900;
-    cursor:pointer;
+    min-height:44px;padding:11px;border-radius:13px;border:1px solid var(--line);
+    background:#111;color:white;font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
+    font-size:14px;font-weight:900;cursor:pointer;
 }
-
-.primary{
-    background:linear-gradient(135deg,var(--gold),#ffe08a);
-    color:#111;
-    border-color:#d7aa25;
-}
-
-.danger{
-    background:linear-gradient(180deg,#b00020,#780015);
-    border-color:#cf1235;
-}
-
+button:disabled{opacity:.42;cursor:not-allowed;}
+.primary{background:linear-gradient(135deg,var(--gold),#ffe08a);color:#111;border-color:#d7aa25;}
+.danger{background:linear-gradient(180deg,#b00020,#780015);border-color:#cf1235;}
 .main-action{width:100%;margin:2px 0 4px;}
-
-.section-title{
-    text-align:center;
-    margin:18px 2px 10px;
-}
-
-.section-title h3{
-    margin:0;
-    font-size:17px;
-    font-weight:900;
-}
-
-.section-title p{
-    margin:3px 0 0;
-    color:var(--muted);
-    font-size:13px;
-    font-weight:700;
-}
-
-.tree{
-    position:relative;
-    display:grid;
-    gap:13px;
-    padding:4px 0;
-}
-
-.tree-node{
-    position:relative;
-    display:grid;
-    grid-template-columns:45px 1fr;
-    gap:10px;
-    align-items:center;
-}
-
+.section-title{text-align:center;margin:18px 2px 10px;}
+.section-title h3{margin:0;font-size:17px;font-weight:900;}
+.section-title p{margin:3px 0 0;color:var(--muted);font-size:13px;font-weight:700;}
+.tree{position:relative;display:grid;gap:13px;padding:4px 0;}
+.tree-node{position:relative;display:grid;grid-template-columns:45px 1fr;gap:10px;align-items:center;}
 body[dir="rtl"] .tree-node{grid-template-columns:1fr 45px;}
-
 .tree-node:not(:last-child)::after{
-    content:"";
-    position:absolute;
-    left:22px;
-    top:49px;
-    width:2px;
-    height:28px;
+    content:"";position:absolute;left:22px;top:49px;width:2px;height:28px;
     background:linear-gradient(180deg,rgba(56,189,248,.7),rgba(242,201,76,.25));
 }
-
-body[dir="rtl"] .tree-node:not(:last-child)::after{
-    left:auto;
-    right:22px;
-}
-
+body[dir="rtl"] .tree-node:not(:last-child)::after{left:auto;right:22px;}
 .node-icon{
-    width:45px;
-    height:45px;
-    border-radius:15px;
-    border:1px solid rgba(56,189,248,.45);
-    background:rgba(56,189,248,.10);
-    color:var(--cyan);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:17px;
-    font-weight:900;
-    box-shadow:0 0 16px rgba(56,189,248,.12);
+    width:45px;height:45px;border-radius:15px;border:1px solid rgba(56,189,248,.45);
+    background:rgba(56,189,248,.10);color:var(--cyan);display:flex;align-items:center;
+    justify-content:center;font-size:17px;font-weight:900;box-shadow:0 0 16px rgba(56,189,248,.12);
 }
-
 body[dir="rtl"] .node-icon{order:2;}
-
 .node-card{
-    min-height:96px;
-    border:1px solid var(--line);
-    border-radius:15px;
-    background:linear-gradient(180deg,#1c1c1c,#101010);
-    color:white;
-    text-align:center;
-    cursor:pointer;
-    padding:13px 12px;
-    box-shadow:0 10px 24px rgba(0,0,0,.18);
+    min-height:96px;border:1px solid var(--line);border-radius:15px;
+    background:linear-gradient(180deg,#1c1c1c,#101010);color:white;text-align:center;
+    cursor:pointer;padding:13px 12px;box-shadow:0 10px 24px rgba(0,0,0,.18);
 }
-
 .node-card.done{border-color:rgba(39,196,107,.8);}
 .node-card.locked{opacity:.48;}
-
-.node-card strong{
-    display:block;
-    font-size:15.5px;
-    font-weight:900;
-    line-height:1.28;
-}
-
-.node-card small{
-    display:block;
-    color:var(--muted);
-    font-size:12.5px;
-    line-height:1.5;
-    margin-top:7px;
-    font-weight:700;
-}
-
+.node-card strong{display:block;font-size:15.5px;font-weight:900;line-height:1.28;}
+.node-card small{display:block;color:var(--muted);font-size:12.5px;line-height:1.5;margin-top:7px;font-weight:700;}
 .badge{
-    display:inline-block;
-    margin-top:9px;
-    padding:5px 9px;
-    border-radius:999px;
-    background:rgba(242,201,76,.12);
-    color:var(--gold);
-    font-size:11px;
-    font-weight:900;
+    display:inline-block;margin-top:9px;padding:5px 9px;border-radius:999px;
+    background:rgba(242,201,76,.12);color:var(--gold);font-size:11px;font-weight:900;
 }
-
 .branch-title{
-    margin:16px auto 10px;
-    width:fit-content;
-    max-width:100%;
-    padding:8px 12px;
-    border-radius:999px;
-    border:1px solid rgba(56,189,248,.28);
-    background:rgba(56,189,248,.08);
-    color:#a9e8ff;
-    text-align:center;
-    font-size:12px;
-    font-weight:900;
+    margin:16px auto 10px;width:fit-content;max-width:100%;padding:8px 12px;
+    border-radius:999px;border:1px solid rgba(56,189,248,.28);background:rgba(56,189,248,.08);
+    color:#a9e8ff;text-align:center;font-size:12px;font-weight:900;
 }
-
 .list{display:grid;gap:8px;}
-
 .lesson{
-    border:1px solid var(--line);
-    border-radius:14px;
-    background:var(--panel2);
-    padding:13px;
-    text-align:center;
+    border:1px solid var(--line);border-radius:14px;background:var(--panel2);
+    padding:13px;text-align:center;
 }
+.lesson strong{display:block;font-size:15.5px;font-weight:900;}
+.lesson p{margin:7px 0 0;color:var(--muted);font-size:13.5px;line-height:1.65;font-weight:600;}
+.action-row,.book-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px;}
+.book-counter{margin-top:10px;color:var(--gold);font-size:12px;font-weight:900;}
 
-.lesson strong{
-    display:block;
-    font-size:15.5px;
-    font-weight:900;
+.meter-visual,.component-visual{
+    width:100%;max-width:285px;margin:14px auto 4px;padding:14px;border-radius:22px;
+    border:1px solid rgba(56,189,248,.32);background:linear-gradient(180deg,#232323,#111);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 0 28px rgba(56,189,248,.10);
 }
-
-.lesson p{
-    margin:7px 0 0;
-    color:var(--muted);
-    font-size:13.5px;
-    line-height:1.65;
-    font-weight:600;
-}
-
-.action-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-    margin-top:11px;
-}
-
-.book-controls{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-    margin:11px 0;
-}
-
-.book-counter{
-    margin-top:10px;
-    color:var(--gold);
-    font-size:12px;
-    font-weight:900;
-}
-
-.meter-visual{
-    width:100%;
-    max-width:270px;
-    margin:14px auto 4px;
-    padding:14px;
-    border-radius:22px;
-    border:1px solid rgba(56,189,248,.32);
-    background:linear-gradient(180deg,#232323,#111);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 28px rgba(56,189,248,.10);
-}
-
 .meter-screen{
-    height:54px;
-    border-radius:12px;
-    background:#9fd7b2;
-    color:#071107;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:23px;
-    font-weight:900;
-    letter-spacing:1px;
-    border:3px solid #0b0b0b;
+    height:54px;border-radius:12px;background:#9fd7b2;color:#071107;display:flex;
+    align-items:center;justify-content:center;font-size:23px;font-weight:900;letter-spacing:1px;border:3px solid #0b0b0b;
 }
-
 .dial{
-    width:112px;
-    height:112px;
-    margin:14px auto 10px;
-    border-radius:50%;
-    background:#0d0d0d;
-    border:8px solid #2b2b2b;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    width:112px;height:112px;margin:14px auto 10px;border-radius:50%;background:#0d0d0d;
+    border:8px solid #2b2b2b;position:relative;display:flex;align-items:center;justify-content:center;
 }
-
 .dial-center{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:var(--gold);
-    color:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    font-size:12px;
+    width:38px;height:38px;border-radius:50%;background:var(--gold);color:#111;
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;
 }
-
-.mode{
-    position:absolute;
-    font-size:12px;
-    font-weight:900;
-    color:#aaa;
-}
-
-.mode.active{
-    color:var(--gold);
-    text-shadow:0 0 10px rgba(242,201,76,.5);
-}
-
-.m-v{top:6px;left:47px;}
-.m-ohm{right:8px;top:42px;}
-.m-cont{right:27px;bottom:11px;}
-.m-diode{left:24px;bottom:11px;}
-.m-a{left:7px;top:42px;}
-
-.ports{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-    margin-top:10px;
-}
-
-.port{
-    border:1px solid #333;
-    border-radius:10px;
-    padding:7px 4px;
-    background:#090909;
-    font-size:11px;
-    font-weight:900;
-}
-
-.port.red{color:#ff6b6b;}
-.port.black{color:#cfcfcf;}
-.port.gold{color:var(--gold);}
-
-.probes{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    margin-top:12px;
-}
-
-.probe{
-    width:8px;
-    height:54px;
-    border-radius:8px;
-    position:relative;
-}
-
+.mode{position:absolute;font-size:12px;font-weight:900;color:#aaa;}
+.mode.active{color:var(--gold);text-shadow:0 0 10px rgba(242,201,76,.5);}
+.m-v{top:6px;left:47px}.m-ohm{right:8px;top:42px}.m-cont{right:27px;bottom:11px}.m-diode{left:24px;bottom:11px}.m-a{left:7px;top:42px}
+.ports{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
+.port{border:1px solid #333;border-radius:10px;padding:7px 4px;background:#090909;font-size:11px;font-weight:900;}
+.port.red{color:#ff6b6b}.port.black{color:#cfcfcf}.port.gold{color:var(--gold)}
+.probes{display:flex;justify-content:center;gap:18px;margin-top:12px;}
+.probe{width:8px;height:54px;border-radius:8px;position:relative;}
 .probe:before{
-    content:"";
-    position:absolute;
-    top:-10px;
-    left:50%;
-    transform:translateX(-50%);
-    width:0;
-    height:0;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-    border-bottom:12px solid currentColor;
+    content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+    width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:12px solid currentColor;
 }
+.probe.red{background:#e11d48;color:#e11d48}.probe.black{background:#cbd5e1;color:#cbd5e1}
 
-.probe.red{background:#e11d48;color:#e11d48;}
-.probe.black{background:#cbd5e1;color:#cbd5e1;}
-
-.warning-box{
-    border:1px solid rgba(239,68,68,.45);
-    background:rgba(239,68,68,.10);
+.comp-chip{
+    width:92px;height:68px;margin:8px auto;border-radius:12px;border:2px solid rgba(242,201,76,.7);
+    background:#111;position:relative;display:flex;align-items:center;justify-content:center;color:var(--gold);
+    font-weight:900;font-size:22px;box-shadow:0 0 18px rgba(242,201,76,.16);
 }
-
-.sos-box{
-    border-color:rgba(176,0,32,.55);
-    background:rgba(176,0,32,.12);
+.comp-chip:before,.comp-chip:after{
+    content:"";position:absolute;left:-13px;right:-13px;height:100%;
+    background:repeating-linear-gradient(180deg,transparent 0 8px,#777 8px 12px,transparent 12px 18px);
+    z-index:-1;
 }
-
-.footer{
-    color:#777;
-    font-size:11px;
-    text-align:center;
-    padding:15px 0 5px;
-    line-height:1.6;
-    font-weight:700;
+.symbol-box{
+    margin:10px auto;padding:12px;border-radius:14px;border:1px solid rgba(242,201,76,.28);
+    background:#0d0d0d;color:var(--gold);font-size:25px;font-weight:900;letter-spacing:1px;
 }
-
+.test-strip{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-top:10px;
+}
+.pad{
+    min-height:38px;border-radius:12px;border:1px solid #333;background:#101010;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#ccc;
+}
+.test-meter{
+    width:76px;height:54px;border-radius:12px;background:#222;border:1px solid #444;padding:7px;
+}
+.test-meter div{
+    height:100%;border-radius:8px;background:#9fd7b2;color:#071107;display:flex;align-items:center;
+    justify-content:center;font-size:12px;font-weight:900;
+}
+.warning-box{border:1px solid rgba(239,68,68,.45);background:rgba(239,68,68,.10);}
+.sos-box{border-color:rgba(176,0,32,.55);background:rgba(176,0,32,.12);}
+.footer{color:#777;font-size:11px;text-align:center;padding:15px 0 5px;line-height:1.6;font-weight:700;}
 @media(max-width:390px){
-    .app{padding:12px;}
-    .logo h1{font-size:16px;}
-    .tree-node{grid-template-columns:42px 1fr;}
-    body[dir="rtl"] .tree-node{grid-template-columns:1fr 42px;}
-    .node-icon{width:42px;height:42px;}
-    .tree-node:not(:last-child)::after{left:20px;}
-    body[dir="rtl"] .tree-node:not(:last-child)::after{right:20px;}
+    .app{padding:12px}.logo h1{font-size:16px}.tree-node{grid-template-columns:42px 1fr}
+    body[dir="rtl"] .tree-node{grid-template-columns:1fr 42px}.node-icon{width:42px;height:42px}
+    .tree-node:not(:last-child)::after{left:20px}body[dir="rtl"] .tree-node:not(:last-child)::after{right:20px}
 }
-
-@media(max-width:330px){
-    .stats{grid-template-columns:1fr;}
-    .action-row,.book-controls{grid-template-columns:1fr;}
-}
+@media(max-width:330px){.stats,.action-row,.book-controls{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
 <div class="app">
-
     <div class="topbar">
         <button class="icon-btn" onclick="goHome()">⌂</button>
-
         <div class="logo">
             <div class="logo-mark">⌁</div>
             <h1><span>MASTER</span> REPAIR ACADEMY</h1>
             <div class="status" id="telegramStatus"></div>
         </div>
-
         <button class="lang-btn" id="langButton" onclick="toggleLanguage()">AR</button>
     </div>
 
@@ -598,31 +246,6 @@ body[dir="rtl"] .node-icon{order:2;}
         </div>
     </div>
 
-    <div id="lessonPage" class="page">
-        <div class="panel">
-            <h2 class="title" id="lessonTitle"></h2>
-            <p class="text" id="lessonDesc"></p>
-            <span class="badge" id="lessonBadge"></span>
-        </div>
-
-        <div class="section-title">
-            <h3 id="learnTitle"></h3>
-            <p id="learnSubtitle"></p>
-        </div>
-
-        <div class="list" id="lessonPoints"></div>
-
-        <div class="panel">
-            <h2 class="title" id="objectiveTitle"></h2>
-            <p class="text" id="objectiveText"></p>
-        </div>
-
-        <div class="action-row">
-            <button onclick="goHome()" id="backButton"></button>
-            <button class="primary" onclick="markDone()" id="doneButton"></button>
-        </div>
-    </div>
-
     <div id="bookPage" class="page">
         <div class="panel">
             <h2 class="title" id="bookTitle"></h2>
@@ -651,7 +274,6 @@ body[dir="rtl"] .node-icon{order:2;}
     </div>
 
     <div class="footer" id="footerText"></div>
-
 </div>
 
 <script>
@@ -670,7 +292,6 @@ const ui = {
         treeTitle:"Learning Tree", treeSubtitle:"Your repair roadmap",
         supportTitle:"Support", supportSubtitle:"Need help?",
         sosTitle:"SOS Repair", sosText:"Open the Telegram group to ask for help or show a failure.", sosButton:"Open SOS",
-        learnTitle:"What You Learn", learnSubtitle:"Main points", objectiveTitle:"Objective",
         back:"Back", done:"Done", prev:"Previous", next:"Next",
         footer:"Master Repair Academy • Learning Tree", completedProgress:"completed",
         open:"Open", locked:"Locked", doneState:"Done",
@@ -683,7 +304,6 @@ const ui = {
         treeTitle:"شجرة التعلم", treeSubtitle:"خريطة طريق الإصلاح",
         supportTitle:"الدعم", supportSubtitle:"تحتاج مساعدة؟",
         sosTitle:"دعم الإصلاح", sosText:"افتح مجموعة تيليجرام لطلب المساعدة أو عرض عطل.", sosButton:"فتح الدعم",
-        learnTitle:"ماذا ستتعلم", learnSubtitle:"النقاط الرئيسية", objectiveTitle:"الهدف",
         back:"رجوع", done:"تم", prev:"السابق", next:"التالي",
         footer:"Master Repair Academy • شجرة التعلم", completedProgress:"مكتمل",
         open:"فتح", locked:"مغلق", doneState:"تم",
@@ -692,229 +312,217 @@ const ui = {
 };
 
 const multimeterBook = [
-    {
-        mode:"V",
-        display:"0.00 V",
-        title:{en:"What Is a Multimeter?", ar:"ما هو الملتيميتر؟"},
-        text:{en:"A multimeter is a measuring tool. It helps you stop guessing and start proving what is happening on a phone.", ar:"الملتيميتر أداة قياس. يساعدك على التوقف عن التخمين ومعرفة ما يحدث فعلا داخل الهاتف."},
-        points:[
-            {title:{en:"It measures", ar:"يقيس"}, text:{en:"Voltage, resistance, continuity, diode values and sometimes current.", ar:"الفولت، المقاومة، الاستمرارية، قيم الدايود وأحيانا التيار."}},
-            {title:{en:"It protects you from guessing", ar:"يحميك من التخمين"}, text:{en:"Before replacing parts, you measure to confirm the fault.", ar:"قبل تغيير القطع، تقوم بالقياس لتأكيد العطل."}}
+    bookPage("meter","V","0.00 V",
+        ["What Is a Multimeter?","ما هو الملتيميتر؟"],
+        ["A multimeter is a measuring tool. It helps you stop guessing and start proving what is happening on a phone.","الملتيميتر أداة قياس. يساعدك على التوقف عن التخمين ومعرفة ما يحدث فعلا داخل الهاتف."],
+        [
+            [["It measures","يقيس"],["Voltage, resistance, continuity, diode values and sometimes current.","الفولت، المقاومة، الاستمرارية، قيم الدايود وأحيانا التيار."]],
+            [["It protects you from guessing","يحميك من التخمين"],["Before replacing parts, you measure to confirm the fault.","قبل تغيير القطع، تقوم بالقياس لتأكيد العطل."]]
         ]
-    },
-    {
-        mode:"COM",
-        display:"COM",
-        title:{en:"Probes And Ports", ar:"الأسلاك والمداخل"},
-        text:{en:"The black probe usually goes into COM. The red probe usually goes into VΩ for voltage, resistance, continuity and diode mode.", ar:"السلك الأسود يوضع غالبا في COM. السلك الأحمر يوضع غالبا في VΩ لقياس الفولت والمقاومة والاستمرارية والدايود."},
-        points:[
-            {title:{en:"COM", ar:"COM"}, text:{en:"Common port for the black probe.", ar:"المدخل الأساسي للسلك الأسود."}},
-            {title:{en:"VΩ", ar:"VΩ"}, text:{en:"Port for voltage, resistance, continuity and diode measurements.", ar:"مدخل قياس الفولت والمقاومة والاستمرارية والدايود."}},
-            {title:{en:"10A", ar:"10A"}, text:{en:"Used only for high current measurement. Wrong use can be dangerous.", ar:"يستخدم فقط لقياس تيار عالي. استخدامه بالخطأ قد يكون خطيرا."}}
+    ),
+    bookPage("meter","V","4.20 V",
+        ["Voltage Mode - V","وضع الفولت - V"],
+        ["Voltage mode checks if power is present. Black probe on ground, red probe on the point you want to measure.","وضع الفولت يفحص هل الطاقة موجودة. السلك الأسود على الأرضي، والأحمر على النقطة التي تريد قياسها."],
+        [
+            [["Symbol","الرمز"],["Look for V. DC voltage is usually shown as V with a straight line.","ابحث عن V. الفولت المستمر غالبا يكون V مع خط مستقيم."]],
+            [["Common use","استخدام شائع"],["Check battery voltage, charging voltage and power lines.","فحص فولت البطارية، فولت الشحن وخطوط الطاقة."]]
         ]
-    },
-    {
-        mode:"V",
-        display:"4.20 V",
-        title:{en:"Voltage Mode - V", ar:"وضع الفولت - V"},
-        text:{en:"Voltage mode checks if power is present. On phones, it helps you know if a line, battery or connector receives power.", ar:"وضع الفولت يفحص هل الطاقة موجودة. في الهواتف يساعدك على معرفة هل الخط أو البطارية أو الكونكتور يستقبل الفولت."},
-        points:[
-            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Look for V. DC voltage is usually shown as V with a straight line.", ar:"ابحث عن V. الفولت المستمر غالبا يكون V مع خط مستقيم."}},
-            {title:{en:"How to use", ar:"طريقة الاستخدام"}, text:{en:"Black probe on ground, red probe on the point you want to measure.", ar:"السلك الأسود على الأرضي، والأحمر على النقطة التي تريد قياسها."}},
-            {title:{en:"Common use", ar:"استخدام شائع"}, text:{en:"Check battery voltage, charging voltage and power lines.", ar:"فحص فولت البطارية، فولت الشحن وخطوط الطاقة."}}
+    ),
+    bookPage("meter","Ω","220 Ω",
+        ["Resistance Mode - Ω","وضع المقاومة - Ω"],
+        ["Resistance mode measures how much a component or line resists current flow.","وضع المقاومة يقيس مقدار مقاومة المكون أو الخط لمرور التيار."],
+        [
+            [["Power off","الجهاز مطفأ"],["Resistance is usually measured with no power connected.","غالبا يتم قياس المقاومة بدون توصيل طاقة."]],
+            [["Important","مهم"],["Do not measure resistance on a powered board.","لا تقس المقاومة على لوحة موصولة بالطاقة."]]
         ]
-    },
-    {
-        mode:"Ω",
-        display:"220 Ω",
-        title:{en:"Resistance Mode - Ω", ar:"وضع المقاومة - Ω"},
-        text:{en:"Resistance mode measures how much a component or line resists current flow. It is useful for resistors and checking suspicious lines.", ar:"وضع المقاومة يقيس مقدار مقاومة المكون أو الخط لمرور التيار. مفيد للمقاومات وفحص الخطوط المشبوهة."},
-        points:[
-            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"The resistance symbol is Ω.", ar:"رمز المقاومة هو Ω."}},
-            {title:{en:"Power off", ar:"الجهاز مطفأ"}, text:{en:"Resistance is usually measured with no power connected.", ar:"غالبا يتم قياس المقاومة بدون توصيل طاقة."}},
-            {title:{en:"Important", ar:"مهم"}, text:{en:"Do not measure resistance on a powered board.", ar:"لا تقس المقاومة على لوحة موصولة بالطاقة."}}
+    ),
+    bookPage("meter","CONT","BEEP",
+        ["Continuity Mode","وضع الاستمرارية"],
+        ["Continuity mode tells you if two points are connected. Many multimeters beep when there is a connection.","وضع الاستمرارية يخبرك هل توجد وصلة بين نقطتين. كثير من الأجهزة تصدر صوتا عند وجود اتصال."],
+        [
+            [["Use it for","يستخدم في"],["Checking fuses, broken lines, ground and connector paths.","فحص الفيوزات، الخطوط المقطوعة، الأرضي ومسارات الكونكتور."]],
+            [["Warning","تحذير"],["A beep means connection exists. It does not always mean the part is good.","الصوت يعني أن هناك اتصالا. لا يعني دائما أن القطعة سليمة."]]
         ]
-    },
-    {
-        mode:"CONT",
-        display:"BEEP",
-        title:{en:"Continuity Mode", ar:"وضع الاستمرارية"},
-        text:{en:"Continuity mode tells you if two points are connected. Many multimeters beep when there is a connection.", ar:"وضع الاستمرارية يخبرك هل توجد وصلة بين نقطتين. كثير من الأجهزة تصدر صوتا عند وجود اتصال."},
-        points:[
-            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Often shown as a sound wave or buzzer symbol.", ar:"غالبا يظهر كرمز صوت أو جرس."}},
-            {title:{en:"Use it for", ar:"يستخدم في"}, text:{en:"Checking fuses, broken lines, ground and connector paths.", ar:"فحص الفيوزات، الخطوط المقطوعة، الأرضي ومسارات الكونكتور."}},
-            {title:{en:"Warning", ar:"تحذير"}, text:{en:"A beep does not always mean the part is good. It only means connection exists.", ar:"الصوت لا يعني دائما أن القطعة سليمة. يعني فقط أن هناك اتصالا."}}
+    ),
+    bookPage("meter","DIODE","0.528",
+        ["Diode Mode","وضع الدايود"],
+        ["Diode mode gives a value that helps compare a line with a known good board.","وضع الدايود يعطي قيمة تساعدك على مقارنة الخط مع لوحة سليمة."],
+        [
+            [["Symbol","الرمز"],["Look for the diode symbol, usually a triangle and line.","ابحث عن رمز الدايود، غالبا مثل مثلث وخط."]],
+            [["Compare","المقارنة"],["The best method is comparing readings with a good board.","أفضل طريقة هي مقارنة القياسات مع لوحة سليمة."]]
         ]
-    },
-    {
-        mode:"DIODE",
-        display:"0.528",
-        title:{en:"Diode Mode", ar:"وضع الدايود"},
-        text:{en:"Diode mode is very important in phone repair. It gives a value that helps compare a line with a known good board.", ar:"وضع الدايود مهم جدا في إصلاح الهواتف. يعطي قيمة تساعدك على مقارنة الخط مع لوحة سليمة."},
-        points:[
-            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Look for the diode symbol, usually a triangle and line.", ar:"ابحث عن رمز الدايود، غالبا مثل مثلث وخط."}},
-            {title:{en:"Use it for", ar:"يستخدم في"}, text:{en:"Checking lines without powering the board.", ar:"فحص الخطوط بدون تشغيل اللوحة."}},
-            {title:{en:"Compare", ar:"المقارنة"}, text:{en:"The best method is comparing readings with a good board.", ar:"أفضل طريقة هي مقارنة القياسات مع لوحة سليمة."}}
-        ]
-    },
-    {
-        mode:"A",
-        display:"0.18 A",
-        title:{en:"Current Mode - A", ar:"وضع التيار - A"},
-        text:{en:"Current mode measures how much current flows. This mode must be used carefully because wrong connection can damage the meter or board.", ar:"وضع التيار يقيس مقدار التيار المار. يجب استخدامه بحذر لأن التوصيل الخطأ قد يتلف الجهاز أو اللوحة."},
-        points:[
-            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Current is shown with A or mA.", ar:"التيار يظهر برمز A أو mA."}},
-            {title:{en:"Be careful", ar:"كن حذرا"}, text:{en:"Current measurement is different from voltage measurement.", ar:"قياس التيار يختلف عن قياس الفولت."}},
-            {title:{en:"Beginner advice", ar:"نصيحة للمبتدئ"}, text:{en:"For phone repair, start with voltage, continuity and diode mode first.", ar:"في إصلاح الهواتف، ابدأ أولا بالفولت والاستمرارية والدايود."}}
-        ]
-    },
-    {
-        mode:"WARN",
-        display:"ERROR",
-        title:{en:"Common Mistakes", ar:"الأخطاء الشائعة"},
-        text:{en:"Most beginner mistakes come from using the wrong mode or wrong port.", ar:"معظم أخطاء المبتدئين تأتي من استخدام وضع خاطئ أو مدخل خاطئ."},
-        points:[
-            {title:{en:"Wrong port", ar:"مدخل خاطئ"}, text:{en:"Leaving the red probe in 10A can be dangerous.", ar:"ترك السلك الأحمر في 10A قد يكون خطيرا."}},
-            {title:{en:"Wrong mode", ar:"وضع خاطئ"}, text:{en:"Do not measure voltage while the meter is set to resistance.", ar:"لا تقس الفولت والجهاز مضبوط على المقاومة."}},
-            {title:{en:"Powered board", ar:"لوحة موصولة بالطاقة"}, text:{en:"Do not measure resistance or continuity on a powered board.", ar:"لا تقس المقاومة أو الاستمرارية على لوحة موصولة بالطاقة."}}
-        ]
-    },
-    {
-        mode:"PRACTICE",
-        display:"TEST",
-        title:{en:"Workshop Exercise", ar:"تمرين الورشة"},
-        text:{en:"Practice on safe items first before touching a customer phone.", ar:"تدرب على أشياء آمنة أولا قبل لمس هاتف العميل."},
-        points:[
-            {title:{en:"Exercise 1", ar:"تمرين 1"}, text:{en:"Measure a battery voltage in V mode.", ar:"قس فولت بطارية بوضع V."}},
-            {title:{en:"Exercise 2", ar:"تمرين 2"}, text:{en:"Check a fuse with continuity mode.", ar:"افحص فيوز بوضع الاستمرارية."}},
-            {title:{en:"Exercise 3", ar:"تمرين 3"}, text:{en:"Read a diode value on a simple board line.", ar:"اقرأ قيمة دايود على خط بسيط في لوحة."}}
-        ]
-    }
+    )
 ];
+
+function componentBook(kind, enTitle, arTitle, symbol, display, roleEn, roleAr, testEn, testAr){
+    return [
+        bookPage("component",kind,display,
+            [enTitle,arTitle],
+            [roleEn,roleAr],
+            [
+                [["Role","الدور"],[roleEn,roleAr]],
+                [["Before repair","قبل الإصلاح"],["Recognize the component before testing or replacing it.","تعرف على المكون قبل فحصه أو تغييره."]]
+            ],
+            symbol
+        ),
+        bookPage("component",kind,display,
+            ["Schematic Symbol","الرمز في المخطط"],
+            ["This is the simplified symbol used to represent the component in electronic diagrams.","هذا هو الرمز المبسط المستخدم لتمثيل المكون في المخططات الإلكترونية."],
+            [
+                [["Why it matters","لماذا مهم؟"],["Schematics use symbols, not real pictures. Learning symbols helps you follow lines.","المخططات تستخدم رموزا وليس صورا حقيقية. تعلم الرموز يساعدك على تتبع الخطوط."]],
+                [["Boardview + schematic","بوردفيو + مخطط"],["Use the schematic to understand the circuit and boardview to locate the part.","استخدم المخطط لفهم الدائرة والبوردفيو لتحديد مكان القطعة."]]
+            ],
+            symbol
+        ),
+        bookPage("component",kind,display,
+            ["How To Test","طريقة الفحص"],
+            [testEn,testAr],
+            [
+                [["Use the right mode","استخدم الوضع الصحيح"],["Wrong mode can give false results or damage the meter.","الوضع الخاطئ قد يعطي نتيجة غير صحيحة أو يتلف جهاز القياس."]],
+                [["Compare when possible","قارن إن أمكن"],["A known good board gives the best reference.","لوحة سليمة تعطي أفضل مرجع للمقارنة."]]
+            ],
+            symbol
+        ),
+        bookPage("component","warn","ERROR",
+            ["Common Mistakes","الأخطاء الشائعة"],
+            ["Never replace components randomly. A bad reading must be confirmed before repair.","لا تغير المكونات عشوائيا. يجب تأكيد القياس السيئ قبل الإصلاح."],
+            [
+                [["Heat damage","ضرر الحرارة"],["Too much heat can lift pads or damage nearby components.","الحرارة الزائدة قد ترفع البادات أو تتلف مكونات قريبة."]],
+                [["No proof","بدون دليل"],["Replacing parts without measurements wastes time and can create new faults.","تغيير القطع بدون قياسات يضيع الوقت وقد يسبب أعطالا جديدة."]]
+            ],
+            symbol
+        )
+    ];
+}
+
+const books = {
+    resistor: componentBook("resistor","Resistor","المقاومة","─/\\/\\/─","Ω",
+        "A resistor limits or controls current in a circuit.",
+        "المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.",
+        "Test with resistance mode Ω. Power must be disconnected.",
+        "افحصها بوضع المقاومة Ω. يجب فصل الطاقة."
+    ),
+    capacitor: componentBook("capacitor","Capacitor","المكثف","─| |─","CAP",
+        "A capacitor stores energy and filters electrical noise on power lines.",
+        "المكثف يخزن الطاقة وينقي التشويش الكهربائي في خطوط الطاقة.",
+        "Check for short circuit using continuity or diode mode. A shorted capacitor may beep to ground.",
+        "افحص الشورت بوضع الاستمرارية أو الدايود. المكثف الشورت قد يعطي صفارة مع الأرضي."
+    ),
+    diode: componentBook("diode","Diode","الدايود","─|>|─","0.528",
+        "A diode allows current to pass mainly in one direction.",
+        "الدايود يسمح بمرور التيار غالبا في اتجاه واحد.",
+        "Test with diode mode. One direction should give a value, the other direction should usually block.",
+        "افحصه بوضع الدايود. اتجاه يعطي قيمة، والاتجاه الآخر غالبا يمنع المرور."
+    ),
+    coil: componentBook("coil","Coil","الملف","─oooo─","BEEP",
+        "A coil is often used in power circuits and voltage regulation.",
+        "الملف يستخدم غالبا في دوائر الطاقة وتنظيم الفولت.",
+        "Test with continuity mode. Most coils should have continuity because they are low resistance.",
+        "افحصه بوضع الاستمرارية. أغلب الملفات تعطي اتصالا لأنها مقاومتها منخفضة."
+    ),
+    fuse: componentBook("fuse","Fuse","الفيوز","─[ F ]─","BEEP",
+        "A fuse protects a circuit and can open when current is too high.",
+        "الفيوز يحمي الدائرة وقد ينقطع عندما يكون التيار عاليا جدا.",
+        "Test with continuity mode. A good fuse usually beeps. A blown fuse is open.",
+        "افحصه بوضع الاستمرارية. الفيوز السليم غالبا يعطي صفارة. الفيوز التالف يكون مقطوعا."
+    ),
+    connector: componentBook("connector","Connector","الكونكتور","CN / J","PIN",
+        "A connector links the board to battery, screen, charging flex or other parts.",
+        "الكونكتور يربط اللوحة بالبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.",
+        "Inspect with microscope first. Then test pins with continuity, diode mode or voltage depending on the line.",
+        "افحصه بالميكروسكوب أولا. ثم افحص البنات بالاستمرارية أو الدايود أو الفولت حسب الخط."
+    ),
+    ic: componentBook("ic","IC","الدائرة المتكاملة","┌ IC ┐","IC",
+        "An IC is a chip containing many electronic circuits inside one package.",
+        "الدائرة المتكاملة شريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.",
+        "Do not test an IC like a simple component. Check its power lines, ground, surrounding components and signals.",
+        "لا تفحص الشريحة مثل مكون بسيط. افحص خطوط الطاقة، الأرضي، المكونات حولها والإشارات."
+    )
+};
 
 const learningTree = [
     {
         group:{en:"Start Learning", ar:"ابدأ التعلم"},
         nodes:[
-            {
-                id:"start", icon:"▶", type:{en:"Foundation", ar:"أساس"},
-                title:{en:"Start Learning", ar:"ابدأ التعلم"},
-                desc:{en:"Understand how this repair path works before starting.", ar:"افهم كيف يعمل هذا المسار قبل البداية."},
-                objective:{en:"Know the order: tools first, components second, repair later.", ar:"معرفة الترتيب: الأدوات أولا، المكونات ثانيا، ثم الإصلاح لاحقا."},
-                points:[
-                    {title:{en:"Learning order", ar:"ترتيب التعلم"}, text:{en:"Do not start with complex repairs before knowing tools and components.", ar:"لا تبدأ بالإصلاحات المعقدة قبل معرفة الأدوات والمكونات."}},
-                    {title:{en:"Safe mindset", ar:"عقلية آمنة"}, text:{en:"Learn without damaging customer devices.", ar:"تعلم بدون إتلاف أجهزة العملاء."}}
+            node("start","▶","Foundation","أساس","Start Learning","ابدأ التعلم",
+                "Understand how this repair path works before starting.","افهم كيف يعمل هذا المسار قبل البداية.",
+                [
+                    [["Learning order","ترتيب التعلم"],["Tools first, components second, repair later.","الأدوات أولا، المكونات ثانيا، ثم الإصلاح لاحقا."]],
+                    [["Safe mindset","عقلية آمنة"],["Learn without damaging customer devices.","تعلم بدون إتلاف أجهزة العملاء."]]
                 ]
-            }
+            )
         ]
     },
     {
         group:{en:"Tools", ar:"الأدوات"},
         nodes:[
-            {
-                id:"tools_intro", icon:"▣", type:{en:"Tools", ar:"أدوات"},
-                title:{en:"Tools Overview", ar:"نظرة عامة على الأدوات"},
-                desc:{en:"Discover the main tools used in phone repair.", ar:"تعرف على الأدوات الرئيسية المستخدمة في إصلاح الهواتف."},
-                objective:{en:"Know what each tool is used for before using it.", ar:"معرفة وظيفة كل أداة قبل استخدامها."},
-                points:[
-                    {title:{en:"Basic tools", ar:"الأدوات الأساسية"}, text:{en:"Screwdrivers, tweezers, opening tools and cleaning tools.", ar:"مفكات، ملاقط، أدوات فتح وأدوات تنظيف."}},
-                    {title:{en:"Measuring tools", ar:"أدوات القياس"}, text:{en:"The multimeter helps you diagnose instead of guessing.", ar:"الملتيميتر يساعدك على التشخيص بدل التخمين."}}
+            node("tools_intro","▣","Tools","أدوات","Tools Overview","نظرة عامة على الأدوات",
+                "Discover the main tools used in phone repair.","تعرف على الأدوات الرئيسية المستخدمة في إصلاح الهواتف.",
+                [
+                    [["Basic tools","الأدوات الأساسية"],["Screwdrivers, tweezers, opening tools and cleaning tools.","مفكات، ملاقط، أدوات فتح وأدوات تنظيف."]],
+                    [["Measuring tools","أدوات القياس"],["The multimeter helps you diagnose instead of guessing.","الملتيميتر يساعدك على التشخيص بدل التخمين."]]
                 ]
-            },
-            {
-                id:"screwdrivers", icon:"T", type:{en:"Tool", ar:"أداة"},
-                title:{en:"Screwdrivers", ar:"المفكات"},
-                desc:{en:"Remove screws safely without damaging the phone.", ar:"إزالة البراغي بأمان بدون إتلاف الهاتف."},
-                objective:{en:"Choose the correct screwdriver size.", ar:"اختيار مقاس المفك الصحيح."},
-                points:[
-                    {title:{en:"Correct size", ar:"المقاس الصحيح"}, text:{en:"A wrong size can destroy screw heads.", ar:"المقاس الخاطئ قد يتلف رأس البرغي."}},
-                    {title:{en:"No force", ar:"بدون قوة زائدة"}, text:{en:"If a screw resists, stop and inspect.", ar:"إذا قاوم البرغي، توقف وافحص."}}
-                ]
-            },
-            {
-                id:"display_glue", icon:"G", type:{en:"Tool", ar:"أداة"},
-                title:{en:"Display Glue", ar:"غراء الشاشة"},
-                desc:{en:"Seal or refit a display after repair.", ar:"تثبيت أو إغلاق الشاشة بعد الإصلاح."},
-                objective:{en:"Use glue cleanly and safely.", ar:"استخدام الغراء بشكل نظيف وآمن."},
-                points:[
-                    {title:{en:"Clean surface", ar:"سطح نظيف"}, text:{en:"The frame must be clean before applying glue.", ar:"يجب أن يكون الإطار نظيفا قبل وضع الغراء."}},
-                    {title:{en:"Thin layer", ar:"طبقة رقيقة"}, text:{en:"Too much glue can overflow inside the phone.", ar:"الغراء الزائد قد يدخل داخل الهاتف."}}
-                ]
-            },
-            {
-                id:"tweezers", icon:"P", type:{en:"Tool", ar:"أداة"},
-                title:{en:"Tweezers", ar:"الملاقط"},
-                desc:{en:"Handle small parts, flex cables and components.", ar:"التعامل مع القطع الصغيرة والفلاتات والمكونات."},
-                objective:{en:"Handle small parts with precision.", ar:"التعامل مع القطع الصغيرة بدقة."},
-                points:[
-                    {title:{en:"Precision", ar:"الدقة"}, text:{en:"Tweezers help hold tiny screws and components.", ar:"الملاقط تساعد في مسك البراغي والمكونات الصغيرة."}},
-                    {title:{en:"Flex safety", ar:"سلامة الفلات"}, text:{en:"Do not pull flex cables aggressively.", ar:"لا تسحب الفلاتات بقوة."}}
-                ]
-            },
-            {
-                id:"heating_plate", icon:"H", type:{en:"Tool", ar:"أداة"},
-                title:{en:"Heating Plate", ar:"اللوحة الحرارية"},
-                desc:{en:"Soften adhesive and open screens more safely.", ar:"تليين اللاصق وفتح الشاشات بأمان أكثر."},
-                objective:{en:"Use controlled heat instead of force.", ar:"استخدام حرارة متحكم بها بدل القوة."},
-                points:[
-                    {title:{en:"Controlled heat", ar:"حرارة متحكم بها"}, text:{en:"Too much heat can damage screen or battery.", ar:"الحرارة الزائدة قد تتلف الشاشة أو البطارية."}},
-                    {title:{en:"Adhesive", ar:"اللاصق"}, text:{en:"Heat makes glue easier to separate.", ar:"الحرارة تجعل اللاصق أسهل في الفصل."}}
-                ]
-            },
-            {
-                id:"microscope", icon:"M", type:{en:"Tool", ar:"أداة"},
-                title:{en:"Microscope", ar:"الميكروسكوب"},
-                desc:{en:"Inspect tiny components, corrosion and damaged pads.", ar:"فحص المكونات الصغيرة، الأكسدة والبوردات التالفة."},
-                objective:{en:"See what the eye cannot see.", ar:"رؤية ما لا تراه العين."},
-                points:[
-                    {title:{en:"Inspection", ar:"الفحص"}, text:{en:"Check connectors, pins and liquid damage.", ar:"افحص الكونكتورات، البنات وأضرار السوائل."}},
-                    {title:{en:"Micro damage", ar:"أضرار دقيقة"}, text:{en:"Find broken pads, cracks and lifted tracks.", ar:"اعثر على البادات المقطوعة والشقوق والمسارات المرفوعة."}}
-                ]
-            },
-            {
-                id:"multimeter", icon:"V", type:{en:"Tool Book", ar:"كتاب أداة"},
-                title:{en:"Multimeter", ar:"الملتيميتر"},
-                desc:{en:"Learn its modes, symbols and how to use it.", ar:"تعلم أوضاعه ورموزه وطريقة استخدامه."},
-                book:multimeterBook
-            }
+            ),
+            node("screwdrivers","T","Tool","أداة","Screwdrivers","المفكات","Remove screws safely without damaging the phone.","إزالة البراغي بأمان بدون إتلاف الهاتف.",[
+                [["Correct size","المقاس الصحيح"],["A wrong size can destroy screw heads.","المقاس الخاطئ قد يتلف رأس البرغي."]]
+            ]),
+            node("display_glue","G","Tool","أداة","Display Glue","غراء الشاشة","Seal or refit a display after repair.","تثبيت أو إغلاق الشاشة بعد الإصلاح.",[
+                [["Clean surface","سطح نظيف"],["The frame must be clean before applying glue.","يجب أن يكون الإطار نظيفا قبل وضع الغراء."]]
+            ]),
+            node("tweezers","P","Tool","أداة","Tweezers","الملاقط","Handle small parts, flex cables and components.","التعامل مع القطع الصغيرة والفلاتات والمكونات.",[
+                [["Precision","الدقة"],["Tweezers help hold tiny screws and components.","الملاقط تساعد في مسك البراغي والمكونات الصغيرة."]]
+            ]),
+            node("heating_plate","H","Tool","أداة","Heating Plate","اللوحة الحرارية","Soften adhesive and open screens more safely.","تليين اللاصق وفتح الشاشات بأمان أكثر.",[
+                [["Controlled heat","حرارة متحكم بها"],["Too much heat can damage screen or battery.","الحرارة الزائدة قد تتلف الشاشة أو البطارية."]]
+            ]),
+            node("microscope","M","Tool","أداة","Microscope","الميكروسكوب","Inspect tiny components, corrosion and damaged pads.","فحص المكونات الصغيرة، الأكسدة والبوردات التالفة.",[
+                [["Inspection","الفحص"],["Check connectors, pins and liquid damage.","افحص الكونكتورات، البنات وأضرار السوائل."]]
+            ]),
+            bookNode("multimeter","V","Tool Book","كتاب أداة","Multimeter","الملتيميتر","Learn its modes, symbols and how to use it.","تعلم أوضاعه ورموزه وطريقة استخدامه.",multimeterBook)
         ]
     },
     {
         group:{en:"Electronic Components", ar:"المكونات الإلكترونية"},
         nodes:[
-            {
-                id:"components_intro", icon:"⚡", type:{en:"Components", ar:"مكونات"},
-                title:{en:"Electronic Components", ar:"المكونات الإلكترونية"},
-                desc:{en:"Learn the basic components found on phone motherboards.", ar:"تعلم المكونات الأساسية الموجودة على لوحات الهواتف."},
-                objective:{en:"Recognize components before replacing anything.", ar:"التعرف على المكونات قبل تغيير أي قطعة."},
-                points:[
-                    {title:{en:"Recognition", ar:"التعرف"}, text:{en:"Learn what each component looks like.", ar:"تعلم شكل كل مكون."}},
-                    {title:{en:"No random replacement", ar:"لا تغيير عشوائي"}, text:{en:"Never replace a component without proof.", ar:"لا تغير أي مكون بدون دليل."}}
+            node("components_intro","⚡","Components","مكونات","Electronic Components","المكونات الإلكترونية",
+                "Learn the basic components found on phone motherboards.","تعلم المكونات الأساسية الموجودة على لوحات الهواتف.",
+                [
+                    [["Recognition","التعرف"],["Learn what each component looks like.","تعلم شكل كل مكون."]],
+                    [["No random replacement","لا تغيير عشوائي"],["Never replace a component without proof.","لا تغير أي مكون بدون دليل."]]
                 ]
-            },
-            simpleComponent("resistor","R","Resistor","المقاومة","Limits or controls current in a circuit.","تحد أو تتحكم في مرور التيار داخل الدائرة."),
-            simpleComponent("capacitor","C","Capacitor","المكثف","Stores energy and filters electrical noise.","يخزن الطاقة ويساعد في تنقية التشويش الكهربائي."),
-            simpleComponent("diode","D","Diode","الدايود","Allows current to pass mainly in one direction.","يسمح بمرور التيار غالبا في اتجاه واحد."),
-            simpleComponent("coil","L","Coil","الملف","Often used in power circuits and voltage regulation.","يستخدم غالبا في دوائر الطاقة وتنظيم الفولت."),
-            simpleComponent("fuse","F","Fuse","الفيوز","A protection component that can open when current is too high.","مكون حماية قد ينقطع عندما يكون التيار عاليا جدا."),
-            simpleComponent("connector","N","Connector","الكونكتور","Connection point for battery, screen or charging flex.","نقطة اتصال للبطارية، الشاشة أو فلاتة الشحن."),
-            simpleComponent("ic","IC","IC","الدائرة المتكاملة","A chip that contains many circuits inside one package.","شريحة تحتوي على دوائر كثيرة داخل قطعة واحدة.")
+            ),
+            bookNode("resistor","R","Component Book","كتاب مكون","Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.resistor),
+            bookNode("capacitor","C","Component Book","كتاب مكون","Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.capacitor),
+            bookNode("diode","D","Component Book","كتاب مكون","Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.diode),
+            bookNode("coil","L","Component Book","كتاب مكون","Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.coil),
+            bookNode("fuse","F","Component Book","كتاب مكون","Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.fuse),
+            bookNode("connector","CN","Component Book","كتاب مكون","Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.connector),
+            bookNode("ic","IC","Component Book","كتاب مكون","IC","الدائرة المتكاملة","General role and safe diagnostic logic.","الدور العام ومنطق التشخيص الآمن.",books.ic)
         ]
     }
 ];
 
-function simpleComponent(id, icon, enTitle, arTitle, enDesc, arDesc){
+function pair(en, ar){ return {en, ar}; }
+
+function bookPage(visual, mode, display, titleArr, textArr, pointsArr, symbol){
     return {
-        id, icon, type:{en:"Component", ar:"مكون"},
-        title:{en:enTitle, ar:arTitle},
-        desc:{en:enDesc, ar:arDesc},
-        objective:{en:"Understand its general role before diagnosis.", ar:"فهم دوره العام قبل التشخيص."},
-        points:[
-            {title:{en:"Role", ar:"الدور"}, text:{en:enDesc, ar:arDesc}},
-            {title:{en:"Inspection", ar:"الفحص"}, text:{en:"Inspect visually before replacing it.", ar:"افحص بصريا قبل تغييره."}},
-            {title:{en:"Rule", ar:"القاعدة"}, text:{en:"Never replace without proof.", ar:"لا تغير بدون دليل."}}
-        ]
+        visual, mode, display, symbol,
+        title:pair(titleArr[0], titleArr[1]),
+        text:pair(textArr[0], textArr[1]),
+        points:pointsArr.map(p => ({title:pair(p[0][0], p[0][1]), text:pair(p[1][0], p[1][1])}))
     };
+}
+
+function node(id, icon, typeEn, typeAr, titleEn, titleAr, descEn, descAr, pointsArr){
+    return {
+        id, icon, type:pair(typeEn,typeAr), title:pair(titleEn,titleAr), desc:pair(descEn,descAr),
+        objective:pair(descEn,descAr),
+        points:pointsArr.map(p => ({title:pair(p[0][0],p[0][1]), text:pair(p[1][0],p[1][1])}))
+    };
+}
+
+function bookNode(id, icon, typeEn, typeAr, titleEn, titleAr, descEn, descAr, book){
+    return {id, icon, type:pair(typeEn,typeAr), title:pair(titleEn,titleAr), desc:pair(descEn,descAr), book};
 }
 
 function tr(key){ return ui[currentLang][key]; }
@@ -956,11 +564,6 @@ function applyLanguage(){
     document.getElementById("sosTitle").textContent = tr("sosTitle");
     document.getElementById("sosText").textContent = tr("sosText");
     document.getElementById("sosButton").textContent = tr("sosButton");
-    document.getElementById("learnTitle").textContent = tr("learnTitle");
-    document.getElementById("learnSubtitle").textContent = tr("learnSubtitle");
-    document.getElementById("objectiveTitle").textContent = tr("objectiveTitle");
-    document.getElementById("backButton").textContent = tr("back");
-    document.getElementById("doneButton").textContent = tr("done");
     document.getElementById("prevButton").textContent = tr("prev");
     document.getElementById("nextButton").textContent = tr("next");
     document.getElementById("bookBackButton").textContent = tr("back");
@@ -968,8 +571,6 @@ function applyLanguage(){
     document.getElementById("footerText").textContent = tr("footer");
 
     renderTree();
-
-    if(currentNode && document.getElementById("lessonPage").classList.contains("active")) openNode(currentNode);
     if(currentNode && document.getElementById("bookPage").classList.contains("active")) renderBookPage();
 }
 
@@ -1006,7 +607,6 @@ function renderTree(){
         group.nodes.forEach(node => {
             const done = doneIds().includes(node.id);
             const unlocked = isUnlocked(node);
-
             const row = document.createElement("div");
             row.className = "tree-node";
 
@@ -1017,7 +617,6 @@ function renderTree(){
             const btn = document.createElement("button");
             btn.className = "node-card" + (done ? " done" : "") + (!unlocked ? " locked" : "");
             btn.onclick = () => unlocked ? openNode(node) : showLockedMessage();
-
             btn.innerHTML = `
                 <strong>${txt(node.title)}</strong>
                 <small>${txt(node.desc)}</small>
@@ -1041,57 +640,53 @@ function renderTree(){
 
 function openNode(node){
     currentNode = node;
+    currentBookPage = 0;
     localStorage.setItem("master_repair_last", node.id);
-
-    if(node.book){
-        currentBookPage = 0;
-        renderBookPage();
-        showPage("bookPage");
-        return;
-    }
-
-    document.getElementById("lessonTitle").textContent = txt(node.title);
-    document.getElementById("lessonDesc").textContent = txt(node.desc);
-    document.getElementById("objectiveText").textContent = txt(node.objective);
-    document.getElementById("lessonBadge").textContent = txt(node.type);
-
-    const list = document.getElementById("lessonPoints");
-    list.innerHTML = "";
-
-    node.points.forEach(point => {
-        const box = document.createElement("div");
-        box.className = "lesson";
-        box.innerHTML = `<strong>${txt(point.title)}</strong><p>${txt(point.text)}</p>`;
-        list.appendChild(box);
-    });
-
+    renderBookPage();
     sendTelegramData(node.id);
-    showPage("lessonPage");
+    showPage("bookPage");
 }
 
 function renderBookPage(){
-    const page = currentNode.book[currentBookPage];
+    const page = currentNode.book ? currentNode.book[currentBookPage] : nodeToBookPage(currentNode);
 
     document.getElementById("bookTitle").textContent = txt(currentNode.title);
     document.getElementById("bookDesc").textContent = txt(currentNode.desc);
-    document.getElementById("bookCounter").textContent = (currentBookPage + 1) + " / " + currentNode.book.length;
+    document.getElementById("bookCounter").textContent = (currentBookPage + 1) + " / " + (currentNode.book ? currentNode.book.length : 1);
     document.getElementById("bookPageTitle").textContent = txt(page.title);
     document.getElementById("bookPageText").textContent = txt(page.text);
-
-    document.getElementById("bookVisual").innerHTML = createMeterVisual(page);
+    document.getElementById("bookVisual").innerHTML = createVisual(page);
 
     const list = document.getElementById("bookPoints");
     list.innerHTML = "";
 
     page.points.forEach(point => {
         const box = document.createElement("div");
-        box.className = page.mode === "WARN" ? "lesson warning-box" : "lesson";
+        box.className = page.mode === "warn" ? "lesson warning-box" : "lesson";
         box.innerHTML = `<strong>${txt(point.title)}</strong><p>${txt(point.text)}</p>`;
         list.appendChild(box);
     });
 
+    const total = currentNode.book ? currentNode.book.length : 1;
     document.getElementById("prevButton").disabled = currentBookPage === 0;
-    document.getElementById("nextButton").disabled = currentBookPage === currentNode.book.length - 1;
+    document.getElementById("nextButton").disabled = currentBookPage === total - 1;
+}
+
+function nodeToBookPage(node){
+    return {
+        visual:"component",
+        mode:"basic",
+        display:txt(node.type),
+        symbol:"⌁",
+        title:node.title,
+        text:node.desc,
+        points:node.points
+    };
+}
+
+function createVisual(page){
+    if(page.visual === "meter") return createMeterVisual(page);
+    return createComponentVisual(page);
 }
 
 function createMeterVisual(page){
@@ -1120,6 +715,20 @@ function createMeterVisual(page){
     `;
 }
 
+function createComponentVisual(page){
+    return `
+        <div class="component-visual">
+            <div class="comp-chip">${page.mode === "warn" ? "!" : page.mode.toUpperCase()}</div>
+            <div class="symbol-box">${page.symbol || "⌁"}</div>
+            <div class="test-strip">
+                <div class="pad">Probe</div>
+                <div class="test-meter"><div>${page.display}</div></div>
+                <div class="pad">Probe</div>
+            </div>
+        </div>
+    `;
+}
+
 function previousBookPage(){
     if(currentBookPage > 0){
         currentBookPage--;
@@ -1129,7 +738,8 @@ function previousBookPage(){
 }
 
 function nextBookPage(){
-    if(currentBookPage < currentNode.book.length - 1){
+    const total = currentNode.book ? currentNode.book.length : 1;
+    if(currentBookPage < total - 1){
         currentBookPage++;
         renderBookPage();
         window.scrollTo(0,0);

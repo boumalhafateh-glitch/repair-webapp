@@ -18,28 +18,20 @@ body{
 
 h1{
     color:#00aaff;
+    margin-top:10px;
 }
 
+/* PAGES */
 .page{
     display:none;
-    padding:20px;
+    padding:15px;
 }
 
 .active{
     display:block;
 }
 
-button{
-    width:90%;
-    padding:14px;
-    margin:8px;
-    border:none;
-    border-radius:10px;
-    background:#00aaff;
-    color:white;
-    font-size:14px;
-}
-
+/* CARD */
 .card{
     margin:10px;
     padding:15px;
@@ -47,6 +39,26 @@ button{
     border-radius:15px;
 }
 
+/* GRID BUTTONS */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#00aaff;
+    color:white;
+    font-size:13px;
+}
+
+/* TEXT */
 .small{
     font-size:13px;
     color:#ccc;
@@ -65,44 +77,49 @@ button{
     <div class="card">
         <h3>📚 Chapters / الدروس</h3>
 
-        <button onclick="openPage('c1')">Chapter 1 / الدرس 1</button>
-        <button onclick="openPage('c2')">Chapter 2 / الدرس 2</button>
-        <button onclick="openPage('c3')">Chapter 3 / الدرس 3</button>
-        <button onclick="openPage('c4')">Chapter 4 / الدرس 4</button>
-        <button onclick="openPage('c5')">Chapter 5 / الدرس 5</button>
-        <button onclick="openPage('c6')">Chapter 6 / الدرس 6</button>
-        <button onclick="openPage('c7')">Chapter 7 / الدرس 7</button>
-        <button onclick="openPage('c8')">Chapter 8 / الدرس 8</button>
-        <button onclick="openPage('c9')">Chapter 9 / الدرس 9</button>
-        <button onclick="openPage('c10')">Chapter 10 / الدرس 10</button>
+        <div class="grid">
 
+            <button onclick="openPage('c1')">Chapter 1 / 1</button>
+            <button onclick="openPage('c2')">Chapter 2 / 2</button>
+            <button onclick="openPage('c3')">Chapter 3 / 3</button>
+            <button onclick="openPage('c4')">Chapter 4 / 4</button>
+            <button onclick="openPage('c5')">Chapter 5 / 5</button>
+            <button onclick="openPage('c6')">Chapter 6 / 6</button>
+            <button onclick="openPage('c7')">Chapter 7 / 7</button>
+            <button onclick="openPage('c8')">Chapter 8 / 8</button>
+            <button onclick="openPage('c9')">Chapter 9 / 9</button>
+            <button onclick="openPage('c10')">Chapter 10 / 10</button>
+
+        </div>
     </div>
+
 </div>
 
-<!-- CHAPTER TEMPLATE -->
+<!-- CHAPTER 1 -->
 <div id="c1" class="page">
     <div class="card">
         <h2>📘 Multimeter / الملتيميتر</h2>
         <p class="small">
-            EN: Learn how to measure voltage, resistance and continuity.<br><br>
+            EN: Learn voltage, resistance and continuity.<br><br>
             AR: تعلم قياس التوتر والمقاومة والاستمرارية.
         </p>
         <button onclick="openPage('home')">⬅ Back / رجوع</button>
     </div>
 </div>
 
+<!-- CHAPTER 2 -->
 <div id="c2" class="page">
     <div class="card">
         <h2>📘 Components / المكونات</h2>
         <p class="small">
             EN: Resistors, capacitors, diodes basics.<br><br>
-            AR: أساسيات المقاومات والمكثفات والديود.
+            AR: المقاومات، المكثفات، الديود.
         </p>
         <button onclick="openPage('home')">⬅ Back / رجوع</button>
     </div>
 </div>
 
-<!-- autres chapitres identiques -->
+<!-- CHAPTERS 3-10 (template simple) -->
 <div id="c3" class="page"><div class="card"><h2>📘 Chapter 3</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
 <div id="c4" class="page"><div class="card"><h2>📘 Chapter 4</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
 <div id="c5" class="page"><div class="card"><h2>📘 Chapter 5</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
@@ -118,8 +135,7 @@ tg.ready();
 tg.expand();
 
 function openPage(page){
-
-    document.querySelectorAll(".page").forEach(p => {
+    document.querySelectorAll(".page").forEach(p=>{
         p.classList.remove("active");
     });
 

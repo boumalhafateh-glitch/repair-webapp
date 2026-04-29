@@ -37,9 +37,7 @@ body{
         linear-gradient(180deg,#0d0d0d 0%,#050505 100%);
 }
 
-body[dir="rtl"]{
-    direction:rtl;
-}
+body[dir="rtl"]{direction:rtl;}
 
 .app{
     width:100%;
@@ -56,9 +54,7 @@ body[dir="rtl"]{
     margin-bottom:14px;
 }
 
-.logo{
-    text-align:center;
-}
+.logo{text-align:center;}
 
 .logo-mark{
     width:34px;
@@ -66,9 +62,7 @@ body[dir="rtl"]{
     margin:0 auto 5px;
     border-radius:12px;
     border:1px solid rgba(56,189,248,.55);
-    background:
-        radial-gradient(circle, rgba(56,189,248,.25), transparent 60%),
-        #101010;
+    background:radial-gradient(circle, rgba(56,189,248,.25), transparent 60%), #101010;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -84,14 +78,10 @@ body[dir="rtl"]{
     font-weight:900;
     letter-spacing:.6px;
     color:#eafaff;
-    text-shadow:
-        0 0 8px rgba(56,189,248,.48),
-        0 0 18px rgba(242,201,76,.16);
+    text-shadow:0 0 8px rgba(56,189,248,.48), 0 0 18px rgba(242,201,76,.16);
 }
 
-.logo h1 span{
-    color:var(--gold);
-}
+.logo h1 span{color:var(--gold);}
 
 .status{
     margin-top:3px;
@@ -100,8 +90,7 @@ body[dir="rtl"]{
     font-weight:700;
 }
 
-.icon-btn,
-.lang-btn{
+.icon-btn,.lang-btn{
     width:42px;
     height:42px;
     border:1px solid var(--line);
@@ -113,16 +102,9 @@ body[dir="rtl"]{
     cursor:pointer;
 }
 
-.lang-btn{
-    color:var(--gold);
-    font-size:13px;
-}
+.lang-btn{color:var(--gold);font-size:13px;}
 
-.page{
-    display:none;
-    animation:fade .18s ease;
-}
-
+.page{display:none;animation:fade .18s ease;}
 .page.active{display:block;}
 
 @keyframes fade{
@@ -141,9 +123,7 @@ body[dir="rtl"]{
 }
 
 .hero{
-    background:
-        linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)),
-        rgba(20,20,20,.96);
+    background:linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)), rgba(20,20,20,.96);
 }
 
 .title{
@@ -242,10 +222,7 @@ button{
     border-color:#cf1235;
 }
 
-.main-action{
-    width:100%;
-    margin:2px 0 4px;
-}
+.main-action{width:100%;margin:2px 0 4px;}
 
 .section-title{
     text-align:center;
@@ -280,9 +257,7 @@ button{
     align-items:center;
 }
 
-body[dir="rtl"] .tree-node{
-    grid-template-columns:1fr 45px;
-}
+body[dir="rtl"] .tree-node{grid-template-columns:1fr 45px;}
 
 .tree-node:not(:last-child)::after{
     content:"";
@@ -314,9 +289,7 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     box-shadow:0 0 16px rgba(56,189,248,.12);
 }
 
-body[dir="rtl"] .node-icon{
-    order:2;
-}
+body[dir="rtl"] .node-icon{order:2;}
 
 .node-card{
     min-height:96px;
@@ -330,13 +303,8 @@ body[dir="rtl"] .node-icon{
     box-shadow:0 10px 24px rgba(0,0,0,.18);
 }
 
-.node-card.done{
-    border-color:rgba(39,196,107,.8);
-}
-
-.node-card.locked{
-    opacity:.48;
-}
+.node-card.done{border-color:rgba(39,196,107,.8);}
+.node-card.locked{opacity:.48;}
 
 .node-card strong{
     display:block;
@@ -379,10 +347,7 @@ body[dir="rtl"] .node-icon{
     font-weight:900;
 }
 
-.list{
-    display:grid;
-    gap:8px;
-}
+.list{display:grid;gap:8px;}
 
 .lesson{
     border:1px solid var(--line);
@@ -413,6 +378,144 @@ body[dir="rtl"] .node-icon{
     margin-top:11px;
 }
 
+.book-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin:11px 0;
+}
+
+.book-counter{
+    margin-top:10px;
+    color:var(--gold);
+    font-size:12px;
+    font-weight:900;
+}
+
+.meter-visual{
+    width:100%;
+    max-width:270px;
+    margin:14px auto 4px;
+    padding:14px;
+    border-radius:22px;
+    border:1px solid rgba(56,189,248,.32);
+    background:linear-gradient(180deg,#232323,#111);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 28px rgba(56,189,248,.10);
+}
+
+.meter-screen{
+    height:54px;
+    border-radius:12px;
+    background:#9fd7b2;
+    color:#071107;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:1px;
+    border:3px solid #0b0b0b;
+}
+
+.dial{
+    width:112px;
+    height:112px;
+    margin:14px auto 10px;
+    border-radius:50%;
+    background:#0d0d0d;
+    border:8px solid #2b2b2b;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.dial-center{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:var(--gold);
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:12px;
+}
+
+.mode{
+    position:absolute;
+    font-size:12px;
+    font-weight:900;
+    color:#aaa;
+}
+
+.mode.active{
+    color:var(--gold);
+    text-shadow:0 0 10px rgba(242,201,76,.5);
+}
+
+.m-v{top:6px;left:47px;}
+.m-ohm{right:8px;top:42px;}
+.m-cont{right:27px;bottom:11px;}
+.m-diode{left:24px;bottom:11px;}
+.m-a{left:7px;top:42px;}
+
+.ports{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+}
+
+.port{
+    border:1px solid #333;
+    border-radius:10px;
+    padding:7px 4px;
+    background:#090909;
+    font-size:11px;
+    font-weight:900;
+}
+
+.port.red{color:#ff6b6b;}
+.port.black{color:#cfcfcf;}
+.port.gold{color:var(--gold);}
+
+.probes{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:12px;
+}
+
+.probe{
+    width:8px;
+    height:54px;
+    border-radius:8px;
+    position:relative;
+}
+
+.probe:before{
+    content:"";
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:12px solid currentColor;
+}
+
+.probe.red{background:#e11d48;color:#e11d48;}
+.probe.black{background:#cbd5e1;color:#cbd5e1;}
+
+.warning-box{
+    border:1px solid rgba(239,68,68,.45);
+    background:rgba(239,68,68,.10);
+}
+
 .sos-box{
     border-color:rgba(176,0,32,.55);
     background:rgba(176,0,32,.12);
@@ -439,7 +542,7 @@ body[dir="rtl"] .node-icon{
 
 @media(max-width:330px){
     .stats{grid-template-columns:1fr;}
-    .action-row{grid-template-columns:1fr;}
+    .action-row,.book-controls{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -520,101 +623,187 @@ body[dir="rtl"] .node-icon{
         </div>
     </div>
 
+    <div id="bookPage" class="page">
+        <div class="panel">
+            <h2 class="title" id="bookTitle"></h2>
+            <p class="text" id="bookDesc"></p>
+            <div class="book-counter" id="bookCounter"></div>
+        </div>
+
+        <div id="bookVisual"></div>
+
+        <div class="panel">
+            <h2 class="title" id="bookPageTitle"></h2>
+            <p class="text" id="bookPageText"></p>
+        </div>
+
+        <div class="list" id="bookPoints"></div>
+
+        <div class="book-controls">
+            <button onclick="previousBookPage()" id="prevButton"></button>
+            <button onclick="nextBookPage()" id="nextButton"></button>
+        </div>
+
+        <div class="action-row">
+            <button onclick="goHome()" id="bookBackButton"></button>
+            <button class="primary" onclick="markDone()" id="bookDoneButton"></button>
+        </div>
+    </div>
+
     <div class="footer" id="footerText"></div>
 
 </div>
 
 <script>
 const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-
-if(tg){
-    tg.ready();
-    tg.expand();
-}
+if(tg){ tg.ready(); tg.expand(); }
 
 let currentLang = localStorage.getItem("master_repair_lang") || "en";
 let currentNode = null;
+let currentBookPage = 0;
 
 const ui = {
     en:{
-        dir:"ltr",
-        langButton:"AR",
-        connected:"Connected to Telegram",
-        browser:"Browser Test Mode",
-        heroTitle:"Start Your Repair Journey",
-        heroText:"Learn tools first, then electronic components step by step.",
-        completed:"Completed",
-        steps:"Steps",
-        support:"Support",
-        continue:"Continue Learning",
-        treeTitle:"Learning Tree",
-        treeSubtitle:"Your repair roadmap",
-        supportTitle:"Support",
-        supportSubtitle:"Need help?",
-        sosTitle:"SOS Repair",
-        sosText:"Open the Telegram group to ask for help or show a failure.",
-        sosButton:"Open SOS",
-        learnTitle:"What You Learn",
-        learnSubtitle:"Main points",
-        objectiveTitle:"Objective",
-        back:"Back",
-        done:"Done",
-        footer:"Master Repair Academy • Learning Tree",
-        completedProgress:"completed",
-        open:"Open",
-        locked:"Locked",
-        doneState:"Done",
-        lockedMessage:"Complete the previous step first.",
-        completedMessage:"Step completed!"
+        dir:"ltr", langButton:"AR", connected:"Connected to Telegram", browser:"Browser Test Mode",
+        heroTitle:"Start Your Repair Journey", heroText:"Learn tools first, then electronic components step by step.",
+        completed:"Completed", steps:"Steps", support:"Support", continue:"Continue Learning",
+        treeTitle:"Learning Tree", treeSubtitle:"Your repair roadmap",
+        supportTitle:"Support", supportSubtitle:"Need help?",
+        sosTitle:"SOS Repair", sosText:"Open the Telegram group to ask for help or show a failure.", sosButton:"Open SOS",
+        learnTitle:"What You Learn", learnSubtitle:"Main points", objectiveTitle:"Objective",
+        back:"Back", done:"Done", prev:"Previous", next:"Next",
+        footer:"Master Repair Academy • Learning Tree", completedProgress:"completed",
+        open:"Open", locked:"Locked", doneState:"Done",
+        lockedMessage:"Complete the previous step first.", completedMessage:"Step completed!"
     },
     ar:{
-        dir:"rtl",
-        langButton:"EN",
-        connected:"متصل بتيليجرام",
-        browser:"وضع الاختبار",
-        heroTitle:"ابدأ رحلتك في الإصلاح",
-        heroText:"تعلم الأدوات أولا، ثم المكونات الإلكترونية خطوة بخطوة.",
-        completed:"مكتمل",
-        steps:"خطوات",
-        support:"الدعم",
-        continue:"متابعة التعلم",
-        treeTitle:"شجرة التعلم",
-        treeSubtitle:"خريطة طريق الإصلاح",
-        supportTitle:"الدعم",
-        supportSubtitle:"تحتاج مساعدة؟",
-        sosTitle:"دعم الإصلاح",
-        sosText:"افتح مجموعة تيليجرام لطلب المساعدة أو عرض عطل.",
-        sosButton:"فتح الدعم",
-        learnTitle:"ماذا ستتعلم",
-        learnSubtitle:"النقاط الرئيسية",
-        objectiveTitle:"الهدف",
-        back:"رجوع",
-        done:"تم",
-        footer:"Master Repair Academy • شجرة التعلم",
-        completedProgress:"مكتمل",
-        open:"فتح",
-        locked:"مغلق",
-        doneState:"تم",
-        lockedMessage:"أكمل الخطوة السابقة أولا.",
-        completedMessage:"تم إنهاء الخطوة!"
+        dir:"rtl", langButton:"EN", connected:"متصل بتيليجرام", browser:"وضع الاختبار",
+        heroTitle:"ابدأ رحلتك في الإصلاح", heroText:"تعلم الأدوات أولا، ثم المكونات الإلكترونية خطوة بخطوة.",
+        completed:"مكتمل", steps:"خطوات", support:"الدعم", continue:"متابعة التعلم",
+        treeTitle:"شجرة التعلم", treeSubtitle:"خريطة طريق الإصلاح",
+        supportTitle:"الدعم", supportSubtitle:"تحتاج مساعدة؟",
+        sosTitle:"دعم الإصلاح", sosText:"افتح مجموعة تيليجرام لطلب المساعدة أو عرض عطل.", sosButton:"فتح الدعم",
+        learnTitle:"ماذا ستتعلم", learnSubtitle:"النقاط الرئيسية", objectiveTitle:"الهدف",
+        back:"رجوع", done:"تم", prev:"السابق", next:"التالي",
+        footer:"Master Repair Academy • شجرة التعلم", completedProgress:"مكتمل",
+        open:"فتح", locked:"مغلق", doneState:"تم",
+        lockedMessage:"أكمل الخطوة السابقة أولا.", completedMessage:"تم إنهاء الخطوة!"
     }
 };
+
+const multimeterBook = [
+    {
+        mode:"V",
+        display:"0.00 V",
+        title:{en:"What Is a Multimeter?", ar:"ما هو الملتيميتر؟"},
+        text:{en:"A multimeter is a measuring tool. It helps you stop guessing and start proving what is happening on a phone.", ar:"الملتيميتر أداة قياس. يساعدك على التوقف عن التخمين ومعرفة ما يحدث فعلا داخل الهاتف."},
+        points:[
+            {title:{en:"It measures", ar:"يقيس"}, text:{en:"Voltage, resistance, continuity, diode values and sometimes current.", ar:"الفولت، المقاومة، الاستمرارية، قيم الدايود وأحيانا التيار."}},
+            {title:{en:"It protects you from guessing", ar:"يحميك من التخمين"}, text:{en:"Before replacing parts, you measure to confirm the fault.", ar:"قبل تغيير القطع، تقوم بالقياس لتأكيد العطل."}}
+        ]
+    },
+    {
+        mode:"COM",
+        display:"COM",
+        title:{en:"Probes And Ports", ar:"الأسلاك والمداخل"},
+        text:{en:"The black probe usually goes into COM. The red probe usually goes into VΩ for voltage, resistance, continuity and diode mode.", ar:"السلك الأسود يوضع غالبا في COM. السلك الأحمر يوضع غالبا في VΩ لقياس الفولت والمقاومة والاستمرارية والدايود."},
+        points:[
+            {title:{en:"COM", ar:"COM"}, text:{en:"Common port for the black probe.", ar:"المدخل الأساسي للسلك الأسود."}},
+            {title:{en:"VΩ", ar:"VΩ"}, text:{en:"Port for voltage, resistance, continuity and diode measurements.", ar:"مدخل قياس الفولت والمقاومة والاستمرارية والدايود."}},
+            {title:{en:"10A", ar:"10A"}, text:{en:"Used only for high current measurement. Wrong use can be dangerous.", ar:"يستخدم فقط لقياس تيار عالي. استخدامه بالخطأ قد يكون خطيرا."}}
+        ]
+    },
+    {
+        mode:"V",
+        display:"4.20 V",
+        title:{en:"Voltage Mode - V", ar:"وضع الفولت - V"},
+        text:{en:"Voltage mode checks if power is present. On phones, it helps you know if a line, battery or connector receives power.", ar:"وضع الفولت يفحص هل الطاقة موجودة. في الهواتف يساعدك على معرفة هل الخط أو البطارية أو الكونكتور يستقبل الفولت."},
+        points:[
+            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Look for V. DC voltage is usually shown as V with a straight line.", ar:"ابحث عن V. الفولت المستمر غالبا يكون V مع خط مستقيم."}},
+            {title:{en:"How to use", ar:"طريقة الاستخدام"}, text:{en:"Black probe on ground, red probe on the point you want to measure.", ar:"السلك الأسود على الأرضي، والأحمر على النقطة التي تريد قياسها."}},
+            {title:{en:"Common use", ar:"استخدام شائع"}, text:{en:"Check battery voltage, charging voltage and power lines.", ar:"فحص فولت البطارية، فولت الشحن وخطوط الطاقة."}}
+        ]
+    },
+    {
+        mode:"Ω",
+        display:"220 Ω",
+        title:{en:"Resistance Mode - Ω", ar:"وضع المقاومة - Ω"},
+        text:{en:"Resistance mode measures how much a component or line resists current flow. It is useful for resistors and checking suspicious lines.", ar:"وضع المقاومة يقيس مقدار مقاومة المكون أو الخط لمرور التيار. مفيد للمقاومات وفحص الخطوط المشبوهة."},
+        points:[
+            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"The resistance symbol is Ω.", ar:"رمز المقاومة هو Ω."}},
+            {title:{en:"Power off", ar:"الجهاز مطفأ"}, text:{en:"Resistance is usually measured with no power connected.", ar:"غالبا يتم قياس المقاومة بدون توصيل طاقة."}},
+            {title:{en:"Important", ar:"مهم"}, text:{en:"Do not measure resistance on a powered board.", ar:"لا تقس المقاومة على لوحة موصولة بالطاقة."}}
+        ]
+    },
+    {
+        mode:"CONT",
+        display:"BEEP",
+        title:{en:"Continuity Mode", ar:"وضع الاستمرارية"},
+        text:{en:"Continuity mode tells you if two points are connected. Many multimeters beep when there is a connection.", ar:"وضع الاستمرارية يخبرك هل توجد وصلة بين نقطتين. كثير من الأجهزة تصدر صوتا عند وجود اتصال."},
+        points:[
+            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Often shown as a sound wave or buzzer symbol.", ar:"غالبا يظهر كرمز صوت أو جرس."}},
+            {title:{en:"Use it for", ar:"يستخدم في"}, text:{en:"Checking fuses, broken lines, ground and connector paths.", ar:"فحص الفيوزات، الخطوط المقطوعة، الأرضي ومسارات الكونكتور."}},
+            {title:{en:"Warning", ar:"تحذير"}, text:{en:"A beep does not always mean the part is good. It only means connection exists.", ar:"الصوت لا يعني دائما أن القطعة سليمة. يعني فقط أن هناك اتصالا."}}
+        ]
+    },
+    {
+        mode:"DIODE",
+        display:"0.528",
+        title:{en:"Diode Mode", ar:"وضع الدايود"},
+        text:{en:"Diode mode is very important in phone repair. It gives a value that helps compare a line with a known good board.", ar:"وضع الدايود مهم جدا في إصلاح الهواتف. يعطي قيمة تساعدك على مقارنة الخط مع لوحة سليمة."},
+        points:[
+            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Look for the diode symbol, usually a triangle and line.", ar:"ابحث عن رمز الدايود، غالبا مثل مثلث وخط."}},
+            {title:{en:"Use it for", ar:"يستخدم في"}, text:{en:"Checking lines without powering the board.", ar:"فحص الخطوط بدون تشغيل اللوحة."}},
+            {title:{en:"Compare", ar:"المقارنة"}, text:{en:"The best method is comparing readings with a good board.", ar:"أفضل طريقة هي مقارنة القياسات مع لوحة سليمة."}}
+        ]
+    },
+    {
+        mode:"A",
+        display:"0.18 A",
+        title:{en:"Current Mode - A", ar:"وضع التيار - A"},
+        text:{en:"Current mode measures how much current flows. This mode must be used carefully because wrong connection can damage the meter or board.", ar:"وضع التيار يقيس مقدار التيار المار. يجب استخدامه بحذر لأن التوصيل الخطأ قد يتلف الجهاز أو اللوحة."},
+        points:[
+            {title:{en:"Symbol", ar:"الرمز"}, text:{en:"Current is shown with A or mA.", ar:"التيار يظهر برمز A أو mA."}},
+            {title:{en:"Be careful", ar:"كن حذرا"}, text:{en:"Current measurement is different from voltage measurement.", ar:"قياس التيار يختلف عن قياس الفولت."}},
+            {title:{en:"Beginner advice", ar:"نصيحة للمبتدئ"}, text:{en:"For phone repair, start with voltage, continuity and diode mode first.", ar:"في إصلاح الهواتف، ابدأ أولا بالفولت والاستمرارية والدايود."}}
+        ]
+    },
+    {
+        mode:"WARN",
+        display:"ERROR",
+        title:{en:"Common Mistakes", ar:"الأخطاء الشائعة"},
+        text:{en:"Most beginner mistakes come from using the wrong mode or wrong port.", ar:"معظم أخطاء المبتدئين تأتي من استخدام وضع خاطئ أو مدخل خاطئ."},
+        points:[
+            {title:{en:"Wrong port", ar:"مدخل خاطئ"}, text:{en:"Leaving the red probe in 10A can be dangerous.", ar:"ترك السلك الأحمر في 10A قد يكون خطيرا."}},
+            {title:{en:"Wrong mode", ar:"وضع خاطئ"}, text:{en:"Do not measure voltage while the meter is set to resistance.", ar:"لا تقس الفولت والجهاز مضبوط على المقاومة."}},
+            {title:{en:"Powered board", ar:"لوحة موصولة بالطاقة"}, text:{en:"Do not measure resistance or continuity on a powered board.", ar:"لا تقس المقاومة أو الاستمرارية على لوحة موصولة بالطاقة."}}
+        ]
+    },
+    {
+        mode:"PRACTICE",
+        display:"TEST",
+        title:{en:"Workshop Exercise", ar:"تمرين الورشة"},
+        text:{en:"Practice on safe items first before touching a customer phone.", ar:"تدرب على أشياء آمنة أولا قبل لمس هاتف العميل."},
+        points:[
+            {title:{en:"Exercise 1", ar:"تمرين 1"}, text:{en:"Measure a battery voltage in V mode.", ar:"قس فولت بطارية بوضع V."}},
+            {title:{en:"Exercise 2", ar:"تمرين 2"}, text:{en:"Check a fuse with continuity mode.", ar:"افحص فيوز بوضع الاستمرارية."}},
+            {title:{en:"Exercise 3", ar:"تمرين 3"}, text:{en:"Read a diode value on a simple board line.", ar:"اقرأ قيمة دايود على خط بسيط في لوحة."}}
+        ]
+    }
+];
 
 const learningTree = [
     {
         group:{en:"Start Learning", ar:"ابدأ التعلم"},
         nodes:[
             {
-                id:"start",
-                icon:"▶",
-                type:{en:"Foundation", ar:"أساس"},
+                id:"start", icon:"▶", type:{en:"Foundation", ar:"أساس"},
                 title:{en:"Start Learning", ar:"ابدأ التعلم"},
                 desc:{en:"Understand how this repair path works before starting.", ar:"افهم كيف يعمل هذا المسار قبل البداية."},
                 objective:{en:"Know the order: tools first, components second, repair later.", ar:"معرفة الترتيب: الأدوات أولا، المكونات ثانيا، ثم الإصلاح لاحقا."},
                 points:[
                     {title:{en:"Learning order", ar:"ترتيب التعلم"}, text:{en:"Do not start with complex repairs before knowing tools and components.", ar:"لا تبدأ بالإصلاحات المعقدة قبل معرفة الأدوات والمكونات."}},
-                    {title:{en:"Safe mindset", ar:"عقلية آمنة"}, text:{en:"The goal is to learn without damaging customer devices.", ar:"الهدف هو التعلم بدون إتلاف أجهزة العملاء."}},
-                    {title:{en:"Step by step", ar:"خطوة بخطوة"}, text:{en:"Each node is a small skill that prepares the next one.", ar:"كل نقطة هي مهارة صغيرة تجهزك لما بعدها."}}
+                    {title:{en:"Safe mindset", ar:"عقلية آمنة"}, text:{en:"Learn without damaging customer devices.", ar:"تعلم بدون إتلاف أجهزة العملاء."}}
                 ]
             }
         ]
@@ -623,95 +812,70 @@ const learningTree = [
         group:{en:"Tools", ar:"الأدوات"},
         nodes:[
             {
-                id:"tools_intro",
-                icon:"▣",
-                type:{en:"Tools", ar:"أدوات"},
+                id:"tools_intro", icon:"▣", type:{en:"Tools", ar:"أدوات"},
                 title:{en:"Tools Overview", ar:"نظرة عامة على الأدوات"},
                 desc:{en:"Discover the main tools used in phone repair.", ar:"تعرف على الأدوات الرئيسية المستخدمة في إصلاح الهواتف."},
                 objective:{en:"Know what each tool is used for before using it.", ar:"معرفة وظيفة كل أداة قبل استخدامها."},
                 points:[
                     {title:{en:"Basic tools", ar:"الأدوات الأساسية"}, text:{en:"Screwdrivers, tweezers, opening tools and cleaning tools.", ar:"مفكات، ملاقط، أدوات فتح وأدوات تنظيف."}},
-                    {title:{en:"Heating tools", ar:"أدوات التسخين"}, text:{en:"Heating plate and hot air station help open and repair devices.", ar:"البلاتة الحرارية ومحطة الهواء تساعد في الفتح والإصلاح."}},
-                    {title:{en:"Measuring tools", ar:"أدوات القياس"}, text:{en:"Multimeter and power tools help diagnose faults.", ar:"الملتيميتر وأدوات الطاقة تساعد في التشخيص."}}
+                    {title:{en:"Measuring tools", ar:"أدوات القياس"}, text:{en:"The multimeter helps you diagnose instead of guessing.", ar:"الملتيميتر يساعدك على التشخيص بدل التخمين."}}
                 ]
             },
             {
-                id:"screwdrivers",
-                icon:"T",
-                type:{en:"Tool", ar:"أداة"},
+                id:"screwdrivers", icon:"T", type:{en:"Tool", ar:"أداة"},
                 title:{en:"Screwdrivers", ar:"المفكات"},
                 desc:{en:"Remove screws safely without damaging the phone.", ar:"إزالة البراغي بأمان بدون إتلاف الهاتف."},
-                objective:{en:"Choose the correct screwdriver size and avoid stripping screws.", ar:"اختيار مقاس المفك الصحيح وتجنب تلف البراغي."},
+                objective:{en:"Choose the correct screwdriver size.", ar:"اختيار مقاس المفك الصحيح."},
                 points:[
                     {title:{en:"Correct size", ar:"المقاس الصحيح"}, text:{en:"A wrong size can destroy screw heads.", ar:"المقاس الخاطئ قد يتلف رأس البرغي."}},
-                    {title:{en:"Organize screws", ar:"تنظيم البراغي"}, text:{en:"Keep screws in order because lengths can be different.", ar:"رتب البراغي لأن الأطوال قد تكون مختلفة."}},
-                    {title:{en:"No force", ar:"بدون قوة زائدة"}, text:{en:"If a screw resists, stop and inspect before forcing.", ar:"إذا قاوم البرغي، توقف وافحص قبل استخدام القوة."}}
+                    {title:{en:"No force", ar:"بدون قوة زائدة"}, text:{en:"If a screw resists, stop and inspect.", ar:"إذا قاوم البرغي، توقف وافحص."}}
                 ]
             },
             {
-                id:"display_glue",
-                icon:"G",
-                type:{en:"Tool", ar:"أداة"},
+                id:"display_glue", icon:"G", type:{en:"Tool", ar:"أداة"},
                 title:{en:"Display Glue", ar:"غراء الشاشة"},
                 desc:{en:"Seal or refit a display after repair.", ar:"تثبيت أو إغلاق الشاشة بعد الإصلاح."},
-                objective:{en:"Understand when glue is useful and how to avoid messy repair.", ar:"فهم متى يستخدم الغراء وكيف تتجنب إصلاحا غير نظيف."},
+                objective:{en:"Use glue cleanly and safely.", ar:"استخدام الغراء بشكل نظيف وآمن."},
                 points:[
                     {title:{en:"Clean surface", ar:"سطح نظيف"}, text:{en:"The frame must be clean before applying glue.", ar:"يجب أن يكون الإطار نظيفا قبل وضع الغراء."}},
-                    {title:{en:"Thin layer", ar:"طبقة رقيقة"}, text:{en:"Too much glue can overflow inside the phone.", ar:"الغراء الزائد قد يدخل داخل الهاتف."}},
-                    {title:{en:"Curing time", ar:"وقت الجفاف"}, text:{en:"Respect drying time before giving the phone back.", ar:"احترم وقت الجفاف قبل تسليم الهاتف."}}
+                    {title:{en:"Thin layer", ar:"طبقة رقيقة"}, text:{en:"Too much glue can overflow inside the phone.", ar:"الغراء الزائد قد يدخل داخل الهاتف."}}
                 ]
             },
             {
-                id:"tweezers",
-                icon:"P",
-                type:{en:"Tool", ar:"أداة"},
+                id:"tweezers", icon:"P", type:{en:"Tool", ar:"أداة"},
                 title:{en:"Tweezers", ar:"الملاقط"},
                 desc:{en:"Handle small parts, flex cables and components.", ar:"التعامل مع القطع الصغيرة والفلاتات والمكونات."},
-                objective:{en:"Handle small parts with precision and without tearing flex cables.", ar:"التعامل مع القطع الصغيرة بدقة بدون تمزيق الفلاتات."},
+                objective:{en:"Handle small parts with precision.", ar:"التعامل مع القطع الصغيرة بدقة."},
                 points:[
                     {title:{en:"Precision", ar:"الدقة"}, text:{en:"Tweezers help hold tiny screws and components.", ar:"الملاقط تساعد في مسك البراغي والمكونات الصغيرة."}},
-                    {title:{en:"Flex safety", ar:"سلامة الفلات"}, text:{en:"Do not pull flex cables aggressively.", ar:"لا تسحب الفلاتات بقوة."}},
-                    {title:{en:"Anti-static", ar:"مضاد للكهرباء الساكنة"}, text:{en:"Good tweezers reduce ESD risk.", ar:"الملاقط الجيدة تقلل خطر الكهرباء الساكنة."}}
+                    {title:{en:"Flex safety", ar:"سلامة الفلات"}, text:{en:"Do not pull flex cables aggressively.", ar:"لا تسحب الفلاتات بقوة."}}
                 ]
             },
             {
-                id:"heating_plate",
-                icon:"H",
-                type:{en:"Tool", ar:"أداة"},
+                id:"heating_plate", icon:"H", type:{en:"Tool", ar:"أداة"},
                 title:{en:"Heating Plate", ar:"اللوحة الحرارية"},
                 desc:{en:"Soften adhesive and open screens more safely.", ar:"تليين اللاصق وفتح الشاشات بأمان أكثر."},
-                objective:{en:"Use controlled heat instead of forcing the screen open.", ar:"استخدام حرارة متحكم بها بدل فتح الشاشة بالقوة."},
+                objective:{en:"Use controlled heat instead of force.", ar:"استخدام حرارة متحكم بها بدل القوة."},
                 points:[
                     {title:{en:"Controlled heat", ar:"حرارة متحكم بها"}, text:{en:"Too much heat can damage screen or battery.", ar:"الحرارة الزائدة قد تتلف الشاشة أو البطارية."}},
-                    {title:{en:"Adhesive softening", ar:"تليين اللاصق"}, text:{en:"Heat makes glue easier to separate.", ar:"الحرارة تجعل اللاصق أسهل في الفصل."}},
-                    {title:{en:"Battery caution", ar:"الحذر من البطارية"}, text:{en:"Never overheat a phone with a lithium battery inside.", ar:"لا تفرط في تسخين هاتف يحتوي على بطارية ليثيوم."}}
+                    {title:{en:"Adhesive", ar:"اللاصق"}, text:{en:"Heat makes glue easier to separate.", ar:"الحرارة تجعل اللاصق أسهل في الفصل."}}
                 ]
             },
             {
-                id:"microscope",
-                icon:"M",
-                type:{en:"Tool", ar:"أداة"},
+                id:"microscope", icon:"M", type:{en:"Tool", ar:"أداة"},
                 title:{en:"Microscope", ar:"الميكروسكوب"},
                 desc:{en:"Inspect tiny components, corrosion and damaged pads.", ar:"فحص المكونات الصغيرة، الأكسدة والبوردات التالفة."},
-                objective:{en:"See what the eye cannot see before making repair decisions.", ar:"رؤية ما لا تراه العين قبل اتخاذ قرار الإصلاح."},
+                objective:{en:"See what the eye cannot see.", ar:"رؤية ما لا تراه العين."},
                 points:[
                     {title:{en:"Inspection", ar:"الفحص"}, text:{en:"Check connectors, pins and liquid damage.", ar:"افحص الكونكتورات، البنات وأضرار السوائل."}},
-                    {title:{en:"Micro damage", ar:"أضرار دقيقة"}, text:{en:"Find broken pads, cracks and lifted tracks.", ar:"اعثر على البادات المقطوعة والشقوق والمسارات المرفوعة."}},
-                    {title:{en:"Better soldering", ar:"لحام أفضل"}, text:{en:"Microscope is essential for clean micro-soldering.", ar:"الميكروسكوب ضروري للحام الدقيق والنظيف."}}
+                    {title:{en:"Micro damage", ar:"أضرار دقيقة"}, text:{en:"Find broken pads, cracks and lifted tracks.", ar:"اعثر على البادات المقطوعة والشقوق والمسارات المرفوعة."}}
                 ]
             },
             {
-                id:"multimeter",
-                icon:"V",
-                type:{en:"Tool", ar:"أداة"},
+                id:"multimeter", icon:"V", type:{en:"Tool Book", ar:"كتاب أداة"},
                 title:{en:"Multimeter", ar:"الملتيميتر"},
-                desc:{en:"Measure voltage, resistance, continuity and diode values.", ar:"قياس الفولت، المقاومة، الاستمرارية وقيم الدايود."},
-                objective:{en:"Start measuring instead of guessing.", ar:"ابدأ بالقياس بدل التخمين."},
-                points:[
-                    {title:{en:"Voltage", ar:"الفولت"}, text:{en:"Check if power reaches a line or connector.", ar:"افحص هل تصل الطاقة إلى الخط أو الكونكتور."}},
-                    {title:{en:"Continuity", ar:"الاستمرارية"}, text:{en:"Check if two points are connected.", ar:"افحص هل توجد وصلة بين نقطتين."}},
-                    {title:{en:"Diode mode", ar:"وضع الدايود"}, text:{en:"Compare lines and detect suspicious behavior.", ar:"قارن الخطوط واكتشف السلوك غير الطبيعي."}}
-                ]
+                desc:{en:"Learn its modes, symbols and how to use it.", ar:"تعلم أوضاعه ورموزه وطريقة استخدامه."},
+                book:multimeterBook
             }
         ]
     },
@@ -719,128 +883,44 @@ const learningTree = [
         group:{en:"Electronic Components", ar:"المكونات الإلكترونية"},
         nodes:[
             {
-                id:"components_intro",
-                icon:"⚡",
-                type:{en:"Components", ar:"مكونات"},
+                id:"components_intro", icon:"⚡", type:{en:"Components", ar:"مكونات"},
                 title:{en:"Electronic Components", ar:"المكونات الإلكترونية"},
                 desc:{en:"Learn the basic components found on phone motherboards.", ar:"تعلم المكونات الأساسية الموجودة على لوحات الهواتف."},
-                objective:{en:"Recognize components before diagnosing or replacing anything.", ar:"التعرف على المكونات قبل التشخيص أو تغيير أي قطعة."},
+                objective:{en:"Recognize components before replacing anything.", ar:"التعرف على المكونات قبل تغيير أي قطعة."},
                 points:[
                     {title:{en:"Recognition", ar:"التعرف"}, text:{en:"Learn what each component looks like.", ar:"تعلم شكل كل مكون."}},
-                    {title:{en:"Purpose", ar:"الوظيفة"}, text:{en:"Understand what each component generally does.", ar:"افهم الوظيفة العامة لكل مكون."}},
                     {title:{en:"No random replacement", ar:"لا تغيير عشوائي"}, text:{en:"Never replace a component without proof.", ar:"لا تغير أي مكون بدون دليل."}}
                 ]
             },
-            {
-                id:"resistor",
-                icon:"R",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"Resistor", ar:"المقاومة"},
-                desc:{en:"Limits or controls current in a circuit.", ar:"تحد أو تتحكم في مرور التيار داخل الدائرة."},
-                objective:{en:"Understand that resistors control electrical behavior.", ar:"فهم أن المقاومة تتحكم في السلوك الكهربائي."},
-                points:[
-                    {title:{en:"Current control", ar:"التحكم في التيار"}, text:{en:"Resistors help limit current flow.", ar:"المقاومات تساعد في تقليل مرور التيار."}},
-                    {title:{en:"Signal lines", ar:"خطوط الإشارة"}, text:{en:"They can be used in signal and control lines.", ar:"قد تستخدم في خطوط الإشارة والتحكم."}},
-                    {title:{en:"Testing", ar:"الفحص"}, text:{en:"A resistor can be checked with resistance mode.", ar:"يمكن فحص المقاومة بوضع قياس المقاومة."}}
-                ]
-            },
-            {
-                id:"capacitor",
-                icon:"C",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"Capacitor", ar:"المكثف"},
-                desc:{en:"Stores energy and filters electrical noise.", ar:"يخزن الطاقة ويساعد في تنقية التشويش الكهربائي."},
-                objective:{en:"Recognize capacitors and their role in power stability.", ar:"التعرف على المكثفات وفهم دورها في استقرار الطاقة."},
-                points:[
-                    {title:{en:"Filtering", ar:"التنقية"}, text:{en:"Capacitors filter noise on power lines.", ar:"المكثفات تنقي التشويش في خطوط الطاقة."}},
-                    {title:{en:"Stability", ar:"الاستقرار"}, text:{en:"They help stabilize voltage.", ar:"تساعد على تثبيت الفولت."}},
-                    {title:{en:"Short risk", ar:"خطر الشورت"}, text:{en:"A shorted capacitor can cause a dead line.", ar:"المكثف الشورت قد يسبب توقف خط كامل."}}
-                ]
-            },
-            {
-                id:"diode",
-                icon:"D",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"Diode", ar:"الدايود"},
-                desc:{en:"Allows current to pass mainly in one direction.", ar:"يسمح بمرور التيار غالبا في اتجاه واحد."},
-                objective:{en:"Understand diode direction and basic protection role.", ar:"فهم اتجاه الدايود ودوره الأساسي في الحماية."},
-                points:[
-                    {title:{en:"One direction", ar:"اتجاه واحد"}, text:{en:"Diodes guide current in one direction.", ar:"الدايودات توجه التيار في اتجاه واحد."}},
-                    {title:{en:"Protection", ar:"الحماية"}, text:{en:"Some diodes protect lines from wrong voltage.", ar:"بعض الدايودات تحمي الخطوط من الفولت الخاطئ."}},
-                    {title:{en:"Diode mode", ar:"وضع الدايود"}, text:{en:"They are often checked with diode mode.", ar:"غالبا يتم فحصها بوضع الدايود."}}
-                ]
-            },
-            {
-                id:"coil",
-                icon:"L",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"Coil", ar:"الملف"},
-                desc:{en:"Often used in power circuits and voltage regulation.", ar:"يستخدم غالبا في دوائر الطاقة وتنظيم الفولت."},
-                objective:{en:"Recognize coils as important parts of power circuits.", ar:"التعرف على الملفات كجزء مهم من دوائر الطاقة."},
-                points:[
-                    {title:{en:"Power circuits", ar:"دوائر الطاقة"}, text:{en:"Coils are common around power IC areas.", ar:"الملفات شائعة قرب مناطق شرائح الطاقة."}},
-                    {title:{en:"Voltage regulation", ar:"تنظيم الفولت"}, text:{en:"They help in voltage conversion and stability.", ar:"تساعد في تحويل الفولت واستقراره."}},
-                    {title:{en:"Physical damage", ar:"ضرر ظاهر"}, text:{en:"A cracked coil can create repair problems.", ar:"الملف المكسور قد يسبب مشاكل في الإصلاح."}}
-                ]
-            },
-            {
-                id:"fuse",
-                icon:"F",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"Fuse", ar:"الفيوز"},
-                desc:{en:"A protection component that can open when current is too high.", ar:"مكون حماية قد ينقطع عندما يكون التيار عاليا جدا."},
-                objective:{en:"Understand that a fuse protects the circuit from excess current.", ar:"فهم أن الفيوز يحمي الدائرة من التيار الزائد."},
-                points:[
-                    {title:{en:"Protection", ar:"الحماية"}, text:{en:"The fuse is designed to protect other parts.", ar:"الفيوز مصمم لحماية أجزاء أخرى."}},
-                    {title:{en:"Open line", ar:"خط مقطوع"}, text:{en:"A blown fuse can stop power from passing.", ar:"الفيوز التالف قد يمنع مرور الطاقة."}},
-                    {title:{en:"Continuity test", ar:"فحص الاستمرارية"}, text:{en:"Fuses can often be checked with continuity mode.", ar:"يمكن غالبا فحص الفيوز بوضع الاستمرارية."}}
-                ]
-            },
-            {
-                id:"connector",
-                icon:"N",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"Connector", ar:"الكونكتور"},
-                desc:{en:"Connection point for battery, screen, charging flex or other parts.", ar:"نقطة اتصال للبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى."},
-                objective:{en:"Inspect connectors before assuming a motherboard failure.", ar:"افحص الكونكتورات قبل افتراض وجود عطل في اللوحة."},
-                points:[
-                    {title:{en:"Common failures", ar:"أعطال شائعة"}, text:{en:"Bent pins and dirt can create many problems.", ar:"البنات المعوجة والأوساخ قد تسبب مشاكل كثيرة."}},
-                    {title:{en:"Visual inspection", ar:"فحص بصري"}, text:{en:"Use microscope to inspect connector pins.", ar:"استخدم الميكروسكوب لفحص بنات الكونكتور."}},
-                    {title:{en:"Do not force", ar:"لا تستخدم القوة"}, text:{en:"Forcing a flex can damage the connector.", ar:"إدخال الفلاتة بالقوة قد يتلف الكونكتور."}}
-                ]
-            },
-            {
-                id:"ic",
-                icon:"IC",
-                type:{en:"Component", ar:"مكون"},
-                title:{en:"IC", ar:"الدائرة المتكاملة"},
-                desc:{en:"A chip that contains many electronic circuits inside one package.", ar:"شريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة."},
-                objective:{en:"Understand ICs generally without replacing them randomly.", ar:"فهم الشرائح بشكل عام بدون تغييرها عشوائيا."},
-                points:[
-                    {title:{en:"General role", ar:"الدور العام"}, text:{en:"An IC can control power, signal, audio, memory or other functions.", ar:"قد تتحكم الشريحة في الطاقة، الإشارة، الصوت، الذاكرة أو وظائف أخرى."}},
-                    {title:{en:"Fragile part", ar:"قطعة حساسة"}, text:{en:"ICs are sensitive to heat, ESD and bad soldering.", ar:"الشرائح حساسة للحرارة والكهرباء الساكنة واللحام السيئ."}},
-                    {title:{en:"No guessing", ar:"بدون تخمين"}, text:{en:"Never replace an IC without diagnosis proof.", ar:"لا تغير أي شريحة بدون دليل تشخيص واضح."}}
-                ]
-            }
+            simpleComponent("resistor","R","Resistor","المقاومة","Limits or controls current in a circuit.","تحد أو تتحكم في مرور التيار داخل الدائرة."),
+            simpleComponent("capacitor","C","Capacitor","المكثف","Stores energy and filters electrical noise.","يخزن الطاقة ويساعد في تنقية التشويش الكهربائي."),
+            simpleComponent("diode","D","Diode","الدايود","Allows current to pass mainly in one direction.","يسمح بمرور التيار غالبا في اتجاه واحد."),
+            simpleComponent("coil","L","Coil","الملف","Often used in power circuits and voltage regulation.","يستخدم غالبا في دوائر الطاقة وتنظيم الفولت."),
+            simpleComponent("fuse","F","Fuse","الفيوز","A protection component that can open when current is too high.","مكون حماية قد ينقطع عندما يكون التيار عاليا جدا."),
+            simpleComponent("connector","N","Connector","الكونكتور","Connection point for battery, screen or charging flex.","نقطة اتصال للبطارية، الشاشة أو فلاتة الشحن."),
+            simpleComponent("ic","IC","IC","الدائرة المتكاملة","A chip that contains many circuits inside one package.","شريحة تحتوي على دوائر كثيرة داخل قطعة واحدة.")
         ]
     }
 ];
 
-function tr(key){
-    return ui[currentLang][key];
+function simpleComponent(id, icon, enTitle, arTitle, enDesc, arDesc){
+    return {
+        id, icon, type:{en:"Component", ar:"مكون"},
+        title:{en:enTitle, ar:arTitle},
+        desc:{en:enDesc, ar:arDesc},
+        objective:{en:"Understand its general role before diagnosis.", ar:"فهم دوره العام قبل التشخيص."},
+        points:[
+            {title:{en:"Role", ar:"الدور"}, text:{en:enDesc, ar:arDesc}},
+            {title:{en:"Inspection", ar:"الفحص"}, text:{en:"Inspect visually before replacing it.", ar:"افحص بصريا قبل تغييره."}},
+            {title:{en:"Rule", ar:"القاعدة"}, text:{en:"Never replace without proof.", ar:"لا تغير بدون دليل."}}
+        ]
+    };
 }
 
-function txt(obj){
-    return obj[currentLang];
-}
-
-function allNodes(){
-    return learningTree.flatMap(group => group.nodes);
-}
-
-function doneIds(){
-    return JSON.parse(localStorage.getItem("master_repair_done") || "[]");
-}
+function tr(key){ return ui[currentLang][key]; }
+function txt(obj){ return obj[currentLang]; }
+function allNodes(){ return learningTree.flatMap(group => group.nodes); }
+function doneIds(){ return JSON.parse(localStorage.getItem("master_repair_done") || "[]"); }
 
 function saveDone(id){
     const ids = doneIds();
@@ -863,7 +943,6 @@ function applyLanguage(){
 
     document.getElementById("langButton").textContent = tr("langButton");
     document.getElementById("telegramStatus").textContent = tg ? tr("connected") : tr("browser");
-
     document.getElementById("heroTitle").textContent = tr("heroTitle");
     document.getElementById("heroText").textContent = tr("heroText");
     document.getElementById("completedLabel").textContent = tr("completed");
@@ -882,13 +961,16 @@ function applyLanguage(){
     document.getElementById("objectiveTitle").textContent = tr("objectiveTitle");
     document.getElementById("backButton").textContent = tr("back");
     document.getElementById("doneButton").textContent = tr("done");
+    document.getElementById("prevButton").textContent = tr("prev");
+    document.getElementById("nextButton").textContent = tr("next");
+    document.getElementById("bookBackButton").textContent = tr("back");
+    document.getElementById("bookDoneButton").textContent = tr("done");
     document.getElementById("footerText").textContent = tr("footer");
 
     renderTree();
 
-    if(currentNode && document.getElementById("lessonPage").classList.contains("active")){
-        openNode(currentNode);
-    }
+    if(currentNode && document.getElementById("lessonPage").classList.contains("active")) openNode(currentNode);
+    if(currentNode && document.getElementById("bookPage").classList.contains("active")) renderBookPage();
 }
 
 function toggleLanguage(){
@@ -901,7 +983,6 @@ function renderProgress(){
     const total = allNodes().length;
     const done = doneIds().length;
     const pct = total ? Math.round((done / total) * 100) : 0;
-
     document.getElementById("doneCount").textContent = done;
     document.getElementById("totalCount").textContent = total;
     document.getElementById("progressText").textContent = pct + "% " + tr("completedProgress");
@@ -910,7 +991,6 @@ function renderProgress(){
 
 function renderTree(){
     renderProgress();
-
     const container = document.getElementById("treeContainer");
     container.innerHTML = "";
 
@@ -936,10 +1016,7 @@ function renderTree(){
 
             const btn = document.createElement("button");
             btn.className = "node-card" + (done ? " done" : "") + (!unlocked ? " locked" : "");
-            btn.onclick = () => {
-                if(unlocked) openNode(node);
-                else showLockedMessage();
-            };
+            btn.onclick = () => unlocked ? openNode(node) : showLockedMessage();
 
             btn.innerHTML = `
                 <strong>${txt(node.title)}</strong>
@@ -947,7 +1024,7 @@ function renderTree(){
                 <span class="badge">${done ? tr("doneState") : unlocked ? tr("open") : tr("locked")}</span>
             `;
 
-            if(currentLang === "rtl"){
+            if(currentLang === "ar"){
                 row.appendChild(btn);
                 row.appendChild(icon);
             }else{
@@ -966,6 +1043,13 @@ function openNode(node){
     currentNode = node;
     localStorage.setItem("master_repair_last", node.id);
 
+    if(node.book){
+        currentBookPage = 0;
+        renderBookPage();
+        showPage("bookPage");
+        return;
+    }
+
     document.getElementById("lessonTitle").textContent = txt(node.title);
     document.getElementById("lessonDesc").textContent = txt(node.desc);
     document.getElementById("objectiveText").textContent = txt(node.objective);
@@ -977,10 +1061,7 @@ function openNode(node){
     node.points.forEach(point => {
         const box = document.createElement("div");
         box.className = "lesson";
-        box.innerHTML = `
-            <strong>${txt(point.title)}</strong>
-            <p>${txt(point.text)}</p>
-        `;
+        box.innerHTML = `<strong>${txt(point.title)}</strong><p>${txt(point.text)}</p>`;
         list.appendChild(box);
     });
 
@@ -988,16 +1069,81 @@ function openNode(node){
     showPage("lessonPage");
 }
 
+function renderBookPage(){
+    const page = currentNode.book[currentBookPage];
+
+    document.getElementById("bookTitle").textContent = txt(currentNode.title);
+    document.getElementById("bookDesc").textContent = txt(currentNode.desc);
+    document.getElementById("bookCounter").textContent = (currentBookPage + 1) + " / " + currentNode.book.length;
+    document.getElementById("bookPageTitle").textContent = txt(page.title);
+    document.getElementById("bookPageText").textContent = txt(page.text);
+
+    document.getElementById("bookVisual").innerHTML = createMeterVisual(page);
+
+    const list = document.getElementById("bookPoints");
+    list.innerHTML = "";
+
+    page.points.forEach(point => {
+        const box = document.createElement("div");
+        box.className = page.mode === "WARN" ? "lesson warning-box" : "lesson";
+        box.innerHTML = `<strong>${txt(point.title)}</strong><p>${txt(point.text)}</p>`;
+        list.appendChild(box);
+    });
+
+    document.getElementById("prevButton").disabled = currentBookPage === 0;
+    document.getElementById("nextButton").disabled = currentBookPage === currentNode.book.length - 1;
+}
+
+function createMeterVisual(page){
+    const active = page.mode;
+    return `
+        <div class="meter-visual">
+            <div class="meter-screen">${page.display}</div>
+            <div class="dial">
+                <span class="mode m-v ${active === "V" ? "active" : ""}">V</span>
+                <span class="mode m-ohm ${active === "Ω" ? "active" : ""}">Ω</span>
+                <span class="mode m-cont ${active === "CONT" ? "active" : ""}">)))</span>
+                <span class="mode m-diode ${active === "DIODE" ? "active" : ""}">▷|</span>
+                <span class="mode m-a ${active === "A" ? "active" : ""}">A</span>
+                <div class="dial-center">${active}</div>
+            </div>
+            <div class="ports">
+                <div class="port black">COM</div>
+                <div class="port red">VΩ</div>
+                <div class="port gold">10A</div>
+            </div>
+            <div class="probes">
+                <div class="probe black"></div>
+                <div class="probe red"></div>
+            </div>
+        </div>
+    `;
+}
+
+function previousBookPage(){
+    if(currentBookPage > 0){
+        currentBookPage--;
+        renderBookPage();
+        window.scrollTo(0,0);
+    }
+}
+
+function nextBookPage(){
+    if(currentBookPage < currentNode.book.length - 1){
+        currentBookPage++;
+        renderBookPage();
+        window.scrollTo(0,0);
+    }
+}
+
 function continueLearning(){
     const nodes = allNodes();
     const done = doneIds();
-
     let next = nodes.find(node => !done.includes(node.id) && isUnlocked(node));
     if(!next){
         const lastId = localStorage.getItem("master_repair_last");
         next = nodes.find(node => node.id === lastId) || nodes[0];
     }
-
     openNode(next);
 }
 
@@ -1007,9 +1153,7 @@ function markDone(){
         renderProgress();
     }
 
-    if(tg && tg.HapticFeedback){
-        tg.HapticFeedback.notificationOccurred("success");
-    }
+    if(tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
 
     if(tg && tg.showAlert){
         tg.showAlert(tr("completedMessage"));
@@ -1040,7 +1184,6 @@ function goHome(){
 
 function openSOS(){
     const sosLink = "https://t.me/+OVTmcEQLg00zMTQ0";
-
     if(tg && tg.openTelegramLink){
         tg.openTelegramLink(sosLink);
     }else{

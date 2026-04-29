@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repair Academy</title>
 
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
 <style>
 body{
     margin:0;
@@ -15,10 +18,9 @@ body{
 }
 
 h1{
-    font-family:Impact, Arial Black;
-    font-size:26px;
+    font-family:'Orbitron', sans-serif;
     margin:15px;
-    text-shadow:0 0 10px #00ffff;
+    font-size:22px;
 }
 
 .page{display:none;padding:15px;}
@@ -26,10 +28,10 @@ h1{
 
 .card{
     background:#1a1a1a;
-    padding:16px;
     margin:10px;
-    border-radius:12px;
-    text-align:left;
+    padding:15px;
+    border-radius:16px;
+    border:1px solid #2a2a2a;
 }
 
 .grid{
@@ -46,27 +48,24 @@ button{
     color:white;
 }
 
-#langBtn{
-    position:fixed;
-    top:10px;
-    right:10px;
-    padding:6px 10px;
-    background:#111;
-    border:1px solid #333;
-    color:white;
+.sos{
+    background:#8b0000;
+    border:1px solid #aa0000;
+    margin-top:15px;
 }
+
+p{margin:6px 0;}
 </style>
 </head>
 
 <body>
 
-<button id="langBtn" onclick="toggleLang()">AR</button>
-
-<h1>REPAIR ACADEMY</h1>
+<h1>⚡ Repair Academy ⚡</h1>
 
 <!-- HOME -->
 <div id="home" class="page active">
 <div class="card">
+
 <div class="grid">
 <button onclick="openPage('c1')">Level 1</button>
 <button onclick="openPage('c2')">Level 2</button>
@@ -79,19 +78,29 @@ button{
 <button onclick="openPage('c9')">Level 9</button>
 <button onclick="openPage('c10')">Level 10</button>
 </div>
+
+<button class="sos" onclick="openSOS()">SOS</button>
+
 </div>
 </div>
 
 <!-- LEVEL 1 -->
 <div id="c1" class="page">
 <div class="card">
-<h2 data-en="Level 1 - Basics" data-ar="المستوى 1 - الأساسيات">Level 1</h2>
 
-<p data-en="Learn motherboard basics, tools, and diagnostics."
-   data-ar="تعلم أساسيات اللوحة الأم والأدوات والتشخيص.">
-</p>
+<h2>Level 1 - Basics</h2>
+
+<div class="grid">
+<button onclick="openPage('comp1')">IC</button>
+<button onclick="openPage('comp2')">Power</button>
+<button onclick="openPage('comp3')">RF</button>
+<button onclick="openPage('comp4')">Connectors</button>
+<button onclick="openPage('comp5')">Sensors</button>
+<button onclick="openPage('comp6')">Audio</button>
+</div>
 
 <button onclick="openPage('home')">Back</button>
+
 </div>
 </div>
 
@@ -106,28 +115,47 @@ button{
 <div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
 
+<!-- COMPONENTS -->
+<div id="comp1" class="page"><div class="card"><h2>IC</h2><p>SoC / PMIC / RAM</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp2" class="page"><div class="card"><h2>Power</h2><p>Inductors / Capacitors / MOSFET</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp3" class="page"><div class="card"><h2>RF</h2><p>Filters / Antenna</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp4" class="page"><div class="card"><h2>Connectors</h2><p>Battery / Screen / Charging</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp5" class="page"><div class="card"><h2>Sensors</h2><p>Gyroscope / Light / Fingerprint</p><button onclick="openPage('c1')">Back</button></div></div>
+
+<!-- AUDIO FIX CLEAN -->
+<div id="comp6" class="page">
+<div class="card">
+
+<h2>Audio & Multimédia</h2>
+
+<p>Microphones</p>
+<p>Speakers</p>
+<p>Audio Codec IC</p>
+<p>Amplifiers</p>
+
+<button onclick="openPage('c1')">Back</button>
+
+</div>
+</div>
+
 <script>
-let lang="en";
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
 
-function openPage(id){
+function openPage(page){
+let el=document.getElementById(page);
+if(!el) return;
+
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-applyLang();
+el.classList.add("active");
+
+try{tg.sendData(page);}catch(e){}
 }
 
-function toggleLang(){
-lang=(lang==="en")?"ar":"en";
-document.getElementById("langBtn").innerText=(lang==="en")?"AR":"EN";
-applyLang();
+function openSOS(){
+window.open("https://t.me/c/3919937885/2","_blank");
 }
-
-function applyLang(){
-document.querySelectorAll("[data-en]").forEach(el=>{
-el.innerText=el.getAttribute("data-"+lang);
-});
-}
-
-window.onload=applyLang;
 </script>
 
 </body>

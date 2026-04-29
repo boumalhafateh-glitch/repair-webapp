@@ -150,35 +150,30 @@ button{
 <div id="comp5" class="page"><div class="card"><h2>Sensors</h2><button onclick="openPage('c1')">Back</button></div></div>
 <div id="comp6" class="page"><div class="card"><h2>Audio</h2><button onclick="openPage('c1')">Back</button></div></div>
 
-<script>
 let lang = "en";
 
-/* 🔥 FIX GLOBAL LANGUAGE */
 function applyLang(){
 document.querySelectorAll("[data-en]").forEach(el=>{
 el.innerText = el.getAttribute("data-"+lang);
 });
 }
 
-/* PAGE NAVIGATION */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-applyLang(); // important fix
+
+setTimeout(applyLang, 0);
 }
 
-/* SWITCH LANGUAGE */
 function toggleLang(){
 lang = (lang === "en") ? "ar" : "en";
 document.getElementById("langBtn").innerText = (lang === "en") ? "AR" : "EN";
+
 applyLang();
 }
 
-/* SOS */
 function openSOS(){
 window.open("https://t.me/c/3919937885/2","_blank");
 }
-</script>
 
-</body>
-</html>
+window.addEventListener("load", applyLang);

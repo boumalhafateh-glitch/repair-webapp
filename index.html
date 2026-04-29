@@ -19,11 +19,10 @@
     --gold:#f2c94c;
     --red:#b00020;
     --green:#27c46b;
+    --orange:#f59e0b;
     --line:#303030;
 }
-
 *{box-sizing:border-box;}
-
 body{
     margin:0;
     font-family:"Sora","IBM Plex Sans Arabic",Arial,sans-serif;
@@ -34,311 +33,113 @@ body{
     color:var(--text);
     min-height:100vh;
 }
-
-.app{
-    width:100%;
-    max-width:540px;
-    margin:0 auto;
-    padding:16px;
-}
-
-.topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:16px;
-}
-
-.logo{
-    flex:1;
-    text-align:center;
-}
-
-.logo h1{
-    margin:0;
-    font-size:25px;
-    font-weight:800;
-}
-
+.app{width:100%;max-width:560px;margin:0 auto;padding:16px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.logo{flex:1;text-align:center;}
+.logo h1{margin:0;font-size:25px;font-weight:800;}
 .logo span{color:var(--gold);}
-
-.status{
-    margin-top:4px;
-    color:var(--muted);
-    font-size:12px;
-}
-
+.status{margin-top:4px;color:var(--muted);font-size:12px;}
 .icon-btn{
-    width:44px;
-    height:44px;
-    border-radius:10px;
-    border:1px solid var(--line);
-    background:#101010;
-    color:white;
-    font-size:19px;
-    font-weight:800;
-    cursor:pointer;
+    width:44px;height:44px;border-radius:10px;border:1px solid var(--line);
+    background:#101010;color:white;font-size:18px;font-weight:800;cursor:pointer;
 }
-
-.page{
-    display:none;
-    animation:fade .18s ease;
-}
-
+.page{display:none;animation:fade .18s ease;}
 .page.active{display:block;}
-
-@keyframes fade{
-    from{opacity:.45;transform:translateY(5px);}
-    to{opacity:1;transform:translateY(0);}
-}
-
+@keyframes fade{from{opacity:.45;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
 .hero,.panel{
-    background:rgba(21,21,21,.94);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:17px;
-    margin-bottom:13px;
-    text-align:center;
+    background:rgba(21,21,21,.94);border:1px solid var(--line);
+    border-radius:12px;padding:17px;margin-bottom:13px;text-align:center;
 }
-
 .hero{
     background:
         linear-gradient(135deg,rgba(242,201,76,.16),rgba(176,0,32,.10)),
         rgba(21,21,21,.94);
 }
-
-.en-title{
-    margin:0;
-    font-size:22px;
-    font-weight:800;
-    line-height:1.2;
-}
-
+.en-title{margin:0;font-size:22px;font-weight:800;line-height:1.2;}
 .ar-title{
-    margin:8px 0 0;
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    direction:rtl;
-    font-size:20px;
-    font-weight:700;
-    line-height:1.55;
+    margin:8px 0 0;font-family:"IBM Plex Sans Arabic",sans-serif;
+    direction:rtl;font-size:20px;font-weight:700;line-height:1.55;
 }
-
-.en-text{
-    margin:10px 0 0;
-    color:var(--soft);
-    font-size:14px;
-    line-height:1.6;
-}
-
+.en-text{margin:10px 0 0;color:var(--soft);font-size:14px;line-height:1.6;}
 .ar-text{
-    margin:7px 0 0;
-    color:var(--muted);
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    direction:rtl;
-    font-size:14px;
-    line-height:1.85;
+    margin:7px 0 0;color:var(--muted);font-family:"IBM Plex Sans Arabic",sans-serif;
+    direction:rtl;font-size:14px;line-height:1.85;
 }
-
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-    margin:12px 0;
-}
-
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0;}
 .stat{
-    background:rgba(21,21,21,.92);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:11px 8px;
-    text-align:center;
+    background:rgba(21,21,21,.92);border:1px solid var(--line);
+    border-radius:10px;padding:11px 8px;text-align:center;
 }
-
-.stat strong{
-    display:block;
-    color:var(--gold);
-    font-size:18px;
-    font-weight:800;
+.stat strong{display:block;color:var(--gold);font-size:18px;font-weight:800;}
+.stat small{display:block;color:var(--muted);font-size:11px;line-height:1.55;}
+.progress-wrap{
+    margin-top:14px;background:#090909;border:1px solid var(--line);
+    border-radius:999px;overflow:hidden;height:12px;
 }
-
-.stat small{
-    display:block;
-    color:var(--muted);
-    font-size:11px;
-    line-height:1.55;
+.progress{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--green));transition:.25s;}
+.search{
+    width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);
+    background:#101010;color:white;font-family:inherit;font-weight:600;text-align:center;
 }
-
-.section-title{
-    text-align:center;
-    margin:21px 2px 11px;
-}
-
-.section-title h3{
-    margin:0;
-    font-size:17px;
-    font-weight:800;
-}
-
+.section-title{text-align:center;margin:21px 2px 11px;}
+.section-title h3{margin:0;font-size:17px;font-weight:800;}
 .section-title p{
-    margin:4px 0 0;
-    color:var(--muted);
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    direction:rtl;
-    font-size:13px;
+    margin:4px 0 0;color:var(--muted);font-family:"IBM Plex Sans Arabic",sans-serif;
+    direction:rtl;font-size:13px;
 }
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .card-btn{
-    min-height:125px;
-    padding:14px 12px;
-    border-radius:10px;
-    border:1px solid var(--line);
-    background:linear-gradient(180deg,#1d1d1d,#101010);
-    color:white;
-    cursor:pointer;
-    text-align:center;
-    box-shadow:0 8px 22px rgba(0,0,0,.18);
+    min-height:132px;padding:14px 12px;border-radius:10px;border:1px solid var(--line);
+    background:linear-gradient(180deg,#1d1d1d,#101010);color:white;cursor:pointer;
+    text-align:center;box-shadow:0 8px 22px rgba(0,0,0,.18);position:relative;overflow:hidden;
 }
-
 .card-btn:active{transform:scale(.98);}
-
-.card-btn strong{
-    display:block;
-    font-size:15px;
-    font-weight:800;
-    margin-bottom:6px;
-}
-
+.card-btn strong{display:block;font-size:15px;font-weight:800;margin-bottom:6px;}
 .card-btn .ar{
-    display:block;
-    direction:rtl;
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:14px;
-    font-weight:700;
-    line-height:1.55;
-    margin-bottom:7px;
+    display:block;direction:rtl;font-family:"IBM Plex Sans Arabic",sans-serif;
+    font-size:14px;font-weight:700;line-height:1.55;margin-bottom:7px;
 }
-
-.card-btn small{
-    display:block;
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.45;
+.card-btn small{display:block;color:var(--muted);font-size:12px;line-height:1.45;}
+.card-btn.done{border-color:rgba(39,196,107,.65);}
+.card-btn.done:before{
+    content:"DONE";position:absolute;top:8px;right:8px;font-size:9px;
+    color:#111;background:var(--green);padding:3px 6px;border-radius:999px;font-weight:800;
 }
-
 .badge{
-    display:inline-block;
-    margin-top:10px;
-    padding:4px 8px;
-    border-radius:999px;
-    background:rgba(242,201,76,.14);
-    color:var(--gold);
-    font-size:11px;
-    font-weight:800;
+    display:inline-block;margin-top:10px;padding:4px 8px;border-radius:999px;
+    background:rgba(242,201,76,.14);color:var(--gold);font-size:11px;font-weight:800;
 }
-
-.list{
-    display:grid;
-    gap:9px;
-}
-
+.diff-beginner{color:var(--green);}
+.diff-intermediate{color:var(--orange);}
+.diff-advanced{color:#ff4d4d;}
+.diff-expert{color:var(--gold);}
+.list{display:grid;gap:9px;}
 .lesson{
-    background:var(--panel2);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:13px;
-    text-align:center;
+    background:var(--panel2);border:1px solid var(--line);
+    border-radius:10px;padding:13px;text-align:center;
 }
-
-.lesson strong{
-    display:block;
-    font-size:15px;
-    font-weight:800;
-}
-
+.lesson strong{display:block;font-size:15px;font-weight:800;}
 .lesson .ar-lesson-title{
-    display:block;
-    direction:rtl;
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:14px;
-    font-weight:700;
-    margin-top:4px;
+    display:block;direction:rtl;font-family:"IBM Plex Sans Arabic",sans-serif;
+    font-size:14px;font-weight:700;margin-top:4px;
 }
-
 .lesson p{margin:0;}
-
-.logic-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:8px;
-}
-
-.logic{
-    background:#121212;
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:11px;
-    text-align:center;
-}
-
-.logic b{
-    color:var(--gold);
-    font-size:13px;
-}
-
-.action-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:12px;
-}
-
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
 button{
-    padding:13px;
-    border-radius:10px;
-    border:1px solid var(--line);
-    background:#111;
-    color:white;
-    font-family:"Sora","IBM Plex Sans Arabic",Arial,sans-serif;
-    font-weight:800;
-    cursor:pointer;
+    padding:13px;border-radius:10px;border:1px solid var(--line);background:#111;color:white;
+    font-family:"Sora","IBM Plex Sans Arabic",Arial,sans-serif;font-weight:800;cursor:pointer;
 }
-
-.primary{
-    background:var(--gold);
-    color:#111;
-    border-color:#d7aa25;
+.primary{background:var(--gold);color:#111;border-color:#d7aa25;}
+.danger{background:linear-gradient(180deg,#b00020,#780015);border-color:#cf1235;}
+.back{width:100%;margin-top:10px;}
+.sos-box{border:1px solid rgba(176,0,32,.55);background:rgba(176,0,32,.12);}
+.check-row{
+    display:flex;align-items:center;gap:10px;justify-content:center;
+    background:#121212;border:1px solid var(--line);border-radius:10px;padding:11px;
 }
-
-.danger{
-    background:linear-gradient(180deg,#b00020,#780015);
-    border-color:#cf1235;
-}
-
-.back{
-    width:100%;
-    margin-top:10px;
-}
-
-.sos-box{
-    border:1px solid rgba(176,0,32,.55);
-    background:rgba(176,0,32,.12);
-}
-
-.footer{
-    color:#777;
-    font-size:11px;
-    text-align:center;
-    padding:15px 0 5px;
-    line-height:1.6;
-}
-
+.check-row input{width:18px;height:18px;accent-color:var(--gold);}
+.footer{color:#777;font-size:11px;text-align:center;padding:15px 0 5px;line-height:1.6;}
+.hidden{display:none;}
 @media(max-width:380px){
     .grid{grid-template-columns:1fr;}
     .stats{grid-template-columns:1fr;}
@@ -363,37 +164,38 @@ button{
         <div class="hero">
             <h2 class="en-title">Professional Motherboard Repair Path</h2>
             <h2 class="ar-title">مسار احترافي لإصلاح اللوحات</h2>
-            <p class="en-text">From foundations to expert workshop level: learn safely, diagnose correctly and repair with method.</p>
-            <p class="ar-text">من الأساسيات إلى مستوى الورشة الاحترافية: تعلم بأمان، شخّص بطريقة صحيحة وأصلح بمنهجية.</p>
+            <p class="en-text">Learn safely, diagnose correctly and repair with method.</p>
+            <p class="ar-text">تعلم بأمان، شخّص بطريقة صحيحة وأصلح بمنهجية.</p>
+            <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+            <p class="en-text" id="progressText">0% completed</p>
         </div>
 
         <div class="stats">
-            <div class="stat"><strong>0-10</strong><small>Full Path<br>المسار الكامل</small></div>
-            <div class="stat"><strong>4</strong><small>Training Parts<br>أجزاء تدريبية</small></div>
-            <div class="stat"><strong>SOS</strong><small>Support Group<br>مجموعة الدعم</small></div>
+            <div class="stat"><strong id="doneCount">0</strong><small>Completed<br>مكتمل</small></div>
+            <div class="stat"><strong id="totalCount">0</strong><small>Chapters<br>فصول</small></div>
+            <div class="stat"><strong>SOS</strong><small>Support<br>الدعم</small></div>
         </div>
 
-        <div class="section-title">
-            <h3>Learning Path</h3>
-            <p>مسار التعلم</p>
-        </div>
+        <button class="primary back" onclick="continueLearning()">Continue Learning / متابعة التعلم</button>
+
+        <div class="section-title"><h3>Search</h3><p>بحث</p></div>
+        <input class="search" id="searchInput" oninput="renderHome()" placeholder="Search: PMIC, No Power, Tools...">
+
+        <div class="section-title"><h3>Learning Path</h3><p>مسار التعلم</p></div>
         <div id="pathGrid"></div>
 
-        <div class="section-title">
-            <h3>Annexes & Business</h3>
-            <p>الملاحق والعمل</p>
+        <div class="section-title"><h3>Tools</h3><p>أدوات</p></div>
+        <div class="grid">
+            <button class="card-btn" onclick="openChecklist()"><strong>Safety Checklist</strong><span class="ar">قائمة السلامة</span><small>Before every repair</small><small dir="rtl">قبل كل إصلاح</small><span class="badge">Open / فتح</span></button>
+            <button class="card-btn" onclick="openGlossary()"><strong>Glossary</strong><span class="ar">قاموس المصطلحات</span><small>Technical words</small><small dir="rtl">مصطلحات تقنية</small><span class="badge">Open / فتح</span></button>
         </div>
-        <div class="grid" id="annexGrid"></div>
 
-        <div class="section-title">
-            <h3>Support</h3>
-            <p>الدعم</p>
-        </div>
+        <div class="section-title"><h3>Support</h3><p>الدعم</p></div>
         <div class="panel sos-box">
             <h2 class="en-title">SOS Repair</h2>
             <h2 class="ar-title">دعم الإصلاح</h2>
-            <p class="en-text">Open the Telegram group to ask for help, show a failure or get guidance.</p>
-            <p class="ar-text">افتح مجموعة تيليجرام لطلب المساعدة، عرض عطل أو الحصول على توجيه.</p>
+            <p class="en-text">Open the Telegram group to ask for help or show a failure.</p>
+            <p class="ar-text">افتح مجموعة تيليجرام لطلب المساعدة أو عرض عطل.</p>
             <br>
             <button class="danger" onclick="openSOS()">Open SOS / فتح الدعم</button>
         </div>
@@ -405,19 +207,11 @@ button{
             <h2 class="ar-title" id="chapterTitleAr"></h2>
             <p class="en-text" id="chapterDescEn"></p>
             <p class="ar-text" id="chapterDescAr"></p>
+            <span class="badge" id="difficultyBadge"></span>
         </div>
 
-        <div class="section-title">
-            <h3>Main Topics</h3>
-            <p>المحاور الرئيسية</p>
-        </div>
+        <div class="section-title"><h3>Main Topics</h3><p>المحاور الرئيسية</p></div>
         <div class="list" id="topicList"></div>
-
-        <div class="section-title">
-            <h3>Chapter Method</h3>
-            <p>منهجية الفصل</p>
-        </div>
-        <div class="logic-grid" id="logicList"></div>
 
         <div class="panel">
             <h2 class="en-title">Objective</h2>
@@ -432,6 +226,28 @@ button{
         </div>
     </div>
 
+    <div id="checklistPage" class="page">
+        <div class="panel">
+            <h2 class="en-title">Safety Checklist</h2>
+            <h2 class="ar-title">قائمة السلامة</h2>
+            <p class="en-text">Use this before touching a customer device.</p>
+            <p class="ar-text">استعملها قبل لمس جهاز العميل.</p>
+        </div>
+        <div class="list" id="checklistList"></div>
+        <button class="back" onclick="goHome()">Back / رجوع</button>
+    </div>
+
+    <div id="glossaryPage" class="page">
+        <div class="panel">
+            <h2 class="en-title">Glossary</h2>
+            <h2 class="ar-title">قاموس المصطلحات</h2>
+            <p class="en-text">Important technical words for motherboard repair.</p>
+            <p class="ar-text">مصطلحات تقنية مهمة لإصلاح اللوحات.</p>
+        </div>
+        <div class="list" id="glossaryList"></div>
+        <button class="back" onclick="goHome()">Back / رجوع</button>
+    </div>
+
     <div class="footer">
         Repair Academy • Learning Version<br>
         أكاديمية الإصلاح • نسخة تعليمية
@@ -441,7 +257,6 @@ button{
 
 <script>
 const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-
 if(tg){
     tg.ready();
     tg.expand();
@@ -452,19 +267,17 @@ if(tg){
 
 const chapters = [
     {
-        partEn:"Part 0 - Foundations",
-        partAr:"الجزء 0 - الأساسيات",
+        partEn:"Part 0 - Foundations", partAr:"الجزء 0 - الأساسيات",
         items:[
             {
-                id:"foundation",
-                enTitle:"Foundations Before Level 1",
-                arTitle:"الأساسيات قبل المستوى الأول",
+                id:"foundation", difficulty:"Beginner",
+                enTitle:"Foundations Before Level 1", arTitle:"الأساسيات قبل المستوى الأول",
                 enDesc:"Understand what a motherboard is and how a smartphone works before touching repairs.",
                 arDesc:"افهم ما هي اللوحة الأم وكيف يعمل الهاتف قبل البدء في الإصلاح.",
                 objectiveEn:"Build the base needed to learn safely and avoid random repair attempts.",
                 objectiveAr:"بناء قاعدة قوية للتعلم بأمان وتجنب الإصلاح العشوائي.",
                 topics:[
-                    ["What is a motherboard?","ما هي اللوحة الأم؟","Understand the board as the central platform connecting all phone functions.","فهم اللوحة كمنصة رئيسية تربط جميع وظائف الهاتف."],
+                    ["What is a motherboard?","ما هي اللوحة الأم؟","The main board connects and controls phone functions.","اللوحة الرئيسية تربط وتتحكم في وظائف الهاتف."],
                     ["Smartphone architecture","بنية الهاتف","Power, CPU, PMIC, NAND, charging and communication basics.","أساسيات الطاقة، المعالج، شريحة الطاقة، الذاكرة، الشحن والاتصال."],
                     ["Failure types","أنواع الأعطال","Hardware, software and mixed failures.","أعطال الهاردوير، السوفتوير والأعطال المختلطة."],
                     ["Basic electricity","أساسيات الكهرباء","Voltage, current, resistance and Ohm logic.","الفولت، التيار، المقاومة ومنطق قانون أوم."],
@@ -474,33 +287,28 @@ const chapters = [
         ]
     },
     {
-        partEn:"Part 1 - Beginner Levels",
-        partAr:"الجزء 1 - مستويات المبتدئين",
+        partEn:"Part 1 - Beginner Levels", partAr:"الجزء 1 - مستويات المبتدئين",
         items:[
             {
-                id:"level1",
-                enTitle:"Level 1 - Discovery & Workshop Safety",
-                arTitle:"المستوى 1 - الاكتشاف وسلامة الورشة",
+                id:"level1", difficulty:"Beginner",
+                enTitle:"Level 1 - Discovery & Workshop Safety", arTitle:"المستوى 1 - الاكتشاف وسلامة الورشة",
                 enDesc:"Learn the basic tools, safe opening and how not to damage a phone.",
                 arDesc:"تعلم الأدوات الأساسية، فتح الهاتف بأمان وتجنب إتلاف الجهاز.",
-                objectiveEn:"Do not damage a phone.",
-                objectiveAr:"عدم إتلاف الهاتف.",
+                objectiveEn:"Do not damage a phone.", objectiveAr:"عدم إتلاف الهاتف.",
                 topics:[
-                    ["Basic tools","الأدوات الأساسية","Screwdrivers, ESD mat, magnifier and simple opening tools.","مفكات، بساط حماية ESD، عدسة وأدوات فتح بسيطة."],
-                    ["Safe opening","فتح الهاتف بأمان","Open a phone without breaking flex cables, screen or frame.","فتح الهاتف بدون كسر الفلاتات أو الشاشة أو الإطار."],
-                    ["Simple components","مكونات بسيطة","Recognize visible components and common board parts.","التعرف على المكونات الظاهرة والأجزاء الشائعة على اللوحة."],
+                    ["Basic tools","الأدوات الأساسية","Screwdrivers, ESD mat, magnifier and opening tools.","مفكات، بساط حماية ESD، عدسة وأدوات فتح."],
+                    ["Safe opening","فتح الهاتف بأمان","Open without breaking flex cables, screen or frame.","فتح الهاتف بدون كسر الفلاتات أو الشاشة أو الإطار."],
+                    ["Simple components","مكونات بسيطة","Recognize visible components and board parts.","التعرف على المكونات الظاهرة والأجزاء الشائعة."],
                     ["Battery disconnect","فصل البطارية","Disconnect the battery correctly before working.","فصل البطارية بطريقة صحيحة قبل العمل."],
-                    ["Beginner mistakes","أخطاء المبتدئين","Avoid forcing, overheating and random part replacement.","تجنب القوة الزائدة، الحرارة الزائدة وتغيير القطع عشوائيا."]
+                    ["Beginner mistakes","أخطاء المبتدئين","Avoid forcing, overheating and random replacement.","تجنب القوة الزائدة، الحرارة الزائدة وتغيير القطع عشوائيا."]
                 ]
             },
             {
-                id:"level2",
-                enTitle:"Level 2 - Simple Diagnosis",
-                arTitle:"المستوى 2 - التشخيص البسيط",
+                id:"level2", difficulty:"Beginner",
+                enTitle:"Level 2 - Simple Diagnosis", arTitle:"المستوى 2 - التشخيص البسيط",
                 enDesc:"Start understanding why a phone does not work with basic tests.",
                 arDesc:"ابدأ بفهم لماذا لا يعمل الهاتف من خلال اختبارات بسيطة.",
-                objectiveEn:"Understand why it does not work.",
-                objectiveAr:"فهم سبب عدم عمل الجهاز.",
+                objectiveEn:"Understand why it does not work.", objectiveAr:"فهم سبب عدم عمل الجهاز.",
                 topics:[
                     ["No power phone","هاتف لا يعمل","First checks when a phone does not turn on.","أول الفحوصات عندما لا يشتغل الهاتف."],
                     ["Charge, cable, battery","الشحن والكابل والبطارية","Check external causes before motherboard repair.","فحص الأسباب الخارجية قبل إصلاح اللوحة."],
@@ -510,13 +318,11 @@ const chapters = [
                 ]
             },
             {
-                id:"level3",
-                enTitle:"Level 3 - Motherboard Introduction",
-                arTitle:"المستوى 3 - مقدمة في اللوحة الأم",
+                id:"level3", difficulty:"Beginner",
+                enTitle:"Level 3 - Motherboard Introduction", arTitle:"المستوى 3 - مقدمة في اللوحة الأم",
                 enDesc:"Learn how to visually read a motherboard and recognize important areas.",
                 arDesc:"تعلم القراءة البصرية للوحة والتعرف على المناطق المهمة.",
-                objectiveEn:"Recognize the important board areas.",
-                objectiveAr:"التعرف على المناطق المهمة في اللوحة.",
+                objectiveEn:"Recognize important board areas.", objectiveAr:"التعرف على المناطق المهمة في اللوحة.",
                 topics:[
                     ["Visual board reading","قراءة اللوحة بصريا","Observe layout, zones and visible damage.","ملاحظة التخطيط، المناطق والأضرار الظاهرة."],
                     ["Connectors","الكونكتورات","LCD, battery, charging and flex connectors.","كونكتور الشاشة، البطارية، الشحن والفلاتات."],
@@ -528,49 +334,42 @@ const chapters = [
         ]
     },
     {
-        partEn:"Part 2 - Intermediate Levels",
-        partAr:"الجزء 2 - المستويات المتوسطة",
+        partEn:"Part 2 - Intermediate Levels", partAr:"الجزء 2 - المستويات المتوسطة",
         items:[
             {
-                id:"level4",
-                enTitle:"Level 4 - Basic Microsoldering",
-                arTitle:"المستوى 4 - الميكروسولدرينغ الأساسي",
+                id:"level4", difficulty:"Intermediate",
+                enTitle:"Level 4 - Basic Microsoldering", arTitle:"المستوى 4 - الميكروسولدرينغ الأساسي",
                 enDesc:"Learn heat control, flux, solder and simple component replacement.",
                 arDesc:"تعلم التحكم بالحرارة، الفلكس، القصدير وتغيير المكونات البسيطة.",
-                objectiveEn:"Solder without destroying the board.",
-                objectiveAr:"اللحام بدون تدمير اللوحة.",
+                objectiveEn:"Solder without destroying the board.", objectiveAr:"اللحام بدون تدمير اللوحة.",
                 topics:[
                     ["Hot air vs soldering iron","هواء ساخن أم كاوية","Know when to use each tool.","معرفة متى تستخدم كل أداة."],
-                    ["Simple component replacement","تغيير مكونات بسيطة","Remove and replace small parts safely.","إزالة وتغيير القطع الصغيرة بأمان."],
+                    ["Simple replacement","تغيير مكونات بسيطة","Remove and replace small parts safely.","إزالة وتغيير القطع الصغيرة بأمان."],
                     ["Pads and traces","البادات والمسارات","Understand board pads and copper tracks.","فهم البادات ومسارات النحاس."],
                     ["Flux and solder","الفلكس والقصدير","Use clean soldering materials correctly.","استخدام مواد لحام نظيفة بطريقة صحيحة."],
                     ["Temperature control","التحكم بالحرارة","Avoid overheating and lifted pads.","تجنب الحرارة الزائدة وخلع البادات."]
                 ]
             },
             {
-                id:"level5",
-                enTitle:"Level 5 - Advanced Diagnosis",
-                arTitle:"المستوى 5 - التشخيص المتقدم",
+                id:"level5", difficulty:"Intermediate",
+                enTitle:"Level 5 - Advanced Diagnosis", arTitle:"المستوى 5 - التشخيص المتقدم",
                 enDesc:"Find the real fault using power lines, current analysis and voltage injection.",
                 arDesc:"اعثر على العطل الحقيقي باستخدام خطوط الطاقة، تحليل التيار وحقن الفولت.",
-                objectiveEn:"Find the real failure.",
-                objectiveAr:"العثور على العطل الحقيقي.",
+                objectiveEn:"Find the real failure.", objectiveAr:"العثور على العطل الحقيقي.",
                 topics:[
                     ["VDD short circuit","شورت خط VDD","Understand shorted power lines.","فهم الشورت في خطوط الطاقة."],
                     ["Voltage injection","حقن الفولت","Inject controlled voltage to locate faults.","حقن فولت متحكم به لتحديد العطل."],
                     ["Lab power supply","الباور سبلاي","Use a laboratory power supply correctly.","استخدام الباور سبلاي بطريقة صحيحة."],
                     ["Current analysis","تحليل الاستهلاك","Read current draw behavior in amps.","قراءة سلوك استهلاك التيار بالأمبير."],
-                    ["Faulty component search","البحث عن المكون التالف","Locate the component causing the fault.","تحديد المكون المسبب للعطل."]
+                    ["Faulty component","المكون التالف","Locate the component causing the fault.","تحديد المكون المسبب للعطل."]
                 ]
             },
             {
-                id:"level6",
-                enTitle:"Level 6 - Component Replacement",
-                arTitle:"المستوى 6 - تغيير المكونات",
+                id:"level6", difficulty:"Intermediate",
+                enTitle:"Level 6 - Component Replacement", arTitle:"المستوى 6 - تغيير المكونات",
                 enDesc:"Repair partially working boards through clean replacement and simple jumpers.",
                 arDesc:"إصلاح لوحات تعمل جزئيا عبر تغيير نظيف وجمبرات بسيطة.",
-                objectiveEn:"Repair a partially functional board.",
-                objectiveAr:"إصلاح لوحة تعمل بشكل جزئي.",
+                objectiveEn:"Repair a partially functional board.", objectiveAr:"إصلاح لوحة تعمل بشكل جزئي.",
                 topics:[
                     ["Charging connector","كونكتور الشحن","Replace damaged charging connectors.","تغيير كونكتور الشحن التالف."],
                     ["Coils, capacitors, diodes","ملفات ومكثفات ودايودات","Replace common passive components.","تغيير المكونات الشائعة."],
@@ -582,17 +381,14 @@ const chapters = [
         ]
     },
     {
-        partEn:"Part 3 - Advanced Levels",
-        partAr:"الجزء 3 - المستويات المتقدمة",
+        partEn:"Part 3 - Advanced Levels", partAr:"الجزء 3 - المستويات المتقدمة",
         items:[
             {
-                id:"level7",
-                enTitle:"Level 7 - Critical Circuits",
-                arTitle:"المستوى 7 - الدوائر الحرجة",
+                id:"level7", difficulty:"Advanced",
+                enTitle:"Level 7 - Critical Circuits", arTitle:"المستوى 7 - الدوائر الحرجة",
                 enDesc:"Understand PMIC, CPU basics, NAND and electrical schematics.",
                 arDesc:"افهم شريحة الطاقة، أساسيات المعالج، الذاكرة والمخططات الكهربائية.",
-                objectiveEn:"Understand the complete architecture.",
-                objectiveAr:"فهم البنية الكاملة للجهاز.",
+                objectiveEn:"Understand the complete architecture.", objectiveAr:"فهم البنية الكاملة للجهاز.",
                 topics:[
                     ["PMIC","شريحة إدارة الطاقة","Understand the main power management chip.","فهم شريحة إدارة الطاقة الرئيسية."],
                     ["CPU basics","أساسيات المعالج","Understand CPU role without replacing it.","فهم دور المعالج بدون تغييره."],
@@ -602,13 +398,11 @@ const chapters = [
                 ]
             },
             {
-                id:"level8",
-                enTitle:"Level 8 - Complex Diagnosis",
-                arTitle:"المستوى 8 - التشخيص المعقد",
+                id:"level8", difficulty:"Advanced",
+                enTitle:"Level 8 - Complex Diagnosis", arTitle:"المستوى 8 - التشخيص المعقد",
                 enDesc:"Diagnose no power, boot loop, no current and main line failures.",
                 arDesc:"تشخيص الموت الكامل، البوت لوب، غياب الاستهلاك وأعطال الخطوط الرئيسية.",
-                objectiveEn:"Diagnose like an engineer.",
-                objectiveAr:"التشخيص بعقلية مهندس.",
+                objectiveEn:"Diagnose like an engineer.", objectiveAr:"التشخيص بعقلية مهندس.",
                 topics:[
                     ["Total no power","موت كامل","Diagnose a fully dead phone.","تشخيص هاتف ميت بالكامل."],
                     ["Boot loop","بوت لوب","Understand restart loops and possible causes.","فهم إعادة التشغيل المتكرر وأسبابه."],
@@ -618,13 +412,11 @@ const chapters = [
                 ]
             },
             {
-                id:"level9",
-                enTitle:"Level 9 - Advanced Microsoldering",
-                arTitle:"المستوى 9 - الميكروسولدرينغ المتقدم",
+                id:"level9", difficulty:"Advanced",
+                enTitle:"Level 9 - Advanced Microsoldering", arTitle:"المستوى 9 - الميكروسولدرينغ المتقدم",
                 enDesc:"Work with BGA, complex ICs and extreme precision techniques.",
                 arDesc:"العمل على BGA، الشرائح المعقدة وتقنيات الدقة العالية.",
-                objectiveEn:"Reach high-level industrial repair.",
-                objectiveAr:"الوصول إلى إصلاح عالي المستوى.",
+                objectiveEn:"Reach high-level industrial repair.", objectiveAr:"الوصول إلى إصلاح عالي المستوى.",
                 topics:[
                     ["BGA reballing","إعادة تكوير BGA","Learn the logic of BGA reballing.","تعلم منطق إعادة تكوير شرائح BGA."],
                     ["Complex IC replacement","تغيير شرائح معقدة","PMIC and advanced IC replacement logic.","منطق تغيير شريحة الطاقة والشرائح المتقدمة."],
@@ -636,106 +428,62 @@ const chapters = [
         ]
     },
     {
-        partEn:"Part 4 - Expert Level",
-        partAr:"الجزء 4 - مستوى الخبير",
+        partEn:"Part 4 - Expert Level", partAr:"الجزء 4 - مستوى الخبير",
         items:[
             {
-                id:"level10",
-                enTitle:"Level 10 - Expert / Pro Workshop",
-                arTitle:"المستوى 10 - خبير / ورشة احترافية",
+                id:"level10", difficulty:"Expert",
+                enTitle:"Level 10 - Expert / Pro Workshop", arTitle:"المستوى 10 - خبير / ورشة احترافية",
                 enDesc:"Handle ultra complex cases, multi-failure repairs and workshop standards.",
                 arDesc:"تعامل مع الحالات المعقدة جدا، الأعطال المتعددة ومعايير الورشة.",
-                objectiveEn:"Become a technical reference.",
-                objectiveAr:"أن تصبح مرجعا تقنيا.",
+                objectiveEn:"Become a technical reference.", objectiveAr:"أن تصبح مرجعا تقنيا.",
                 topics:[
                     ["Ultra complex cases","حالات معقدة جدا","iPhone, Samsung and difficult motherboard cases.","حالات آيفون، سامسونغ واللوحات الصعبة."],
                     ["Multi-failure repair","إصلاح متعدد الأعطال","Handle several faults on the same device.","التعامل مع عدة أعطال في نفس الجهاز."],
                     ["Workshop efficiency","مردودية الورشة","Optimize time, workflow and success rate.","تحسين الوقت، سير العمل ونسبة النجاح."],
                     ["Repair standardization","توحيد الإصلاحات","Create repeatable technical procedures.","إنشاء إجراءات تقنية قابلة للتكرار."],
                     ["Rare failure analysis","تحليل الأعطال النادرة","Analyze unusual and difficult failures.","تحليل الأعطال غير المعتادة والصعبة."],
-                    ["Microsoldering lab management","إدارة مختبر ميكروسولدرينغ","Organize tools, safety, quality and workflow.","تنظيم الأدوات، السلامة، الجودة وسير العمل."]
+                    ["Lab management","إدارة المختبر","Organize tools, safety, quality and workflow.","تنظيم الأدوات، السلامة، الجودة وسير العمل."]
                 ]
             }
         ]
     }
 ];
 
-const annexes = [
-    {
-        id:"tools",
-        enTitle:"Essential Tools",
-        arTitle:"الأدوات الضرورية",
-        enDesc:"Professional tools needed for serious motherboard repair.",
-        arDesc:"الأدوات الاحترافية المطلوبة لإصلاح اللوحات بشكل جدي.",
-        objectiveEn:"Know what equipment is needed before building a workshop.",
-        objectiveAr:"معرفة المعدات المطلوبة قبل بناء ورشة.",
-        topics:[
-            ["Trinocular microscope","ميكروسكوب ثلاثي","For precise inspection and camera output.","للفحص الدقيق وإخراج الصورة للكاميرا."],
-            ["Hot air station","محطة هواء ساخن","JBC, Quick or equivalent professional station.","محطة احترافية مثل JBC أو Quick أو ما يعادلها."],
-            ["Lab power supply","باور سبلاي","Controlled power source for diagnosis.","مصدر طاقة متحكم به للتشخيص."],
-            ["Advanced multimeter","ملتيميتر متقدم","For diode mode, voltage and resistance checks.","لفحص الدايود، الفولت والمقاومة."],
-            ["NAND programmers","مبرمجات NAND","For advanced storage and data-related work.","للعمل المتقدم على الذاكرة والبيانات."]
-        ]
-    },
-    {
-        id:"methodology",
-        enTitle:"Diagnosis Methodology",
-        arTitle:"منهجية التشخيص",
-        enDesc:"A professional method to avoid random repairs.",
-        arDesc:"منهجية احترافية لتجنب الإصلاح العشوائي.",
-        objectiveEn:"Observe, measure, confirm, then repair.",
-        objectiveAr:"لاحظ، قِس، أكد، ثم أصلح.",
-        topics:[
-            ["Observe","الملاحظة","Inspect before touching anything.","افحص قبل لمس أي شيء."],
-            ["Measure","القياس","Use tools to gather proof.","استخدم الأدوات لجمع الدليل."],
-            ["Confirm","التأكيد","Confirm the fault before replacing parts.","أكد العطل قبل تغيير القطع."],
-            ["Repair","الإصلاح","Repair the real cause, not the symptom.","أصلح السبب الحقيقي وليس العرض."],
-            ["Never guess","لا تخمن","Never replace parts randomly.","لا تغير القطع عشوائيا."]
-        ]
-    },
-    {
-        id:"safety",
-        enTitle:"Safety",
-        arTitle:"السلامة",
-        enDesc:"Rules that protect the technician, the customer device and the workshop.",
-        arDesc:"قواعد تحمي التقني، جهاز العميل والورشة.",
-        objectiveEn:"Work safely with batteries, heat, ESD and fumes.",
-        objectiveAr:"العمل بأمان مع البطاريات، الحرارة، الكهرباء الساكنة والأبخرة.",
-        topics:[
-            ["Lithium battery risk","خطر بطارية الليثيوم","Lithium batteries can burn if abused.","بطاريات الليثيوم قد تشتعل إذا تم التعامل معها بشكل خاطئ."],
-            ["ESD protection","حماية ESD","Protect sensitive chips from static electricity.","حماية الشرائح الحساسة من الكهرباء الساكنة."],
-            ["Heat control","التحكم بالحرارة","Too much heat can destroy the board.","الحرارة الزائدة قد تدمر اللوحة."],
-            ["Fume management","إدارة الأبخرة","Use ventilation when soldering.","استخدم التهوية أثناء اللحام."],
-            ["Controlled short testing","فحص الشورت بتحكم","Never short intentionally without control.","لا تقم بعمل شورت عمدا بدون تحكم."]
-        ]
-    },
-    {
-        id:"business",
-        enTitle:"Business Bonus",
-        arTitle:"بونس العمل",
-        enDesc:"Turn technical skill into a profitable repair service.",
-        arDesc:"حوّل المهارة التقنية إلى خدمة إصلاح مربحة.",
-        objectiveEn:"Understand pricing, organization, repair time and profitability.",
-        objectiveAr:"فهم التسعير، التنظيم، وقت الإصلاح والربحية.",
-        topics:[
-            ["Pricing repairs","تسعير الإصلاح","Know how to price motherboard repair work.","تعلم كيفية تسعير إصلاح اللوحات."],
-            ["Workshop organization","تنظيم الورشة","Keep tools, parts and cases organized.","تنظيم الأدوات، القطع والحالات."],
-            ["Average repair time","متوسط وقت الإصلاح","Track time to improve profitability.","تتبع الوقت لتحسين الربحية."],
-            ["Microsoldering profitability","ربحية الميكروسولدرينغ","Understand value, risk and margins.","فهم القيمة، المخاطر والهامش."],
-            ["Technical procedures","الإجراءات التقنية","Create repeatable repair processes.","إنشاء عمليات إصلاح قابلة للتكرار."]
-        ]
-    }
+const glossary = [
+    ["PMIC","شريحة إدارة الطاقة","Power Management IC. It controls power distribution.","شريحة تتحكم في توزيع الطاقة داخل الهاتف."],
+    ["NAND","ذاكرة التخزين","Storage chip that keeps system and user data.","شريحة التخزين التي تحفظ النظام والبيانات."],
+    ["VDD","خط طاقة","A positive voltage power line.","خط فولت موجب على اللوحة."],
+    ["GND","الأرضي","Ground reference line.","خط الأرضي أو المرجع الكهربائي."],
+    ["Short Circuit","شورت","Abnormal connection between lines.","اتصال غير طبيعي بين خطوط كهربائية."],
+    ["Diode Mode","وضع الدايود","Multimeter mode used to compare board lines.","وضع في الملتيميتر لمقارنة خطوط اللوحة."],
+    ["Boardview","بوردفيو","Map that shows component positions on the board.","خريطة توضح أماكن المكونات على اللوحة."]
 ];
 
-const chapterLogic = [
-    ["Simple Theory","نظرية بسيطة","Clear explanation before practice.","شرح واضح قبل التطبيق."],
-    ["Real Case","حالة عملية","A practical situation from workshop life.","حالة واقعية من حياة الورشة."],
-    ["Common Mistakes","أخطاء شائعة","What beginners usually do wrong.","ما يخطئ فيه المبتدئون غالبا."],
-    ["Workshop Exercise","تمرين ورشة","A small task to practice the chapter.","مهمة صغيرة للتطبيق على الفصل."],
-    ["Difficulty Level","مستوى الصعوبة","Know how advanced the chapter is.","معرفة درجة صعوبة الفصل."]
+const checklist = [
+    ["Battery disconnected","تم فصل البطارية"],
+    ["ESD protection ready","حماية ESD جاهزة"],
+    ["No random replacement","لا يوجد تغيير عشوائي"],
+    ["Visual inspection done","تم الفحص البصري"],
+    ["Heat controlled","الحرارة تحت التحكم"],
+    ["Customer data respected","بيانات العميل محفوظة"]
 ];
 
 let currentChapter = null;
+
+function allItems(){
+    return chapters.flatMap(group => group.items);
+}
+
+function doneIds(){
+    return JSON.parse(localStorage.getItem("repair_done_chapters") || "[]");
+}
+
+function saveDone(id){
+    const ids = doneIds();
+    if(!ids.includes(id)) ids.push(id);
+    localStorage.setItem("repair_done_chapters", JSON.stringify(ids));
+    localStorage.setItem("repair_last_chapter", id);
+}
 
 function showPage(id){
     document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
@@ -743,11 +491,41 @@ function showPage(id){
     window.scrollTo(0,0);
 }
 
+function difficultyClass(diff){
+    if(diff === "Beginner") return "diff-beginner";
+    if(diff === "Intermediate") return "diff-intermediate";
+    if(diff === "Advanced") return "diff-advanced";
+    return "diff-expert";
+}
+
+function renderProgress(){
+    const total = allItems().length;
+    const done = doneIds().length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById("doneCount").textContent = done;
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("progressText").textContent = pct + "% completed / مكتمل";
+    document.getElementById("progressBar").style.width = pct + "%";
+}
+
 function renderHome(){
+    renderProgress();
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
     const pathGrid = document.getElementById("pathGrid");
     pathGrid.innerHTML = "";
+    const done = doneIds();
 
     chapters.forEach(group => {
+        const filtered = group.items.filter(item => {
+            const text = [
+                item.enTitle,item.arTitle,item.enDesc,item.arDesc,item.difficulty,
+                ...item.topics.flat()
+            ].join(" ").toLowerCase();
+            return !query || text.includes(query);
+        });
+
+        if(filtered.length === 0) return;
+
         const title = document.createElement("div");
         title.className = "section-title";
         title.innerHTML = `<h3>${group.partEn}</h3><p>${group.partAr}</p>`;
@@ -755,35 +533,28 @@ function renderHome(){
 
         const grid = document.createElement("div");
         grid.className = "grid";
-
-        group.items.forEach(item => {
-            grid.appendChild(createCard(item, "Open / فتح"));
-        });
-
+        filtered.forEach(item => grid.appendChild(createCard(item, done.includes(item.id))));
         pathGrid.appendChild(grid);
     });
-
-    const annexGrid = document.getElementById("annexGrid");
-    annexGrid.innerHTML = "";
-    annexes.forEach(item => annexGrid.appendChild(createCard(item, "View / عرض")));
 }
 
-function createCard(item, badge){
+function createCard(item, isDone){
     const btn = document.createElement("button");
-    btn.className = "card-btn";
+    btn.className = "card-btn" + (isDone ? " done" : "");
     btn.onclick = () => openChapter(item);
     btn.innerHTML = `
         <strong>${item.enTitle}</strong>
         <span class="ar">${item.arTitle}</span>
         <small>${item.enDesc}</small>
         <small dir="rtl">${item.arDesc}</small>
-        <span class="badge">${badge}</span>
+        <span class="badge ${difficultyClass(item.difficulty)}">${item.difficulty}</span>
     `;
     return btn;
 }
 
 function openChapter(item){
     currentChapter = item;
+    localStorage.setItem("repair_last_chapter", item.id);
 
     document.getElementById("chapterTitleEn").textContent = item.enTitle;
     document.getElementById("chapterTitleAr").textContent = item.arTitle;
@@ -792,9 +563,12 @@ function openChapter(item){
     document.getElementById("objectiveEn").textContent = item.objectiveEn;
     document.getElementById("objectiveAr").textContent = item.objectiveAr;
 
+    const badge = document.getElementById("difficultyBadge");
+    badge.textContent = item.difficulty;
+    badge.className = "badge " + difficultyClass(item.difficulty);
+
     const topicList = document.getElementById("topicList");
     topicList.innerHTML = "";
-
     item.topics.forEach(topic => {
         const box = document.createElement("div");
         box.className = "lesson";
@@ -807,30 +581,30 @@ function openChapter(item){
         topicList.appendChild(box);
     });
 
-    const logicList = document.getElementById("logicList");
-    logicList.innerHTML = "";
-
-    chapterLogic.forEach(step => {
-        const box = document.createElement("div");
-        box.className = "logic";
-        box.innerHTML = `
-            <b>${step[0]} / ${step[1]}</b>
-            <p class="en-text">${step[2]}</p>
-            <p class="ar-text">${step[3]}</p>
-        `;
-        logicList.appendChild(box);
-    });
-
     sendTelegramData(item.id);
     showPage("chapterPage");
 }
 
+function continueLearning(){
+    const items = allItems();
+    const lastId = localStorage.getItem("repair_last_chapter");
+    const done = doneIds();
+    let item = items.find(x => x.id === lastId);
+    if(!item) item = items.find(x => !done.includes(x.id)) || items[0];
+    openChapter(item);
+}
+
 function goHome(){
     currentChapter = null;
+    renderHome();
     showPage("home");
 }
 
 function markDone(){
+    if(currentChapter){
+        saveDone(currentChapter.id);
+        renderProgress();
+    }
     const message = "Chapter completed! / تم إنهاء الفصل!";
     if(tg){
         tg.HapticFeedback.notificationOccurred("success");
@@ -840,9 +614,37 @@ function markDone(){
     }
 }
 
+function openChecklist(){
+    const list = document.getElementById("checklistList");
+    list.innerHTML = "";
+    checklist.forEach((item, index) => {
+        const row = document.createElement("label");
+        row.className = "check-row";
+        row.innerHTML = `<input type="checkbox" id="check_${index}"><span>${item[0]} / ${item[1]}</span>`;
+        list.appendChild(row);
+    });
+    showPage("checklistPage");
+}
+
+function openGlossary(){
+    const list = document.getElementById("glossaryList");
+    list.innerHTML = "";
+    glossary.forEach(item => {
+        const box = document.createElement("div");
+        box.className = "lesson";
+        box.innerHTML = `
+            <strong>${item[0]}</strong>
+            <span class="ar-lesson-title">${item[1]}</span>
+            <p class="en-text">${item[2]}</p>
+            <p class="ar-text">${item[3]}</p>
+        `;
+        list.appendChild(box);
+    });
+    showPage("glossaryPage");
+}
+
 function openSOS(){
     const sosLink = "https://t.me/+OVTmcEQLg00zMTQ0";
-
     if(tg){
         tg.openTelegramLink(sosLink);
     }else{
@@ -852,14 +654,11 @@ function openSOS(){
 
 function sendTelegramData(data){
     try{
-        if(tg){
-            tg.sendData(data);
-        }
+        if(tg) tg.sendData(data);
     }catch(e){}
 }
 
 renderHome();
 </script>
-
 </body>
 </html>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repair Academy</title>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://t.me/+OVTmcEQLg00zMTQ0"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -33,6 +33,10 @@ body{
     min-height:100vh;
 }
 
+body[dir="rtl"]{
+    font-family:Arial, sans-serif;
+}
+
 .app{
     width:100%;
     max-width:520px;
@@ -52,6 +56,10 @@ body{
     text-align:left;
 }
 
+body[dir="rtl"] .logo{
+    text-align:right;
+}
+
 .logo h1{
     font-family:'Orbitron', sans-serif;
     font-size:22px;
@@ -69,14 +77,31 @@ body{
     margin-top:3px;
 }
 
-.icon-btn{
-    width:44px;
+.top-actions{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn,
+.lang-btn{
     height:44px;
     border-radius:10px;
     border:1px solid var(--line);
     background:#101010;
     color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.icon-btn{
+    width:44px;
     font-size:20px;
+}
+
+.lang-btn{
+    min-width:58px;
+    padding:0 12px;
+    color:var(--gold);
 }
 
 .page{
@@ -100,6 +125,10 @@ body{
     padding:16px;
     margin-bottom:14px;
     text-align:left;
+}
+
+body[dir="rtl"] .hero{
+    text-align:right;
 }
 
 .hero h2{
@@ -144,6 +173,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:10px;
     margin:18px 2px 10px;
 }
 
@@ -163,7 +193,7 @@ body{
 }
 
 .card-btn{
-    min-height:92px;
+    min-height:96px;
     text-align:left;
     padding:13px;
     border-radius:10px;
@@ -171,6 +201,10 @@ body{
     background:linear-gradient(180deg, #191919, #101010);
     color:white;
     cursor:pointer;
+}
+
+body[dir="rtl"] .card-btn{
+    text-align:right;
 }
 
 .card-btn:active{
@@ -206,6 +240,11 @@ body{
     border-radius:12px;
     padding:14px;
     margin-bottom:12px;
+    text-align:left;
+}
+
+body[dir="rtl"] .panel{
+    text-align:right;
 }
 
 .panel h2{
@@ -233,6 +272,10 @@ body{
     text-align:left;
 }
 
+body[dir="rtl"] .lesson{
+    text-align:right;
+}
+
 .lesson strong{
     display:block;
     margin-bottom:5px;
@@ -242,6 +285,7 @@ body{
     margin:0;
     color:var(--muted);
     font-size:13px;
+    line-height:1.45;
 }
 
 .action-row{
@@ -318,15 +362,19 @@ button{
     <div class="topbar">
         <div class="logo">
             <h1><span>Repair</span> Academy</h1>
-            <div class="status" id="telegramStatus">Mini-app Telegram</div>
+            <div class="status" id="telegramStatus"></div>
         </div>
-        <button class="icon-btn" onclick="goHome()">⌂</button>
+
+        <div class="top-actions">
+            <button class="lang-btn" id="langButton" onclick="toggleLanguage()">AR</button>
+            <button class="icon-btn" onclick="goHome()">⌂</button>
+        </div>
     </div>
 
     <div id="home" class="page active">
         <div class="hero">
-            <h2>Deviens meilleur en réparation mobile</h2>
-            <p>Apprends les composants, les pannes, les zones importantes et les bases du diagnostic étape par étape.</p>
+            <h2 id="heroTitle"></h2>
+            <p id="heroText"></p>
 
             <div class="progress-wrap">
                 <div class="progress"></div>
@@ -336,34 +384,34 @@ button{
         <div class="stats">
             <div class="stat">
                 <strong>10</strong>
-                <small>Niveaux</small>
+                <small id="statLevels"></small>
             </div>
             <div class="stat">
                 <strong>6</strong>
-                <small>Bases</small>
+                <small id="statBasics"></small>
             </div>
             <div class="stat">
                 <strong>SOS</strong>
-                <small>Aide rapide</small>
+                <small id="statHelp"></small>
             </div>
         </div>
 
         <div class="section-title">
-            <h3>Parcours</h3>
-            <small>Choisis un niveau</small>
+            <h3 id="pathTitle"></h3>
+            <small id="pathSubtitle"></small>
         </div>
 
         <div class="grid" id="levelsGrid"></div>
 
         <div class="section-title">
-            <h3>Assistance</h3>
-            <small>Besoin d’aide ?</small>
+            <h3 id="supportTitle"></h3>
+            <small id="supportSubtitle"></small>
         </div>
 
         <div class="panel sos-box">
-            <h2>SOS Réparation</h2>
-            <p>Accède au support Telegram pour demander de l’aide, montrer une panne ou poser une question.</p>
-            <button class="danger" onclick="openSOS()">Ouvrir SOS</button>
+            <h2 id="sosTitle"></h2>
+            <p id="sosText"></p>
+            <button class="danger" id="sosButton" onclick="openSOS"></button>
         </div>
     </div>
 
@@ -374,12 +422,12 @@ button{
         </div>
 
         <div class="section-title">
-            <h3>Modules</h3>
+            <h3 id="modulesTitle"></h3>
             <small id="moduleCount"></small>
         </div>
 
         <div class="grid" id="modulesGrid"></div>
-        <button class="back" onclick="goHome()">Retour accueil</button>
+        <button class="back" id="backHomeButton" onclick="goHome()"></button>
     </div>
 
     <div id="modulePage" class="page">
@@ -389,19 +437,19 @@ button{
         </div>
 
         <div class="section-title">
-            <h3>Fiche rapide</h3>
-            <small>à retenir</small>
+            <h3 id="quickSheetTitle"></h3>
+            <small id="rememberText"></small>
         </div>
 
         <div class="list" id="lessonList"></div>
 
         <div class="action-row">
-            <button onclick="goBackLevel()">Retour niveau</button>
-            <button class="primary" onclick="markDone()">Terminé</button>
+            <button id="backLevelButton" onclick="goBackLevel()"></button>
+            <button class="primary" id="doneButton" onclick="markDone()"></button>
         </div>
     </div>
 
-    <div class="footer">Repair Academy • Version apprentissage</div>
+    <div class="footer" id="footerText"></div>
 
 </div>
 
@@ -411,249 +459,589 @@ const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : 
 if(tg){
     tg.ready();
     tg.expand();
-    document.getElementById("telegramStatus").textContent = "Connecté à Telegram";
-}else{
-    document.getElementById("telegramStatus").textContent = "Mode test navigateur";
 }
+
+let currentLanguage = localStorage.getItem("repair_academy_language") || "en";
+let currentLevel = null;
+let currentModule = null;
+
+const translations = {
+    en:{
+        htmlLang:"en",
+        dir:"ltr",
+        langButton:"AR",
+        telegramConnected:"Connected to Telegram",
+        browserMode:"Browser test mode",
+        heroTitle:"Master mobile repair step by step",
+        heroText:"Learn components, failures, important board areas and diagnostic basics through a clean learning path.",
+        statLevels:"Levels",
+        statBasics:"Basics",
+        statHelp:"Fast help",
+        pathTitle:"Learning path",
+        pathSubtitle:"Choose a level",
+        supportTitle:"Support",
+        supportSubtitle:"Need help?",
+        sosTitle:"SOS Repair",
+        sosText:"Open Telegram support to ask for help, show a failure or get guidance.",
+        sosButton:"Open SOS",
+        modulesTitle:"Modules",
+        quickSheetTitle:"Quick sheet",
+        rememberText:"key points",
+        backHomeButton:"Back to home",
+        backLevelButton:"Back to level",
+        doneButton:"Done",
+        openBadge:"Open",
+        moduleSingular:"module",
+        modulePlural:"modules",
+        completedAlert:"Module completed!",
+        footerText:"Repair Academy • Learning version"
+    },
+    ar:{
+        htmlLang:"ar",
+        dir:"rtl",
+        langButton:"EN",
+        telegramConnected:"متصل بتيليجرام",
+        browserMode:"وضع الاختبار في المتصفح",
+        heroTitle:"تعلم إصلاح الهواتف خطوة بخطوة",
+        heroText:"تعلم المكونات، الأعطال، مناطق اللوحة المهمة وأساسيات التشخيص من خلال مسار تدريبي واضح.",
+        statLevels:"مستويات",
+        statBasics:"أساسيات",
+        statHelp:"مساعدة سريعة",
+        pathTitle:"مسار التعلم",
+        pathSubtitle:"اختر المستوى",
+        supportTitle:"الدعم",
+        supportSubtitle:"تحتاج مساعدة؟",
+        sosTitle:"دعم الإصلاح",
+        sosText:"افتح دعم تيليجرام لطلب المساعدة، عرض عطل أو الحصول على توجيه.",
+        sosButton:"فتح الدعم",
+        modulesTitle:"الوحدات",
+        quickSheetTitle:"بطاقة سريعة",
+        rememberText:"نقاط مهمة",
+        backHomeButton:"العودة للرئيسية",
+        backLevelButton:"العودة للمستوى",
+        doneButton:"تم",
+        openBadge:"فتح",
+        moduleSingular:"وحدة",
+        modulePlural:"وحدات",
+        completedAlert:"تم إنهاء الوحدة!",
+        footerText:"Repair Academy • نسخة تعليمية"
+    }
+};
 
 const levels = [
     {
         id:1,
-        title:"Level 1",
-        name:"Bases composants",
-        desc:"Découvre les grandes familles de composants présents sur une carte mère.",
-        modules:[
-            {
-                title:"IC",
-                desc:"Les circuits intégrés principaux du téléphone.",
-                lessons:[
-                    ["SoC", "Le cerveau du téléphone. Il gère la puissance, les calculs et beaucoup de fonctions."],
-                    ["PMIC", "Gère l’alimentation électrique et distribue les tensions aux composants."],
-                    ["RAM / Stockage", "La mémoire rapide et la mémoire où sont gardées les données."]
-                ]
-            },
-            {
-                title:"Power",
-                desc:"Tout ce qui concerne l’alimentation et les tensions.",
-                lessons:[
-                    ["Condensateur", "Aide à stabiliser une tension et filtrer les parasites."],
-                    ["Inductance", "Souvent utilisée dans les circuits d’alimentation."],
-                    ["MOSFET", "Interrupteur électronique qui contrôle le passage du courant."]
-                ]
-            },
-            {
-                title:"RF",
-                desc:"La partie réseau, antenne, signal et communication.",
-                lessons:[
-                    ["Antenne", "Permet de capter et envoyer les signaux réseau, Wi-Fi ou Bluetooth."],
-                    ["Filtres RF", "Nettoient et sélectionnent les bonnes fréquences."],
-                    ["PA", "Amplifie le signal avant émission."]
-                ]
-            },
-            {
-                title:"Connectors",
-                desc:"Les connecteurs importants à reconnaître.",
-                lessons:[
-                    ["Batterie", "Connecteur qui apporte l’énergie principale au téléphone."],
-                    ["Écran", "Transmet image, tactile et parfois rétroéclairage."],
-                    ["Charge", "Port ou nappe liée à l’USB et à la recharge."]
-                ]
-            },
-            {
-                title:"Sensors",
-                desc:"Les capteurs qui aident le téléphone à comprendre son environnement.",
-                lessons:[
-                    ["Gyroscope", "Détecte l’orientation et les mouvements."],
-                    ["Capteur lumière", "Ajuste la luminosité automatique."],
-                    ["Empreinte", "Permet l’identification biométrique."]
-                ]
-            },
-            {
-                title:"Audio",
-                desc:"Microphones, haut-parleurs et traitement du son.",
-                lessons:[
-                    ["Microphone", "Transforme la voix en signal électrique."],
-                    ["Speaker", "Produit le son entendu par l’utilisateur."],
-                    ["Audio Codec IC", "Gère la conversion et le traitement du son."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 1",
+            name:"Component Basics",
+            desc:"Discover the main families of components found on a smartphone motherboard.",
+            modules:[
+                {
+                    title:"IC",
+                    desc:"Main integrated circuits inside the phone.",
+                    lessons:[
+                        ["SoC", "The main brain of the phone. It handles processing, system control and many core functions."],
+                        ["PMIC", "The power management chip. It distributes and controls power lines."],
+                        ["RAM / Storage", "RAM handles temporary memory. Storage keeps apps, files and system data."]
+                    ]
+                },
+                {
+                    title:"Power",
+                    desc:"Power lines, voltage control and energy distribution.",
+                    lessons:[
+                        ["Capacitor", "Helps stabilize voltage and filter electrical noise."],
+                        ["Inductor", "Often used in power circuits to help regulate voltage."],
+                        ["MOSFET", "An electronic switch that controls current flow."]
+                    ]
+                },
+                {
+                    title:"RF",
+                    desc:"Network, antenna and signal communication area.",
+                    lessons:[
+                        ["Antenna", "Sends and receives cellular, Wi-Fi or Bluetooth signals."],
+                        ["RF Filters", "Clean and select the correct signal frequencies."],
+                        ["Power Amplifier", "Boosts the signal before transmission."]
+                    ]
+                },
+                {
+                    title:"Connectors",
+                    desc:"Important connectors to identify on the board.",
+                    lessons:[
+                        ["Battery", "Main connector that brings power to the phone."],
+                        ["Display", "Transfers image, touch and sometimes backlight signals."],
+                        ["Charging", "USB port or charging flex connection."]
+                    ]
+                },
+                {
+                    title:"Sensors",
+                    desc:"Sensors that help the phone understand its environment.",
+                    lessons:[
+                        ["Gyroscope", "Detects movement and orientation."],
+                        ["Light Sensor", "Helps control automatic brightness."],
+                        ["Fingerprint", "Used for biometric identification."]
+                    ]
+                },
+                {
+                    title:"Audio",
+                    desc:"Microphones, speakers and sound processing.",
+                    lessons:[
+                        ["Microphone", "Converts voice into an electrical signal."],
+                        ["Speaker", "Produces sound for the user."],
+                        ["Audio Codec IC", "Handles sound conversion and processing."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 1",
+            name:"أساسيات المكونات",
+            desc:"تعرف على العائلات الرئيسية للمكونات الموجودة على لوحة الهاتف.",
+            modules:[
+                {
+                    title:"الدوائر المتكاملة",
+                    desc:"الشرائح الرئيسية داخل الهاتف.",
+                    lessons:[
+                        ["المعالج الرئيسي", "هو عقل الهاتف، يتحكم في المعالجة والنظام والكثير من الوظائف الأساسية."],
+                        ["شريحة إدارة الطاقة", "تتحكم في توزيع الطاقة وتنظيم خطوط الفولت."],
+                        ["الرام / التخزين", "الرام للذاكرة المؤقتة، والتخزين لحفظ التطبيقات والملفات وبيانات النظام."]
+                    ]
+                },
+                {
+                    title:"الطاقة",
+                    desc:"خطوط الطاقة، التحكم في الفولت وتوزيع الكهرباء.",
+                    lessons:[
+                        ["المكثف", "يساعد في تثبيت الفولت وتنقية التشويش الكهربائي."],
+                        ["الملف", "يستخدم غالبا داخل دوائر الطاقة للمساعدة في تنظيم الفولت."],
+                        ["الموسفت", "مفتاح إلكتروني يتحكم في مرور التيار."]
+                    ]
+                },
+                {
+                    title:"الشبكة",
+                    desc:"منطقة الشبكة، الهوائي والإشارة.",
+                    lessons:[
+                        ["الهوائي", "يرسل ويستقبل إشارات الشبكة والواي فاي والبلوتوث."],
+                        ["فلاتر الشبكة", "تنقي وتختار الترددات الصحيحة للإشارة."],
+                        ["مكبر الإشارة", "يقوي الإشارة قبل الإرسال."]
+                    ]
+                },
+                {
+                    title:"الكونكتورات",
+                    desc:"الكونكتورات المهمة التي يجب التعرف عليها على اللوحة.",
+                    lessons:[
+                        ["البطارية", "الكونكتور الرئيسي الذي يمد الهاتف بالطاقة."],
+                        ["الشاشة", "ينقل الصورة واللمس وأحيانا إضاءة الشاشة."],
+                        ["الشحن", "منفذ USB أو فلاتة الشحن."]
+                    ]
+                },
+                {
+                    title:"الحساسات",
+                    desc:"حساسات تساعد الهاتف على فهم البيئة المحيطة.",
+                    lessons:[
+                        ["الجيروسكوب", "يكشف الحركة واتجاه الهاتف."],
+                        ["حساس الضوء", "يساعد في التحكم التلقائي بسطوع الشاشة."],
+                        ["البصمة", "تستخدم للتعرف البيومتري على المستخدم."]
+                    ]
+                },
+                {
+                    title:"الصوت",
+                    desc:"الميكروفونات، السماعات ومعالجة الصوت.",
+                    lessons:[
+                        ["الميكروفون", "يحول الصوت إلى إشارة كهربائية."],
+                        ["السماعة", "تخرج الصوت للمستخدم."],
+                        ["شريحة الصوت", "تتعامل مع تحويل ومعالجة الصوت."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:2,
-        title:"Level 2",
-        name:"Outils atelier",
-        desc:"Apprends les outils essentiels : multimètre, alimentation, microscope, station air chaud.",
-        modules:[
-            {
-                title:"Multimètre",
-                desc:"L’outil numéro un pour contrôler une carte.",
-                lessons:[
-                    ["Mode continuité", "Permet de vérifier si deux points sont connectés."],
-                    ["Mode diode", "Très utile pour comparer une ligne avec une carte saine."],
-                    ["Tension", "Permet de vérifier si une alimentation arrive bien."]
-                ]
-            },
-            {
-                title:"Alimentation",
-                desc:"Permet d’alimenter une carte et observer sa consommation.",
-                lessons:[
-                    ["Court-circuit", "Une consommation anormale peut indiquer un problème."],
-                    ["Ampérage", "Aide à lire le comportement de la carte."],
-                    ["Sécurité", "Toujours régler la bonne tension avant de brancher."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 2",
+            name:"Workshop Tools",
+            desc:"Learn essential repair tools: multimeter, power supply, microscope and hot air station.",
+            modules:[
+                {
+                    title:"Multimeter",
+                    desc:"The number one tool for checking a board.",
+                    lessons:[
+                        ["Continuity Mode", "Checks if two points are connected."],
+                        ["Diode Mode", "Useful for comparing a line with a known good board."],
+                        ["Voltage", "Checks whether power is arriving correctly."]
+                    ]
+                },
+                {
+                    title:"Power Supply",
+                    desc:"Used to power a board and observe current consumption.",
+                    lessons:[
+                        ["Short Circuit", "Abnormal current draw can indicate a problem."],
+                        ["Current Reading", "Helps understand how the board behaves."],
+                        ["Safety", "Always set the correct voltage before connecting."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 2",
+            name:"أدوات الورشة",
+            desc:"تعلم الأدوات الأساسية: الملتيميتر، الباور سبلاي، الميكروسكوب ومحطة الهواء الساخن.",
+            modules:[
+                {
+                    title:"الملتيميتر",
+                    desc:"الأداة رقم واحد لفحص اللوحة.",
+                    lessons:[
+                        ["وضع الاستمرارية", "يفحص هل توجد وصلة بين نقطتين."],
+                        ["وضع الدايود", "مفيد لمقارنة خط مع لوحة سليمة."],
+                        ["قياس الفولت", "يفحص هل تصل الطاقة بشكل صحيح."]
+                    ]
+                },
+                {
+                    title:"الباور سبلاي",
+                    desc:"يستخدم لتشغيل اللوحة ومراقبة استهلاك التيار.",
+                    lessons:[
+                        ["الشورت", "الاستهلاك غير الطبيعي قد يدل على وجود مشكلة."],
+                        ["قراءة التيار", "تساعد على فهم سلوك اللوحة."],
+                        ["الأمان", "يجب ضبط الفولت الصحيح قبل التوصيل."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:3,
-        title:"Level 3",
-        name:"Diagnostic panne",
-        desc:"Comprendre comment chercher une panne sans remplacer des pièces au hasard.",
-        modules:[
-            {
-                title:"No Power",
-                desc:"Téléphone qui ne s’allume pas.",
-                lessons:[
-                    ["Batterie", "Vérifier tension batterie et connecteur."],
-                    ["Court-circuit", "Chercher une ligne qui chauffe ou consomme trop."],
-                    ["Bouton power", "Vérifier si le signal power arrive."]
-                ]
-            },
-            {
-                title:"Pas de charge",
-                desc:"Téléphone qui ne prend pas la charge.",
-                lessons:[
-                    ["Port de charge", "Inspecter saleté, casse ou oxydation."],
-                    ["Ligne VBUS", "Vérifier si le 5V arrive."],
-                    ["IC charge", "Peut être responsable si les lignes sont correctes."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 3",
+            name:"Failure Diagnosis",
+            desc:"Learn how to diagnose a problem without replacing parts randomly.",
+            modules:[
+                {
+                    title:"No Power",
+                    desc:"Phone does not turn on.",
+                    lessons:[
+                        ["Battery", "Check battery voltage and connector."],
+                        ["Short Circuit", "Look for a hot line or abnormal current draw."],
+                        ["Power Button", "Check whether the power signal reaches the board."]
+                    ]
+                },
+                {
+                    title:"No Charging",
+                    desc:"Phone does not charge.",
+                    lessons:[
+                        ["Charging Port", "Inspect dirt, damage or oxidation."],
+                        ["VBUS Line", "Check whether 5V arrives correctly."],
+                        ["Charging IC", "May be responsible if the main lines are correct."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 3",
+            name:"تشخيص الأعطال",
+            desc:"تعلم كيف تبحث عن العطل بدون تغيير القطع عشوائيا.",
+            modules:[
+                {
+                    title:"لا يعمل",
+                    desc:"الهاتف لا يشتغل.",
+                    lessons:[
+                        ["البطارية", "افحص فولت البطارية والكونكتور."],
+                        ["الشورت", "ابحث عن خط يسخن أو يسحب تيار غير طبيعي."],
+                        ["زر التشغيل", "افحص هل تصل إشارة التشغيل إلى اللوحة."]
+                    ]
+                },
+                {
+                    title:"لا يشحن",
+                    desc:"الهاتف لا يقبل الشحن.",
+                    lessons:[
+                        ["منفذ الشحن", "افحص الأوساخ، الكسر أو الأكسدة."],
+                        ["خط VBUS", "افحص هل يصل 5V بشكل صحيح."],
+                        ["شريحة الشحن", "قد تكون السبب إذا كانت الخطوط الرئيسية سليمة."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:4,
-        title:"Level 4",
-        name:"Micro-soudure",
-        desc:"Bases de soudure, flux, chaleur et remplacement de petits composants.",
-        modules:[
-            {
-                title:"Flux",
-                desc:"Indispensable pour faire une soudure propre.",
-                lessons:[
-                    ["Rôle", "Aide l’étain à mieux se placer."],
-                    ["Nettoyage", "Après travail, nettoyer les résidus."],
-                    ["Qualité", "Un bon flux change énormément le résultat."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 4",
+            name:"Microsoldering",
+            desc:"Basics of soldering, flux, heat control and small component replacement.",
+            modules:[
+                {
+                    title:"Flux",
+                    desc:"Essential for clean soldering.",
+                    lessons:[
+                        ["Purpose", "Helps solder flow and attach correctly."],
+                        ["Cleaning", "Clean residue after repair work."],
+                        ["Quality", "Good flux makes a huge difference."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 4",
+            name:"الميكروسولدرينغ",
+            desc:"أساسيات اللحام، الفلكس، التحكم بالحرارة وتغيير القطع الصغيرة.",
+            modules:[
+                {
+                    title:"الفلكس",
+                    desc:"أساسي للحصول على لحام نظيف.",
+                    lessons:[
+                        ["الدور", "يساعد القصدير على الحركة والالتصاق بشكل صحيح."],
+                        ["التنظيف", "نظف بقايا الفلكس بعد العمل."],
+                        ["الجودة", "الفلكس الجيد يغير نتيجة العمل بشكل كبير."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:5,
-        title:"Level 5",
-        name:"Lecture carte mère",
-        desc:"Identifier les zones et suivre une ligne sur une carte.",
-        modules:[
-            {
-                title:"Zones",
-                desc:"Apprendre à repérer les blocs importants.",
-                lessons:[
-                    ["Power", "Zone liée aux alimentations."],
-                    ["RF", "Zone réseau et antenne."],
-                    ["CPU", "Zone centrale, très sensible."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 5",
+            name:"Board Reading",
+            desc:"Identify board areas and follow a line across the motherboard.",
+            modules:[
+                {
+                    title:"Board Areas",
+                    desc:"Learn how to recognize important sections.",
+                    lessons:[
+                        ["Power Area", "Area related to power distribution."],
+                        ["RF Area", "Network, antenna and signal area."],
+                        ["CPU Area", "Central and very sensitive area."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 5",
+            name:"قراءة اللوحة",
+            desc:"تعلم تحديد مناطق اللوحة وتتبع الخطوط.",
+            modules:[
+                {
+                    title:"مناطق اللوحة",
+                    desc:"تعلم كيف تتعرف على الأقسام المهمة.",
+                    lessons:[
+                        ["منطقة الطاقة", "منطقة مرتبطة بتوزيع الطاقة."],
+                        ["منطقة الشبكة", "منطقة الإشارة والهوائي والشبكة."],
+                        ["منطقة المعالج", "منطقة مركزية وحساسة جدا."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:6,
-        title:"Level 6",
-        name:"Pannes écran",
-        desc:"Diagnostic écran noir, tactile absent, image instable.",
-        modules:[
-            {
-                title:"Écran noir",
-                desc:"Trouver si le souci vient de l’écran ou de la carte.",
-                lessons:[
-                    ["Tester autre écran", "Première étape simple si possible."],
-                    ["Connecteur", "Inspecter pins tordus ou cassés."],
-                    ["Rétroéclairage", "Si image très sombre, suspecter la ligne backlight."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 6",
+            name:"Display Failures",
+            desc:"Diagnose black screen, no touch and unstable image.",
+            modules:[
+                {
+                    title:"Black Screen",
+                    desc:"Find whether the issue comes from the screen or the board.",
+                    lessons:[
+                        ["Test Another Screen", "Simple first step when possible."],
+                        ["Connector", "Inspect bent, broken or dirty pins."],
+                        ["Backlight", "If the image is very dark, suspect the backlight line."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 6",
+            name:"أعطال الشاشة",
+            desc:"تشخيص الشاشة السوداء، توقف اللمس وعدم ثبات الصورة.",
+            modules:[
+                {
+                    title:"شاشة سوداء",
+                    desc:"اعرف هل المشكلة من الشاشة أو من اللوحة.",
+                    lessons:[
+                        ["تجربة شاشة أخرى", "أول خطوة سهلة إذا كانت ممكنة."],
+                        ["الكونكتور", "افحص البنات المكسورة أو المتسخة أو المعوجة."],
+                        ["الإضاءة الخلفية", "إذا كانت الصورة مظلمة جدا، افحص خط الإضاءة."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:7,
-        title:"Level 7",
-        name:"Pannes réseau",
-        desc:"Comprendre SIM, antennes, baseband et signal.",
-        modules:[
-            {
-                title:"Pas de réseau",
-                desc:"Panne complexe à diagnostiquer avec méthode.",
-                lessons:[
-                    ["SIM", "Vérifier lecture SIM et tiroir."],
-                    ["IMEI", "Si absent, suspecter partie baseband."],
-                    ["Antenne", "Vérifier contacts et nappes."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 7",
+            name:"Network Failures",
+            desc:"Understand SIM, antennas, baseband and signal issues.",
+            modules:[
+                {
+                    title:"No Network",
+                    desc:"A complex failure that needs method.",
+                    lessons:[
+                        ["SIM", "Check SIM reading and SIM tray."],
+                        ["IMEI", "If missing, suspect the baseband area."],
+                        ["Antenna", "Check contacts, cables and antenna paths."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 7",
+            name:"أعطال الشبكة",
+            desc:"فهم مشاكل الشريحة، الهوائي، البيسباند والإشارة.",
+            modules:[
+                {
+                    title:"لا توجد شبكة",
+                    desc:"عطل معقد يحتاج طريقة منظمة.",
+                    lessons:[
+                        ["الشريحة", "افحص قراءة الشريحة وبيت الشريحة."],
+                        ["IMEI", "إذا كان غير موجود، افحص منطقة البيسباند."],
+                        ["الهوائي", "افحص نقاط التلامس، الكابلات ومسارات الهوائي."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:8,
-        title:"Level 8",
-        name:"Oxydation",
-        desc:"Nettoyage, inspection et zones sensibles après liquide.",
-        modules:[
-            {
-                title:"Liquide",
-                desc:"Réagir correctement après contact avec eau ou humidité.",
-                lessons:[
-                    ["Débrancher", "Éviter d’alimenter une carte oxydée."],
-                    ["Inspection", "Chercher traces blanches, vertes ou noires."],
-                    ["Nettoyage", "Nettoyer avant de tester sérieusement."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 8",
+            name:"Liquid Damage",
+            desc:"Cleaning, inspection and sensitive areas after liquid exposure.",
+            modules:[
+                {
+                    title:"Water Damage",
+                    desc:"React correctly after water or humidity exposure.",
+                    lessons:[
+                        ["Disconnect Power", "Avoid powering an oxidized board."],
+                        ["Inspection", "Look for white, green or black marks."],
+                        ["Cleaning", "Clean before serious testing."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 8",
+            name:"أضرار السوائل",
+            desc:"التنظيف، الفحص والمناطق الحساسة بعد تعرض الهاتف للسوائل.",
+            modules:[
+                {
+                    title:"ضرر الماء",
+                    desc:"تصرف بشكل صحيح بعد الماء أو الرطوبة.",
+                    lessons:[
+                        ["فصل الطاقة", "لا تشغل لوحة عليها أكسدة."],
+                        ["الفحص", "ابحث عن آثار بيضاء، خضراء أو سوداء."],
+                        ["التنظيف", "نظف قبل القيام بفحص جدي."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:9,
-        title:"Level 9",
-        name:"Cas réels",
-        desc:"Études de pannes étape par étape.",
-        modules:[
-            {
-                title:"Cas client",
-                desc:"Méthode simple pour ne rien oublier.",
-                lessons:[
-                    ["Symptôme", "Noter exactement ce que fait le téléphone."],
-                    ["Historique", "Chute, eau, réparation précédente."],
-                    ["Tests", "Procéder étape par étape."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 9",
+            name:"Real Cases",
+            desc:"Step-by-step repair case studies.",
+            modules:[
+                {
+                    title:"Customer Case",
+                    desc:"A simple method to avoid missing important details.",
+                    lessons:[
+                        ["Symptom", "Write exactly what the phone does."],
+                        ["History", "Ask about drop, water or previous repair."],
+                        ["Tests", "Proceed step by step."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 9",
+            name:"حالات واقعية",
+            desc:"دراسة أعطال حقيقية خطوة بخطوة.",
+            modules:[
+                {
+                    title:"حالة عميل",
+                    desc:"طريقة بسيطة حتى لا تنسى التفاصيل المهمة.",
+                    lessons:[
+                        ["العَرَض", "اكتب بالضبط ماذا يفعل الهاتف."],
+                        ["التاريخ", "اسأل عن سقوط، ماء أو إصلاح سابق."],
+                        ["الاختبارات", "افحص خطوة بخطوة."]
+                    ]
+                }
+            ]
+        }
     },
     {
         id:10,
-        title:"Level 10",
-        name:"Mode expert",
-        desc:"Analyse avancée, logique de lignes et réparation difficile.",
-        modules:[
-            {
-                title:"Analyse avancée",
-                desc:"Aller plus loin dans la compréhension carte mère.",
-                lessons:[
-                    ["Comparer", "Comparer les mesures avec une carte saine."],
-                    ["Schéma", "Lire le chemin d’une ligne importante."],
-                    ["Décision", "Réparer seulement quand la cause est claire."]
-                ]
-            }
-        ]
+        en:{
+            title:"Level 10",
+            name:"Expert Mode",
+            desc:"Advanced analysis, line logic and difficult repairs.",
+            modules:[
+                {
+                    title:"Advanced Analysis",
+                    desc:"Go deeper into motherboard repair logic.",
+                    lessons:[
+                        ["Compare", "Compare measurements with a known good board."],
+                        ["Schematic", "Follow the path of an important line."],
+                        ["Decision", "Repair only when the cause is clear."]
+                    ]
+                }
+            ]
+        },
+        ar:{
+            title:"المستوى 10",
+            name:"وضع الخبير",
+            desc:"تحليل متقدم، فهم الخطوط والإصلاحات الصعبة.",
+            modules:[
+                {
+                    title:"تحليل متقدم",
+                    desc:"ادخل أعمق في منطق إصلاح اللوحات.",
+                    lessons:[
+                        ["المقارنة", "قارن القياسات مع لوحة سليمة."],
+                        ["المخطط", "تتبع مسار خط مهم."],
+                        ["القرار", "قم بالإصلاح فقط عندما يكون السبب واضحا."]
+                    ]
+                }
+            ]
+        }
     }
 ];
 
-let currentLevel = null;
-let currentModule = null;
+function t(key){
+    return translations[currentLanguage][key];
+}
+
+function getLevelData(level){
+    return level[currentLanguage];
+}
+
+function setStaticTexts(){
+    document.documentElement.lang = t("htmlLang");
+    document.documentElement.dir = t("dir");
+    document.body.dir = t("dir");
+
+    document.getElementById("langButton").textContent = t("langButton");
+    document.getElementById("telegramStatus").textContent = tg ? t("telegramConnected") : t("browserMode");
+    document.getElementById("heroTitle").textContent = t("heroTitle");
+    document.getElementById("heroText").textContent = t("heroText");
+    document.getElementById("statLevels").textContent = t("statLevels");
+    document.getElementById("statBasics").textContent = t("statBasics");
+    document.getElementById("statHelp").textContent = t("statHelp");
+    document.getElementById("pathTitle").textContent = t("pathTitle");
+    document.getElementById("pathSubtitle").textContent = t("pathSubtitle");
+    document.getElementById("supportTitle").textContent = t("supportTitle");
+    document.getElementById("supportSubtitle").textContent = t("supportSubtitle");
+    document.getElementById("sosTitle").textContent = t("sosTitle");
+    document.getElementById("sosText").textContent = t("sosText");
+    document.getElementById("sosButton").textContent = t("sosButton");
+    document.getElementById("modulesTitle").textContent = t("modulesTitle");
+    document.getElementById("quickSheetTitle").textContent = t("quickSheetTitle");
+    document.getElementById("rememberText").textContent = t("rememberText");
+    document.getElementById("backHomeButton").textContent = t("backHomeButton");
+    document.getElementById("backLevelButton").textContent = t("backLevelButton");
+    document.getElementById("doneButton").textContent = t("doneButton");
+    document.getElementById("footerText").textContent = t("footerText");
+}
 
 function showPage(id){
     document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
@@ -666,13 +1054,16 @@ function renderLevels(){
     grid.innerHTML = "";
 
     levels.forEach(level => {
+        const data = getLevelData(level);
+        const moduleWord = data.modules.length > 1 ? t("modulePlural") : t("moduleSingular");
+
         const btn = document.createElement("button");
         btn.className = "card-btn";
         btn.onclick = () => openLevel(level.id);
         btn.innerHTML = `
-            <strong>${level.title}</strong>
-            <small>${level.name}</small>
-            <span class="badge">${level.modules.length} module${level.modules.length > 1 ? "s" : ""}</span>
+            <strong>${data.title}</strong>
+            <small>${data.name}</small>
+            <span class="badge">${data.modules.length} ${moduleWord}</span>
         `;
         grid.appendChild(btn);
     });
@@ -682,21 +1073,24 @@ function openLevel(id){
     currentLevel = levels.find(level => level.id === id);
     currentModule = null;
 
-    document.getElementById("levelTitle").textContent = currentLevel.title + " - " + currentLevel.name;
-    document.getElementById("levelDesc").textContent = currentLevel.desc;
-    document.getElementById("moduleCount").textContent = currentLevel.modules.length + " module" + (currentLevel.modules.length > 1 ? "s" : "");
+    const data = getLevelData(currentLevel);
+    const moduleWord = data.modules.length > 1 ? t("modulePlural") : t("moduleSingular");
+
+    document.getElementById("levelTitle").textContent = data.title + " - " + data.name;
+    document.getElementById("levelDesc").textContent = data.desc;
+    document.getElementById("moduleCount").textContent = data.modules.length + " " + moduleWord;
 
     const grid = document.getElementById("modulesGrid");
     grid.innerHTML = "";
 
-    currentLevel.modules.forEach((module, index) => {
+    data.modules.forEach((module, index) => {
         const btn = document.createElement("button");
         btn.className = "card-btn";
         btn.onclick = () => openModule(index);
         btn.innerHTML = `
             <strong>${module.title}</strong>
             <small>${module.desc}</small>
-            <span class="badge">Ouvrir</span>
+            <span class="badge">${t("openBadge")}</span>
         `;
         grid.appendChild(btn);
     });
@@ -706,7 +1100,8 @@ function openLevel(id){
 }
 
 function openModule(index){
-    currentModule = currentLevel.modules[index];
+    const data = getLevelData(currentLevel);
+    currentModule = data.modules[index];
 
     document.getElementById("moduleTitle").textContent = currentModule.title;
     document.getElementById("moduleDesc").textContent = currentModule.desc;
@@ -745,14 +1140,15 @@ function goBackLevel(){
 function markDone(){
     if(tg){
         tg.HapticFeedback.notificationOccurred("success");
-        tg.showAlert("Module terminé !");
+        tg.showAlert(t("completedAlert"));
     }else{
-        alert("Module terminé !");
+        alert(t("completedAlert"));
     }
 }
 
 function openSOS(){
-    const sosLink = "https://t.me/+OVTmcEQLg00zMTQ0";
+    const sosLink = "https://t.me/TON_GROUPE_OU_TON_SUPPORT";
+
     if(tg){
         tg.openTelegramLink(sosLink);
     }else{
@@ -768,6 +1164,26 @@ function sendTelegramData(data){
     }catch(e){}
 }
 
+function toggleLanguage(){
+    currentLanguage = currentLanguage === "en" ? "ar" : "en";
+    localStorage.setItem("repair_academy_language", currentLanguage);
+
+    setStaticTexts();
+    renderLevels();
+
+    if(currentLevel && document.getElementById("levelPage").classList.contains("active")){
+        openLevel(currentLevel.id);
+    }
+
+    if(currentLevel && document.getElementById("modulePage").classList.contains("active")){
+        const oldModuleTitle = currentModule ? currentModule.title : null;
+        const data = getLevelData(currentLevel);
+        const index = Math.max(0, data.modules.findIndex(module => module.title === oldModuleTitle));
+        openModule(index === -1 ? 0 : index);
+    }
+}
+
+setStaticTexts();
 renderLevels();
 </script>
 

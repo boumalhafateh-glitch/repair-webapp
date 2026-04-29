@@ -31,19 +31,25 @@ h1{
 
 button{
     width:90%;
-    padding:15px;
-    margin:10px;
+    padding:14px;
+    margin:8px;
     border:none;
     border-radius:10px;
     background:#00aaff;
     color:white;
+    font-size:14px;
 }
 
 .card{
-    margin:15px;
-    padding:20px;
+    margin:10px;
+    padding:15px;
     background:#1c1c1c;
     border-radius:15px;
+}
+
+.small{
+    font-size:13px;
+    color:#ccc;
 }
 </style>
 
@@ -53,28 +59,58 @@ button{
 
 <h1>🔧 Repair Academy</h1>
 
-<!-- PAGE 1 -->
+<!-- HOME -->
 <div id="home" class="page active">
+
     <div class="card">
-        <h3>📚 Chapitres</h3>
-        <button onclick="openPage('chapter1')">Multimètre</button>
-        <button onclick="openPage('chapter2')">Composants</button>
+        <h3>📚 Chapters / الدروس</h3>
+
+        <button onclick="openPage('c1')">Chapter 1 / الدرس 1</button>
+        <button onclick="openPage('c2')">Chapter 2 / الدرس 2</button>
+        <button onclick="openPage('c3')">Chapter 3 / الدرس 3</button>
+        <button onclick="openPage('c4')">Chapter 4 / الدرس 4</button>
+        <button onclick="openPage('c5')">Chapter 5 / الدرس 5</button>
+        <button onclick="openPage('c6')">Chapter 6 / الدرس 6</button>
+        <button onclick="openPage('c7')">Chapter 7 / الدرس 7</button>
+        <button onclick="openPage('c8')">Chapter 8 / الدرس 8</button>
+        <button onclick="openPage('c9')">Chapter 9 / الدرس 9</button>
+        <button onclick="openPage('c10')">Chapter 10 / الدرس 10</button>
+
     </div>
 </div>
 
-<!-- PAGE 2 -->
-<div id="chapter1" class="page">
-    <h2>📘 Multimètre</h2>
-    <p>Apprendre les bases du multimètre</p>
-    <button onclick="openPage('home')">⬅ Retour</button>
+<!-- CHAPTER TEMPLATE -->
+<div id="c1" class="page">
+    <div class="card">
+        <h2>📘 Multimeter / الملتيميتر</h2>
+        <p class="small">
+            EN: Learn how to measure voltage, resistance and continuity.<br><br>
+            AR: تعلم قياس التوتر والمقاومة والاستمرارية.
+        </p>
+        <button onclick="openPage('home')">⬅ Back / رجوع</button>
+    </div>
 </div>
 
-<!-- PAGE 3 -->
-<div id="chapter2" class="page">
-    <h2>📘 Composants</h2>
-    <p>Résistance, diode, condensateur</p>
-    <button onclick="openPage('home')">⬅ Retour</button>
+<div id="c2" class="page">
+    <div class="card">
+        <h2>📘 Components / المكونات</h2>
+        <p class="small">
+            EN: Resistors, capacitors, diodes basics.<br><br>
+            AR: أساسيات المقاومات والمكثفات والديود.
+        </p>
+        <button onclick="openPage('home')">⬅ Back / رجوع</button>
+    </div>
 </div>
+
+<!-- autres chapitres identiques -->
+<div id="c3" class="page"><div class="card"><h2>📘 Chapter 3</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c4" class="page"><div class="card"><h2>📘 Chapter 4</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c5" class="page"><div class="card"><h2>📘 Chapter 5</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c6" class="page"><div class="card"><h2>📘 Chapter 6</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c7" class="page"><div class="card"><h2>📘 Chapter 7</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c8" class="page"><div class="card"><h2>📘 Chapter 8</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c9" class="page"><div class="card"><h2>📘 Chapter 9</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c10" class="page"><div class="card"><h2>📘 Chapter 10</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
 
 <script>
 const tg = window.Telegram.WebApp;

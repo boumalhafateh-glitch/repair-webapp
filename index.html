@@ -71,10 +71,10 @@ button{
 <button onclick="openPage('c4')">Level 4 / المستوى 4</button>
 <button onclick="openPage('c5')">Level 5 / المستوى 5</button>
 <button onclick="openPage('c6')">Level 6 / المستوى 6</button>
-<button onclick="openPage('c7')">Level 7 / المستوى 7</button>
-<button onclick="openPage('c8')">Level 8 / المستوى 8</button>
-<button onclick="openPage('c9')">Level 9 / المستوى 9</button>
-<button onclick="openPage('c10')">Level 10 / المستوى 10</button>
+<button onclick="openPage('c7')">Level 7 / Advanced ⚙️</button>
+<button onclick="openPage('c8')">Level 8</button>
+<button onclick="openPage('c9')">Level 9</button>
+<button onclick="openPage('c10')">Level 10</button>
 </div>
 
 <button class="sos" onclick="openSOS()">SOS / طوارئ</button>
@@ -89,59 +89,59 @@ button{
 <h2>Level 1 / المستوى 1</h2>
 
 <div class="grid">
-<button onclick="openPage('comp1')">1. IC / Circuits</button>
-<button onclick="openPage('comp2')">2. Power ⚡</button>
-<button onclick="openPage('comp3')">3. RF / Signal 📡</button>
-<button onclick="openPage('comp4')">4. Connectors 🔌</button>
-<button onclick="openPage('comp5')">5. Sensors 🧠</button>
-<button onclick="openPage('comp6')">6. Audio 🔊</button>
+<button onclick="openPage('comp1')">IC / Circuits</button>
+<button onclick="openPage('comp2')">Power ⚡</button>
+<button onclick="openPage('comp3')">RF / Signal 📡</button>
+<button onclick="openPage('comp4')">Connectors 🔌</button>
+<button onclick="openPage('comp5')">Sensors 🧠</button>
+<button onclick="openPage('comp6')">Audio 🔊</button>
 </div>
+
+<button onclick="openPage('home')">⬅ Back</button>
+
+</div>
+</div>
+
+<!-- LEVEL 2 -->
+<div id="c2" class="page"><div class="card"><h2>Level 2</h2><button onclick="openPage('home')">Back</button></div></div>
+
+<!-- LEVEL 3-6 -->
+<div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
+
+<!-- LEVEL 7 ADVANCED -->
+<div id="c7" class="page">
+<div class="card">
+
+<h2>7. Advanced Electronics ⚙️</h2>
+
+<p>📡 RF Signal Analysis (Gain / Loss / Noise)</p>
+<p>⚡ Power Rail Debugging (short detection)</p>
+<p>🔬 PCB Layer Analysis (multilayer boards)</p>
+<p>🧠 IC Data Line Testing (I2C / SPI / UART)</p>
+<p>🔥 Short Circuit Tracing</p>
+<p>📊 Oscilloscope Basic Interpretation</p>
+<p>🧩 Fault Diagnosis Methodology</p>
 
 <button onclick="openPage('home')">⬅ Back / رجوع</button>
 
 </div>
 </div>
 
-<!-- LEVEL 2 -->
-<div id="c2" class="page">
-<div class="card">
-<h2>Level 2 / المستوى 2</h2>
-<button onclick="openPage('home')">Back</button>
-</div>
-</div>
-
-<!-- LEVEL 3-10 -->
-<div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
+<!-- LEVEL 8-10 -->
 <div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
 
 <!-- COMPONENTS -->
 <div id="comp1" class="page"><div class="card"><h2>IC / Circuits</h2><p>SoC / PMIC / RAM</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp2" class="page"><div class="card"><h2>Power ⚡</h2><p>Inductors / Capacitors / MOSFET</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp2" class="page"><div class="card"><h2>Power ⚡</h2><p>Inductors / MOSFET</p><button onclick="openPage('c1')">Back</button></div></div>
 <div id="comp3" class="page"><div class="card"><h2>RF / Signal 📡</h2><p>Filters / Antenna</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp4" class="page"><div class="card"><h2>Connectors 🔌</h2><p>Battery / Screen / Charging</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp5" class="page"><div class="card"><h2>Sensors 🧠</h2><p>Gyroscope / Light / Fingerprint</p><button onclick="openPage('c1')">Back</button></div></div>
-
-<!-- AUDIO (FIXED INSIDE LEVEL 1) -->
-<div id="comp6" class="page">
-<div class="card">
-
-<h2>6. Audio & Multimédia 🔊</h2>
-
-<p>Microphones</p>
-<p>Haut-parleurs (via connecteurs)</p>
-<p>IC audio codec</p>
-<p>Amplificateurs</p>
-
-<button onclick="openPage('c1')">⬅ Back / رجوع</button>
-
-</div>
-</div>
+<div id="comp4" class="page"><div class="card"><h2>Connectors 🔌</h2><p>Battery / Screen</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp5" class="page"><div class="card"><h2>Sensors 🧠</h2><p>Gyroscope / Light</p><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp6" class="page"><div class="card"><h2>Audio 🔊</h2><p>Mic / Speaker / Codec</p><button onclick="openPage('c1')">Back</button></div></div>
 
 <script>
 const tg = window.Telegram.WebApp;

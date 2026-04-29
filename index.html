@@ -18,9 +18,7 @@
     --soft:#dedede;
     --red:#b00020;
 }
-
 *{box-sizing:border-box;}
-
 body{
     margin:0;
     min-height:100vh;
@@ -32,15 +30,8 @@ body{
         radial-gradient(circle at bottom,rgba(176,0,32,.12),transparent 35%),
         linear-gradient(180deg,#0d0d0d,#050505);
 }
-
 body[dir="rtl"]{direction:rtl;}
-
-.app{
-    max-width:560px;
-    margin:auto;
-    padding:14px;
-}
-
+.app{max-width:560px;margin:auto;padding:14px;}
 .topbar{
     display:grid;
     grid-template-columns:42px 1fr 42px;
@@ -48,9 +39,7 @@ body[dir="rtl"]{direction:rtl;}
     gap:10px;
     margin-bottom:14px;
 }
-
 .logo{text-align:center;}
-
 .logo-mark{
     width:34px;
     height:34px;
@@ -64,7 +53,6 @@ body[dir="rtl"]{direction:rtl;}
     font-weight:900;
     box-shadow:0 0 18px rgba(56,189,248,.26);
 }
-
 .logo h1{
     margin:0;
     font-size:18px;
@@ -73,15 +61,8 @@ body[dir="rtl"]{direction:rtl;}
     color:#eafaff;
     text-shadow:0 0 8px rgba(56,189,248,.48);
 }
-
 .logo h1 span{color:var(--gold);}
-
-.status{
-    font-size:11px;
-    color:var(--muted);
-    font-weight:700;
-}
-
+.status{font-size:11px;color:var(--muted);font-weight:700;}
 .icon-btn,.lang-btn{
     width:42px;
     height:42px;
@@ -90,22 +71,15 @@ body[dir="rtl"]{direction:rtl;}
     background:#121212;
     color:#fff;
     font-weight:900;
+    cursor:pointer;
 }
-
 .lang-btn{color:var(--gold);}
-
-.page{
-    display:none;
-    animation:fade .18s;
-}
-
+.page{display:none;animation:fade .18s;}
 .page.active{display:block;}
-
 @keyframes fade{
     from{opacity:.45;transform:translateY(6px);}
     to{opacity:1;}
 }
-
 .hero,.panel{
     border:1px solid var(--line);
     border-radius:16px;
@@ -115,20 +89,17 @@ body[dir="rtl"]{direction:rtl;}
     text-align:center;
     box-shadow:0 14px 35px rgba(0,0,0,.24);
 }
-
 .hero{
     background:
         linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)),
         rgba(20,20,20,.96);
 }
-
 .title{
     margin:0;
     font-size:22px;
     font-weight:900;
     line-height:1.25;
 }
-
 .text{
     margin:9px 0 0;
     color:var(--soft);
@@ -136,14 +107,12 @@ body[dir="rtl"]{direction:rtl;}
     line-height:1.65;
     font-weight:600;
 }
-
 .stats{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
     gap:8px;
     margin:11px 0;
 }
-
 .stat{
     border:1px solid var(--line);
     border-radius:13px;
@@ -151,19 +120,16 @@ body[dir="rtl"]{direction:rtl;}
     background:#141414;
     text-align:center;
 }
-
 .stat strong{
     display:block;
     color:var(--gold);
     font-size:18px;
 }
-
 .stat small{
     display:block;
     color:var(--muted);
     font-size:12px;
 }
-
 .progress-wrap{
     height:10px;
     border-radius:999px;
@@ -172,13 +138,11 @@ body[dir="rtl"]{direction:rtl;}
     overflow:hidden;
     margin-top:14px;
 }
-
 .progress{
     height:100%;
     width:0;
     background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));
 }
-
 button{
     min-height:44px;
     padding:11px;
@@ -191,128 +155,62 @@ button{
     font-weight:900;
     cursor:pointer;
 }
-
 button:disabled{
     opacity:.4;
     cursor:not-allowed;
 }
-
 .primary{
     background:linear-gradient(135deg,var(--gold),#ffe08a);
     color:#111;
 }
-
 .danger{
     background:linear-gradient(180deg,#b00020,#780015);
 }
-
 .main-action{width:100%;}
-
 .section-title{
     text-align:center;
     margin:18px 2px 10px;
 }
-
 .section-title h3{
     margin:0;
     font-size:17px;
     font-weight:900;
 }
-
 .section-title p{
     margin:3px 0 0;
     color:var(--muted);
     font-size:13px;
 }
-
-.branch-title{
-    margin:16px auto 10px;
-    width:fit-content;
-    padding:8px 12px;
-    border-radius:999px;
-    border:1px solid rgba(56,189,248,.28);
-    background:rgba(56,189,248,.08);
-    color:#a9e8ff;
-    font-size:12px;
-    font-weight:900;
-}
-
-.tree{
+.branch-list,.chapter-list{
     display:grid;
-    gap:13px;
-}
-
-.tree-node{
-    position:relative;
-    display:grid;
-    grid-template-columns:45px 1fr;
     gap:10px;
-    align-items:center;
 }
-
-body[dir="rtl"] .tree-node{
-    grid-template-columns:1fr 45px;
-}
-
-.tree-node:not(:last-child)::after{
-    content:"";
-    position:absolute;
-    left:22px;
-    top:49px;
-    width:2px;
-    height:28px;
-    background:linear-gradient(180deg,rgba(56,189,248,.7),rgba(242,201,76,.25));
-}
-
-body[dir="rtl"] .tree-node:not(:last-child)::after{
-    left:auto;
-    right:22px;
-}
-
-.node-icon{
-    width:45px;
-    height:45px;
-    border-radius:15px;
-    border:1px solid rgba(56,189,248,.45);
-    background:rgba(56,189,248,.1);
-    color:var(--cyan);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:13px;
-    font-weight:900;
-}
-
-.node-card{
-    min-height:96px;
+.branch-card,.chapter-card{
+    min-height:88px;
     border:1px solid var(--line);
-    border-radius:15px;
+    border-radius:16px;
     background:linear-gradient(180deg,#1c1c1c,#101010);
     text-align:center;
-    padding:13px 12px;
+    padding:14px 12px;
 }
-
-.node-card.done{
+.branch-card.done,.chapter-card.done{
     border-color:rgba(39,196,107,.8);
 }
-
-.node-card.locked{
+.chapter-card.locked{
     opacity:.48;
 }
-
-.node-card strong{
+.branch-card strong,.chapter-card strong{
     display:block;
-    font-size:15.5px;
+    font-size:16px;
+    line-height:1.3;
 }
-
-.node-card small{
+.branch-card small,.chapter-card small{
     display:block;
     color:var(--muted);
     font-size:12.5px;
     margin-top:7px;
     line-height:1.5;
 }
-
 .badge{
     display:inline-block;
     margin-top:9px;
@@ -323,12 +221,10 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     font-size:11px;
     font-weight:900;
 }
-
 .list{
     display:grid;
     gap:8px;
 }
-
 .lesson{
     border:1px solid var(--line);
     border-radius:14px;
@@ -336,29 +232,24 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     padding:13px;
     text-align:center;
 }
-
 .lesson strong{font-size:15.5px;}
-
 .lesson p{
     color:var(--muted);
     font-size:13.5px;
     line-height:1.65;
 }
-
 .book-controls,.action-row{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:9px;
     margin-top:11px;
 }
-
 .book-counter{
     color:var(--gold);
     font-size:12px;
     font-weight:900;
     margin-top:10px;
 }
-
 .visual{
     max-width:300px;
     margin:14px auto 4px;
@@ -367,7 +258,6 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     border:1px solid rgba(56,189,248,.32);
     background:linear-gradient(180deg,#232323,#111);
 }
-
 .chip{
     width:100px;
     height:72px;
@@ -381,7 +271,6 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     font-weight:900;
     text-align:center;
 }
-
 .screen{
     height:54px;
     border-radius:12px;
@@ -392,7 +281,6 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     justify-content:center;
     font-weight:900;
 }
-
 .symbol{
     margin:12px auto;
     padding:13px;
@@ -402,13 +290,11 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     font-size:20px;
     font-weight:900;
 }
-
 .flow{
     display:grid;
     grid-template-columns:1fr auto 1fr;
     gap:8px;
 }
-
 .pad{
     border:1px solid #333;
     border-radius:12px;
@@ -418,7 +304,6 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     justify-content:center;
     color:#ccc;
 }
-
 .meter{
     width:78px;
     height:54px;
@@ -426,7 +311,6 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     border-radius:12px;
     padding:7px;
 }
-
 .meter div{
     height:100%;
     border-radius:8px;
@@ -438,12 +322,10 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     font-size:12px;
     font-weight:900;
 }
-
 .sos-box{
     border-color:rgba(176,0,32,.55);
     background:rgba(176,0,32,.12);
 }
-
 .footer{
     color:#777;
     font-size:11px;
@@ -451,17 +333,10 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
     padding:15px 0 5px;
     font-weight:700;
 }
-
 @media(max-width:390px){
     .app{padding:12px;}
     .logo h1{font-size:16px;}
-    .tree-node{grid-template-columns:42px 1fr;}
-    body[dir="rtl"] .tree-node{grid-template-columns:1fr 42px;}
-    .node-icon{width:42px;height:42px;}
-    .tree-node:not(:last-child)::after{left:20px;}
-    body[dir="rtl"] .tree-node:not(:last-child)::after{right:20px;}
 }
-
 @media(max-width:330px){
     .stats,.book-controls,.action-row{grid-template-columns:1fr;}
 }
@@ -497,11 +372,11 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
         <button class="primary main-action" onclick="continueLearning()" id="continueButton"></button>
 
         <div class="section-title">
-            <h3 id="treeTitle"></h3>
-            <p id="treeSubtitle"></p>
+            <h3 id="branchesTitle"></h3>
+            <p id="branchesSubtitle"></p>
         </div>
 
-        <div id="treeContainer"></div>
+        <div id="branchList" class="branch-list"></div>
 
         <div class="section-title">
             <h3 id="supportTitle"></h3>
@@ -514,6 +389,23 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
             <br>
             <button class="danger" onclick="openSOS()" id="sosButton"></button>
         </div>
+    </div>
+
+    <div id="branchPage" class="page">
+        <div class="panel">
+            <h2 class="title" id="branchTitle"></h2>
+            <p class="text" id="branchDesc"></p>
+            <span class="badge" id="branchProgress"></span>
+        </div>
+
+        <div class="section-title">
+            <h3 id="chaptersTitle"></h3>
+            <p id="chaptersSubtitle"></p>
+        </div>
+
+        <div id="chapterList" class="chapter-list"></div>
+
+        <button class="main-action" onclick="goHome()" id="branchBackButton"></button>
     </div>
 
     <div id="bookPage" class="page">
@@ -538,7 +430,7 @@ body[dir="rtl"] .tree-node:not(:last-child)::after{
         </div>
 
         <div class="action-row">
-            <button onclick="goHome()" id="bookBackButton"></button>
+            <button onclick="goBranch()" id="bookBackButton"></button>
             <button class="primary" onclick="markDone()" id="bookDoneButton"></button>
         </div>
     </div>
@@ -554,6 +446,7 @@ if(tg){
 }
 
 let currentLang = localStorage.getItem("master_repair_lang") || "en";
+let currentBranch = null;
 let currentNode = null;
 let currentBookPage = 0;
 
@@ -564,13 +457,15 @@ const ui = {
         connected:"Connected to Telegram",
         browser:"Browser Test Mode",
         heroTitle:"Motherboard Repair Learning Path",
-        heroText:"Tools, components, safety, circuits and boot logic in one clean roadmap.",
+        heroText:"Choose a branch, then open its chapters. Clean, short and ready to grow.",
         completed:"Completed",
         steps:"Steps",
         support:"Support",
         continue:"Continue Learning",
-        treeTitle:"Learning Tree",
-        treeSubtitle:"From basics to board systems",
+        branchesTitle:"Learning Branches",
+        branchesSubtitle:"Choose a training area",
+        chaptersTitle:"Chapters",
+        chaptersSubtitle:"Choose a lesson",
         supportTitle:"Support",
         supportSubtitle:"Need help?",
         sosTitle:"SOS Repair",
@@ -594,13 +489,15 @@ const ui = {
         connected:"متصل بتيليجرام",
         browser:"وضع الاختبار",
         heroTitle:"مسار تعلم إصلاح اللوحات",
-        heroText:"الأدوات، المكونات، السلامة، الدوائر ومنطق الإقلاع في خريطة واحدة.",
+        heroText:"اختر فرعا، ثم افتح دروسه. واجهة قصيرة ونظيفة وقابلة للتوسع.",
         completed:"مكتمل",
         steps:"خطوات",
         support:"الدعم",
         continue:"متابعة التعلم",
-        treeTitle:"شجرة التعلم",
-        treeSubtitle:"من الأساسيات إلى أنظمة اللوحة",
+        branchesTitle:"فروع التعلم",
+        branchesSubtitle:"اختر مجال التدريب",
+        chaptersTitle:"الدروس",
+        chaptersSubtitle:"اختر درسا",
         supportTitle:"الدعم",
         supportSubtitle:"تحتاج مساعدة؟",
         sosTitle:"دعم الإصلاح",
@@ -640,58 +537,22 @@ function makePage(mode, display, symbol, titleEn, titleAr, textEn, textAr, point
 
 function makeBook(titleEn, titleAr, descEn, descAr, symbol, roleEn, roleAr, testEn, testAr, symptomEn, symptomAr){
     return [
-        makePage(
-            "role",
-            titleEn,
-            symbol,
-            titleEn,
-            titleAr,
-            roleEn,
-            roleAr,
-            [
-                ["Role","الدور",roleEn,roleAr],
-                ["Before repair","قبل الإصلاح","Understand the function before replacing anything.","افهم الوظيفة قبل تغيير أي شيء."]
-            ]
-        ),
-        makePage(
-            "schema",
-            "SCHEMA",
-            symbol,
-            "Schematic Symbol",
-            "رمز المخطط",
-            "This is the simplified symbol or block used in electronic logic.",
-            "هذا هو الرمز أو البلوك المبسط المستخدم في منطق الدوائر.",
-            [
-                ["Why it matters","لماذا مهم؟","Schematics help you follow the line and understand the circuit.","المخططات تساعدك على تتبع الخط وفهم الدائرة."],
-                ["Boardview","البوردفيو","Use boardview to find the real location on the board.","استخدم البوردفيو لمعرفة مكان القطعة الحقيقي على اللوحة."]
-            ]
-        ),
-        makePage(
-            "test",
-            "TEST",
-            symbol,
-            "How To Test",
-            "طريقة الفحص",
-            testEn,
-            testAr,
-            [
-                ["Correct mode","الوضع الصحيح","Use the correct multimeter mode before measuring.","استخدم وضع الملتيميتر الصحيح قبل القياس."],
-                ["Confirm","التأكيد","Compare with a known good board when possible.","قارن مع لوحة سليمة إذا أمكن."]
-            ]
-        ),
-        makePage(
-            "fault",
-            "FAULT",
-            symbol,
-            "Common Symptoms",
-            "الأعراض الشائعة",
-            symptomEn,
-            symptomAr,
-            [
-                ["Rule","القاعدة","Never replace without proof.","لا تغير بدون دليل."],
-                ["Method","الطريقة","Observe, measure, confirm, then repair.","لاحظ، قس، أكد، ثم أصلح."]
-            ]
-        )
+        makePage("role", titleEn, symbol, titleEn, titleAr, roleEn, roleAr, [
+            ["Role","الدور",roleEn,roleAr],
+            ["Before repair","قبل الإصلاح","Understand the function before replacing anything.","افهم الوظيفة قبل تغيير أي شيء."]
+        ]),
+        makePage("schema", "SCHEMA", symbol, "Schematic Symbol", "رمز المخطط", "This is the simplified symbol or block used in electronic logic.", "هذا هو الرمز أو البلوك المبسط المستخدم في منطق الدوائر.", [
+            ["Why it matters","لماذا مهم؟","Schematics help you follow the line and understand the circuit.","المخططات تساعدك على تتبع الخط وفهم الدائرة."],
+            ["Boardview","البوردفيو","Use boardview to find the real location on the board.","استخدم البوردفيو لمعرفة مكان القطعة الحقيقي على اللوحة."]
+        ]),
+        makePage("test", "TEST", symbol, "How To Test", "طريقة الفحص", testEn, testAr, [
+            ["Correct mode","الوضع الصحيح","Use the correct multimeter mode before measuring.","استخدم وضع الملتيميتر الصحيح قبل القياس."],
+            ["Confirm","التأكيد","Compare with a known good board when possible.","قارن مع لوحة سليمة إذا أمكن."]
+        ]),
+        makePage("fault", "FAULT", symbol, "Common Symptoms", "الأعراض الشائعة", symptomEn, symptomAr, [
+            ["Rule","القاعدة","Never replace without proof.","لا تغير بدون دليل."],
+            ["Method","الطريقة","Observe, measure, confirm, then repair.","لاحظ، قس، أكد، ثم أصلح."]
+        ])
     ];
 }
 
@@ -702,6 +563,16 @@ function node(id, icon, titleEn, titleAr, descEn, descAr, book){
         title:pair(titleEn,titleAr),
         desc:pair(descEn,descAr),
         book
+    };
+}
+
+function branch(id, icon, titleEn, titleAr, descEn, descAr, nodes){
+    return {
+        id,
+        icon,
+        title:pair(titleEn,titleAr),
+        desc:pair(descEn,descAr),
+        nodes
     };
 }
 
@@ -724,223 +595,74 @@ const multimeterBook = [
 ];
 
 const books = {
-    resistor: makeBook(
-        "Resistor","المقاومة",
-        "Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",
-        "─/\\/\\/─",
-        "A resistor limits or controls current in a circuit.","المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.",
-        "Test with resistance mode Ω. Power must be off.","افحصها بوضع المقاومة Ω مع فصل الطاقة.",
-        "Wrong value or bad soldering can create abnormal behavior.","قيمة خاطئة أو لحام سيئ قد يسبب سلوكا غير طبيعي."
-    ),
-    capacitor: makeBook(
-        "Capacitor","المكثف",
-        "Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",
-        "─| |─",
-        "A capacitor stores energy and filters electrical noise on power lines.","المكثف يخزن الطاقة وينقي التشويش الكهربائي في خطوط الطاقة.",
-        "Use continuity or diode mode to check for short to ground.","استخدم الاستمرارية أو الدايود لفحص الشورت مع الأرضي.",
-        "A shorted capacitor can stop a power line completely.","المكثف الشورت قد يوقف خط طاقة بالكامل."
-    ),
-    diode: makeBook(
-        "Diode","الدايود",
-        "Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",
-        "─|>|─",
-        "A diode allows current to pass mainly in one direction.","الدايود يسمح بمرور التيار غالبا في اتجاه واحد.",
-        "Test with diode mode. One direction gives a value, the opposite side usually blocks.","افحصه بوضع الدايود. اتجاه يعطي قيمة والاتجاه الآخر غالبا يمنع المرور.",
-        "Wrong orientation or shorted diode can stop the circuit.","التركيب العكسي أو الدايود الشورت قد يوقف الدائرة."
-    ),
-    coil: makeBook(
-        "Coil","الملف",
-        "Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",
-        "─oooo─",
-        "A coil is used in power circuits and voltage regulation.","الملف يستخدم في دوائر الطاقة وتنظيم الفولت.",
-        "Use continuity mode. Most coils beep because resistance is low.","استخدم الاستمرارية. أغلب الملفات تعطي صفارة لأن مقاومتها منخفضة.",
-        "A broken coil can cut a power line.","الملف المقطوع قد يقطع خط طاقة."
-    ),
-    fuse: makeBook(
-        "Fuse","الفيوز",
-        "Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",
-        "─[F]─",
-        "A fuse protects a circuit and opens when current is too high.","الفيوز يحمي الدائرة وينقطع عندما يكون التيار عاليا.",
-        "Use continuity mode. A good fuse usually beeps.","استخدم الاستمرارية. الفيوز السليم غالبا يعطي صفارة.",
-        "A blown fuse cuts the path. Do not bypass it without understanding why.","الفيوز التالف يقطع المسار. لا تتجاوزه بدون فهم السبب."
-    ),
-    connector: makeBook(
-        "Connector","الكونكتور",
-        "Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",
-        "CN / J",
-        "A connector links the board to battery, screen, charge flex or other parts.","الكونكتور يربط اللوحة بالبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.",
-        "Inspect with microscope first. Then test pins depending on the line.","افحصه بالميكروسكوب أولا، ثم افحص البنات حسب الخط.",
-        "Bent pins, dirt or forcing a flex can create many faults.","البنات المعوجة، الأوساخ أو إدخال الفلاتة بالقوة قد تسبب أعطالا كثيرة."
-    ),
-    ic: makeBook(
-        "IC","الدائرة المتكاملة",
-        "General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.",
-        "┌ IC ┐",
-        "An IC is a chip containing many electronic circuits inside one package.","الشريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.",
-        "Do not test like a simple part. Check power, ground, enable and surrounding components.","لا تفحصها مثل قطعة بسيطة. افحص الطاقة، الأرضي، التفعيل والمكونات حولها.",
-        "Never replace an IC without proof. IC replacement is advanced work.","لا تغير أي شريحة بدون دليل. تغيير الشرائح عمل متقدم."
-    )
+    resistor: makeBook("Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─/\\/\\/─","A resistor limits or controls current in a circuit.","المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.","Test with resistance mode Ω. Power must be off.","افحصها بوضع المقاومة Ω مع فصل الطاقة.","Wrong value or bad soldering can create abnormal behavior.","قيمة خاطئة أو لحام سيئ قد يسبب سلوكا غير طبيعي."),
+    capacitor: makeBook("Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─| |─","A capacitor stores energy and filters electrical noise on power lines.","المكثف يخزن الطاقة وينقي التشويش الكهربائي في خطوط الطاقة.","Use continuity or diode mode to check for short to ground.","استخدم الاستمرارية أو الدايود لفحص الشورت مع الأرضي.","A shorted capacitor can stop a power line completely.","المكثف الشورت قد يوقف خط طاقة بالكامل."),
+    diode: makeBook("Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─|>|─","A diode allows current to pass mainly in one direction.","الدايود يسمح بمرور التيار غالبا في اتجاه واحد.","Test with diode mode. One direction gives a value, the opposite side usually blocks.","افحصه بوضع الدايود. اتجاه يعطي قيمة والاتجاه الآخر غالبا يمنع المرور.","Wrong orientation or shorted diode can stop the circuit.","التركيب العكسي أو الدايود الشورت قد يوقف الدائرة."),
+    coil: makeBook("Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─oooo─","A coil is used in power circuits and voltage regulation.","الملف يستخدم في دوائر الطاقة وتنظيم الفولت.","Use continuity mode. Most coils beep because resistance is low.","استخدم الاستمرارية. أغلب الملفات تعطي صفارة لأن مقاومتها منخفضة.","A broken coil can cut a power line.","الملف المقطوع قد يقطع خط طاقة."),
+    fuse: makeBook("Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─[F]─","A fuse protects a circuit and opens when current is too high.","الفيوز يحمي الدائرة وينقطع عندما يكون التيار عاليا.","Use continuity mode. A good fuse usually beeps.","استخدم الاستمرارية. الفيوز السليم غالبا يعطي صفارة.","A blown fuse cuts the path. Do not bypass it without understanding why.","الفيوز التالف يقطع المسار. لا تتجاوزه بدون فهم السبب."),
+    connector: makeBook("Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","CN / J","A connector links the board to battery, screen, charge flex or other parts.","الكونكتور يربط اللوحة بالبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.","Inspect with microscope first. Then test pins depending on the line.","افحصه بالميكروسكوب أولا، ثم افحص البنات حسب الخط.","Bent pins, dirt or forcing a flex can create many faults.","البنات المعوجة، الأوساخ أو إدخال الفلاتة بالقوة قد تسبب أعطالا كثيرة."),
+    ic: makeBook("IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.","┌ IC ┐","An IC is a chip containing many electronic circuits inside one package.","الشريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.","Do not test like a simple part. Check power, ground, enable and surrounding components.","لا تفحصها مثل قطعة بسيطة. افحص الطاقة، الأرضي، التفعيل والمكونات حولها.","Never replace an IC without proof. IC replacement is advanced work.","لا تغير أي شريحة بدون دليل. تغيير الشرائح عمل متقدم.")
 };
 
 const systemBooks = {
-    safety: makeBook(
-        "Safety","السلامة",
-        "Battery, ESD, heat and safe work.","البطارية، ESD، الحرارة والعمل الآمن.",
-        "SAFE",
-        "Safety protects the technician, the device and customer data.","السلامة تحمي التقني والجهاز وبيانات العميل.",
-        "Check battery condition, disconnect power and control heat before working.","افحص البطارية، افصل الطاقة وتحكم بالحرارة قبل العمل.",
-        "Overheating, ESD and battery damage can create serious problems.","الحرارة الزائدة، الكهرباء الساكنة وتلف البطارية قد تسبب مشاكل خطيرة."
-    ),
-    opening: makeBook(
-        "Phone Opening","فتح الهاتف",
-        "Open phones without damage.","فتح الهاتف بدون أضرار.",
-        "OPEN",
-        "Opening is a repair skill. Many devices are damaged before diagnosis starts.","الفتح مهارة إصلاح. كثير من الأجهزة تتلف قبل بداية التشخيص.",
-        "Use heat carefully, organize screws and disconnect flex cables gently.","استخدم الحرارة بحذر، نظم البراغي وافصل الفلاتات بلطف.",
-        "Broken flex, missing screws and damaged connectors are common beginner mistakes.","الفلاتات المقطوعة، ضياع البراغي وتلف الكونكتورات أخطاء شائعة."
-    ),
-    circuits: makeBook(
-        "Circuit Basics","أساسيات الدوائر",
-        "Lines, ground and power flow.","الخطوط، الأرضي وتدفق الطاقة.",
-        "VDD → LOAD → GND",
-        "A circuit is a path where power or signal moves from one point to another.","الدائرة مسار تتحرك فيه الطاقة أو الإشارة من نقطة إلى أخرى.",
-        "Follow input, output, ground, enable and connected components.","تتبع المدخل، المخرج، الأرضي، التفعيل والمكونات المتصلة.",
-        "A broken line, short or missing enable signal can stop the circuit.","خط مقطوع، شورت أو غياب إشارة التفعيل قد يوقف الدائرة."
-    ),
-    pmic: makeBook(
-        "PMIC","شريحة إدارة الطاقة",
-        "Main power management IC.","شريحة إدارة الطاقة الرئيسية.",
-        "VBAT → PMIC → VDD",
-        "PMIC creates and controls many board voltages.","PMIC تنتج وتتحكم في فولتات كثيرة على اللوحة.",
-        "Check VBAT input, enable signals and output rails.","افحص مدخل VBAT، إشارات التفعيل ومخارج الطاقة.",
-        "Missing rails can cause total no power or boot failure.","غياب الخطوط قد يسبب موت كامل أو فشل إقلاع."
-    ),
-    cpu: makeBook(
-        "CPU / SoC","المعالج",
-        "Main brain of the phone.","العقل الرئيسي للهاتف.",
-        "PMIC → CPU",
-        "CPU starts executing boot logic after power is ready.","المعالج يبدأ تنفيذ الإقلاع بعد جاهزية الطاقة.",
-        "Check power rails, clock, reset and storage before suspecting CPU.","افحص الطاقة، الساعة، الريست والتخزين قبل اتهام المعالج.",
-        "CPU faults are advanced and rarer than line or power faults.","أعطال المعالج متقدمة وأندر من أعطال الخطوط والطاقة."
-    ),
-    storage: makeBook(
-        "Storage / NAND / UFS","التخزين / NAND / UFS",
-        "Stores bootloader, system and data.","يحفظ البوتلودر والنظام والبيانات.",
-        "CPU ↔ NAND/UFS",
-        "The CPU reads boot data from storage.","المعالج يقرأ بيانات الإقلاع من التخزين.",
-        "Check storage power rails and communication lines.","افحص خطوط طاقة التخزين وخطوط الاتصال.",
-        "Storage faults can cause boot loop, no boot or data issues.","أعطال التخزين قد تسبب بوت لوب، عدم إقلاع أو مشاكل بيانات."
-    ),
-    display: makeBook(
-        "Display System","نظام الشاشة",
-        "Image signal and display power.","إشارة الصورة وطاقة الشاشة.",
-        "CPU → MIPI → LCD",
-        "Display system sends image data from CPU to screen.","نظام الشاشة يرسل بيانات الصورة من المعالج إلى الشاشة.",
-        "Check connector, display voltages and MIPI filters.","افحص الكونكتور، فولتات الشاشة وفلاتر MIPI.",
-        "No image can be screen, connector, power or MIPI issue.","غياب الصورة قد يكون شاشة، كونكتور، طاقة أو MIPI."
-    ),
-    backlight: makeBook(
-        "Backlight System","نظام الإضاءة",
-        "Screen light circuit.","دائرة إضاءة الشاشة.",
-        "BL IC → COIL → LED",
-        "Backlight creates the light that makes the LCD visible.","الإضاءة الخلفية تعطي الضوء الذي يجعل الشاشة مرئية.",
-        "Check backlight IC, coil, diode, connector and output voltage.","افحص شريحة الإضاءة، الملف، الدايود، الكونكتور وفولت الخرج.",
-        "Image visible with flashlight can mean backlight fault.","ظهور الصورة بكشاف قد يعني عطل إضاءة."
-    ),
-    charge: makeBook(
-        "Charging System","نظام الشحن",
-        "USB to battery charging path.","مسار الشحن من USB إلى البطارية.",
-        "USB → VBUS → CHG IC → BAT",
-        "Charging starts from USB and passes through protection to the charging IC and battery.","الشحن يبدأ من USB ويمر عبر الحماية إلى شريحة الشحن والبطارية.",
-        "Check cable, port, VBUS, fuse, charging IC and battery connector.","افحص الكابل، المنفذ، VBUS، الفيوز، شريحة الشحن وكونكتور البطارية.",
-        "No charge does not always mean the charging IC is bad.","عدم الشحن لا يعني دائما تلف شريحة الشحن."
-    ),
-    usb: makeBook(
-        "USB / Data System","نظام USB / البيانات",
-        "USB data, Type-C and protection lines.","بيانات USB و Type-C وخطوط الحماية.",
-        "D+ D- / CC",
-        "USB handles charging negotiation and data transfer.","USB يدير تفاوض الشحن ونقل البيانات.",
-        "Check port, D+/D-, CC lines and ESD protection.","افحص المنفذ، خطوط D+/D- و CC وحماية ESD.",
-        "Bad USB lines can cause no data or no fast charge.","تلف خطوط USB قد يسبب غياب البيانات أو الشحن السريع."
-    ),
-    audio: makeBook(
-        "Audio System","نظام الصوت",
-        "Codec, amplifier, microphone and speaker lines.","الكودك، الأمبليفاير، الميكروفون وخطوط السماعة.",
-        "AUDIO IC → AMP → SPK",
-        "Audio ICs process sound input and output.","شرائح الصوت تعالج الإدخال والإخراج الصوتي.",
-        "Check speaker, mic, connector, audio IC power and filters.","افحص السماعة، المايك، الكونكتور، طاقة شريحة الصوت والفلاتر.",
-        "No sound can be part, line, codec or amplifier issue.","غياب الصوت قد يكون قطعة، خط، كودك أو أمبليفاير."
-    ),
-    camera: makeBook(
-        "Camera System","نظام الكاميرا",
-        "Camera power and MIPI lines.","طاقة الكاميرا وخطوط MIPI.",
-        "CAM → MIPI → CPU",
-        "Camera needs power and data lines to send image to CPU.","الكاميرا تحتاج طاقة وخطوط بيانات لإرسال الصورة للمعالج.",
-        "Check connector, camera voltages, MIPI filters and physical damage.","افحص الكونكتور، فولتات الكاميرا، فلاتر MIPI والضرر الظاهر.",
-        "Black camera can be module, connector, power or data line.","الكاميرا السوداء قد تكون موديول، كونكتور، طاقة أو خط بيانات."
-    ),
-    rf: makeBook(
-        "RF / Network System","نظام الشبكة",
-        "Baseband, RF IC, PA, filters and antennas.","البيسباند، RF IC، PA، الفلاتر والهوائيات.",
-        "BASEBAND → RF → PA → ANT",
-        "Network system handles cellular signal transmission and reception.","نظام الشبكة يدير إرسال واستقبال إشارة الشبكة.",
-        "Check SIM, IMEI, antennas, RF lines, filters and baseband area.","افحص الشريحة، IMEI، الهوائيات، خطوط RF، الفلاتر ومنطقة البيسباند.",
-        "No network can be software, SIM, antenna, RF or baseband issue.","غياب الشبكة قد يكون سوفتوير، شريحة، هوائي، RF أو بيسباند."
-    )
+    start: makeBook("Start Learning","ابدأ التعلم","Understand the roadmap and learning order.","افهم الخريطة وترتيب التعلم.","START","Start with tools, then components, then safety and board systems.","ابدأ بالأدوات، ثم المكونات، ثم السلامة وأنظمة اللوحة.","Follow the app step by step and complete lessons in order.","اتبع التطبيق خطوة بخطوة وأكمل الدروس بالترتيب.","Skipping basics can make advanced repair confusing.","تجاوز الأساسيات يجعل الإصلاح المتقدم مربكا."),
+    safety: makeBook("Safety","السلامة","Battery, ESD, heat and safe work.","البطارية، ESD، الحرارة والعمل الآمن.","SAFE","Safety protects the technician, the device and customer data.","السلامة تحمي التقني والجهاز وبيانات العميل.","Check battery condition, disconnect power and control heat before working.","افحص البطارية، افصل الطاقة وتحكم بالحرارة قبل العمل.","Overheating, ESD and battery damage can create serious problems.","الحرارة الزائدة، الكهرباء الساكنة وتلف البطارية قد تسبب مشاكل خطيرة."),
+    opening: makeBook("Phone Opening","فتح الهاتف","Open phones without damage.","فتح الهاتف بدون أضرار.","OPEN","Opening is a repair skill. Many devices are damaged before diagnosis starts.","الفتح مهارة إصلاح. كثير من الأجهزة تتلف قبل بداية التشخيص.","Use heat carefully, organize screws and disconnect flex cables gently.","استخدم الحرارة بحذر، نظم البراغي وافصل الفلاتات بلطف.","Broken flex, missing screws and damaged connectors are common beginner mistakes.","الفلاتات المقطوعة، ضياع البراغي وتلف الكونكتورات أخطاء شائعة."),
+    circuits: makeBook("Circuit Basics","أساسيات الدوائر","Lines, ground and power flow.","الخطوط، الأرضي وتدفق الطاقة.","VDD → LOAD → GND","A circuit is a path where power or signal moves from one point to another.","الدائرة مسار تتحرك فيه الطاقة أو الإشارة من نقطة إلى أخرى.","Follow input, output, ground, enable and connected components.","تتبع المدخل، المخرج، الأرضي، التفعيل والمكونات المتصلة.","A broken line, short or missing enable signal can stop the circuit.","خط مقطوع، شورت أو غياب إشارة التفعيل قد يوقف الدائرة."),
+    pmic: makeBook("PMIC","شريحة إدارة الطاقة","Main power management IC.","شريحة إدارة الطاقة الرئيسية.","VBAT → PMIC → VDD","PMIC creates and controls many board voltages.","PMIC تنتج وتتحكم في فولتات كثيرة على اللوحة.","Check VBAT input, enable signals and output rails.","افحص مدخل VBAT، إشارات التفعيل ومخارج الطاقة.","Missing rails can cause total no power or boot failure.","غياب الخطوط قد يسبب موت كامل أو فشل إقلاع."),
+    cpu: makeBook("CPU / SoC","المعالج","Main brain of the phone.","العقل الرئيسي للهاتف.","PMIC → CPU","CPU starts executing boot logic after power is ready.","المعالج يبدأ تنفيذ الإقلاع بعد جاهزية الطاقة.","Check power rails, clock, reset and storage before suspecting CPU.","افحص الطاقة، الساعة، الريست والتخزين قبل اتهام المعالج.","CPU faults are advanced and rarer than line or power faults.","أعطال المعالج متقدمة وأندر من أعطال الخطوط والطاقة."),
+    storage: makeBook("Storage / NAND / UFS","التخزين / NAND / UFS","Bootloader, system and data storage.","البوتلودر، النظام وتخزين البيانات.","CPU ↔ NAND/UFS","The CPU reads boot data from storage.","المعالج يقرأ بيانات الإقلاع من التخزين.","Check storage power rails and communication lines.","افحص خطوط طاقة التخزين وخطوط الاتصال.","Storage faults can cause boot loop, no boot or data issues.","أعطال التخزين قد تسبب بوت لوب، عدم إقلاع أو مشاكل بيانات."),
+    display: makeBook("Display System","نظام الشاشة","Image signal and display power.","إشارة الصورة وطاقة الشاشة.","CPU → MIPI → LCD","Display system sends image data from CPU to screen.","نظام الشاشة يرسل بيانات الصورة من المعالج إلى الشاشة.","Check connector, display voltages and MIPI filters.","افحص الكونكتور، فولتات الشاشة وفلاتر MIPI.","No image can be screen, connector, power or MIPI issue.","غياب الصورة قد يكون شاشة، كونكتور، طاقة أو MIPI."),
+    backlight: makeBook("Backlight System","نظام الإضاءة","Screen light circuit.","دائرة إضاءة الشاشة.","BL IC → COIL → LED","Backlight creates the light that makes the LCD visible.","الإضاءة الخلفية تعطي الضوء الذي يجعل الشاشة مرئية.","Check backlight IC, coil, diode, connector and output voltage.","افحص شريحة الإضاءة، الملف، الدايود، الكونكتور وفولت الخرج.","Image visible with flashlight can mean backlight fault.","ظهور الصورة بكشاف قد يعني عطل إضاءة."),
+    charge: makeBook("Charging System","نظام الشحن","USB to battery charging path.","مسار الشحن من USB إلى البطارية.","USB → VBUS → CHG IC → BAT","Charging starts from USB and passes through protection to the charging IC and battery.","الشحن يبدأ من USB ويمر عبر الحماية إلى شريحة الشحن والبطارية.","Check cable, port, VBUS, fuse, charging IC and battery connector.","افحص الكابل، المنفذ، VBUS، الفيوز، شريحة الشحن وكونكتور البطارية.","No charge does not always mean the charging IC is bad.","عدم الشحن لا يعني دائما تلف شريحة الشحن."),
+    usb: makeBook("USB / Data System","نظام USB / البيانات","USB data, Type-C and protection lines.","بيانات USB و Type-C وخطوط الحماية.","D+ D- / CC","USB handles charging negotiation and data transfer.","USB يدير تفاوض الشحن ونقل البيانات.","Check port, D+/D-, CC lines and ESD protection.","افحص المنفذ، خطوط D+/D- و CC وحماية ESD.","Bad USB lines can cause no data or no fast charge.","تلف خطوط USB قد يسبب غياب البيانات أو الشحن السريع."),
+    audio: makeBook("Audio System","نظام الصوت","Codec, amplifier, microphone and speaker lines.","الكودك، الأمبليفاير، الميكروفون وخطوط السماعة.","AUDIO IC → AMP → SPK","Audio ICs process sound input and output.","شرائح الصوت تعالج الإدخال والإخراج الصوتي.","Check speaker, mic, connector, audio IC power and filters.","افحص السماعة، المايك، الكونكتور، طاقة شريحة الصوت والفلاتر.","No sound can be part, line, codec or amplifier issue.","غياب الصوت قد يكون قطعة، خط، كودك أو أمبليفاير."),
+    camera: makeBook("Camera System","نظام الكاميرا","Camera power and MIPI lines.","طاقة الكاميرا وخطوط MIPI.","CAM → MIPI → CPU","Camera needs power and data lines to send image to CPU.","الكاميرا تحتاج طاقة وخطوط بيانات لإرسال الصورة للمعالج.","Check connector, camera voltages, MIPI filters and physical damage.","افحص الكونكتور، فولتات الكاميرا، فلاتر MIPI والضرر الظاهر.","Black camera can be module, connector, power or data line.","الكاميرا السوداء قد تكون موديول، كونكتور، طاقة أو خط بيانات."),
+    rf: makeBook("RF / Network System","نظام الشبكة","Baseband, RF IC, PA, filters and antennas.","البيسباند، RF IC، PA، الفلاتر والهوائيات.","BASEBAND → RF → PA → ANT","Network system handles cellular signal transmission and reception.","نظام الشبكة يدير إرسال واستقبال إشارة الشبكة.","Check SIM, IMEI, antennas, RF lines, filters and baseband area.","افحص الشريحة، IMEI، الهوائيات، خطوط RF، الفلاتر ومنطقة البيسباند.","No network can be software, SIM, antenna, RF or baseband issue.","غياب الشبكة قد يكون سوفتوير، شريحة، هوائي، RF أو بيسباند.")
 };
 
-const tree = [
-    {
-        group:pair("Start","البداية"),
-        nodes:[
-            node("start","START","Start Learning","ابدأ التعلم","Understand the learning path before starting.","افهم مسار التعلم قبل البداية.",systemBooks.circuits)
-        ]
-    },
-    {
-        group:pair("Tools","الأدوات"),
-        nodes:[
-            node("multimeter","V","Multimeter","الملتيميتر","Modes, symbols and usage.","الأوضاع، الرموز وطريقة الاستخدام.",multimeterBook)
-        ]
-    },
-    {
-        group:pair("Electronic Components","المكونات الإلكترونية"),
-        nodes:[
-            node("resistor","R","Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.resistor),
-            node("capacitor","C","Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.capacitor),
-            node("diode","D","Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.diode),
-            node("coil","L","Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.coil),
-            node("fuse","F","Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.fuse),
-            node("connector","CN","Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.connector),
-            node("ic","IC","IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.",books.ic)
-        ]
-    },
-    {
-        group:pair("Safety & Phone Opening","السلامة وفتح الهاتف"),
-        nodes:[
-            node("safety","SAFE","Safety","السلامة","Battery, ESD, heat and safe work.","البطارية، ESD، الحرارة والعمل الآمن.",systemBooks.safety),
-            node("opening","OPEN","Phone Opening","فتح الهاتف","Open phones without damage.","فتح الهاتف بدون أضرار.",systemBooks.opening)
-        ]
-    },
-    {
-        group:pair("Boot Logic & Board Systems","منطق الإقلاع وأنظمة اللوحة"),
-        nodes:[
-            node("circuits","LINE","Circuit Basics","أساسيات الدوائر","Lines, ground and power flow.","الخطوط، الأرضي وتدفق الطاقة.",systemBooks.circuits),
-            node("pmic","PMIC","PMIC","شريحة إدارة الطاقة","Main power management IC.","شريحة إدارة الطاقة الرئيسية.",systemBooks.pmic),
-            node("cpu","CPU","CPU / SoC","المعالج","Main brain of the phone.","العقل الرئيسي للهاتف.",systemBooks.cpu),
-            node("storage","NAND","Storage / NAND / UFS","التخزين / NAND / UFS","Bootloader, system and data storage.","البوتلودر، النظام وتخزين البيانات.",systemBooks.storage),
-            node("display","LCD","Display System","نظام الشاشة","Image signal and display power.","إشارة الصورة وطاقة الشاشة.",systemBooks.display),
-            node("backlight","BL","Backlight System","نظام الإضاءة","Screen light circuit.","دائرة إضاءة الشاشة.",systemBooks.backlight),
-            node("charge","CHG","Charging System","نظام الشحن","USB to battery charging path.","مسار الشحن من USB إلى البطارية.",systemBooks.charge),
-            node("usb","USB","USB / Data System","نظام USB / البيانات","USB data, Type-C and protection lines.","بيانات USB و Type-C وخطوط الحماية.",systemBooks.usb),
-            node("audio","AUD","Audio System","نظام الصوت","Codec, amplifier, microphone and speaker lines.","الكودك، الأمبليفاير، الميكروفون وخطوط السماعة.",systemBooks.audio),
-            node("camera","CAM","Camera System","نظام الكاميرا","Camera power and MIPI lines.","طاقة الكاميرا وخطوط MIPI.",systemBooks.camera),
-            node("rf","RF","RF / Network System","نظام الشبكة","Baseband, RF IC, PA, filters and antennas.","البيسباند، RF IC، PA، الفلاتر والهوائيات.",systemBooks.rf)
-        ]
-    }
+const branches = [
+    branch("start","START","Start","البداية","Begin the academy roadmap.","ابدأ خريطة الأكاديمية.",[
+        node("start","START","Start Learning","ابدأ التعلم","Understand the learning path before starting.","افهم مسار التعلم قبل البداية.",systemBooks.start)
+    ]),
+    branch("tools","V","Tools","الأدوات","Learn essential repair tools.","تعلم أدوات الإصلاح الأساسية.",[
+        node("multimeter","V","Multimeter","الملتيميتر","Modes, symbols and usage.","الأوضاع، الرموز وطريقة الاستخدام.",multimeterBook)
+    ]),
+    branch("components","⚡","Electronic Components","المكونات الإلكترونية","Learn parts, symbols and tests.","تعلم القطع، الرموز وطريقة الفحص.",[
+        node("resistor","R","Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.resistor),
+        node("capacitor","C","Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.capacitor),
+        node("diode","D","Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.diode),
+        node("coil","L","Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.coil),
+        node("fuse","F","Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.fuse),
+        node("connector","CN","Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.connector),
+        node("ic","IC","IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.",books.ic)
+    ]),
+    branch("safety","SAFE","Safety & Phone Opening","السلامة وفتح الهاتف","Work safely before diagnosis.","اعمل بأمان قبل التشخيص.",[
+        node("safety","SAFE","Safety","السلامة","Battery, ESD, heat and safe work.","البطارية، ESD، الحرارة والعمل الآمن.",systemBooks.safety),
+        node("opening","OPEN","Phone Opening","فتح الهاتف","Open phones without damage.","فتح الهاتف بدون أضرار.",systemBooks.opening)
+    ]),
+    branch("systems","BOARD","Boot Logic & Board Systems","منطق الإقلاع وأنظمة اللوحة","Learn how the board wakes up and runs systems.","تعلم كيف تستيقظ اللوحة وتشغل الأنظمة.",[
+        node("circuits","LINE","Circuit Basics","أساسيات الدوائر","Lines, ground and power flow.","الخطوط، الأرضي وتدفق الطاقة.",systemBooks.circuits),
+        node("pmic","PMIC","PMIC","شريحة إدارة الطاقة","Main power management IC.","شريحة إدارة الطاقة الرئيسية.",systemBooks.pmic),
+        node("cpu","CPU","CPU / SoC","المعالج","Main brain of the phone.","العقل الرئيسي للهاتف.",systemBooks.cpu),
+        node("storage","NAND","Storage / NAND / UFS","التخزين / NAND / UFS","Bootloader, system and data storage.","البوتلودر، النظام وتخزين البيانات.",systemBooks.storage),
+        node("display","LCD","Display System","نظام الشاشة","Image signal and display power.","إشارة الصورة وطاقة الشاشة.",systemBooks.display),
+        node("backlight","BL","Backlight System","نظام الإضاءة","Screen light circuit.","دائرة إضاءة الشاشة.",systemBooks.backlight),
+        node("charge","CHG","Charging System","نظام الشحن","USB to battery charging path.","مسار الشحن من USB إلى البطارية.",systemBooks.charge),
+        node("usb","USB","USB / Data System","نظام USB / البيانات","USB data, Type-C and protection lines.","بيانات USB و Type-C وخطوط الحماية.",systemBooks.usb),
+        node("audio","AUD","Audio System","نظام الصوت","Codec, amplifier, microphone and speaker lines.","الكودك، الأمبليفاير، الميكروفون وخطوط السماعة.",systemBooks.audio),
+        node("camera","CAM","Camera System","نظام الكاميرا","Camera power and MIPI lines.","طاقة الكاميرا وخطوط MIPI.",systemBooks.camera),
+        node("rf","RF","RF / Network System","نظام الشبكة","Baseband, RF IC, PA, filters and antennas.","البيسباند، RF IC، PA، الفلاتر والهوائيات.",systemBooks.rf)
+    ])
 ];
 
-function allNodes(){return tree.flatMap(group => group.nodes);}
-function doneIds(){return JSON.parse(localStorage.getItem("master_repair_done") || "[]");}
+function allNodes(){
+    return branches.flatMap(group => group.nodes);
+}
+
+function doneIds(){
+    return JSON.parse(localStorage.getItem("master_repair_done") || "[]");
+}
 
 function saveDone(id){
     const ids = doneIds();
@@ -949,11 +671,18 @@ function saveDone(id){
     localStorage.setItem("master_repair_last", id);
 }
 
-function isUnlocked(node){
-    const nodes = allNodes();
-    const index = nodes.findIndex(item => item.id === node.id);
-    if(index === 0) return true;
-    return doneIds().includes(nodes[index - 1].id);
+function findNodeById(id){
+    return allNodes().find(item => item.id === id);
+}
+
+function findBranchByNodeId(id){
+    return branches.find(group => group.nodes.some(item => item.id === id));
+}
+
+function branchProgress(group){
+    const done = doneIds();
+    const count = group.nodes.filter(item => done.includes(item.id)).length;
+    return {count, total:group.nodes.length};
 }
 
 function applyLanguage(){
@@ -969,8 +698,10 @@ function applyLanguage(){
     document.getElementById("stepsLabel").textContent = tr("steps");
     document.getElementById("supportLabel").textContent = tr("support");
     document.getElementById("continueButton").textContent = tr("continue");
-    document.getElementById("treeTitle").textContent = tr("treeTitle");
-    document.getElementById("treeSubtitle").textContent = tr("treeSubtitle");
+    document.getElementById("branchesTitle").textContent = tr("branchesTitle");
+    document.getElementById("branchesSubtitle").textContent = tr("branchesSubtitle");
+    document.getElementById("chaptersTitle").textContent = tr("chaptersTitle");
+    document.getElementById("chaptersSubtitle").textContent = tr("chaptersSubtitle");
     document.getElementById("supportTitle").textContent = tr("supportTitle");
     document.getElementById("supportSubtitle").textContent = tr("supportSubtitle");
     document.getElementById("sosTitle").textContent = tr("sosTitle");
@@ -980,9 +711,14 @@ function applyLanguage(){
     document.getElementById("nextButton").textContent = tr("next");
     document.getElementById("bookBackButton").textContent = tr("back");
     document.getElementById("bookDoneButton").textContent = tr("done");
+    document.getElementById("branchBackButton").textContent = tr("back");
     document.getElementById("footerText").textContent = tr("footer");
 
-    renderTree();
+    renderHome();
+
+    if(currentBranch && document.getElementById("branchPage").classList.contains("active")){
+        renderBranchPage();
+    }
 
     if(currentNode && document.getElementById("bookPage").classList.contains("active")){
         renderBookPage();
@@ -1006,53 +742,56 @@ function renderProgress(){
     document.getElementById("progressBar").style.width = pct + "%";
 }
 
-function renderTree(){
+function renderHome(){
     renderProgress();
 
-    const container = document.getElementById("treeContainer");
-    container.innerHTML = "";
+    const list = document.getElementById("branchList");
+    list.innerHTML = "";
 
-    tree.forEach(group => {
-        const title = document.createElement("div");
-        title.className = "branch-title";
-        title.textContent = txt(group.group);
-        container.appendChild(title);
+    branches.forEach(group => {
+        const progress = branchProgress(group);
+        const done = progress.count === progress.total;
 
-        const wrap = document.createElement("div");
-        wrap.className = "tree";
+        const button = document.createElement("button");
+        button.className = "branch-card" + (done ? " done" : "");
+        button.onclick = () => openBranch(group.id);
+        button.innerHTML = `
+            <strong>${txt(group.title)}</strong>
+            <small>${txt(group.desc)}</small>
+            <span class="badge">${progress.count} / ${progress.total}</span>
+        `;
+        list.appendChild(button);
+    });
+}
 
-        group.nodes.forEach(item => {
-            const done = doneIds().includes(item.id);
-            const unlocked = isUnlocked(item);
+function openBranch(id){
+    currentBranch = branches.find(group => group.id === id);
+    renderBranchPage();
+    showPage("branchPage");
+}
 
-            const row = document.createElement("div");
-            row.className = "tree-node";
+function renderBranchPage(){
+    const progress = branchProgress(currentBranch);
 
-            const icon = document.createElement("div");
-            icon.className = "node-icon";
-            icon.textContent = done ? "✓" : item.icon;
+    document.getElementById("branchTitle").textContent = txt(currentBranch.title);
+    document.getElementById("branchDesc").textContent = txt(currentBranch.desc);
+    document.getElementById("branchProgress").textContent = progress.count + " / " + progress.total;
 
-            const button = document.createElement("button");
-            button.className = "node-card" + (done ? " done" : "") + (!unlocked ? " locked" : "");
-            button.onclick = () => unlocked ? openNode(item) : showLockedMessage();
-            button.innerHTML = `
-                <strong>${txt(item.title)}</strong>
-                <small>${txt(item.desc)}</small>
-                <span class="badge">${done ? tr("doneState") : unlocked ? tr("open") : tr("locked")}</span>
-            `;
+    const list = document.getElementById("chapterList");
+    list.innerHTML = "";
 
-            if(currentLang === "ar"){
-                row.appendChild(button);
-                row.appendChild(icon);
-            }else{
-                row.appendChild(icon);
-                row.appendChild(button);
-            }
+    currentBranch.nodes.forEach(item => {
+        const done = doneIds().includes(item.id);
 
-            wrap.appendChild(row);
-        });
-
-        container.appendChild(wrap);
+        const button = document.createElement("button");
+        button.className = "chapter-card" + (done ? " done" : "");
+        button.onclick = () => openNode(item);
+        button.innerHTML = `
+            <strong>${txt(item.title)}</strong>
+            <small>${txt(item.desc)}</small>
+            <span class="badge">${done ? tr("doneState") : tr("open")}</span>
+        `;
+        list.appendChild(button);
     });
 }
 
@@ -1123,13 +862,14 @@ function continueLearning(){
     const nodes = allNodes();
     const done = doneIds();
 
-    let next = nodes.find(item => !done.includes(item.id) && isUnlocked(item));
+    let next = nodes.find(item => !done.includes(item.id));
 
     if(!next){
         const last = localStorage.getItem("master_repair_last");
-        next = nodes.find(item => item.id === last) || nodes[0];
+        next = findNodeById(last) || nodes[0];
     }
 
+    currentBranch = findBranchByNodeId(next.id);
     openNode(next);
 }
 
@@ -1150,14 +890,6 @@ function markDone(){
     }
 }
 
-function showLockedMessage(){
-    if(tg && tg.showAlert){
-        tg.showAlert(tr("lockedMessage"));
-    }else{
-        alert(tr("lockedMessage"));
-    }
-}
-
 function showPage(id){
     document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -1165,9 +897,19 @@ function showPage(id){
 }
 
 function goHome(){
+    currentBranch = null;
     currentNode = null;
-    renderTree();
+    renderHome();
     showPage("home");
+}
+
+function goBranch(){
+    if(currentBranch){
+        renderBranchPage();
+        showPage("branchPage");
+    }else{
+        goHome();
+    }
 }
 
 function openSOS(){

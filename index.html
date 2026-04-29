@@ -20,28 +20,31 @@ h1{
     font-family: Impact, "Arial Black", sans-serif;
     font-size:28px;
     letter-spacing:2px;
-    color:white;
     text-shadow:0 0 10px #00ffff;
     margin:15px;
 }
 
+/* PAGES */
 .page{display:none;padding:15px;}
 .active{display:block;}
 
 .card{
     background:#1a1a1a;
     margin:10px;
-    padding:15px;
+    padding:18px;
     border-radius:16px;
     border:1px solid #2a2a2a;
+    text-align:left;
 }
 
+/* GRID MENU */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
+/* BUTTONS */
 button{
     padding:16px;
     border-radius:10px;
@@ -58,7 +61,7 @@ button{
     margin-top:15px;
 }
 
-/* LANGUAGE BUTTON */
+/* LANGUAGE */
 #langBtn{
     position:fixed;
     top:10px;
@@ -69,110 +72,123 @@ button{
     border:1px solid #333;
     color:white;
     border-radius:6px;
-    cursor:pointer;
     z-index:999;
+}
+
+/* BOOK STYLE */
+.title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#00ffff;
+}
+
+.item{
+    margin:8px 0;
+    padding:8px;
+    border-left:3px solid #00ffff;
+    padding-left:10px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LANGUAGE -->
 <button id="langBtn" onclick="toggleLang()">AR</button>
 
-<h1>⚡ ⚙ REPAIR ACADEMY ⚙ ⚡</h1>
+<h1>⚡ REPAIR ACADEMY ⚡</h1>
 
 <!-- HOME -->
 <div id="home" class="page active">
 <div class="card">
-
 <div class="grid">
-<button data-en="Level 1" data-ar="المستوى 1" onclick="openPage('c1')">Level 1</button>
-<button data-en="Level 2" data-ar="المستوى 2" onclick="openPage('c2')">Level 2</button>
-<button data-en="Level 3" data-ar="المستوى 3" onclick="openPage('c3')">Level 3</button>
-<button data-en="Level 4" data-ar="المستوى 4" onclick="openPage('c4')">Level 4</button>
-<button data-en="Level 5" data-ar="المستوى 5" onclick="openPage('c5')">Level 5</button>
-<button data-en="Level 6" data-ar="المستوى 6" onclick="openPage('c6')">Level 6</button>
-<button data-en="Level 7" data-ar="المستوى 7" onclick="openPage('c7')">Level 7</button>
-<button data-en="Level 8" data-ar="المستوى 8" onclick="openPage('c8')">Level 8</button>
-<button data-en="Level 9" data-ar="المستوى 9" onclick="openPage('c9')">Level 9</button>
-<button data-en="Level 10" data-ar="المستوى 10" onclick="openPage('c10')">Level 10</button>
+<button onclick="openPage('c1')">Level 1</button>
+<button onclick="openPage('c2')">Level 2</button>
+<button onclick="openPage('c3')">Level 3</button>
+<button onclick="openPage('c4')">Level 4</button>
+<button onclick="openPage('c5')">Level 5</button>
+<button onclick="openPage('c6')">Level 6</button>
+<button onclick="openPage('c7')">Level 7</button>
+<button onclick="openPage('c8')">Level 8</button>
+<button onclick="openPage('c9')">Level 9</button>
+<button onclick="openPage('c10')">Level 10</button>
 </div>
 
-<button class="sos" data-en="SOS" data-ar="طوارئ" onclick="openSOS()">SOS</button>
-
+<button class="sos" onclick="openSOS()">SOS</button>
 </div>
 </div>
 
 <!-- LEVEL 1 -->
 <div id="c1" class="page">
 <div class="card">
+<div class="title" data-en="Level 1 - Basics of Repair" data-ar="المستوى 1 - أساسيات الإصلاح">Level 1 - Basics of Repair</div>
 
-<h2>Level 1</h2>
+<div class="item" data-en="What is a motherboard" data-ar="ما هي اللوحة الأم">What is a motherboard</div>
+<div class="item" data-en="Basic smartphone structure" data-ar="التركيب الأساسي للهاتف">Basic smartphone structure</div>
+<div class="item" data-en="Introduction to repair tools" data-ar="مقدمة في أدوات الإصلاح">Introduction to repair tools</div>
+<div class="item" data-en="Understanding power lines" data-ar="فهم خطوط الطاقة">Understanding power lines</div>
+<div class="item" data-en="Basic faults (no power, short circuit)" data-ar="الأعطال الأساسية">Basic faults (no power, short circuit)</div>
 
-<div class="grid">
-<button data-en="IC" data-ar="IC" onclick="openPage('comp1')">IC</button>
-<button data-en="Power" data-ar="Power" onclick="openPage('comp2')">Power</button>
-<button data-en="RF" data-ar="RF" onclick="openPage('comp3')">RF</button>
-<button data-en="Connectors" data-ar="Connectors" onclick="openPage('comp4')">Connectors</button>
-<button data-en="Sensors" data-ar="Sensors" onclick="openPage('comp5')">Sensors</button>
-<button data-en="Audio" data-ar="Audio" onclick="openPage('comp6')">Audio</button>
-</div>
-
-<button data-en="Back" data-ar="Back" onclick="openPage('home')">Back</button>
-
+<button onclick="openPage('home')">Back</button>
 </div>
 </div>
 
 <!-- LEVEL 2 -->
 <div id="c2" class="page">
 <div class="card">
-<h2>Level 2</h2>
+<div class="title" data-en="Level 2 - Components" data-ar="المستوى 2 - المكونات">Level 2 - Components</div>
+
+<div class="item" data-en="Resistors" data-ar="المقاومات">Resistors</div>
+<div class="item" data-en="Capacitors" data-ar="المكثفات">Capacitors</div>
+<div class="item" data-en="Diodes" data-ar="الثنائيات">Diodes</div>
+<div class="item" data-en="Coils / Inductors" data-ar="الملفات">Coils / Inductors</div>
+
 <button onclick="openPage('home')">Back</button>
 </div>
 </div>
 
-<!-- EMPTY LEVELS -->
-<div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
+<!-- LEVEL 3 -->
+<div id="c3" class="page">
+<div class="card">
+<div class="title" data-en="Level 3 - RF & Signal" data-ar="المستوى 3 - الإشارة">Level 3 - RF & Signal</div>
 
-<!-- COMPONENTS -->
-<div id="comp1" class="page"><div class="card"><h2>IC</h2><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp2" class="page"><div class="card"><h2>Power</h2><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp3" class="page"><div class="card"><h2>RF</h2><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp4" class="page"><div class="card"><h2>Connectors</h2><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp5" class="page"><div class="card"><h2>Sensors</h2><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp6" class="page"><div class="card"><h2>Audio</h2><button onclick="openPage('c1')">Back</button></div></div>
+<div class="item" data-en="RF circuits basics" data-ar="أساسيات دوائر RF">RF circuits basics</div>
+<div class="item" data-en="Antenna system" data-ar="نظام الهوائي">Antenna system</div>
+
+<button onclick="openPage('home')">Back</button>
+</div>
+</div>
+
+<!-- LEVEL 4 -->
+<div id="c4" class="page"><div class="card"><div class="title">Level 4</div><button onclick="openPage('home')">Back</button></div></div>
+<div id="c5" class="page"><div class="card"><div class="title">Level 5</div><button onclick="openPage('home')">Back</button></div></div>
+<div id="c6" class="page"><div class="card"><div class="title">Level 6</div><button onclick="openPage('home')">Back</button></div></div>
+<div id="c7" class="page"><div class="card"><div class="title">Level 7</div><button onclick="openPage('home')">Back</button></div></div>
+<div id="c8" class="page"><div class="card"><div class="title">Level 8</div><button onclick="openPage('home')">Back</button></div></div>
+<div id="c9" class="page"><div class="card"><div class="title">Level 9</div><button onclick="openPage('home')">Back</button></div></div>
+<div id="c10" class="page"><div class="card"><div class="title">Level 10</div><button onclick="openPage('home')">Back</button></div></div>
 
 <script>
-let lang = "en";
+let lang="en";
 
-/* APPLY LANGUAGE EVERYWHERE */
+/* APPLY LANGUAGE */
 function applyLang(){
 document.querySelectorAll("[data-en]").forEach(el=>{
 el.innerText = el.getAttribute("data-"+lang);
 });
 }
 
-/* PAGE NAVIGATION */
+/* NAVIGATION */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-
-setTimeout(applyLang, 0);
+setTimeout(applyLang,0);
 }
 
-/* SWITCH LANGUAGE */
+/* LANGUAGE SWITCH */
 function toggleLang(){
-lang = (lang === "en") ? "ar" : "en";
-document.getElementById("langBtn").innerText = (lang === "en") ? "AR" : "EN";
-
+lang = (lang==="en") ? "ar" : "en";
+document.getElementById("langBtn").innerText = (lang==="en") ? "AR" : "EN";
 applyLang();
 }
 

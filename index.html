@@ -16,16 +16,17 @@ body{
     text-align:center;
 }
 
-/* 🔥 TITLE STYLE (TRANSFORMERS STYLE) */
+/* TITLE */
 h1{
     font-family: Impact, "Arial Black", sans-serif;
-    font-size:26px;
+    font-size:28px;
     letter-spacing:2px;
     color:white;
     text-shadow:0 0 10px #00ffff;
     margin:15px;
 }
 
+/* PAGES */
 .page{display:none;padding:15px;}
 .active{display:block;}
 
@@ -37,27 +38,35 @@ h1{
     border:1px solid #2a2a2a;
 }
 
+/* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
+/* 🔥 BUTTONS IMPROVED TEXT */
 button{
-    padding:14px;
+    padding:16px;
     border-radius:10px;
     border:1px solid #333;
     background:#111;
     color:white;
+
+    font-size:16px;       /* ⬅ bigger text */
+    font-weight:600;
+    text-align:center;
 }
 
+/* SOS */
 .sos{
     background:#8b0000;
     border:1px solid #aa0000;
     margin-top:15px;
+    font-size:16px;
 }
 
-/* language button */
+/* LANGUAGE BUTTON */
 #langBtn{
     position:fixed;
     top:10px;
@@ -75,7 +84,6 @@ button{
 
 <body>
 
-<!-- LANGUAGE SWITCH -->
 <button id="langBtn" onclick="toggleLang()">AR</button>
 
 <h1>⚡ ⚙ REPAIR ACADEMY ⚙ ⚡</h1>

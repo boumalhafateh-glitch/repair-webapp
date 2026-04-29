@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Repair App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+<h1>Repair Academy</h1>
+
+<button onclick="send('chapter_1')">Chapitre 1</button>
+<button onclick="send('chapter_2')">Chapitre 2</button>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+function send(data){
+    tg.sendData(data);
+}
+</script>
+
+</body>
+</html>

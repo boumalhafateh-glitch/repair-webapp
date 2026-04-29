@@ -6,7 +6,6 @@
 <title>Repair Academy</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -18,7 +17,6 @@ body{
 }
 
 h1{
-    font-family:'Orbitron', sans-serif;
     margin:15px;
     font-size:22px;
 }
@@ -53,74 +51,51 @@ button{
     border:1px solid #aa0000;
     margin-top:15px;
 }
-
-/* cours UI */
-.course{
-    text-align:left;
-    background:#151515;
-    margin:10px;
-    padding:15px;
-    border-radius:14px;
-    border:1px solid #2a2a2a;
-    line-height:1.6;
-}
-
-.title{
-    font-weight:bold;
-    font-size:18px;
-    margin-bottom:10px;
-}
-
-.tag{
-    font-size:12px;
-    opacity:0.7;
-    margin-bottom:8px;
-}
 </style>
 </head>
 
 <body>
 
-<h1>⚡ Repair Academy ⚡ / أكاديمية الإصلاح ⚡</h1>
+<h1>Repair Academy</h1>
 
 <!-- HOME -->
 <div id="home" class="page active">
 <div class="card">
 
 <div class="grid">
-<button onclick="openPage('c1')">Level 1 / المستوى 1</button>
-<button onclick="openPage('c2')">Level 2 / المستوى 2</button>
-<button onclick="openPage('c3')">Level 3 / المستوى 3</button>
-<button onclick="openPage('c4')">Level 4 / المستوى 4</button>
-<button onclick="openPage('c5')">Level 5 / المستوى 5</button>
-<button onclick="openPage('c6')">Level 6 / المستوى 6</button>
+<button onclick="openPage('c1')">Level 1</button>
+<button onclick="openPage('c2')">Level 2</button>
+<button onclick="openPage('c3')">Level 3</button>
+<button onclick="openPage('c4')">Level 4</button>
+<button onclick="openPage('c5')">Level 5</button>
+<button onclick="openPage('c6')">Level 6</button>
 <button onclick="openPage('c7')">Level 7</button>
 <button onclick="openPage('c8')">Level 8</button>
 <button onclick="openPage('c9')">Level 9</button>
 <button onclick="openPage('c10')">Level 10</button>
 </div>
 
-<button class="sos" onclick="openSOS()">SOS / طوارئ</button>
+<button class="sos" onclick="openSOS()">SOS</button>
 
 </div>
 </div>
 
 <!-- LEVEL 1 -->
-<div id="c1" class="page active">
+<div id="c1" class="page">
 <div class="card">
 
-<h2>Level 1 / المستوى 1</h2>
+<h2>Level 1</h2>
 
 <div class="grid">
-<button onclick="openPage('comp1')">IC / Circuits</button>
-<button onclick="openPage('comp2')">Power ⚡</button>
-<button onclick="openPage('comp3')">RF / Signal 📡</button>
-<button onclick="openPage('comp4')">Connectors 🔌</button>
-<button onclick="openPage('comp5')">Sensors 🧠</button>
-<button onclick="openPage('comp6')">Audio 🔊</button>
+<button onclick="openPage('comp1')">IC</button>
+<button onclick="openPage('comp2')">Power</button>
+<button onclick="openPage('comp3')">RF</button>
+<button onclick="openPage('comp4')">Connectors</button>
+<button onclick="openPage('comp5')">Sensors</button>
+<button onclick="openPage('comp6')">Audio</button>
 </div>
 
-<button onclick="openPage('home')">⬅ Back</button>
+<button onclick="openPage('home')">Back</button>
 
 </div>
 </div>
@@ -128,54 +103,33 @@ button{
 <!-- LEVEL 2 -->
 <div id="c2" class="page">
 <div class="card">
-<h2>Level 2 / المستوى 2</h2>
-<div class="course">
-<div class="title">Multimètre 📊</div>
-Voltage / Current / Resistance<br>
-Continuity / Diode test
-</div>
+<h2>Level 2</h2>
 <button onclick="openPage('home')">Back</button>
 </div>
 </div>
 
-<!-- LEVEL 7 (RESTORED EMPTY) -->
-<div id="c7" class="page">
-<div class="card">
-<h2>Level 7</h2>
-<p>🔒 Empty / réservé</p>
-<button onclick="openPage('home')">Back</button>
-</div>
-</div>
-
-<!-- LEVELS 3-6-8-10 -->
+<!-- LEVEL 3-10 EMPTY -->
 <div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
-
+<div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
 
 <!-- COMPONENTS -->
-<div id="comp1" class="page"><div class="card"><h2>IC / Circuits</h2>SoC / PMIC / RAM<button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp2" class="page"><div class="card"><h2>Power ⚡</h2>Inductors / MOSFET<button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp3" class="page"><div class="card"><h2>RF / Signal 📡</h2>Filters / Antenna<button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp4" class="page"><div class="card"><h2>Connectors 🔌</h2>Battery / Screen<button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp5" class="page"><div class="card"><h2>Sensors 🧠</h2>Gyroscope / Light<button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp6" class="page"><div class="card"><h2>Audio 🔊</h2>Mic / Speaker / Codec<button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp1" class="page"><div class="card"><h2>IC</h2><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp2" class="page"><div class="card"><h2>Power</h2><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp3" class="page"><div class="card"><h2>RF</h2><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp4" class="page"><div class="card"><h2>Connectors</h2><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp5" class="page"><div class="card"><h2>Sensors</h2><button onclick="openPage('c1')">Back</button></div></div>
+<div id="comp6" class="page"><div class="card"><h2>Audio</h2><button onclick="openPage('c1')">Back</button></div></div>
 
 <script>
-const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand();
-
-function openPage(page){
-let el=document.getElementById(page);
-if(!el) return;
+function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-el.classList.add("active");
-try{tg.sendData(page);}catch(e){}
+document.getElementById(id).classList.add("active");
 }
 
 function openSOS(){

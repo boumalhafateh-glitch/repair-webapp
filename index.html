@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repair Academy</title>
 
-<script src="https://t.me/+OVTmcEQLg00zMTQ0"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --bg:#070707;
+    --bg:#060606;
     --panel:#151515;
-    --panel2:#1f1f1f;
+    --panel2:#202020;
     --text:#ffffff;
-    --muted:#a8a8a8;
-    --soft:#d6d6d6;
-    --gold:#f5c542;
+    --muted:#a5a5a5;
+    --soft:#d9d9d9;
+    --gold:#f4c542;
     --red:#b00020;
-    --green:#22c55e;
-    --line:#2c2c2c;
+    --green:#24c46b;
+    --line:#303030;
 }
 
 *{
@@ -28,9 +28,10 @@
 
 body{
     margin:0;
-    font-family:"Inter","Noto Sans Arabic",Arial,sans-serif;
+    font-family:"Space Grotesk","Noto Kufi Arabic",Arial,sans-serif;
     background:
-        radial-gradient(circle at top, rgba(245,197,66,.18), transparent 34%),
+        radial-gradient(circle at top, rgba(244,197,66,.20), transparent 32%),
+        radial-gradient(circle at bottom, rgba(176,0,32,.12), transparent 36%),
         linear-gradient(180deg, #101010 0%, #050505 100%);
     color:var(--text);
     min-height:100vh;
@@ -58,9 +59,9 @@ body{
 
 .logo h1{
     margin:0;
-    font-size:25px;
-    font-weight:800;
-    letter-spacing:0;
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:.2px;
 }
 
 .logo span{
@@ -71,6 +72,7 @@ body{
     margin-top:4px;
     font-size:12px;
     color:var(--muted);
+    font-weight:500;
 }
 
 .icon-btn{
@@ -101,28 +103,28 @@ body{
 
 .hero{
     background:
-        linear-gradient(135deg, rgba(245,197,66,.16), rgba(176,0,32,.10)),
+        linear-gradient(135deg, rgba(244,197,66,.16), rgba(176,0,32,.10)),
         var(--panel);
     border:1px solid var(--line);
     border-radius:12px;
-    padding:18px;
+    padding:19px;
     margin-bottom:14px;
     text-align:center;
 }
 
 .en-title{
     margin:0;
-    font-size:22px;
-    font-weight:800;
-    line-height:1.2;
+    font-size:23px;
+    font-weight:700;
+    line-height:1.18;
 }
 
 .ar-title{
-    margin:7px 0 0;
-    font-family:"Noto Sans Arabic",sans-serif;
-    font-size:20px;
-    font-weight:800;
-    line-height:1.35;
+    margin:8px 0 0;
+    font-family:"Noto Kufi Arabic",sans-serif;
+    font-size:19px;
+    font-weight:700;
+    line-height:1.55;
     direction:rtl;
 }
 
@@ -130,20 +132,22 @@ body{
     margin:10px 0 0;
     color:var(--soft);
     font-size:14px;
-    line-height:1.5;
+    line-height:1.55;
+    font-weight:400;
 }
 
 .ar-text{
-    margin:6px 0 0;
+    margin:7px 0 0;
     color:var(--muted);
-    font-family:"Noto Sans Arabic",sans-serif;
-    font-size:14px;
-    line-height:1.7;
+    font-family:"Noto Kufi Arabic",sans-serif;
+    font-size:13px;
+    line-height:1.9;
     direction:rtl;
+    font-weight:400;
 }
 
 .progress-wrap{
-    margin-top:15px;
+    margin-top:16px;
     background:#090909;
     border:1px solid var(--line);
     border-radius:999px;
@@ -165,7 +169,7 @@ body{
 }
 
 .stat{
-    background:var(--panel);
+    background:rgba(21,21,21,.92);
     border:1px solid var(--line);
     border-radius:10px;
     padding:11px 8px;
@@ -176,14 +180,15 @@ body{
     display:block;
     color:var(--gold);
     font-size:18px;
-    font-weight:800;
+    font-weight:700;
 }
 
 .stat small{
     display:block;
     color:var(--muted);
     font-size:11px;
-    line-height:1.35;
+    line-height:1.55;
+    font-weight:500;
 }
 
 .section-title{
@@ -194,12 +199,13 @@ body{
 .section-title h3{
     margin:0;
     font-size:17px;
-    font-weight:800;
+    font-weight:700;
 }
 
 .section-title p{
     margin:4px 0 0;
     color:var(--muted);
+    font-family:"Noto Kufi Arabic",sans-serif;
     font-size:12px;
 }
 
@@ -210,14 +216,15 @@ body{
 }
 
 .card-btn{
-    min-height:116px;
+    min-height:118px;
     padding:14px 12px;
     border-radius:10px;
     border:1px solid var(--line);
-    background:linear-gradient(180deg, #1b1b1b, #101010);
+    background:linear-gradient(180deg, #1d1d1d, #101010);
     color:white;
     cursor:pointer;
     text-align:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.18);
 }
 
 .card-btn:active{
@@ -227,24 +234,25 @@ body{
 .card-btn strong{
     display:block;
     font-size:15px;
-    font-weight:800;
+    font-weight:700;
     margin-bottom:5px;
 }
 
 .card-btn .ar{
     display:block;
-    font-family:"Noto Sans Arabic",sans-serif;
+    font-family:"Noto Kufi Arabic",sans-serif;
     direction:rtl;
-    font-size:14px;
+    font-size:13px;
     font-weight:700;
     margin-bottom:7px;
+    line-height:1.65;
 }
 
 .card-btn small{
     display:block;
     color:var(--muted);
     font-size:12px;
-    line-height:1.4;
+    line-height:1.45;
 }
 
 .badge{
@@ -252,14 +260,14 @@ body{
     margin-top:10px;
     padding:4px 8px;
     border-radius:999px;
-    background:rgba(245,197,66,.14);
+    background:rgba(244,197,66,.14);
     color:var(--gold);
     font-size:11px;
     font-weight:700;
 }
 
 .panel{
-    background:var(--panel);
+    background:rgba(21,21,21,.94);
     border:1px solid var(--line);
     border-radius:12px;
     padding:16px;
@@ -284,16 +292,17 @@ body{
     display:block;
     margin-bottom:4px;
     font-size:15px;
-    font-weight:800;
+    font-weight:700;
 }
 
 .lesson .ar-lesson-title{
     display:block;
-    font-family:"Noto Sans Arabic",sans-serif;
+    font-family:"Noto Kufi Arabic",sans-serif;
     direction:rtl;
-    font-size:14px;
-    font-weight:800;
+    font-size:13px;
+    font-weight:700;
     margin-bottom:7px;
+    line-height:1.65;
 }
 
 .lesson p{
@@ -313,8 +322,8 @@ button{
     border:1px solid var(--line);
     background:#111;
     color:white;
-    font-family:"Inter","Noto Sans Arabic",Arial,sans-serif;
-    font-weight:800;
+    font-family:"Space Grotesk","Noto Kufi Arabic",Arial,sans-serif;
+    font-weight:700;
     cursor:pointer;
 }
 
@@ -344,7 +353,7 @@ button{
     font-size:11px;
     text-align:center;
     padding:15px 0 5px;
-    line-height:1.5;
+    line-height:1.6;
 }
 
 @media(max-width:360px){
@@ -892,7 +901,7 @@ function markDone(){
 }
 
 function openSOS(){
-    const sosLink = "https://t.me/TON_GROUPE_OU_TON_SUPPORT";
+    const sosLink = "https://t.me/+OVTmcEQLg00zMTQ0";
 
     if(tg){
         tg.openTelegramLink(sosLink);

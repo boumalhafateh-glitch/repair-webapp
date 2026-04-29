@@ -21,7 +21,6 @@ h1{
     margin-top:10px;
 }
 
-/* PAGES */
 .page{
     display:none;
     padding:15px;
@@ -31,7 +30,6 @@ h1{
     display:block;
 }
 
-/* CARD */
 .card{
     margin:10px;
     padding:15px;
@@ -39,7 +37,6 @@ h1{
     border-radius:15px;
 }
 
-/* GRID BUTTONS */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -47,7 +44,6 @@ h1{
     margin-top:10px;
 }
 
-/* BUTTON */
 button{
     width:100%;
     padding:14px;
@@ -58,10 +54,16 @@ button{
     font-size:13px;
 }
 
-/* TEXT */
 .small{
     font-size:13px;
     color:#ccc;
+}
+
+/* SOS BUTTON */
+.sos{
+    background:#d9534f;
+    margin-top:15px;
+    font-weight:bold;
 }
 </style>
 
@@ -91,6 +93,12 @@ button{
             <button onclick="openPage('c10')">Chapter 10 / 10</button>
 
         </div>
+
+        <!-- SOS BUTTON -->
+        <button class="sos" onclick="openSOS()">
+            🆘 HELP / SOS
+        </button>
+
     </div>
 
 </div>
@@ -119,15 +127,15 @@ button{
     </div>
 </div>
 
-<!-- CHAPTERS 3-10 (template simple) -->
-<div id="c3" class="page"><div class="card"><h2>📘 Chapter 3</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c4" class="page"><div class="card"><h2>📘 Chapter 4</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c5" class="page"><div class="card"><h2>📘 Chapter 5</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c6" class="page"><div class="card"><h2>📘 Chapter 6</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c7" class="page"><div class="card"><h2>📘 Chapter 7</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c8" class="page"><div class="card"><h2>📘 Chapter 8</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c9" class="page"><div class="card"><h2>📘 Chapter 9</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c10" class="page"><div class="card"><h2>📘 Chapter 10</h2><p class="small">EN: ...<br><br>AR: ...</p><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<!-- CHAPTERS 3-10 -->
+<div id="c3" class="page"><div class="card"><h2>📘 Chapter 3</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c4" class="page"><div class="card"><h2>📘 Chapter 4</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c5" class="page"><div class="card"><h2>📘 Chapter 5</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c6" class="page"><div class="card"><h2>📘 Chapter 6</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c7" class="page"><div class="card"><h2>📘 Chapter 7</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c8" class="page"><div class="card"><h2>📘 Chapter 8</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c9" class="page"><div class="card"><h2>📘 Chapter 9</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c10" class="page"><div class="card"><h2>📘 Chapter 10</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
 
 <script>
 const tg = window.Telegram.WebApp;
@@ -138,10 +146,12 @@ function openPage(page){
     document.querySelectorAll(".page").forEach(p=>{
         p.classList.remove("active");
     });
-
     document.getElementById(page).classList.add("active");
-
     tg.sendData(page);
+}
+
+function openSOS(){
+    window.open("https://t.me/c/3919937885/2", "_blank");
 }
 </script>
 

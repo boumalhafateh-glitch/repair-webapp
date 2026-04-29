@@ -21,6 +21,20 @@ h1{
     font-size:22px;
 }
 
+/* LANGUAGE BUTTON */
+#langBtn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    padding:8px 12px;
+    background:#111;
+    border:1px solid #333;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:999;
+}
+
 .page{display:none;padding:15px;}
 .active{display:block;}
 
@@ -56,6 +70,9 @@ button{
 
 <body>
 
+<!-- LANGUAGE SWITCH -->
+<button id="langBtn" onclick="toggleLang()">AR</button>
+
 <h1>Repair Academy</h1>
 
 <!-- HOME -->
@@ -63,19 +80,19 @@ button{
 <div class="card">
 
 <div class="grid">
-<button onclick="openPage('c1')">Level 1</button>
-<button onclick="openPage('c2')">Level 2</button>
-<button onclick="openPage('c3')">Level 3</button>
-<button onclick="openPage('c4')">Level 4</button>
-<button onclick="openPage('c5')">Level 5</button>
-<button onclick="openPage('c6')">Level 6</button>
-<button onclick="openPage('c7')">Level 7</button>
-<button onclick="openPage('c8')">Level 8</button>
-<button onclick="openPage('c9')">Level 9</button>
-<button onclick="openPage('c10')">Level 10</button>
+<button data-en="Level 1" data-ar="المستوى 1" onclick="openPage('c1')">Level 1</button>
+<button data-en="Level 2" data-ar="المستوى 2" onclick="openPage('c2')">Level 2</button>
+<button data-en="Level 3" data-ar="المستوى 3" onclick="openPage('c3')">Level 3</button>
+<button data-en="Level 4" data-ar="المستوى 4" onclick="openPage('c4')">Level 4</button>
+<button data-en="Level 5" data-ar="المستوى 5" onclick="openPage('c5')">Level 5</button>
+<button data-en="Level 6" data-ar="المستوى 6" onclick="openPage('c6')">Level 6</button>
+<button data-en="Level 7" data-ar="المستوى 7" onclick="openPage('c7')">Level 7</button>
+<button data-en="Level 8" data-ar="المستوى 8" onclick="openPage('c8')">Level 8</button>
+<button data-en="Level 9" data-ar="المستوى 9" onclick="openPage('c9')">Level 9</button>
+<button data-en="Level 10" data-ar="المستوى 10" onclick="openPage('c10')">Level 10</button>
 </div>
 
-<button class="sos" onclick="openSOS()">SOS</button>
+<button class="sos" data-en="SOS" data-ar="طوارئ" onclick="openSOS()">SOS</button>
 
 </div>
 </div>
@@ -87,15 +104,15 @@ button{
 <h2>Level 1</h2>
 
 <div class="grid">
-<button onclick="openPage('comp1')">IC</button>
-<button onclick="openPage('comp2')">Power</button>
-<button onclick="openPage('comp3')">RF</button>
-<button onclick="openPage('comp4')">Connectors</button>
-<button onclick="openPage('comp5')">Sensors</button>
-<button onclick="openPage('comp6')">Audio</button>
+<button data-en="IC" data-ar="الدوائر" onclick="openPage('comp1')">IC</button>
+<button data-en="Power" data-ar="الطاقة" onclick="openPage('comp2')">Power</button>
+<button data-en="RF" data-ar="الإشارة" onclick="openPage('comp3')">RF</button>
+<button data-en="Connectors" data-ar="الموصلات" onclick="openPage('comp4')">Connectors</button>
+<button data-en="Sensors" data-ar="الحساسات" onclick="openPage('comp5')">Sensors</button>
+<button data-en="Audio" data-ar="الصوت" onclick="openPage('comp6')">Audio</button>
 </div>
 
-<button onclick="openPage('home')">Back</button>
+<button data-en="Back" data-ar="رجوع" onclick="openPage('home')">Back</button>
 
 </div>
 </div>
@@ -104,11 +121,11 @@ button{
 <div id="c2" class="page">
 <div class="card">
 <h2>Level 2</h2>
-<button onclick="openPage('home')">Back</button>
+<button data-en="Back" data-ar="رجوع" onclick="openPage('home')">Back</button>
 </div>
 </div>
 
-<!-- LEVEL 3-10 EMPTY -->
+<!-- EMPTY LEVELS -->
 <div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
@@ -127,6 +144,17 @@ button{
 <div id="comp6" class="page"><div class="card"><h2>Audio</h2><button onclick="openPage('c1')">Back</button></div></div>
 
 <script>
+let lang="en";
+
+function toggleLang(){
+lang = (lang==="en") ? "ar" : "en";
+document.getElementById("langBtn").innerText = (lang==="en") ? "AR" : "EN";
+
+document.querySelectorAll("[data-en]").forEach(el=>{
+el.innerText = el.getAttribute("data-"+lang);
+});
+}
+
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");

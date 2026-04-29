@@ -20,11 +20,13 @@ h1{
     color:#00aaff;
 }
 
-.card{
-    margin:15px;
+.page{
+    display:none;
     padding:20px;
-    background:#1c1c1c;
-    border-radius:15px;
+}
+
+.active{
+    display:block;
 }
 
 button{
@@ -37,11 +39,11 @@ button{
     color:white;
 }
 
-#content{
-    margin-top:20px;
+.card{
+    margin:15px;
     padding:20px;
-    background:#222;
-    border-radius:10px;
+    background:#1c1c1c;
+    border-radius:15px;
 }
 </style>
 
@@ -51,34 +53,43 @@ button{
 
 <h1>🔧 Repair Academy</h1>
 
-<div class="card">
-    <button onclick="openChapter('chapter_1')">📘 Multimètre</button>
-    <button onclick="openChapter('chapter_2')">📘 Composants</button>
+<!-- PAGE 1 -->
+<div id="home" class="page active">
+    <div class="card">
+        <h3>📚 Chapitres</h3>
+        <button onclick="openPage('chapter1')">Multimètre</button>
+        <button onclick="openPage('chapter2')">Composants</button>
+    </div>
 </div>
 
-<div id="content">Choisis un chapitre 👆</div>
+<!-- PAGE 2 -->
+<div id="chapter1" class="page">
+    <h2>📘 Multimètre</h2>
+    <p>Apprendre les bases du multimètre</p>
+    <button onclick="openPage('home')">⬅ Retour</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="chapter2" class="page">
+    <h2>📘 Composants</h2>
+    <p>Résistance, diode, condensateur</p>
+    <button onclick="openPage('home')">⬅ Retour</button>
+</div>
 
 <script>
 const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 
-const data = {
-    chapter_1: {
-        title: "Multimètre",
-        text: "Apprendre les bases du multimètre"
-    },
-    chapter_2: {
-        title: "Composants",
-        text: "Résistance, diode, condensateur"
-    }
-};
+function openPage(page){
 
-function openChapter(id){
-    document.getElementById("content").innerHTML =
-        "<h3>" + data[id].title + "</h3><p>" + data[id].text + "</p>";
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
 
-    tg.sendData(id);
+    document.getElementById(page).classList.add("active");
+
+    tg.sendData(page);
 }
 </script>
 

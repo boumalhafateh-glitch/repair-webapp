@@ -1,17 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repair Academy</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f0f0f;
+    color:white;
+    text-align:center;
+}
+
+h1{
+    font-family:'Orbitron', sans-serif;
+    margin:15px;
+    font-size:20px;
+}
+
+.page{display:none;padding:15px;}
+.active{display:block;}
+
+.card{
+    background:#1c1c1c;
+    margin:10px;
+    padding:15px;
+    border-radius:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+button{
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #333;
+    background:#1a1a1a;
+    color:white;
+}
+
+.sos{
+    background:#8b0000;
+    border:1px solid #aa0000;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⚡ Repair Academy ⚡</h1>
+
+<!-- HOME -->
+<div id="home" class="page active">
+<div class="card">
+
+<div class="grid">
+<button onclick="openPage('c1')">Level 1</button>
+<button onclick="openPage('c2')">Level 2</button>
+<button onclick="openPage('c3')">Level 3</button>
+<button onclick="openPage('c4')">Level 4</button>
+<button onclick="openPage('c5')">Level 5</button>
+<button onclick="openPage('c6')">Level 6</button>
+<button onclick="openPage('c7')">Level 7</button>
+<button onclick="openPage('c8')">Level 8</button>
+<button onclick="openPage('c9')">Level 9</button>
+<button onclick="openPage('c10')">Level 10</button>
+</div>
+
+<button class="sos" onclick="openSOS()">SOS</button>
+
+</div>
+</div>
+
+<!-- LEVEL 1 -->
+<div id="c1" class="page">
+<div class="card">
+
+<h2>Level 1 / المستوى 1</h2>
+
+<div class="grid">
+<button onclick="openPage('comp1')">1. IC / Circuits</button>
+<button onclick="openPage('comp2')">2. Power ⚡</button>
+<button>Tools / أدوات</button>
+<button>Multimeter</button>
+<button>Safety</button>
+</div>
+
+<button onclick="openPage('home')">Back</button>
+
+</div>
+</div>
+
+<!-- LEVEL 2-10 -->
+<div id="c2" class="page"><div class="card"><h2>Level 2</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
+
+<!-- COMPONENT PAGE 1 -->
+<div id="comp1" class="page">
+<div class="card">
+
+<h2>1. Composants principaux (IC)</h2>
+
+<p>SoC → CPU + GPU + IA</p>
+<p>PMIC → alimentation</p>
+<p>Baseband / Modem</p>
+<p>IC RF</p>
+<p>Transceiver RF</p>
+<p>Amplificateur PA</p>
+<p>Switch antenne</p>
+<p>RAM LPDDR</p>
+<p>Stockage UFS / NAND</p>
+<p>WiFi / Bluetooth IC</p>
+<p>GPS IC</p>
+<p>Audio IC</p>
+<p>Amplificateur audio</p>
+<p>IC charge</p>
+<p>USB / Data IC</p>
+<p>Display / Touch IC</p>
+<p>Camera IC</p>
+<p>Sensor Hub</p>
+<p>Security IC</p>
+
+<button onclick="openPage('c1')">⬅ Back</button>
+
+</div>
+</div>
+
+<!-- COMPONENT PAGE 2 -->
 <div id="comp2" class="page">
 <div class="card">
 
 <h2>2. Gestion de l’énergie ⚡</h2>
 
 <p>Bobines (inductances)</p>
-<p>Condensateurs (céramique, tantale, etc.)</p>
+<p>Condensateurs (céramique, tantale)</p>
 <p>Résistances (SMD)</p>
 <p>Diodes</p>
 <p>Transistors / MOSFET</p>
-<p>Fusibles (fuse)</p>
-<p>Régulateurs de tension (LDO, Buck, Boost)</p>
+<p>Fusibles</p>
+<p>Régulateurs (LDO / Buck / Boost)</p>
 
-<button onclick="openPage('components')">⬅ Back</button>
+<button onclick="openPage('c1')">⬅ Back</button>
 
 </div>
 </div>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+function openPage(page){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(page).classList.add("active");
+tg.sendData(page);
+}
+
+function openSOS(){
+window.open("https://t.me/c/3919937885/2","_blank");
+}
+</script>
+
+</body>
+</html>

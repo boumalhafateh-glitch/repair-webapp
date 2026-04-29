@@ -16,228 +16,118 @@ body{
 
 h1{
     font-family:Impact, Arial Black;
-    font-size:28px;
+    font-size:26px;
     margin:15px;
     text-shadow:0 0 10px #00ffff;
 }
 
-/* TOP BAR */
-.topbar{
-    position:fixed;
-    top:10px;
-    right:10px;
-}
-
-#langBtn{
-    padding:6px 10px;
-    background:#111;
-    border:1px solid #333;
-    color:white;
-    border-radius:6px;
-}
-
-/* PAGES */
 .page{display:none;padding:15px;}
 .active{display:block;}
 
-/* CARDS */
 .card{
     background:#1a1a1a;
     padding:16px;
-    border-radius:14px;
     margin:10px;
-    border:1px solid #2a2a2a;
+    border-radius:12px;
     text-align:left;
 }
 
-/* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
-/* BUTTONS */
 button{
     padding:14px;
     border-radius:10px;
     border:1px solid #333;
     background:#111;
     color:white;
-    font-size:15px;
 }
 
-/* PROGRESS BAR */
-.progress{
-    height:8px;
-    background:#222;
-    border-radius:10px;
-    margin:10px 0;
-}
-
-.bar{
-    height:8px;
-    background:#00ffff;
-    width:0%;
-    border-radius:10px;
-}
-
-/* QUIZ */
-.quiz{
-    margin-top:10px;
-    padding:10px;
-    border-left:3px solid #00ffff;
+#langBtn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    padding:6px 10px;
+    background:#111;
+    border:1px solid #333;
+    color:white;
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
 <button id="langBtn" onclick="toggleLang()">AR</button>
-</div>
 
-<h1>⚡ REPAIR ACADEMY PRO ⚡</h1>
+<h1>REPAIR ACADEMY</h1>
 
 <!-- HOME -->
 <div id="home" class="page active">
 <div class="card">
-
 <div class="grid">
-<button onclick="openLevel(1)">Level 1</button>
-<button onclick="openLevel(2)">Level 2</button>
-<button onclick="openLevel(3)">Level 3</button>
-<button onclick="openLevel(4)">Level 4</button>
-<button onclick="openLevel(5)">Level 5</button>
-<button onclick="openLevel(6)">Level 6</button>
-<button onclick="openLevel(7)">Level 7</button>
-<button onclick="openLevel(8)">Level 8</button>
-<button onclick="openLevel(9)">Level 9</button>
-<button onclick="openLevel(10)">Level 10</button>
+<button onclick="openPage('c1')">Level 1</button>
+<button onclick="openPage('c2')">Level 2</button>
+<button onclick="openPage('c3')">Level 3</button>
+<button onclick="openPage('c4')">Level 4</button>
+<button onclick="openPage('c5')">Level 5</button>
+<button onclick="openPage('c6')">Level 6</button>
+<button onclick="openPage('c7')">Level 7</button>
+<button onclick="openPage('c8')">Level 8</button>
+<button onclick="openPage('c9')">Level 9</button>
+<button onclick="openPage('c10')">Level 10</button>
+</div>
+</div>
 </div>
 
-</div>
-</div>
-
-<!-- LEVEL PAGE -->
-<div id="levelPage" class="page">
+<!-- LEVEL 1 -->
+<div id="c1" class="page">
 <div class="card">
+<h2 data-en="Level 1 - Basics" data-ar="المستوى 1 - الأساسيات">Level 1</h2>
 
-<h2 id="levelTitle">Level</h2>
+<p data-en="Learn motherboard basics, tools, and diagnostics."
+   data-ar="تعلم أساسيات اللوحة الأم والأدوات والتشخيص.">
+</p>
 
-<div class="progress">
-<div class="bar" id="progressBar"></div>
-</div>
-
-<div id="lesson"></div>
-
-<div class="quiz">
-<div id="quizQ"></div>
-<button onclick="answer(true)">A</button>
-<button onclick="answer(false)">B</button>
-</div>
-
-<br>
-<button onclick="backHome()">Back</button>
-
+<button onclick="openPage('home')">Back</button>
 </div>
 </div>
+
+<!-- LEVEL 2 -->
+<div id="c2" class="page"><div class="card"><h2>Level 2</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
+<div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
 
 <script>
 let lang="en";
-let currentLevel=1;
-let progress=0;
 
-/* DATA SIMPLE FORMATION */
-const lessons = {
-1:{
-title:{en:"Basics of Repair",ar:"أساسيات الإصلاح"},
-content:{
-en:"Learn motherboard basics, tools, and first diagnostics.",
-ar:"تعلم أساسيات اللوحة الأم والأدوات والتشخيص الأولي."
-},
-quiz:{
-q:{en:"What is first tool?",ar:"ما هي أول أداة؟"},
-a:true
-}
-},
-2:{
-title:{en:"Components",ar:"المكونات"},
-content:{
-en:"Resistors, capacitors, diodes and coils.",
-ar:"المقاومات والمكثفات والثنائيات والملفات."
-},
-quiz:{
-q:{en:"Is capacitor passive?",ar:"هل المكثف عنصر سلبي؟"},
-a:true
-}
-}
-};
-
-/* OPEN LEVEL */
-function openLevel(n){
-currentLevel=n;
-progress=0;
-
-document.getElementById("home").classList.remove("active");
-document.getElementById("levelPage").classList.add("active");
-
-loadLevel();
+function openPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+applyLang();
 }
 
-/* LOAD LEVEL */
-function loadLevel(){
-let data=lessons[currentLevel];
-
-document.getElementById("levelTitle").innerText=data.title[lang];
-document.getElementById("lesson").innerText=data.content[lang];
-
-document.getElementById("quizQ").innerText=data.quiz.q[lang];
-
-updateProgress();
-}
-
-/* PROGRESS */
-function updateProgress(){
-document.getElementById("progressBar").style.width=progress+"%";
-}
-
-/* QUIZ */
-function answer(correct){
-if(correct){
-progress+=50;
-}else{
-progress+=10;
-}
-
-if(progress>=100){
-unlockNext();
-}
-
-updateProgress();
-}
-
-/* UNLOCK NEXT */
-function unlockNext(){
-alert("Level Completed!");
-localStorage.setItem("level_"+currentLevel,true);
-}
-
-/* BACK */
-function backHome(){
-document.getElementById("home").classList.add("active");
-document.getElementById("levelPage").classList.remove("active");
-}
-
-/* LANGUAGE */
 function toggleLang(){
 lang=(lang==="en")?"ar":"en";
 document.getElementById("langBtn").innerText=(lang==="en")?"AR":"EN";
+applyLang();
+}
 
-if(document.getElementById("levelPage").classList.contains("active")){
-loadLevel();
+function applyLang(){
+document.querySelectorAll("[data-en]").forEach(el=>{
+el.innerText=el.getAttribute("data-"+lang);
+});
 }
-}
+
+window.onload=applyLang;
 </script>
 
 </body>

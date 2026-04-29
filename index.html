@@ -92,8 +92,8 @@ button{
 <button onclick="openPage('comp2')">2. Power ⚡</button>
 <button onclick="openPage('comp3')">3. RF / Signal 📡</button>
 <button onclick="openPage('comp4')">4. Connectors 🔌</button>
+<button onclick="openPage('comp5')">5. Sensors 🧠</button>
 <button>Tools / أدوات</button>
-<button>Multimeter</button>
 </div>
 
 <button onclick="openPage('home')">Back / رجوع</button>
@@ -113,52 +113,31 @@ button{
 <div id="c10" class="page"><div class="card"><h2>Level 10 / المستوى 10</h2><button onclick="openPage('home')">Back</button></div></div>
 
 <!-- COMPONENT 1 -->
-<div id="comp1" class="page">
-<div class="card">
-<h2>1. IC / Circuits</h2>
-<p>SoC / المعالج الرئيسي</p>
-<p>PMIC / إدارة الطاقة</p>
-<p>RAM / الذاكرة</p>
-<button onclick="openPage('c1')">Back</button>
-</div>
-</div>
+<div id="comp1" class="page"><div class="card"><h2>IC / Circuits</h2><p>SoC / PMIC / RAM</p><button onclick="openPage('c1')">Back</button></div></div>
 
 <!-- COMPONENT 2 -->
-<div id="comp2" class="page">
-<div class="card">
-<h2>2. Power ⚡</h2>
-<p>Inductors / ملفات</p>
-<p>Capacitors / مكثفات</p>
-<button onclick="openPage('c1')">Back</button>
-</div>
-</div>
+<div id="comp2" class="page"><div class="card"><h2>Power ⚡</h2><p>Inductors / Capacitors</p><button onclick="openPage('c1')">Back</button></div></div>
 
 <!-- COMPONENT 3 -->
-<div id="comp3" class="page">
-<div class="card">
-<h2>3. RF / Signal 📡</h2>
-<p>Filters / فلاتر</p>
-<p>Antenna / هوائي</p>
-<button onclick="openPage('c1')">Back</button>
-</div>
-</div>
+<div id="comp3" class="page"><div class="card"><h2>RF / Signal 📡</h2><p>Filters / Antenna</p><button onclick="openPage('c1')">Back</button></div></div>
 
 <!-- COMPONENT 4 -->
-<div id="comp4" class="page">
-<div class="card">
-<h2>4. Connectors 🔌</h2>
+<div id="comp4" class="page"><div class="card"><h2>Connectors 🔌</h2><p>Battery / Screen / Charging</p><button onclick="openPage('c1')">Back</button></div></div>
 
-<p>Battery Connector / موصل البطارية</p>
-<p>Screen Connector / موصل الشاشة</p>
-<p>Charging Port / منفذ الشحن</p>
-<p>Camera Connector / موصل الكاميرا</p>
-<p>Audio Jack / مدخل الصوت</p>
-<p>Button Flex / أزرار التشغيل</p>
+<!-- COMPONENT 5 -->
+<div id="comp5" class="page"><div class="card"><h2>Sensors 🧠</h2>
+
+<p>Accelerometer / مقياس الحركة</p>
+<p>Gyroscope / الجيروسكوب</p>
+<p>Proximity Sensor / مستشعر القرب</p>
+<p>Light Sensor / مستشعر الضوء</p>
+<p>Magnetometer / البوصلة</p>
+<p>Fingerprint Sensor / بصمة الإصبع</p>
+<p>Barometer / الضغط الجوي</p>
 
 <button onclick="openPage('c1')">Back / رجوع</button>
 
-</div>
-</div>
+</div></div>
 
 <script>
 const tg = window.Telegram.WebApp;

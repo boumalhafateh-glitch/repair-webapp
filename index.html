@@ -16,7 +16,6 @@ body{
     text-align:center;
 }
 
-/* TITLE */
 h1{
     font-family: Impact, "Arial Black", sans-serif;
     font-size:28px;
@@ -26,7 +25,6 @@ h1{
     margin:15px;
 }
 
-/* PAGES */
 .page{display:none;padding:15px;}
 .active{display:block;}
 
@@ -38,32 +36,26 @@ h1{
     border:1px solid #2a2a2a;
 }
 
-/* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
-/* 🔥 BUTTONS IMPROVED TEXT */
 button{
     padding:16px;
     border-radius:10px;
     border:1px solid #333;
     background:#111;
     color:white;
-
-    font-size:16px;       /* ⬅ bigger text */
+    font-size:16px;
     font-weight:600;
-    text-align:center;
 }
 
-/* SOS */
 .sos{
     background:#8b0000;
     border:1px solid #aa0000;
     margin-top:15px;
-    font-size:16px;
 }
 
 /* LANGUAGE BUTTON */
@@ -78,12 +70,14 @@ button{
     color:white;
     border-radius:6px;
     cursor:pointer;
+    z-index:999;
 }
 </style>
 </head>
 
 <body>
 
+<!-- LANGUAGE -->
 <button id="langBtn" onclick="toggleLang()">AR</button>
 
 <h1>⚡ ⚙ REPAIR ACADEMY ⚙ ⚡</h1>
@@ -157,22 +151,30 @@ button{
 <div id="comp6" class="page"><div class="card"><h2>Audio</h2><button onclick="openPage('c1')">Back</button></div></div>
 
 <script>
-let lang="en";
+let lang = "en";
 
-function toggleLang(){
-lang = (lang==="en") ? "ar" : "en";
-document.getElementById("langBtn").innerText = (lang==="en") ? "AR" : "EN";
-
+/* 🔥 FIX GLOBAL LANGUAGE */
+function applyLang(){
 document.querySelectorAll("[data-en]").forEach(el=>{
 el.innerText = el.getAttribute("data-"+lang);
 });
 }
 
+/* PAGE NAVIGATION */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
+applyLang(); // important fix
 }
 
+/* SWITCH LANGUAGE */
+function toggleLang(){
+lang = (lang === "en") ? "ar" : "en";
+document.getElementById("langBtn").innerText = (lang === "en") ? "AR" : "EN";
+applyLang();
+}
+
+/* SOS */
 function openSOS(){
 window.open("https://t.me/c/3919937885/2","_blank");
 }

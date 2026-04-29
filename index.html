@@ -18,13 +18,12 @@ body{
 
 h1{
     color:#00aaff;
-    margin-top:20px;
 }
 
 .card{
-    background:#1c1c1c;
     margin:15px;
     padding:20px;
+    background:#1c1c1c;
     border-radius:15px;
 }
 
@@ -36,11 +35,13 @@ button{
     border-radius:10px;
     background:#00aaff;
     color:white;
-    font-size:16px;
 }
 
-button:active{
-    transform:scale(0.98);
+#content{
+    margin-top:20px;
+    padding:20px;
+    background:#222;
+    border-radius:10px;
 }
 </style>
 
@@ -51,20 +52,33 @@ button:active{
 <h1>🔧 Repair Academy</h1>
 
 <div class="card">
-    <h3>📚 Chapitres</h3>
-
-    <button onclick="send('chapter_1')">Multimètre</button>
-    <button onclick="send('chapter_2')">Composants</button>
-
+    <button onclick="openChapter('chapter_1')">📘 Multimètre</button>
+    <button onclick="openChapter('chapter_2')">📘 Composants</button>
 </div>
+
+<div id="content">Choisis un chapitre 👆</div>
 
 <script>
 const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 
-function send(data){
-    tg.sendData(data);
+const data = {
+    chapter_1: {
+        title: "Multimètre",
+        text: "Apprendre les bases du multimètre"
+    },
+    chapter_2: {
+        title: "Composants",
+        text: "Résistance, diode, condensateur"
+    }
+};
+
+function openChapter(id){
+    document.getElementById("content").innerHTML =
+        "<h3>" + data[id].title + "</h3><p>" + data[id].text + "</p>";
+
+    tg.sendData(id);
 }
 </script>
 

@@ -85,18 +85,14 @@ button{
 <div id="c1" class="page">
 <div class="card">
 
-<h2>Level 1</h2>
+<h2>Level 1 / المستوى 1</h2>
 
 <div class="grid">
 
-<!-- IMPORTANT: Components is ONLY HERE -->
-<button onclick="openPage('components')">
-Components
-</button>
-
-<button>Tools</button>
-<button>Multimeter</button>
-<button>Safety</button>
+<button onclick="openPage('comp1')">1. IC / Circuits</button>
+<button>Tools / أدوات</button>
+<button>Multimeter / متعدد القياس</button>
+<button>Safety / أمان</button>
 
 </div>
 
@@ -116,17 +112,34 @@ Components
 <div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
 
-<!-- COMPONENTS PAGE -->
-<div id="components" class="page">
+<!-- COMPONENT PAGE FULL -->
+<div id="comp1" class="page">
 <div class="card">
 
-<h2>Components Book</h2>
+<h2>1. Composants principaux (IC / circuits intégrés)</h2>
+<p>📱 Pour smartphone (carte mère mobile)</p>
 
-<p><b>IC:</b> CPU, GPU, RAM, PMIC, Modem</p>
-<p><b>Power:</b> resistors, capacitors, MOSFET</p>
-<p><b>Com:</b> RF, WiFi, GPS</p>
+<p>SoC (System on Chip) → CPU + GPU + IA</p>
+<p>PMIC (Power Management IC) → gestion alimentation</p>
+<p>Baseband / Modem → réseau GSM / 4G / 5G</p>
+<p>IC RF (Radio Fréquence)</p>
+<p>Transceiver RF</p>
+<p>Amplificateur de puissance (PA)</p>
+<p>Switch antenne</p>
+<p>Mémoire RAM (LPDDR)</p>
+<p>Stockage (NAND / UFS)</p>
+<p>IC WiFi / Bluetooth</p>
+<p>IC GPS</p>
+<p>Codec audio (Audio IC)</p>
+<p>Amplificateur audio</p>
+<p>IC charge (Charging IC / Tristar / Hydra sur iPhone)</p>
+<p>IC USB / Data</p>
+<p>IC écran (Display Driver / Touch IC)</p>
+<p>IC caméra</p>
+<p>IC capteurs (Sensor Hub)</p>
+<p>IC sécurité (Secure Enclave / TPM mobile)</p>
 
-<button onclick="openPage('c1')">Back</button>
+<button onclick="openPage('c1')">⬅ Back</button>
 
 </div>
 </div>

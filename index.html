@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,7 @@ h1{
     margin-top:10px;
 }
 
+/* pages */
 .page{
     display:none;
     padding:15px;
@@ -30,6 +31,7 @@ h1{
     display:block;
 }
 
+/* card */
 .card{
     margin:10px;
     padding:15px;
@@ -37,6 +39,7 @@ h1{
     border-radius:15px;
 }
 
+/* grid */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -44,6 +47,7 @@ h1{
     margin-top:10px;
 }
 
+/* buttons */
 button{
     width:100%;
     padding:14px;
@@ -54,11 +58,20 @@ button{
     font-size:13px;
 }
 
-.small{
+/* text */
+.en{
+    display:block;
     font-size:13px;
-    color:#ccc;
 }
 
+.ar{
+    display:block;
+    font-size:12px;
+    color:#bbb;
+    direction:rtl;
+}
+
+/* sos */
 .sos{
     background:#d9534f;
     margin-top:15px;
@@ -76,25 +89,37 @@ button{
 <div id="home" class="page active">
 
     <div class="card">
-        <h3>📚 Levels / المستويات</h3>
+        <h3>
+            <span class="en">Levels</span>
+            <span class="ar">المستويات</span>
+        </h3>
 
         <div class="grid">
 
-            <button onclick="openPage('c1')">Level 1 / Niveau 1 / مستوى 1</button>
-            <button onclick="openPage('c2')">Level 2 / Niveau 2 / مستوى 2</button>
-            <button onclick="openPage('c3')">Level 3 / Niveau 3 / مستوى 3</button>
-            <button onclick="openPage('c4')">Level 4 / Niveau 4 / مستوى 4</button>
-            <button onclick="openPage('c5')">Level 5 / Niveau 5 / مستوى 5</button>
-            <button onclick="openPage('c6')">Level 6 / Niveau 6 / مستوى 6</button>
-            <button onclick="openPage('c7')">Level 7 / Niveau 7 / مستوى 7</button>
-            <button onclick="openPage('c8')">Level 8 / Niveau 8 / مستوى 8</button>
-            <button onclick="openPage('c9')">Level 9 / Niveau 9 / مستوى 9</button>
-            <button onclick="openPage('c10')">Level 10 / Niveau 10 / مستوى 10</button>
+            <button onclick="openPage('c1')">
+                <span class="en">Level 1</span>
+                <span class="ar">المستوى 1</span>
+            </button>
+
+            <button onclick="openPage('c2')">
+                <span class="en">Level 2</span>
+                <span class="ar">المستوى 2</span>
+            </button>
+
+            <button onclick="openPage('c3')"><span class="en">Level 3</span><span class="ar">المستوى 3</span></button>
+            <button onclick="openPage('c4')"><span class="en">Level 4</span><span class="ar">المستوى 4</span></button>
+            <button onclick="openPage('c5')"><span class="en">Level 5</span><span class="ar">المستوى 5</span></button>
+            <button onclick="openPage('c6')"><span class="en">Level 6</span><span class="ar">المستوى 6</span></button>
+            <button onclick="openPage('c7')"><span class="en">Level 7</span><span class="ar">المستوى 7</span></button>
+            <button onclick="openPage('c8')"><span class="en">Level 8</span><span class="ar">المستوى 8</span></button>
+            <button onclick="openPage('c9')"><span class="en">Level 9</span><span class="ar">المستوى 9</span></button>
+            <button onclick="openPage('c10')"><span class="en">Level 10</span><span class="ar">المستوى 10</span></button>
 
         </div>
 
         <button class="sos" onclick="openSOS()">
-            🆘 HELP / SOS
+            <span class="en">HELP / SOS</span>
+            <span class="ar">مساعدة</span>
         </button>
 
     </div>
@@ -104,36 +129,52 @@ button{
 <!-- LEVEL 1 -->
 <div id="c1" class="page">
     <div class="card">
-        <h2>📘 Level 1 / Niveau 1 / مستوى 1</h2>
-        <p class="small">
-            EN: Learn voltage, resistance and continuity.<br><br>
-            AR: تعلم قياس التوتر والمقاومة والاستمرارية.
+        <h2>
+            <span class="en">Level 1 - Multimeter</span>
+            <span class="ar">المستوى 1 - الملتيميتر</span>
+        </h2>
+
+        <p>
+            <span class="en">Learn voltage, resistance and continuity.</span><br><br>
+            <span class="ar">تعلم قياس التوتر والمقاومة والاستمرارية.</span>
         </p>
-        <button onclick="openPage('home')">⬅ Back / رجوع</button>
+
+        <button onclick="openPage('home')">
+            <span class="en">Back</span>
+            <span class="ar">رجوع</span>
+        </button>
     </div>
 </div>
 
 <!-- LEVEL 2 -->
 <div id="c2" class="page">
     <div class="card">
-        <h2>📘 Level 2 / Niveau 2 / مستوى 2</h2>
-        <p class="small">
-            EN: Components basics (resistors, capacitors, diodes).<br><br>
-            AR: أساسيات المكونات (المقاومات، المكثفات، الديود).
+        <h2>
+            <span class="en">Level 2 - Components</span>
+            <span class="ar">المستوى 2 - المكونات</span>
+        </h2>
+
+        <p>
+            <span class="en">Basics of resistors, capacitors and diodes.</span><br><br>
+            <span class="ar">أساسيات المقاومات والمكثفات والديود.</span>
         </p>
-        <button onclick="openPage('home')">⬅ Back / رجوع</button>
+
+        <button onclick="openPage('home')">
+            <span class="en">Back</span>
+            <span class="ar">رجوع</span>
+        </button>
     </div>
 </div>
 
 <!-- LEVELS 3-10 -->
-<div id="c3" class="page"><div class="card"><h2>📘 Level 3 / مستوى 3</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c4" class="page"><div class="card"><h2>📘 Level 4 / مستوى 4</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c5" class="page"><div class="card"><h2>📘 Level 5 / مستوى 5</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c6" class="page"><div class="card"><h2>📘 Level 6 / مستوى 6</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c7" class="page"><div class="card"><h2>📘 Level 7 / مستوى 7</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c8" class="page"><div class="card"><h2>📘 Level 8 / مستوى 8</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c9" class="page"><div class="card"><h2>📘 Level 9 / مستوى 9</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
-<div id="c10" class="page"><div class="card"><h2>📘 Level 10 / مستوى 10</h2><button onclick="openPage('home')">⬅ Back / رجوع</button></div></div>
+<div id="c3" class="page"><div class="card"><h2><span class="en">Level 3</span><span class="ar">المستوى 3</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c4" class="page"><div class="card"><h2><span class="en">Level 4</span><span class="ar">المستوى 4</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c5" class="page"><div class="card"><h2><span class="en">Level 5</span><span class="ar">المستوى 5</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c6" class="page"><div class="card"><h2><span class="en">Level 6</span><span class="ar">المستوى 6</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c7" class="page"><div class="card"><h2><span class="en">Level 7</span><span class="ar">المستوى 7</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c8" class="page"><div class="card"><h2><span class="en">Level 8</span><span class="ar">المستوى 8</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c9" class="page"><div class="card"><h2><span class="en">Level 9</span><span class="ar">المستوى 9</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
+<div id="c10" class="page"><div class="card"><h2><span class="en">Level 10</span><span class="ar">المستوى 10</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
 
 <script>
 const tg = window.Telegram.WebApp;

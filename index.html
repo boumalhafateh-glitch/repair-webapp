@@ -6,8 +6,6 @@
 <title>Repair Academy</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<!-- FONT STYLE TECH -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
 <style>
@@ -19,25 +17,16 @@ body{
     text-align:center;
 }
 
-/* TITLE */
 h1{
     font-family:'Orbitron', sans-serif;
-    color:#ffffff;
+    color:#fff;
     margin-top:15px;
     font-size:20px;
 }
 
-/* pages */
-.page{
-    display:none;
-    padding:15px;
-}
+.page{ display:none; padding:15px; }
+.active{ display:block; }
 
-.active{
-    display:block;
-}
-
-/* card */
 .card{
     margin:10px;
     padding:15px;
@@ -45,7 +34,6 @@ h1{
     border-radius:15px;
 }
 
-/* grid */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -53,7 +41,6 @@ h1{
     margin-top:10px;
 }
 
-/* BUTTON STYLE DARK */
 button{
     width:100%;
     padding:14px;
@@ -61,24 +48,12 @@ button{
     border-radius:10px;
     background:#1a1a1a;
     color:white;
-    font-size:13px;
     border:1px solid #333;
 }
 
-/* text */
-.en{
-    display:block;
-    font-size:13px;
-}
+.en{ display:block; font-size:13px; }
+.ar{ display:block; font-size:12px; color:#bbb; direction:rtl; }
 
-.ar{
-    display:block;
-    font-size:12px;
-    color:#bbb;
-    direction:rtl;
-}
-
-/* sos */
 .sos{
     background:#8b0000;
     border:1px solid #aa0000;
@@ -86,104 +61,121 @@ button{
     font-weight:bold;
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- TITLE -->
 <h1>⚡ Repair Academy ⚡</h1>
 
 <!-- HOME -->
 <div id="home" class="page active">
-
     <div class="card">
-        <h3>
-            <span class="en">Levels</span>
-            <span class="ar">المستويات</span>
-        </h3>
+        <h3><span class="en">Levels</span><span class="ar">المستويات</span></h3>
 
         <div class="grid">
-
-            <button onclick="openPage('c1')">
-                <span class="en">Level 1</span>
-                <span class="ar">المستوى 1</span>
-            </button>
-
-            <button onclick="openPage('c2')">
-                <span class="en">Level 2</span>
-                <span class="ar">المستوى 2</span>
-            </button>
-
-            <button onclick="openPage('c3')"><span class="en">Level 3</span><span class="ar">المستوى 3</span></button>
-            <button onclick="openPage('c4')"><span class="en">Level 4</span><span class="ar">المستوى 4</span></button>
-            <button onclick="openPage('c5')"><span class="en">Level 5</span><span class="ar">المستوى 5</span></button>
-            <button onclick="openPage('c6')"><span class="en">Level 6</span><span class="ar">المستوى 6</span></button>
-            <button onclick="openPage('c7')"><span class="en">Level 7</span><span class="ar">المستوى 7</span></button>
-            <button onclick="openPage('c8')"><span class="en">Level 8</span><span class="ar">المستوى 8</span></button>
-            <button onclick="openPage('c9')"><span class="en">Level 9</span><span class="ar">المستوى 9</span></button>
-            <button onclick="openPage('c10')"><span class="en">Level 10</span><span class="ar">المستوى 10</span></button>
-
+            <button onclick="openPage('c1')"><span class="en">Level 1</span><span class="ar">المستوى 1</span></button>
+            <button onclick="openPage('c2')"><span class="en">Level 2</span><span class="ar">المستوى 2</span></button>
         </div>
 
         <button class="sos" onclick="openSOS()">
             <span class="en">HELP / SOS</span>
             <span class="ar">مساعدة</span>
         </button>
-
     </div>
-
 </div>
 
-<!-- LEVEL 1 -->
+<!-- ================= LEVEL 1 MENU ================= -->
 <div id="c1" class="page">
     <div class="card">
         <h2>
-            <span class="en">Level 1 - Multimeter</span>
-            <span class="ar">المستوى 1 - الملتيميتر</span>
+            <span class="en">Level 1</span>
+            <span class="ar">المستوى 1</span>
         </h2>
 
-        <p>
-            <span class="en">Learn voltage, resistance and continuity.</span><br><br>
-            <span class="ar">تعلم قياس التوتر والمقاومة والاستمرارية.</span>
-        </p>
+        <div class="grid">
+
+            <button onclick="openPage('tool1')">
+                <span class="en">Tools</span>
+                <span class="ar">أدوات العمل</span>
+            </button>
+
+            <button onclick="openPage('multimeter')">
+                <span class="en">Multimeter</span>
+                <span class="ar">الملتيميتر</span>
+            </button>
+
+            <button onclick="openPage('components')">
+                <span class="en">Components</span>
+                <span class="ar">المكونات</span>
+            </button>
+
+            <button onclick="openPage('safety')">
+                <span class="en">Safety</span>
+                <span class="ar">السلامة</span>
+            </button>
+
+        </div>
 
         <button onclick="openPage('home')">
             <span class="en">Back</span>
             <span class="ar">رجوع</span>
         </button>
+    </div>
+</div>
+
+<!-- ================= COURSES ================= -->
+
+<div id="tool1" class="page">
+    <div class="card">
+        <h2><span class="en">Tools</span><span class="ar">أدوات العمل</span></h2>
+        <p>
+            <span class="en">Basic repair tools introduction.</span><br><br>
+            <span class="ar">مقدمة حول أدوات الصيانة الأساسية.</span>
+        </p>
+        <button onclick="openPage('c1')"><span class="en">Back</span><span class="ar">رجوع</span></button>
+    </div>
+</div>
+
+<div id="multimeter" class="page">
+    <div class="card">
+        <h2><span class="en">Multimeter</span><span class="ar">الملتيميتر</span></h2>
+        <p>
+            <span class="en">Learn how to measure voltage and resistance.</span><br><br>
+            <span class="ar">تعلم كيفية قياس التوتر والمقاومة.</span>
+        </p>
+        <button onclick="openPage('c1')"><span class="en">Back</span><span class="ar">رجوع</span></button>
+    </div>
+</div>
+
+<div id="components" class="page">
+    <div class="card">
+        <h2><span class="en">Components</span><span class="ar">المكونات</span></h2>
+        <p>
+            <span class="en">Resistors, capacitors, diodes basics.</span><br><br>
+            <span class="ar">أساسيات المقاومات والمكثفات والديود.</span>
+        </p>
+        <button onclick="openPage('c1')"><span class="en">Back</span><span class="ar">رجوع</span></button>
+    </div>
+</div>
+
+<div id="safety" class="page">
+    <div class="card">
+        <h2><span class="en">Safety</span><span class="ar">السلامة</span></h2>
+        <p>
+            <span class="en">Basic safety rules in electronics.</span><br><br>
+            <span class="ar">قواعد السلامة في الإلكترونيات.</span>
+        </p>
+        <button onclick="openPage('c1')"><span class="en">Back</span><span class="ar">رجوع</span></button>
     </div>
 </div>
 
 <!-- LEVEL 2 -->
 <div id="c2" class="page">
     <div class="card">
-        <h2>
-            <span class="en">Level 2 - Components</span>
-            <span class="ar">المستوى 2 - المكونات</span>
-        </h2>
-
-        <p>
-            <span class="en">Basics of resistors, capacitors and diodes.</span><br><br>
-            <span class="ar">أساسيات المقاومات والمكثفات والديود.</span>
-        </p>
-
-        <button onclick="openPage('home')">
-            <span class="en">Back</span>
-            <span class="ar">رجوع</span>
-        </button>
+        <h2><span class="en">Level 2</span><span class="ar">المستوى 2</span></h2>
+        <button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button>
     </div>
 </div>
-
-<!-- LEVELS 3-10 -->
-<div id="c3" class="page"><div class="card"><h2><span class="en">Level 3</span><span class="ar">المستوى 3</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c4" class="page"><div class="card"><h2><span class="en">Level 4</span><span class="ar">المستوى 4</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c5" class="page"><div class="card"><h2><span class="en">Level 5</span><span class="ar">المستوى 5</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c6" class="page"><div class="card"><h2><span class="en">Level 6</span><span class="ar">المستوى 6</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c7" class="page"><div class="card"><h2><span class="en">Level 7</span><span class="ar">المستوى 7</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c8" class="page"><div class="card"><h2><span class="en">Level 8</span><span class="ar">المستوى 8</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c9" class="page"><div class="card"><h2><span class="en">Level 9</span><span class="ar">المستوى 9</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
-<div id="c10" class="page"><div class="card"><h2><span class="en">Level 10</span><span class="ar">المستوى 10</span></h2><button onclick="openPage('home')"><span class="en">Back</span><span class="ar">رجوع</span></button></div></div>
 
 <script>
 const tg = window.Telegram.WebApp;

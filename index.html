@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repair Academy</title>
+<title>Master Repair Academy</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -15,13 +15,12 @@
     --panel2:#1b1b1b;
     --text:#ffffff;
     --soft:#dedede;
-    --muted:#969696;
+    --muted:#9b9b9b;
     --line:#303030;
     --gold:#f2c94c;
+    --cyan:#38bdf8;
     --green:#27c46b;
-    --orange:#f59e0b;
-    --red:#ef4444;
-    --blue:#38bdf8;
+    --red:#b00020;
 }
 
 *{box-sizing:border-box;}
@@ -32,9 +31,14 @@ body{
     color:var(--text);
     font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
     background:
-        radial-gradient(circle at top left, rgba(242,201,76,.18), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(56,189,248,.12), transparent 34%),
-        linear-gradient(180deg,#0f0f0f 0%,#050505 100%);
+        radial-gradient(circle at top left, rgba(56,189,248,.16), transparent 30%),
+        radial-gradient(circle at top right, rgba(242,201,76,.16), transparent 30%),
+        radial-gradient(circle at bottom, rgba(176,0,32,.12), transparent 35%),
+        linear-gradient(180deg,#0d0d0d 0%,#050505 100%);
+}
+
+body[dir="rtl"]{
+    direction:rtl;
 }
 
 .app{
@@ -46,39 +50,72 @@ body{
 
 .topbar{
     display:grid;
-    grid-template-columns:40px 1fr 40px;
+    grid-template-columns:42px 1fr 42px;
     align-items:center;
     gap:10px;
     margin-bottom:14px;
 }
 
-.logo{text-align:center;}
+.logo{
+    text-align:center;
+}
+
+.logo-mark{
+    width:34px;
+    height:34px;
+    margin:0 auto 5px;
+    border-radius:12px;
+    border:1px solid rgba(56,189,248,.55);
+    background:
+        radial-gradient(circle, rgba(56,189,248,.25), transparent 60%),
+        #101010;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan);
+    font-size:17px;
+    font-weight:900;
+    box-shadow:0 0 18px rgba(56,189,248,.26);
+}
 
 .logo h1{
     margin:0;
-    font-size:23px;
-    font-weight:800;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:.6px;
+    color:#eafaff;
+    text-shadow:
+        0 0 8px rgba(56,189,248,.48),
+        0 0 18px rgba(242,201,76,.16);
 }
 
-.logo span{color:var(--gold);}
+.logo h1 span{
+    color:var(--gold);
+}
 
 .status{
     margin-top:3px;
     color:var(--muted);
     font-size:11px;
-    font-weight:600;
+    font-weight:700;
 }
 
-.icon-btn{
-    width:40px;
-    height:40px;
+.icon-btn,
+.lang-btn{
+    width:42px;
+    height:42px;
     border:1px solid var(--line);
-    border-radius:12px;
-    background:rgba(18,18,18,.9);
+    border-radius:13px;
+    background:rgba(18,18,18,.92);
     color:white;
-    font-size:17px;
-    font-weight:800;
+    font-size:15px;
+    font-weight:900;
     cursor:pointer;
+}
+
+.lang-btn{
+    color:var(--gold);
+    font-size:13px;
 }
 
 .page{
@@ -89,57 +126,49 @@ body{
 .page.active{display:block;}
 
 @keyframes fade{
-    from{opacity:.4; transform:translateY(6px);}
+    from{opacity:.45; transform:translateY(6px);}
     to{opacity:1; transform:translateY(0);}
 }
 
 .hero,.panel{
     border:1px solid var(--line);
-    border-radius:14px;
+    border-radius:16px;
     background:rgba(20,20,20,.94);
-    padding:16px;
+    padding:17px;
     margin-bottom:12px;
     text-align:center;
-    box-shadow:0 14px 35px rgba(0,0,0,.22);
+    box-shadow:0 14px 35px rgba(0,0,0,.24);
 }
 
 .hero{
-    padding:18px 15px;
     background:
-        linear-gradient(145deg,rgba(242,201,76,.17),rgba(56,189,248,.10)),
+        linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)),
         rgba(20,20,20,.96);
 }
 
-.en-title{
+.title{
     margin:0;
-    font-size:21px;
-    font-weight:800;
-    line-height:1.2;
+    font-size:22px;
+    font-weight:900;
+    line-height:1.25;
 }
 
-.ar-title{
-    margin:7px 0 0;
-    direction:rtl;
+body[dir="rtl"] .title{
     font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:19px;
-    font-weight:700;
-    line-height:1.55;
+    font-size:21px;
 }
 
-.en-text{
+.text{
     margin:9px 0 0;
     color:var(--soft);
-    font-size:13px;
-    line-height:1.55;
+    font-size:14px;
+    line-height:1.65;
+    font-weight:600;
 }
 
-.ar-text{
-    margin:6px 0 0;
-    direction:rtl;
-    color:var(--muted);
+body[dir="rtl"] .text{
     font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:13px;
-    line-height:1.8;
+    line-height:1.9;
 }
 
 .progress-wrap{
@@ -155,7 +184,7 @@ body{
     height:100%;
     width:0%;
     border-radius:999px;
-    background:linear-gradient(90deg,var(--gold),var(--green));
+    background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));
     transition:.25s ease;
 }
 
@@ -168,8 +197,8 @@ body{
 
 .stat{
     border:1px solid var(--line);
-    border-radius:12px;
-    padding:10px 6px;
+    border-radius:13px;
+    padding:11px 6px;
     background:rgba(20,20,20,.9);
     text-align:center;
 }
@@ -177,32 +206,33 @@ body{
 .stat strong{
     display:block;
     color:var(--gold);
-    font-size:17px;
-    font-weight:800;
+    font-size:18px;
+    font-weight:900;
 }
 
 .stat small{
     display:block;
     color:var(--muted);
-    font-size:10.5px;
+    font-size:12px;
     line-height:1.45;
+    font-weight:700;
 }
 
 button{
-    min-height:43px;
+    min-height:44px;
     padding:11px;
-    border-radius:12px;
+    border-radius:13px;
     border:1px solid var(--line);
     background:#111;
     color:white;
     font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
-    font-size:13px;
-    font-weight:800;
+    font-size:14px;
+    font-weight:900;
     cursor:pointer;
 }
 
 .primary{
-    background:var(--gold);
+    background:linear-gradient(135deg,var(--gold),#ffe08a);
     color:#111;
     border-color:#d7aa25;
 }
@@ -214,7 +244,6 @@ button{
 
 .main-action{
     width:100%;
-    min-height:44px;
     margin:2px 0 4px;
 }
 
@@ -225,71 +254,84 @@ button{
 
 .section-title h3{
     margin:0;
-    font-size:15px;
-    font-weight:800;
+    font-size:17px;
+    font-weight:900;
 }
 
 .section-title p{
     margin:3px 0 0;
-    direction:rtl;
     color:var(--muted);
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:12px;
+    font-size:13px;
+    font-weight:700;
 }
 
 .tree{
     position:relative;
     display:grid;
-    gap:12px;
+    gap:13px;
     padding:4px 0;
 }
 
 .tree-node{
     position:relative;
     display:grid;
-    grid-template-columns:44px 1fr;
+    grid-template-columns:45px 1fr;
     gap:10px;
     align-items:center;
+}
+
+body[dir="rtl"] .tree-node{
+    grid-template-columns:1fr 45px;
 }
 
 .tree-node:not(:last-child)::after{
     content:"";
     position:absolute;
-    left:21px;
-    top:48px;
+    left:22px;
+    top:49px;
     width:2px;
-    height:26px;
-    background:linear-gradient(180deg,rgba(242,201,76,.65),rgba(56,189,248,.20));
+    height:28px;
+    background:linear-gradient(180deg,rgba(56,189,248,.7),rgba(242,201,76,.25));
+}
+
+body[dir="rtl"] .tree-node:not(:last-child)::after{
+    left:auto;
+    right:22px;
 }
 
 .node-icon{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    border:1px solid rgba(242,201,76,.35);
-    background:rgba(242,201,76,.10);
-    color:var(--gold);
+    width:45px;
+    height:45px;
+    border-radius:15px;
+    border:1px solid rgba(56,189,248,.45);
+    background:rgba(56,189,248,.10);
+    color:var(--cyan);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
-    font-weight:800;
+    font-size:17px;
+    font-weight:900;
+    box-shadow:0 0 16px rgba(56,189,248,.12);
+}
+
+body[dir="rtl"] .node-icon{
+    order:2;
 }
 
 .node-card{
-    min-height:82px;
+    min-height:96px;
     border:1px solid var(--line);
-    border-radius:14px;
-    background:linear-gradient(180deg,#1b1b1b,#101010);
+    border-radius:15px;
+    background:linear-gradient(180deg,#1c1c1c,#101010);
     color:white;
     text-align:center;
     cursor:pointer;
-    padding:11px 10px;
+    padding:13px 12px;
     box-shadow:0 10px 24px rgba(0,0,0,.18);
 }
 
 .node-card.done{
-    border-color:rgba(39,196,107,.75);
+    border-color:rgba(39,196,107,.8);
 }
 
 .node-card.locked{
@@ -298,60 +340,43 @@ button{
 
 .node-card strong{
     display:block;
-    font-size:13px;
-    font-weight:800;
-    line-height:1.25;
-}
-
-.node-card .ar{
-    display:block;
-    margin-top:4px;
-    direction:rtl;
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:12.5px;
-    font-weight:700;
-    line-height:1.5;
+    font-size:15.5px;
+    font-weight:900;
+    line-height:1.28;
 }
 
 .node-card small{
     display:block;
     color:var(--muted);
-    font-size:10.7px;
-    line-height:1.4;
-    margin-top:6px;
+    font-size:12.5px;
+    line-height:1.5;
+    margin-top:7px;
+    font-weight:700;
 }
 
 .badge{
     display:inline-block;
-    margin-top:8px;
-    padding:4px 8px;
+    margin-top:9px;
+    padding:5px 9px;
     border-radius:999px;
     background:rgba(242,201,76,.12);
     color:var(--gold);
-    font-size:10px;
-    font-weight:800;
+    font-size:11px;
+    font-weight:900;
 }
 
 .branch-title{
     margin:16px auto 10px;
     width:fit-content;
     max-width:100%;
-    padding:7px 11px;
+    padding:8px 12px;
     border-radius:999px;
-    border:1px solid rgba(56,189,248,.25);
+    border:1px solid rgba(56,189,248,.28);
     background:rgba(56,189,248,.08);
-    color:#9de4ff;
+    color:#a9e8ff;
     text-align:center;
-    font-size:11px;
-    font-weight:800;
-}
-
-.branch-title span{
-    display:block;
-    direction:rtl;
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    color:#a9d8e8;
-    margin-top:2px;
+    font-size:12px;
+    font-weight:900;
 }
 
 .list{
@@ -361,25 +386,24 @@ button{
 
 .lesson{
     border:1px solid var(--line);
-    border-radius:13px;
+    border-radius:14px;
     background:var(--panel2);
-    padding:12px;
+    padding:13px;
     text-align:center;
 }
 
 .lesson strong{
     display:block;
-    font-size:14px;
-    font-weight:800;
+    font-size:15.5px;
+    font-weight:900;
 }
 
-.lesson .ar-lesson-title{
-    display:block;
-    margin-top:4px;
-    direction:rtl;
-    font-family:"IBM Plex Sans Arabic",sans-serif;
-    font-size:13px;
-    font-weight:700;
+.lesson p{
+    margin:7px 0 0;
+    color:var(--muted);
+    font-size:13.5px;
+    line-height:1.65;
+    font-weight:600;
 }
 
 .action-row{
@@ -396,17 +420,21 @@ button{
 
 .footer{
     color:#777;
-    font-size:10.5px;
+    font-size:11px;
     text-align:center;
     padding:15px 0 5px;
     line-height:1.6;
+    font-weight:700;
 }
 
 @media(max-width:390px){
     .app{padding:12px;}
-    .tree-node{grid-template-columns:40px 1fr;}
-    .node-icon{width:40px;height:40px;}
-    .tree-node:not(:last-child)::after{left:19px;}
+    .logo h1{font-size:16px;}
+    .tree-node{grid-template-columns:42px 1fr;}
+    body[dir="rtl"] .tree-node{grid-template-columns:1fr 42px;}
+    .node-icon{width:42px;height:42px;}
+    .tree-node:not(:last-child)::after{left:20px;}
+    body[dir="rtl"] .tree-node:not(:last-child)::after{right:20px;}
 }
 
 @media(max-width:330px){
@@ -421,86 +449,78 @@ button{
 
     <div class="topbar">
         <button class="icon-btn" onclick="goHome()">⌂</button>
+
         <div class="logo">
-            <h1><span>Repair</span> Academy</h1>
-            <div class="status" id="telegramStatus">Telegram Mini App</div>
+            <div class="logo-mark">⌁</div>
+            <h1><span>MASTER</span> REPAIR ACADEMY</h1>
+            <div class="status" id="telegramStatus"></div>
         </div>
-        <button class="icon-btn" onclick="openSOS()">!</button>
+
+        <button class="lang-btn" id="langButton" onclick="toggleLanguage()">AR</button>
     </div>
 
     <div id="home" class="page active">
         <div class="hero">
-            <h2 class="en-title">Start Your Repair Journey</h2>
-            <h2 class="ar-title">ابدأ رحلتك في الإصلاح</h2>
-            <p class="en-text">Learn the tools first, then understand electronic components step by step.</p>
-            <p class="ar-text">تعلم الأدوات أولا، ثم افهم المكونات الإلكترونية خطوة بخطوة.</p>
+            <h2 class="title" id="heroTitle"></h2>
+            <p class="text" id="heroText"></p>
             <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
-            <p class="en-text" id="progressText">0% completed</p>
+            <p class="text" id="progressText">0%</p>
         </div>
 
         <div class="stats">
-            <div class="stat"><strong id="doneCount">0</strong><small>Completed<br>مكتمل</small></div>
-            <div class="stat"><strong id="totalCount">0</strong><small>Steps<br>خطوات</small></div>
-            <div class="stat"><strong>SOS</strong><small>Support<br>الدعم</small></div>
+            <div class="stat"><strong id="doneCount">0</strong><small id="completedLabel"></small></div>
+            <div class="stat"><strong id="totalCount">0</strong><small id="stepsLabel"></small></div>
+            <div class="stat"><strong>SOS</strong><small id="supportLabel"></small></div>
         </div>
 
-        <button class="primary main-action" onclick="continueLearning()">Continue Learning / متابعة التعلم</button>
+        <button class="primary main-action" onclick="continueLearning()" id="continueButton"></button>
 
         <div class="section-title">
-            <h3>Learning Tree</h3>
-            <p>شجرة التعلم</p>
+            <h3 id="treeTitle"></h3>
+            <p id="treeSubtitle"></p>
         </div>
 
         <div id="treeContainer"></div>
 
         <div class="section-title">
-            <h3>Support</h3>
-            <p>الدعم</p>
+            <h3 id="supportTitle"></h3>
+            <p id="supportSubtitle"></p>
         </div>
 
         <div class="panel sos-box">
-            <h2 class="en-title">SOS Repair</h2>
-            <h2 class="ar-title">دعم الإصلاح</h2>
-            <p class="en-text">Open the Telegram group to ask for help or show a failure.</p>
-            <p class="ar-text">افتح مجموعة تيليجرام لطلب المساعدة أو عرض عطل.</p>
+            <h2 class="title" id="sosTitle"></h2>
+            <p class="text" id="sosText"></p>
             <br>
-            <button class="danger" onclick="openSOS()">Open SOS / فتح الدعم</button>
+            <button class="danger" onclick="openSOS()" id="sosButton"></button>
         </div>
     </div>
 
     <div id="lessonPage" class="page">
         <div class="panel">
-            <h2 class="en-title" id="lessonTitleEn"></h2>
-            <h2 class="ar-title" id="lessonTitleAr"></h2>
-            <p class="en-text" id="lessonDescEn"></p>
-            <p class="ar-text" id="lessonDescAr"></p>
+            <h2 class="title" id="lessonTitle"></h2>
+            <p class="text" id="lessonDesc"></p>
             <span class="badge" id="lessonBadge"></span>
         </div>
 
         <div class="section-title">
-            <h3>What You Learn</h3>
-            <p>ماذا ستتعلم</p>
+            <h3 id="learnTitle"></h3>
+            <p id="learnSubtitle"></p>
         </div>
 
         <div class="list" id="lessonPoints"></div>
 
         <div class="panel">
-            <h2 class="en-title">Objective</h2>
-            <h2 class="ar-title">الهدف</h2>
-            <p class="en-text" id="objectiveEn"></p>
-            <p class="ar-text" id="objectiveAr"></p>
+            <h2 class="title" id="objectiveTitle"></h2>
+            <p class="text" id="objectiveText"></p>
         </div>
 
         <div class="action-row">
-            <button onclick="goHome()">Back / رجوع</button>
-            <button class="primary" onclick="markDone()">Done / تم</button>
+            <button onclick="goHome()" id="backButton"></button>
+            <button class="primary" onclick="markDone()" id="doneButton"></button>
         </div>
     </div>
 
-    <div class="footer">
-        Repair Academy • Learning Tree<br>
-        أكاديمية الإصلاح • شجرة التعلم
-    </div>
+    <div class="footer" id="footerText"></div>
 
 </div>
 
@@ -510,303 +530,323 @@ const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : 
 if(tg){
     tg.ready();
     tg.expand();
-    document.getElementById("telegramStatus").textContent = "Connected to Telegram";
-}else{
-    document.getElementById("telegramStatus").textContent = "Browser Test Mode";
 }
+
+let currentLang = localStorage.getItem("master_repair_lang") || "en";
+let currentNode = null;
+
+const ui = {
+    en:{
+        dir:"ltr",
+        langButton:"AR",
+        connected:"Connected to Telegram",
+        browser:"Browser Test Mode",
+        heroTitle:"Start Your Repair Journey",
+        heroText:"Learn tools first, then electronic components step by step.",
+        completed:"Completed",
+        steps:"Steps",
+        support:"Support",
+        continue:"Continue Learning",
+        treeTitle:"Learning Tree",
+        treeSubtitle:"Your repair roadmap",
+        supportTitle:"Support",
+        supportSubtitle:"Need help?",
+        sosTitle:"SOS Repair",
+        sosText:"Open the Telegram group to ask for help or show a failure.",
+        sosButton:"Open SOS",
+        learnTitle:"What You Learn",
+        learnSubtitle:"Main points",
+        objectiveTitle:"Objective",
+        back:"Back",
+        done:"Done",
+        footer:"Master Repair Academy • Learning Tree",
+        completedProgress:"completed",
+        open:"Open",
+        locked:"Locked",
+        doneState:"Done",
+        lockedMessage:"Complete the previous step first.",
+        completedMessage:"Step completed!"
+    },
+    ar:{
+        dir:"rtl",
+        langButton:"EN",
+        connected:"متصل بتيليجرام",
+        browser:"وضع الاختبار",
+        heroTitle:"ابدأ رحلتك في الإصلاح",
+        heroText:"تعلم الأدوات أولا، ثم المكونات الإلكترونية خطوة بخطوة.",
+        completed:"مكتمل",
+        steps:"خطوات",
+        support:"الدعم",
+        continue:"متابعة التعلم",
+        treeTitle:"شجرة التعلم",
+        treeSubtitle:"خريطة طريق الإصلاح",
+        supportTitle:"الدعم",
+        supportSubtitle:"تحتاج مساعدة؟",
+        sosTitle:"دعم الإصلاح",
+        sosText:"افتح مجموعة تيليجرام لطلب المساعدة أو عرض عطل.",
+        sosButton:"فتح الدعم",
+        learnTitle:"ماذا ستتعلم",
+        learnSubtitle:"النقاط الرئيسية",
+        objectiveTitle:"الهدف",
+        back:"رجوع",
+        done:"تم",
+        footer:"Master Repair Academy • شجرة التعلم",
+        completedProgress:"مكتمل",
+        open:"فتح",
+        locked:"مغلق",
+        doneState:"تم",
+        lockedMessage:"أكمل الخطوة السابقة أولا.",
+        completedMessage:"تم إنهاء الخطوة!"
+    }
+};
 
 const learningTree = [
     {
-        groupEn:"Start Learning",
-        groupAr:"ابدأ التعلم",
+        group:{en:"Start Learning", ar:"ابدأ التعلم"},
         nodes:[
             {
                 id:"start",
                 icon:"▶",
-                type:"Foundation",
-                enTitle:"Start Learning",
-                arTitle:"ابدأ التعلم",
-                enDesc:"Understand how this repair path works before starting.",
-                arDesc:"افهم كيف يعمل هذا المسار قبل البداية.",
-                objectiveEn:"Know the order: tools first, components second, repair later.",
-                objectiveAr:"معرفة الترتيب: الأدوات أولا، المكونات ثانيا، ثم الإصلاح لاحقا.",
+                type:{en:"Foundation", ar:"أساس"},
+                title:{en:"Start Learning", ar:"ابدأ التعلم"},
+                desc:{en:"Understand how this repair path works before starting.", ar:"افهم كيف يعمل هذا المسار قبل البداية."},
+                objective:{en:"Know the order: tools first, components second, repair later.", ar:"معرفة الترتيب: الأدوات أولا، المكونات ثانيا، ثم الإصلاح لاحقا."},
                 points:[
-                    ["Learning order","ترتيب التعلم","Do not start with complex repairs before knowing tools and components.","لا تبدأ بالإصلاحات المعقدة قبل معرفة الأدوات والمكونات."],
-                    ["Safe mindset","عقلية آمنة","The goal is to learn without damaging customer devices.","الهدف هو التعلم بدون إتلاف أجهزة العملاء."],
-                    ["Step by step","خطوة بخطوة","Each node is a small skill that prepares the next one.","كل نقطة هي مهارة صغيرة تجهزك لما بعدها."]
+                    {title:{en:"Learning order", ar:"ترتيب التعلم"}, text:{en:"Do not start with complex repairs before knowing tools and components.", ar:"لا تبدأ بالإصلاحات المعقدة قبل معرفة الأدوات والمكونات."}},
+                    {title:{en:"Safe mindset", ar:"عقلية آمنة"}, text:{en:"The goal is to learn without damaging customer devices.", ar:"الهدف هو التعلم بدون إتلاف أجهزة العملاء."}},
+                    {title:{en:"Step by step", ar:"خطوة بخطوة"}, text:{en:"Each node is a small skill that prepares the next one.", ar:"كل نقطة هي مهارة صغيرة تجهزك لما بعدها."}}
                 ]
             }
         ]
     },
     {
-        groupEn:"Tools",
-        groupAr:"الأدوات",
+        group:{en:"Tools", ar:"الأدوات"},
         nodes:[
             {
                 id:"tools_intro",
-                icon:"🧰",
-                type:"Tools",
-                enTitle:"Tools Overview",
-                arTitle:"نظرة عامة على الأدوات",
-                enDesc:"Discover the main tools used in phone repair.",
-                arDesc:"تعرف على الأدوات الرئيسية المستخدمة في إصلاح الهواتف.",
-                objectiveEn:"Know what each tool is used for before using it.",
-                objectiveAr:"معرفة وظيفة كل أداة قبل استخدامها.",
+                icon:"▣",
+                type:{en:"Tools", ar:"أدوات"},
+                title:{en:"Tools Overview", ar:"نظرة عامة على الأدوات"},
+                desc:{en:"Discover the main tools used in phone repair.", ar:"تعرف على الأدوات الرئيسية المستخدمة في إصلاح الهواتف."},
+                objective:{en:"Know what each tool is used for before using it.", ar:"معرفة وظيفة كل أداة قبل استخدامها."},
                 points:[
-                    ["Basic tools","الأدوات الأساسية","Screwdrivers, tweezers, opening tools and cleaning tools.","مفكات، ملاقط، أدوات فتح وأدوات تنظيف."],
-                    ["Heating tools","أدوات التسخين","Heating plate and hot air station help open and repair devices.","البلاتة الحرارية ومحطة الهواء تساعد في الفتح والإصلاح."],
-                    ["Measuring tools","أدوات القياس","Multimeter and power tools help diagnose faults.","الملتيميتر وأدوات الطاقة تساعد في التشخيص."]
+                    {title:{en:"Basic tools", ar:"الأدوات الأساسية"}, text:{en:"Screwdrivers, tweezers, opening tools and cleaning tools.", ar:"مفكات، ملاقط، أدوات فتح وأدوات تنظيف."}},
+                    {title:{en:"Heating tools", ar:"أدوات التسخين"}, text:{en:"Heating plate and hot air station help open and repair devices.", ar:"البلاتة الحرارية ومحطة الهواء تساعد في الفتح والإصلاح."}},
+                    {title:{en:"Measuring tools", ar:"أدوات القياس"}, text:{en:"Multimeter and power tools help diagnose faults.", ar:"الملتيميتر وأدوات الطاقة تساعد في التشخيص."}}
                 ]
             },
             {
                 id:"screwdrivers",
                 icon:"T",
-                type:"Tool",
-                enTitle:"Screwdrivers",
-                arTitle:"المفكات",
-                enDesc:"Used to remove screws safely without damaging the phone.",
-                arDesc:"تستخدم لإزالة البراغي بأمان بدون إتلاف الهاتف.",
-                objectiveEn:"Choose the correct screwdriver size and avoid stripping screws.",
-                objectiveAr:"اختيار مقاس المفك الصحيح وتجنب تلف البراغي.",
+                type:{en:"Tool", ar:"أداة"},
+                title:{en:"Screwdrivers", ar:"المفكات"},
+                desc:{en:"Remove screws safely without damaging the phone.", ar:"إزالة البراغي بأمان بدون إتلاف الهاتف."},
+                objective:{en:"Choose the correct screwdriver size and avoid stripping screws.", ar:"اختيار مقاس المفك الصحيح وتجنب تلف البراغي."},
                 points:[
-                    ["Correct size","المقاس الصحيح","A wrong size can destroy screw heads.","المقاس الخاطئ قد يتلف رأس البرغي."],
-                    ["Organize screws","تنظيم البراغي","Keep screws in order because lengths can be different.","رتب البراغي لأن الأطوال قد تكون مختلفة."],
-                    ["No force","بدون قوة زائدة","If a screw resists, stop and inspect before forcing.","إذا قاوم البرغي، توقف وافحص قبل استخدام القوة."]
+                    {title:{en:"Correct size", ar:"المقاس الصحيح"}, text:{en:"A wrong size can destroy screw heads.", ar:"المقاس الخاطئ قد يتلف رأس البرغي."}},
+                    {title:{en:"Organize screws", ar:"تنظيم البراغي"}, text:{en:"Keep screws in order because lengths can be different.", ar:"رتب البراغي لأن الأطوال قد تكون مختلفة."}},
+                    {title:{en:"No force", ar:"بدون قوة زائدة"}, text:{en:"If a screw resists, stop and inspect before forcing.", ar:"إذا قاوم البرغي، توقف وافحص قبل استخدام القوة."}}
                 ]
             },
             {
                 id:"display_glue",
                 icon:"G",
-                type:"Tool",
-                enTitle:"Display Glue",
-                arTitle:"غراء الشاشة",
-                enDesc:"Used to seal or refit a display after repair.",
-                arDesc:"يستخدم لتثبيت أو إغلاق الشاشة بعد الإصلاح.",
-                objectiveEn:"Understand when glue is useful and how to avoid messy repair.",
-                objectiveAr:"فهم متى يستخدم الغراء وكيف تتجنب إصلاحا غير نظيف.",
+                type:{en:"Tool", ar:"أداة"},
+                title:{en:"Display Glue", ar:"غراء الشاشة"},
+                desc:{en:"Seal or refit a display after repair.", ar:"تثبيت أو إغلاق الشاشة بعد الإصلاح."},
+                objective:{en:"Understand when glue is useful and how to avoid messy repair.", ar:"فهم متى يستخدم الغراء وكيف تتجنب إصلاحا غير نظيف."},
                 points:[
-                    ["Clean surface","سطح نظيف","The frame must be clean before applying glue.","يجب أن يكون الإطار نظيفا قبل وضع الغراء."],
-                    ["Thin layer","طبقة رقيقة","Too much glue can overflow inside the phone.","الغراء الزائد قد يدخل داخل الهاتف."],
-                    ["Curing time","وقت الجفاف","Respect drying time before giving the phone back.","احترم وقت الجفاف قبل تسليم الهاتف."]
+                    {title:{en:"Clean surface", ar:"سطح نظيف"}, text:{en:"The frame must be clean before applying glue.", ar:"يجب أن يكون الإطار نظيفا قبل وضع الغراء."}},
+                    {title:{en:"Thin layer", ar:"طبقة رقيقة"}, text:{en:"Too much glue can overflow inside the phone.", ar:"الغراء الزائد قد يدخل داخل الهاتف."}},
+                    {title:{en:"Curing time", ar:"وقت الجفاف"}, text:{en:"Respect drying time before giving the phone back.", ar:"احترم وقت الجفاف قبل تسليم الهاتف."}}
                 ]
             },
             {
                 id:"tweezers",
                 icon:"P",
-                type:"Tool",
-                enTitle:"Tweezers",
-                arTitle:"الملاقط",
-                enDesc:"Used to handle small parts, flex cables and components.",
-                arDesc:"تستخدم للتعامل مع القطع الصغيرة والفلاتات والمكونات.",
-                objectiveEn:"Handle small parts with precision and without tearing flex cables.",
-                objectiveAr:"التعامل مع القطع الصغيرة بدقة بدون تمزيق الفلاتات.",
+                type:{en:"Tool", ar:"أداة"},
+                title:{en:"Tweezers", ar:"الملاقط"},
+                desc:{en:"Handle small parts, flex cables and components.", ar:"التعامل مع القطع الصغيرة والفلاتات والمكونات."},
+                objective:{en:"Handle small parts with precision and without tearing flex cables.", ar:"التعامل مع القطع الصغيرة بدقة بدون تمزيق الفلاتات."},
                 points:[
-                    ["Precision","الدقة","Tweezers help hold tiny screws and components.","الملاقط تساعد في مسك البراغي والمكونات الصغيرة."],
-                    ["Flex safety","سلامة الفلات","Do not pull flex cables aggressively.","لا تسحب الفلاتات بقوة."],
-                    ["Anti-static","مضاد للكهرباء الساكنة","Good tweezers reduce ESD risk.","الملاقط الجيدة تقلل خطر الكهرباء الساكنة."]
+                    {title:{en:"Precision", ar:"الدقة"}, text:{en:"Tweezers help hold tiny screws and components.", ar:"الملاقط تساعد في مسك البراغي والمكونات الصغيرة."}},
+                    {title:{en:"Flex safety", ar:"سلامة الفلات"}, text:{en:"Do not pull flex cables aggressively.", ar:"لا تسحب الفلاتات بقوة."}},
+                    {title:{en:"Anti-static", ar:"مضاد للكهرباء الساكنة"}, text:{en:"Good tweezers reduce ESD risk.", ar:"الملاقط الجيدة تقلل خطر الكهرباء الساكنة."}}
                 ]
             },
             {
                 id:"heating_plate",
                 icon:"H",
-                type:"Tool",
-                enTitle:"Heating Plate",
-                arTitle:"اللوحة الحرارية",
-                enDesc:"Used to soften adhesive and open screens more safely.",
-                arDesc:"تستخدم لتليين اللاصق وفتح الشاشات بأمان أكثر.",
-                objectiveEn:"Use controlled heat instead of forcing the screen open.",
-                objectiveAr:"استخدام حرارة متحكم بها بدل فتح الشاشة بالقوة.",
+                type:{en:"Tool", ar:"أداة"},
+                title:{en:"Heating Plate", ar:"اللوحة الحرارية"},
+                desc:{en:"Soften adhesive and open screens more safely.", ar:"تليين اللاصق وفتح الشاشات بأمان أكثر."},
+                objective:{en:"Use controlled heat instead of forcing the screen open.", ar:"استخدام حرارة متحكم بها بدل فتح الشاشة بالقوة."},
                 points:[
-                    ["Controlled heat","حرارة متحكم بها","Too much heat can damage screen or battery.","الحرارة الزائدة قد تتلف الشاشة أو البطارية."],
-                    ["Adhesive softening","تليين اللاصق","Heat makes glue easier to separate.","الحرارة تجعل اللاصق أسهل في الفصل."],
-                    ["Battery caution","الحذر من البطارية","Never overheat a phone with a lithium battery inside.","لا تفرط في تسخين هاتف يحتوي على بطارية ليثيوم."]
+                    {title:{en:"Controlled heat", ar:"حرارة متحكم بها"}, text:{en:"Too much heat can damage screen or battery.", ar:"الحرارة الزائدة قد تتلف الشاشة أو البطارية."}},
+                    {title:{en:"Adhesive softening", ar:"تليين اللاصق"}, text:{en:"Heat makes glue easier to separate.", ar:"الحرارة تجعل اللاصق أسهل في الفصل."}},
+                    {title:{en:"Battery caution", ar:"الحذر من البطارية"}, text:{en:"Never overheat a phone with a lithium battery inside.", ar:"لا تفرط في تسخين هاتف يحتوي على بطارية ليثيوم."}}
                 ]
             },
             {
                 id:"microscope",
                 icon:"M",
-                type:"Tool",
-                enTitle:"Microscope",
-                arTitle:"الميكروسكوب",
-                enDesc:"Used to inspect tiny components, corrosion and damaged pads.",
-                arDesc:"يستخدم لفحص المكونات الصغيرة، الأكسدة والبوردات التالفة.",
-                objectiveEn:"See what the eye cannot see before making repair decisions.",
-                objectiveAr:"رؤية ما لا تراه العين قبل اتخاذ قرار الإصلاح.",
+                type:{en:"Tool", ar:"أداة"},
+                title:{en:"Microscope", ar:"الميكروسكوب"},
+                desc:{en:"Inspect tiny components, corrosion and damaged pads.", ar:"فحص المكونات الصغيرة، الأكسدة والبوردات التالفة."},
+                objective:{en:"See what the eye cannot see before making repair decisions.", ar:"رؤية ما لا تراه العين قبل اتخاذ قرار الإصلاح."},
                 points:[
-                    ["Inspection","الفحص","Check connectors, pins and liquid damage.","افحص الكونكتورات، البنات وأضرار السوائل."],
-                    ["Micro damage","أضرار دقيقة","Find broken pads, cracks and lifted tracks.","اعثر على البادات المقطوعة والشقوق والمسارات المرفوعة."],
-                    ["Better soldering","لحام أفضل","Microscope is essential for clean micro-soldering.","الميكروسكوب ضروري للحام الدقيق والنظيف."]
+                    {title:{en:"Inspection", ar:"الفحص"}, text:{en:"Check connectors, pins and liquid damage.", ar:"افحص الكونكتورات، البنات وأضرار السوائل."}},
+                    {title:{en:"Micro damage", ar:"أضرار دقيقة"}, text:{en:"Find broken pads, cracks and lifted tracks.", ar:"اعثر على البادات المقطوعة والشقوق والمسارات المرفوعة."}},
+                    {title:{en:"Better soldering", ar:"لحام أفضل"}, text:{en:"Microscope is essential for clean micro-soldering.", ar:"الميكروسكوب ضروري للحام الدقيق والنظيف."}}
                 ]
             },
             {
                 id:"multimeter",
                 icon:"V",
-                type:"Tool",
-                enTitle:"Multimeter",
-                arTitle:"الملتيميتر",
-                enDesc:"Used to measure voltage, resistance, continuity and diode values.",
-                arDesc:"يستخدم لقياس الفولت، المقاومة، الاستمرارية وقيم الدايود.",
-                objectiveEn:"Start measuring instead of guessing.",
-                objectiveAr:"ابدأ بالقياس بدل التخمين.",
+                type:{en:"Tool", ar:"أداة"},
+                title:{en:"Multimeter", ar:"الملتيميتر"},
+                desc:{en:"Measure voltage, resistance, continuity and diode values.", ar:"قياس الفولت، المقاومة، الاستمرارية وقيم الدايود."},
+                objective:{en:"Start measuring instead of guessing.", ar:"ابدأ بالقياس بدل التخمين."},
                 points:[
-                    ["Voltage","الفولت","Check if power reaches a line or connector.","افحص هل تصل الطاقة إلى الخط أو الكونكتور."],
-                    ["Continuity","الاستمرارية","Check if two points are connected.","افحص هل توجد وصلة بين نقطتين."],
-                    ["Diode mode","وضع الدايود","Compare lines and detect suspicious behavior.","قارن الخطوط واكتشف السلوك غير الطبيعي."]
+                    {title:{en:"Voltage", ar:"الفولت"}, text:{en:"Check if power reaches a line or connector.", ar:"افحص هل تصل الطاقة إلى الخط أو الكونكتور."}},
+                    {title:{en:"Continuity", ar:"الاستمرارية"}, text:{en:"Check if two points are connected.", ar:"افحص هل توجد وصلة بين نقطتين."}},
+                    {title:{en:"Diode mode", ar:"وضع الدايود"}, text:{en:"Compare lines and detect suspicious behavior.", ar:"قارن الخطوط واكتشف السلوك غير الطبيعي."}}
                 ]
             }
         ]
     },
     {
-        groupEn:"Electronic Components",
-        groupAr:"المكونات الإلكترونية",
+        group:{en:"Electronic Components", ar:"المكونات الإلكترونية"},
         nodes:[
             {
                 id:"components_intro",
                 icon:"⚡",
-                type:"Components",
-                enTitle:"Electronic Components",
-                arTitle:"المكونات الإلكترونية",
-                enDesc:"Learn the basic components found on phone motherboards.",
-                arDesc:"تعلم المكونات الأساسية الموجودة على لوحات الهواتف.",
-                objectiveEn:"Recognize components before diagnosing or replacing anything.",
-                objectiveAr:"التعرف على المكونات قبل التشخيص أو تغيير أي قطعة.",
+                type:{en:"Components", ar:"مكونات"},
+                title:{en:"Electronic Components", ar:"المكونات الإلكترونية"},
+                desc:{en:"Learn the basic components found on phone motherboards.", ar:"تعلم المكونات الأساسية الموجودة على لوحات الهواتف."},
+                objective:{en:"Recognize components before diagnosing or replacing anything.", ar:"التعرف على المكونات قبل التشخيص أو تغيير أي قطعة."},
                 points:[
-                    ["Recognition","التعرف","Learn what each component looks like.","تعلم شكل كل مكون."],
-                    ["Purpose","الوظيفة","Understand what each component generally does.","افهم الوظيفة العامة لكل مكون."],
-                    ["No random replacement","لا تغيير عشوائي","Never replace a component without proof.","لا تغير أي مكون بدون دليل."]
+                    {title:{en:"Recognition", ar:"التعرف"}, text:{en:"Learn what each component looks like.", ar:"تعلم شكل كل مكون."}},
+                    {title:{en:"Purpose", ar:"الوظيفة"}, text:{en:"Understand what each component generally does.", ar:"افهم الوظيفة العامة لكل مكون."}},
+                    {title:{en:"No random replacement", ar:"لا تغيير عشوائي"}, text:{en:"Never replace a component without proof.", ar:"لا تغير أي مكون بدون دليل."}}
                 ]
             },
             {
                 id:"resistor",
                 icon:"R",
-                type:"Component",
-                enTitle:"Resistor",
-                arTitle:"المقاومة",
-                enDesc:"A component that limits or controls current in a circuit.",
-                arDesc:"مكون يحد أو يتحكم في مرور التيار داخل الدائرة.",
-                objectiveEn:"Understand that resistors control electrical behavior.",
-                objectiveAr:"فهم أن المقاومة تتحكم في السلوك الكهربائي.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"Resistor", ar:"المقاومة"},
+                desc:{en:"Limits or controls current in a circuit.", ar:"تحد أو تتحكم في مرور التيار داخل الدائرة."},
+                objective:{en:"Understand that resistors control electrical behavior.", ar:"فهم أن المقاومة تتحكم في السلوك الكهربائي."},
                 points:[
-                    ["Current control","التحكم في التيار","Resistors help limit current flow.","المقاومات تساعد في تقليل مرور التيار."],
-                    ["Signal lines","خطوط الإشارة","They can be used in signal and control lines.","قد تستخدم في خطوط الإشارة والتحكم."],
-                    ["Testing","الفحص","A resistor can be checked with resistance mode.","يمكن فحص المقاومة بوضع قياس المقاومة."]
+                    {title:{en:"Current control", ar:"التحكم في التيار"}, text:{en:"Resistors help limit current flow.", ar:"المقاومات تساعد في تقليل مرور التيار."}},
+                    {title:{en:"Signal lines", ar:"خطوط الإشارة"}, text:{en:"They can be used in signal and control lines.", ar:"قد تستخدم في خطوط الإشارة والتحكم."}},
+                    {title:{en:"Testing", ar:"الفحص"}, text:{en:"A resistor can be checked with resistance mode.", ar:"يمكن فحص المقاومة بوضع قياس المقاومة."}}
                 ]
             },
             {
                 id:"capacitor",
                 icon:"C",
-                type:"Component",
-                enTitle:"Capacitor",
-                arTitle:"المكثف",
-                enDesc:"A component that stores energy and filters electrical noise.",
-                arDesc:"مكون يخزن الطاقة ويساعد في تنقية التشويش الكهربائي.",
-                objectiveEn:"Recognize capacitors and understand their role in power stability.",
-                objectiveAr:"التعرف على المكثفات وفهم دورها في استقرار الطاقة.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"Capacitor", ar:"المكثف"},
+                desc:{en:"Stores energy and filters electrical noise.", ar:"يخزن الطاقة ويساعد في تنقية التشويش الكهربائي."},
+                objective:{en:"Recognize capacitors and their role in power stability.", ar:"التعرف على المكثفات وفهم دورها في استقرار الطاقة."},
                 points:[
-                    ["Filtering","التنقية","Capacitors filter noise on power lines.","المكثفات تنقي التشويش في خطوط الطاقة."],
-                    ["Stability","الاستقرار","They help stabilize voltage.","تساعد على تثبيت الفولت."],
-                    ["Short risk","خطر الشورت","A shorted capacitor can cause a dead line.","المكثف الشورت قد يسبب توقف خط كامل."]
+                    {title:{en:"Filtering", ar:"التنقية"}, text:{en:"Capacitors filter noise on power lines.", ar:"المكثفات تنقي التشويش في خطوط الطاقة."}},
+                    {title:{en:"Stability", ar:"الاستقرار"}, text:{en:"They help stabilize voltage.", ar:"تساعد على تثبيت الفولت."}},
+                    {title:{en:"Short risk", ar:"خطر الشورت"}, text:{en:"A shorted capacitor can cause a dead line.", ar:"المكثف الشورت قد يسبب توقف خط كامل."}}
                 ]
             },
             {
                 id:"diode",
                 icon:"D",
-                type:"Component",
-                enTitle:"Diode",
-                arTitle:"الدايود",
-                enDesc:"A component that allows current to pass mainly in one direction.",
-                arDesc:"مكون يسمح بمرور التيار غالبا في اتجاه واحد.",
-                objectiveEn:"Understand diode direction and basic protection role.",
-                objectiveAr:"فهم اتجاه الدايود ودوره الأساسي في الحماية.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"Diode", ar:"الدايود"},
+                desc:{en:"Allows current to pass mainly in one direction.", ar:"يسمح بمرور التيار غالبا في اتجاه واحد."},
+                objective:{en:"Understand diode direction and basic protection role.", ar:"فهم اتجاه الدايود ودوره الأساسي في الحماية."},
                 points:[
-                    ["One direction","اتجاه واحد","Diodes guide current in one direction.","الدايودات توجه التيار في اتجاه واحد."],
-                    ["Protection","الحماية","Some diodes protect lines from wrong voltage.","بعض الدايودات تحمي الخطوط من الفولت الخاطئ."],
-                    ["Diode mode","وضع الدايود","They are often checked with diode mode.","غالبا يتم فحصها بوضع الدايود."]
+                    {title:{en:"One direction", ar:"اتجاه واحد"}, text:{en:"Diodes guide current in one direction.", ar:"الدايودات توجه التيار في اتجاه واحد."}},
+                    {title:{en:"Protection", ar:"الحماية"}, text:{en:"Some diodes protect lines from wrong voltage.", ar:"بعض الدايودات تحمي الخطوط من الفولت الخاطئ."}},
+                    {title:{en:"Diode mode", ar:"وضع الدايود"}, text:{en:"They are often checked with diode mode.", ar:"غالبا يتم فحصها بوضع الدايود."}}
                 ]
             },
             {
                 id:"coil",
                 icon:"L",
-                type:"Component",
-                enTitle:"Coil",
-                arTitle:"الملف",
-                enDesc:"A component often used in power circuits and voltage regulation.",
-                arDesc:"مكون يستخدم غالبا في دوائر الطاقة وتنظيم الفولت.",
-                objectiveEn:"Recognize coils as important parts of power circuits.",
-                objectiveAr:"التعرف على الملفات كجزء مهم من دوائر الطاقة.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"Coil", ar:"الملف"},
+                desc:{en:"Often used in power circuits and voltage regulation.", ar:"يستخدم غالبا في دوائر الطاقة وتنظيم الفولت."},
+                objective:{en:"Recognize coils as important parts of power circuits.", ar:"التعرف على الملفات كجزء مهم من دوائر الطاقة."},
                 points:[
-                    ["Power circuits","دوائر الطاقة","Coils are common around power IC areas.","الملفات شائعة قرب مناطق شرائح الطاقة."],
-                    ["Voltage regulation","تنظيم الفولت","They help in voltage conversion and stability.","تساعد في تحويل الفولت واستقراره."],
-                    ["Physical damage","ضرر ظاهر","A cracked coil can create repair problems.","الملف المكسور قد يسبب مشاكل في الإصلاح."]
+                    {title:{en:"Power circuits", ar:"دوائر الطاقة"}, text:{en:"Coils are common around power IC areas.", ar:"الملفات شائعة قرب مناطق شرائح الطاقة."}},
+                    {title:{en:"Voltage regulation", ar:"تنظيم الفولت"}, text:{en:"They help in voltage conversion and stability.", ar:"تساعد في تحويل الفولت واستقراره."}},
+                    {title:{en:"Physical damage", ar:"ضرر ظاهر"}, text:{en:"A cracked coil can create repair problems.", ar:"الملف المكسور قد يسبب مشاكل في الإصلاح."}}
                 ]
             },
             {
                 id:"fuse",
                 icon:"F",
-                type:"Component",
-                enTitle:"Fuse",
-                arTitle:"الفيوز",
-                enDesc:"A protection component that can open when current is too high.",
-                arDesc:"مكون حماية قد ينقطع عندما يكون التيار عاليا جدا.",
-                objectiveEn:"Understand that a fuse protects the circuit from excess current.",
-                objectiveAr:"فهم أن الفيوز يحمي الدائرة من التيار الزائد.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"Fuse", ar:"الفيوز"},
+                desc:{en:"A protection component that can open when current is too high.", ar:"مكون حماية قد ينقطع عندما يكون التيار عاليا جدا."},
+                objective:{en:"Understand that a fuse protects the circuit from excess current.", ar:"فهم أن الفيوز يحمي الدائرة من التيار الزائد."},
                 points:[
-                    ["Protection","الحماية","The fuse is designed to protect other parts.","الفيوز مصمم لحماية أجزاء أخرى."],
-                    ["Open line","خط مقطوع","A blown fuse can stop power from passing.","الفيوز التالف قد يمنع مرور الطاقة."],
-                    ["Continuity test","فحص الاستمرارية","Fuses can often be checked with continuity mode.","يمكن غالبا فحص الفيوز بوضع الاستمرارية."]
+                    {title:{en:"Protection", ar:"الحماية"}, text:{en:"The fuse is designed to protect other parts.", ar:"الفيوز مصمم لحماية أجزاء أخرى."}},
+                    {title:{en:"Open line", ar:"خط مقطوع"}, text:{en:"A blown fuse can stop power from passing.", ar:"الفيوز التالف قد يمنع مرور الطاقة."}},
+                    {title:{en:"Continuity test", ar:"فحص الاستمرارية"}, text:{en:"Fuses can often be checked with continuity mode.", ar:"يمكن غالبا فحص الفيوز بوضع الاستمرارية."}}
                 ]
             },
             {
                 id:"connector",
                 icon:"N",
-                type:"Component",
-                enTitle:"Connector",
-                arTitle:"الكونكتور",
-                enDesc:"A connection point for battery, screen, charging flex or other parts.",
-                arDesc:"نقطة اتصال للبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.",
-                objectiveEn:"Inspect connectors before assuming a motherboard failure.",
-                objectiveAr:"افحص الكونكتورات قبل افتراض وجود عطل في اللوحة.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"Connector", ar:"الكونكتور"},
+                desc:{en:"Connection point for battery, screen, charging flex or other parts.", ar:"نقطة اتصال للبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى."},
+                objective:{en:"Inspect connectors before assuming a motherboard failure.", ar:"افحص الكونكتورات قبل افتراض وجود عطل في اللوحة."},
                 points:[
-                    ["Common failures","أعطال شائعة","Bent pins and dirt can create many problems.","البنات المعوجة والأوساخ قد تسبب مشاكل كثيرة."],
-                    ["Visual inspection","فحص بصري","Use microscope to inspect connector pins.","استخدم الميكروسكوب لفحص بنات الكونكتور."],
-                    ["Do not force","لا تستخدم القوة","Forcing a flex can damage the connector.","إدخال الفلاتة بالقوة قد يتلف الكونكتور."]
+                    {title:{en:"Common failures", ar:"أعطال شائعة"}, text:{en:"Bent pins and dirt can create many problems.", ar:"البنات المعوجة والأوساخ قد تسبب مشاكل كثيرة."}},
+                    {title:{en:"Visual inspection", ar:"فحص بصري"}, text:{en:"Use microscope to inspect connector pins.", ar:"استخدم الميكروسكوب لفحص بنات الكونكتور."}},
+                    {title:{en:"Do not force", ar:"لا تستخدم القوة"}, text:{en:"Forcing a flex can damage the connector.", ar:"إدخال الفلاتة بالقوة قد يتلف الكونكتور."}}
                 ]
             },
             {
                 id:"ic",
                 icon:"IC",
-                type:"Component",
-                enTitle:"IC",
-                arTitle:"الدائرة المتكاملة",
-                enDesc:"A chip that contains many electronic circuits inside one package.",
-                arDesc:"شريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.",
-                objectiveEn:"Understand ICs generally without replacing them randomly.",
-                objectiveAr:"فهم الشرائح بشكل عام بدون تغييرها عشوائيا.",
+                type:{en:"Component", ar:"مكون"},
+                title:{en:"IC", ar:"الدائرة المتكاملة"},
+                desc:{en:"A chip that contains many electronic circuits inside one package.", ar:"شريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة."},
+                objective:{en:"Understand ICs generally without replacing them randomly.", ar:"فهم الشرائح بشكل عام بدون تغييرها عشوائيا."},
                 points:[
-                    ["General role","الدور العام","An IC can control power, signal, audio, memory or other functions.","قد تتحكم الشريحة في الطاقة، الإشارة، الصوت، الذاكرة أو وظائف أخرى."],
-                    ["Fragile part","قطعة حساسة","ICs are sensitive to heat, ESD and bad soldering.","الشرائح حساسة للحرارة والكهرباء الساكنة واللحام السيئ."],
-                    ["No guessing","بدون تخمين","Never replace an IC without diagnosis proof.","لا تغير أي شريحة بدون دليل تشخيص واضح."]
+                    {title:{en:"General role", ar:"الدور العام"}, text:{en:"An IC can control power, signal, audio, memory or other functions.", ar:"قد تتحكم الشريحة في الطاقة، الإشارة، الصوت، الذاكرة أو وظائف أخرى."}},
+                    {title:{en:"Fragile part", ar:"قطعة حساسة"}, text:{en:"ICs are sensitive to heat, ESD and bad soldering.", ar:"الشرائح حساسة للحرارة والكهرباء الساكنة واللحام السيئ."}},
+                    {title:{en:"No guessing", ar:"بدون تخمين"}, text:{en:"Never replace an IC without diagnosis proof.", ar:"لا تغير أي شريحة بدون دليل تشخيص واضح."}}
                 ]
             }
         ]
     }
 ];
 
-let currentNode = null;
+function tr(key){
+    return ui[currentLang][key];
+}
+
+function txt(obj){
+    return obj[currentLang];
+}
 
 function allNodes(){
     return learningTree.flatMap(group => group.nodes);
 }
 
 function doneIds(){
-    return JSON.parse(localStorage.getItem("repair_tree_done") || "[]");
+    return JSON.parse(localStorage.getItem("master_repair_done") || "[]");
 }
 
 function saveDone(id){
     const ids = doneIds();
     if(!ids.includes(id)) ids.push(id);
-    localStorage.setItem("repair_tree_done", JSON.stringify(ids));
-    localStorage.setItem("repair_tree_last", id);
+    localStorage.setItem("master_repair_done", JSON.stringify(ids));
+    localStorage.setItem("master_repair_last", id);
 }
 
 function isUnlocked(node){
@@ -816,6 +856,47 @@ function isUnlocked(node){
     return doneIds().includes(nodes[index - 1].id);
 }
 
+function applyLanguage(){
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = tr("dir");
+    document.body.dir = tr("dir");
+
+    document.getElementById("langButton").textContent = tr("langButton");
+    document.getElementById("telegramStatus").textContent = tg ? tr("connected") : tr("browser");
+
+    document.getElementById("heroTitle").textContent = tr("heroTitle");
+    document.getElementById("heroText").textContent = tr("heroText");
+    document.getElementById("completedLabel").textContent = tr("completed");
+    document.getElementById("stepsLabel").textContent = tr("steps");
+    document.getElementById("supportLabel").textContent = tr("support");
+    document.getElementById("continueButton").textContent = tr("continue");
+    document.getElementById("treeTitle").textContent = tr("treeTitle");
+    document.getElementById("treeSubtitle").textContent = tr("treeSubtitle");
+    document.getElementById("supportTitle").textContent = tr("supportTitle");
+    document.getElementById("supportSubtitle").textContent = tr("supportSubtitle");
+    document.getElementById("sosTitle").textContent = tr("sosTitle");
+    document.getElementById("sosText").textContent = tr("sosText");
+    document.getElementById("sosButton").textContent = tr("sosButton");
+    document.getElementById("learnTitle").textContent = tr("learnTitle");
+    document.getElementById("learnSubtitle").textContent = tr("learnSubtitle");
+    document.getElementById("objectiveTitle").textContent = tr("objectiveTitle");
+    document.getElementById("backButton").textContent = tr("back");
+    document.getElementById("doneButton").textContent = tr("done");
+    document.getElementById("footerText").textContent = tr("footer");
+
+    renderTree();
+
+    if(currentNode && document.getElementById("lessonPage").classList.contains("active")){
+        openNode(currentNode);
+    }
+}
+
+function toggleLanguage(){
+    currentLang = currentLang === "en" ? "ar" : "en";
+    localStorage.setItem("master_repair_lang", currentLang);
+    applyLanguage();
+}
+
 function renderProgress(){
     const total = allNodes().length;
     const done = doneIds().length;
@@ -823,7 +904,7 @@ function renderProgress(){
 
     document.getElementById("doneCount").textContent = done;
     document.getElementById("totalCount").textContent = total;
-    document.getElementById("progressText").textContent = pct + "% completed / مكتمل";
+    document.getElementById("progressText").textContent = pct + "% " + tr("completedProgress");
     document.getElementById("progressBar").style.width = pct + "%";
 }
 
@@ -836,7 +917,7 @@ function renderTree(){
     learningTree.forEach(group => {
         const title = document.createElement("div");
         title.className = "branch-title";
-        title.innerHTML = `${group.groupEn}<span>${group.groupAr}</span>`;
+        title.textContent = txt(group.group);
         container.appendChild(title);
 
         const tree = document.createElement("div");
@@ -861,15 +942,19 @@ function renderTree(){
             };
 
             btn.innerHTML = `
-                <strong>${node.enTitle}</strong>
-                <span class="ar">${node.arTitle}</span>
-                <small>${node.enDesc}</small>
-                <small dir="rtl">${node.arDesc}</small>
-                <span class="badge">${done ? "Done / تم" : unlocked ? "Open / فتح" : "Locked / مغلق"}</span>
+                <strong>${txt(node.title)}</strong>
+                <small>${txt(node.desc)}</small>
+                <span class="badge">${done ? tr("doneState") : unlocked ? tr("open") : tr("locked")}</span>
             `;
 
-            row.appendChild(icon);
-            row.appendChild(btn);
+            if(currentLang === "rtl"){
+                row.appendChild(btn);
+                row.appendChild(icon);
+            }else{
+                row.appendChild(icon);
+                row.appendChild(btn);
+            }
+
             tree.appendChild(row);
         });
 
@@ -879,15 +964,12 @@ function renderTree(){
 
 function openNode(node){
     currentNode = node;
-    localStorage.setItem("repair_tree_last", node.id);
+    localStorage.setItem("master_repair_last", node.id);
 
-    document.getElementById("lessonTitleEn").textContent = node.enTitle;
-    document.getElementById("lessonTitleAr").textContent = node.arTitle;
-    document.getElementById("lessonDescEn").textContent = node.enDesc;
-    document.getElementById("lessonDescAr").textContent = node.arDesc;
-    document.getElementById("objectiveEn").textContent = node.objectiveEn;
-    document.getElementById("objectiveAr").textContent = node.objectiveAr;
-    document.getElementById("lessonBadge").textContent = node.type;
+    document.getElementById("lessonTitle").textContent = txt(node.title);
+    document.getElementById("lessonDesc").textContent = txt(node.desc);
+    document.getElementById("objectiveText").textContent = txt(node.objective);
+    document.getElementById("lessonBadge").textContent = txt(node.type);
 
     const list = document.getElementById("lessonPoints");
     list.innerHTML = "";
@@ -896,10 +978,8 @@ function openNode(node){
         const box = document.createElement("div");
         box.className = "lesson";
         box.innerHTML = `
-            <strong>${point[0]}</strong>
-            <span class="ar-lesson-title">${point[1]}</span>
-            <p class="en-text">${point[2]}</p>
-            <p class="ar-text">${point[3]}</p>
+            <strong>${txt(point.title)}</strong>
+            <p>${txt(point.text)}</p>
         `;
         list.appendChild(box);
     });
@@ -914,7 +994,7 @@ function continueLearning(){
 
     let next = nodes.find(node => !done.includes(node.id) && isUnlocked(node));
     if(!next){
-        const lastId = localStorage.getItem("repair_tree_last");
+        const lastId = localStorage.getItem("master_repair_last");
         next = nodes.find(node => node.id === lastId) || nodes[0];
     }
 
@@ -927,25 +1007,22 @@ function markDone(){
         renderProgress();
     }
 
-    const message = "Step completed! / تم إنهاء الخطوة!";
-
     if(tg && tg.HapticFeedback){
         tg.HapticFeedback.notificationOccurred("success");
     }
 
     if(tg && tg.showAlert){
-        tg.showAlert(message);
+        tg.showAlert(tr("completedMessage"));
     }else{
-        alert(message);
+        alert(tr("completedMessage"));
     }
 }
 
 function showLockedMessage(){
-    const message = "Complete the previous step first. / أكمل الخطوة السابقة أولا.";
     if(tg && tg.showAlert){
-        tg.showAlert(message);
+        tg.showAlert(tr("lockedMessage"));
     }else{
-        alert(message);
+        alert(tr("lockedMessage"));
     }
 }
 
@@ -975,7 +1052,7 @@ function sendTelegramData(data){
     console.log("Internal navigation:", data);
 }
 
-renderTree();
+applyLanguage();
 </script>
 </body>
 </html>

@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Repair App</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta charset="UTF-8">
+<title>Repair Academy</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f0f0f;
+    color:white;
+    text-align:center;
+}
+
+h1{
+    color:#00aaff;
+    margin-top:20px;
+}
+
+.card{
+    background:#1c1c1c;
+    margin:15px;
+    padding:20px;
+    border-radius:15px;
+}
+
+button{
+    width:90%;
+    padding:15px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    background:#00aaff;
+    color:white;
+    font-size:16px;
+}
+
+button:active{
+    transform:scale(0.98);
+}
+</style>
 </head>
+
 <body>
 
-<h1>Repair Academy</h1>
+<h1>🔧 Repair Academy</h1>
 
-<button onclick="send('chapter_1')">Chapitre 1</button>
-<button onclick="send('chapter_2')">Chapitre 2</button>
+<div class="card">
+    <h3>📚 Chapitres</h3>
+    <button onclick="send('chapter_1')">Multimètre</button>
+    <button onclick="send('chapter_2')">Composants</button>
+</div>
 
 <script>
 const tg = window.Telegram.WebApp;

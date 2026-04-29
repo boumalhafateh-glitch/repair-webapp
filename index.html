@@ -21,20 +21,6 @@ h1{
     font-size:22px;
 }
 
-/* LANGUAGE BUTTON */
-#langBtn{
-    position:fixed;
-    top:10px;
-    right:10px;
-    padding:8px 12px;
-    background:#111;
-    border:1px solid #333;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-    z-index:999;
-}
-
 .page{display:none;padding:15px;}
 .active{display:block;}
 
@@ -65,12 +51,26 @@ button{
     border:1px solid #aa0000;
     margin-top:15px;
 }
+
+/* 🔒 LANGUAGE BUTTON ONLY (no UI change) */
+#langBtn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    padding:6px 10px;
+    font-size:12px;
+    background:#111;
+    border:1px solid #333;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 
-<!-- LANGUAGE SWITCH -->
+<!-- ONLY ADDITION -->
 <button id="langBtn" onclick="toggleLang()">AR</button>
 
 <h1>Repair Academy</h1>
@@ -104,15 +104,15 @@ button{
 <h2>Level 1</h2>
 
 <div class="grid">
-<button data-en="IC" data-ar="الدوائر" onclick="openPage('comp1')">IC</button>
-<button data-en="Power" data-ar="الطاقة" onclick="openPage('comp2')">Power</button>
-<button data-en="RF" data-ar="الإشارة" onclick="openPage('comp3')">RF</button>
-<button data-en="Connectors" data-ar="الموصلات" onclick="openPage('comp4')">Connectors</button>
-<button data-en="Sensors" data-ar="الحساسات" onclick="openPage('comp5')">Sensors</button>
-<button data-en="Audio" data-ar="الصوت" onclick="openPage('comp6')">Audio</button>
+<button data-en="IC" data-ar="IC" onclick="openPage('comp1')">IC</button>
+<button data-en="Power" data-ar="Power" onclick="openPage('comp2')">Power</button>
+<button data-en="RF" data-ar="RF" onclick="openPage('comp3')">RF</button>
+<button data-en="Connectors" data-ar="Connectors" onclick="openPage('comp4')">Connectors</button>
+<button data-en="Sensors" data-ar="Sensors" onclick="openPage('comp5')">Sensors</button>
+<button data-en="Audio" data-ar="Audio" onclick="openPage('comp6')">Audio</button>
 </div>
 
-<button data-en="Back" data-ar="رجوع" onclick="openPage('home')">Back</button>
+<button data-en="Back" data-ar="Back" onclick="openPage('home')">Back</button>
 
 </div>
 </div>
@@ -121,7 +121,7 @@ button{
 <div id="c2" class="page">
 <div class="card">
 <h2>Level 2</h2>
-<button data-en="Back" data-ar="رجوع" onclick="openPage('home')">Back</button>
+<button onclick="openPage('home')">Back</button>
 </div>
 </div>
 

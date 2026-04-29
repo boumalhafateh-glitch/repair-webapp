@@ -94,12 +94,7 @@ body[dir="rtl"]{direction:rtl;}
         linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)),
         rgba(20,20,20,.96);
 }
-.title{
-    margin:0;
-    font-size:22px;
-    font-weight:900;
-    line-height:1.25;
-}
+.title{margin:0;font-size:22px;font-weight:900;line-height:1.25;}
 .text{
     margin:9px 0 0;
     color:var(--soft);
@@ -120,16 +115,8 @@ body[dir="rtl"]{direction:rtl;}
     background:#141414;
     text-align:center;
 }
-.stat strong{
-    display:block;
-    color:var(--gold);
-    font-size:18px;
-}
-.stat small{
-    display:block;
-    color:var(--muted);
-    font-size:12px;
-}
+.stat strong{display:block;color:var(--gold);font-size:18px;}
+.stat small{display:block;color:var(--muted);font-size:12px;}
 .progress-wrap{
     height:10px;
     border-radius:999px;
@@ -155,36 +142,17 @@ button{
     font-weight:900;
     cursor:pointer;
 }
-button:disabled{
-    opacity:.4;
-    cursor:not-allowed;
-}
+button:disabled{opacity:.4;cursor:not-allowed;}
 .primary{
     background:linear-gradient(135deg,var(--gold),#ffe08a);
     color:#111;
 }
-.danger{
-    background:linear-gradient(180deg,#b00020,#780015);
-}
+.danger{background:linear-gradient(180deg,#b00020,#780015);}
 .main-action{width:100%;}
-.section-title{
-    text-align:center;
-    margin:18px 2px 10px;
-}
-.section-title h3{
-    margin:0;
-    font-size:17px;
-    font-weight:900;
-}
-.section-title p{
-    margin:3px 0 0;
-    color:var(--muted);
-    font-size:13px;
-}
-.branch-list,.chapter-list{
-    display:grid;
-    gap:10px;
-}
+.section-title{text-align:center;margin:18px 2px 10px;}
+.section-title h3{margin:0;font-size:17px;font-weight:900;}
+.section-title p{margin:3px 0 0;color:var(--muted);font-size:13px;}
+.branch-list,.chapter-list{display:grid;gap:10px;}
 .branch-card,.chapter-card{
     min-height:88px;
     border:1px solid var(--line);
@@ -193,17 +161,8 @@ button:disabled{
     text-align:center;
     padding:14px 12px;
 }
-.branch-card.done,.chapter-card.done{
-    border-color:rgba(39,196,107,.8);
-}
-.chapter-card.locked{
-    opacity:.48;
-}
-.branch-card strong,.chapter-card strong{
-    display:block;
-    font-size:16px;
-    line-height:1.3;
-}
+.branch-card.done,.chapter-card.done{border-color:rgba(39,196,107,.8);}
+.branch-card strong,.chapter-card strong{display:block;font-size:16px;line-height:1.3;}
 .branch-card small,.chapter-card small{
     display:block;
     color:var(--muted);
@@ -221,10 +180,7 @@ button:disabled{
     font-size:11px;
     font-weight:900;
 }
-.list{
-    display:grid;
-    gap:8px;
-}
+.list{display:grid;gap:8px;}
 .lesson{
     border:1px solid var(--line);
     border-radius:14px;
@@ -233,67 +189,60 @@ button:disabled{
     text-align:center;
 }
 .lesson strong{font-size:15.5px;}
-.lesson p{
-    color:var(--muted);
-    font-size:13.5px;
-    line-height:1.65;
-}
+.lesson p{color:var(--muted);font-size:13.5px;line-height:1.65;}
 .book-controls,.action-row{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:9px;
     margin-top:11px;
 }
-.book-counter{
-    color:var(--gold);
-    font-size:12px;
-    font-weight:900;
-    margin-top:10px;
-}
+.book-counter{color:var(--gold);font-size:12px;font-weight:900;margin-top:10px;}
+
 .visual{
-    max-width:300px;
+    max-width:315px;
     margin:14px auto 4px;
     padding:14px;
     border-radius:22px;
     border:1px solid rgba(56,189,248,.32);
     background:linear-gradient(180deg,#232323,#111);
 }
-.chip{
-    width:100px;
-    height:72px;
-    margin:8px auto;
-    border-radius:12px;
-    border:2px solid rgba(242,201,76,.7);
+.visual-title{
+    color:var(--cyan);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.5px;
+    margin-bottom:9px;
+}
+.component-layout{
+    display:grid;
+    gap:10px;
+}
+.component-body{
+    min-height:76px;
+    border:1px solid rgba(242,201,76,.45);
+    border-radius:16px;
+    background:#101010;
     display:flex;
     align-items:center;
     justify-content:center;
     color:var(--gold);
-    font-weight:900;
-    text-align:center;
-}
-.screen{
-    height:54px;
-    border-radius:12px;
-    background:#9fd7b2;
-    color:#071107;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    font-size:22px;
     font-weight:900;
 }
-.symbol{
-    margin:12px auto;
-    padding:13px;
-    border-radius:14px;
+.schematic-box{
     border:1px solid rgba(242,201,76,.28);
+    border-radius:14px;
+    padding:12px;
     color:var(--gold);
-    font-size:20px;
+    font-size:19px;
     font-weight:900;
+    background:#0c0c0c;
 }
-.flow{
+.test-row{
     display:grid;
     grid-template-columns:1fr auto 1fr;
     gap:8px;
+    align-items:center;
 }
 .pad{
     border:1px solid #333;
@@ -303,6 +252,8 @@ button:disabled{
     align-items:center;
     justify-content:center;
     color:#ccc;
+    font-size:11px;
+    font-weight:900;
 }
 .meter{
     width:78px;
@@ -404,7 +355,6 @@ button:disabled{
         </div>
 
         <div id="chapterList" class="chapter-list"></div>
-
         <button class="main-action" onclick="goHome()" id="branchBackButton"></button>
     </div>
 
@@ -478,9 +428,7 @@ const ui = {
         footer:"Master Repair Academy • Learning Tree",
         completedProgress:"completed",
         open:"Open",
-        locked:"Locked",
         doneState:"Done",
-        lockedMessage:"Complete the previous step first.",
         completedMessage:"Step completed!"
     },
     ar:{
@@ -510,9 +458,7 @@ const ui = {
         footer:"Master Repair Academy • شجرة التعلم",
         completedProgress:"مكتمل",
         open:"فتح",
-        locked:"مغلق",
         doneState:"تم",
-        lockedMessage:"أكمل الخطوة السابقة أولا.",
         completedMessage:"تم إنهاء الخطوة!"
     }
 };
@@ -576,6 +522,22 @@ function branch(id, icon, titleEn, titleAr, descEn, descAr, nodes){
     };
 }
 
+function toolBook(titleEn, titleAr, symbol, roleEn, roleAr, useEn, useAr, mistakeEn, mistakeAr){
+    return makeBook(
+        titleEn,
+        titleAr,
+        "Tool role, safe use and common mistakes.",
+        "دور الأداة، طريقة استخدامها بأمان والأخطاء الشائعة.",
+        symbol,
+        roleEn,
+        roleAr,
+        useEn,
+        useAr,
+        mistakeEn,
+        mistakeAr
+    );
+}
+
 const multimeterBook = [
     makePage("meter","0.00 V","V","What Is a Multimeter?","ما هو الملتيميتر؟","A measuring tool that helps you stop guessing and start proving faults.","أداة قياس تساعدك على التوقف عن التخمين وإثبات الأعطال.",[
         ["It measures","يقيس","Voltage, resistance, continuity and diode values.","الفولت، المقاومة، الاستمرارية وقيم الدايود."]
@@ -593,6 +555,20 @@ const multimeterBook = [
         ["Best method","أفضل طريقة","Compare with a known good board.","قارن مع لوحة سليمة."]
     ])
 ];
+
+const toolBooks = {
+    screwdriver: toolBook("Screwdrivers","المفكات","T","Screwdrivers remove phone screws safely.","المفكات تزيل براغي الهاتف بأمان.","Choose the exact bit size and keep screws organized by position.","اختر المقاس الصحيح ورتب البراغي حسب مكانها.","Forcing the wrong screwdriver can destroy screw heads.","استخدام مفك خاطئ بالقوة قد يتلف رأس البرغي."),
+    tweezers: toolBook("Tweezers","الملاقط","P","Tweezers handle small parts, flex cables and components.","الملاقط تمسك القطع الصغيرة والفلاتات والمكونات.","Use light pressure and avoid pulling flex cables aggressively.","استخدم ضغطا خفيفا وتجنب سحب الفلاتات بقوة.","Cheap or sharp tweezers can tear flex cables or scratch the board.","ملاقط سيئة أو حادة قد تقطع الفلاتة أو تخدش اللوحة."),
+    displayGlue: toolBook("Display Glue","غراء الشاشة","GLUE","Display glue seals or refits a screen after repair.","غراء الشاشة يثبت أو يغلق الشاشة بعد الإصلاح.","Clean the frame, apply a thin layer and respect curing time.","نظف الإطار، ضع طبقة رقيقة واحترم وقت الجفاف.","Too much glue can overflow inside the phone.","الغراء الزائد قد يدخل داخل الهاتف."),
+    heatingPlate: toolBook("Heating Plate","اللوحة الحرارية","HEAT","A heating plate softens adhesive for safer opening.","اللوحة الحرارية تلين اللاصق لفتح أكثر أمانا.","Use controlled heat and never overheat a phone with battery inside.","استخدم حرارة متحكم بها ولا تفرط في تسخين هاتف يحتوي على بطارية.","Too much heat can damage screen, frame or battery.","الحرارة الزائدة قد تتلف الشاشة أو الإطار أو البطارية."),
+    microscope: toolBook("Microscope","الميكروسكوب","MICRO","A microscope reveals corrosion, damaged pins and tiny components.","الميكروسكوب يكشف الأكسدة والبنات التالفة والمكونات الصغيرة.","Inspect connectors, IC area, solder joints and liquid damage before repair.","افحص الكونكتورات ومنطقة الشرائح واللحام وأضرار السوائل قبل الإصلاح.","Working without inspection makes diagnosis random.","العمل بدون فحص يجعل التشخيص عشوائيا."),
+    hotAir: toolBook("Hot Air Station","محطة الهواء الساخن","AIR","Hot air removes and solders components using controlled heat.","الهواء الساخن يزيل ويلحم المكونات بحرارة متحكم بها.","Control airflow, temperature and distance from the board.","تحكم في الهواء والحرارة والمسافة عن اللوحة.","Too much heat can move nearby components or lift pads.","الحرارة الزائدة قد تحرك مكونات قريبة أو ترفع البادات."),
+    solderIron: toolBook("Soldering Iron","كاوية اللحام","IRON","A soldering iron is used for precise soldering and jumper work.","كاوية اللحام تستخدم للحام الدقيق وعمل الجمبر.","Use clean tip, flux and correct temperature.","استخدم رأس نظيف، فلكس وحرارة مناسبة.","A dirty tip or too much pressure can damage pads.","رأس متسخ أو ضغط زائد قد يتلف البادات."),
+    powerSupply: toolBook("Lab Power Supply","الباور سبلاي","PSU","A lab power supply powers the board and shows current draw.","الباور سبلاي يشغل اللوحة ويعرض استهلاك التيار.","Set voltage and current limit before connecting.","اضبط الفولت وحد التيار قبل التوصيل.","Wrong voltage can destroy the board immediately.","الفولت الخاطئ قد يدمر اللوحة فورا."),
+    flux: toolBook("Flux","الفلكس","FLUX","Flux helps solder flow cleanly and attach correctly.","الفلكس يساعد القصدير على الحركة والالتصاق بشكل صحيح.","Apply a small amount and clean residue after repair.","ضع كمية قليلة ونظف البقايا بعد الإصلاح.","Too much flux makes the area dirty and hard to inspect.","الفلكس الزائد يجعل المنطقة متسخة وصعبة الفحص."),
+    ipa: toolBook("IPA Alcohol","كحول IPA","IPA","IPA cleans flux, dirt and light residue from the board.","كحول IPA ينظف الفلكس والأوساخ والبقايا الخفيفة.","Use with brush carefully and let the board dry.","استخدمه مع فرشاة بحذر واترك اللوحة تجف.","Do not power the board while it is wet.","لا تشغل اللوحة وهي مبللة."),
+    esd: toolBook("ESD Mat","بساط ESD","ESD","ESD protection reduces static electricity risk.","حماية ESD تقلل خطر الكهرباء الساكنة.","Use ESD mat and wrist strap when working on sensitive boards.","استخدم بساط ESD وسوار حماية عند العمل على اللوحات الحساسة.","Static electricity can damage ICs without visible marks.","الكهرباء الساكنة قد تتلف الشرائح بدون علامات ظاهرة.")
+};
 
 const books = {
     resistor: makeBook("Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─/\\/\\/─","A resistor limits or controls current in a circuit.","المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.","Test with resistance mode Ω. Power must be off.","افحصها بوضع المقاومة Ω مع فصل الطاقة.","Wrong value or bad soldering can create abnormal behavior.","قيمة خاطئة أو لحام سيئ قد يسبب سلوكا غير طبيعي."),
@@ -625,8 +601,19 @@ const branches = [
     branch("start","START","Start","البداية","Begin the academy roadmap.","ابدأ خريطة الأكاديمية.",[
         node("start","START","Start Learning","ابدأ التعلم","Understand the learning path before starting.","افهم مسار التعلم قبل البداية.",systemBooks.start)
     ]),
-    branch("tools","V","Tools","الأدوات","Learn essential repair tools.","تعلم أدوات الإصلاح الأساسية.",[
-        node("multimeter","V","Multimeter","الملتيميتر","Modes, symbols and usage.","الأوضاع، الرموز وطريقة الاستخدام.",multimeterBook)
+    branch("tools","TOOLS","Tools","الأدوات","Learn essential repair tools.","تعلم أدوات الإصلاح الأساسية.",[
+        node("screwdriver","T","Screwdrivers","المفكات","Open phones without damaging screws.","فتح الهواتف بدون إتلاف البراغي.",toolBooks.screwdriver),
+        node("tweezers","P","Tweezers","الملاقط","Handle small parts and flex cables.","التعامل مع القطع الصغيرة والفلاتات.",toolBooks.tweezers),
+        node("display_glue","GLUE","Display Glue","غراء الشاشة","Seal or refit displays cleanly.","تثبيت أو إغلاق الشاشة بشكل نظيف.",toolBooks.displayGlue),
+        node("heating_plate","HEAT","Heating Plate","اللوحة الحرارية","Soften adhesive safely.","تليين اللاصق بأمان.",toolBooks.heatingPlate),
+        node("microscope","MIC","Microscope","الميكروسكوب","Inspect tiny damage and components.","فحص الأضرار والمكونات الصغيرة.",toolBooks.microscope),
+        node("multimeter","V","Multimeter","الملتيميتر","Modes, symbols and usage.","الأوضاع، الرموز وطريقة الاستخدام.",multimeterBook),
+        node("hot_air","AIR","Hot Air Station","محطة الهواء الساخن","Remove and solder components.","إزالة ولحام المكونات.",toolBooks.hotAir),
+        node("solder_iron","IRON","Soldering Iron","كاوية اللحام","Precise soldering and jumper work.","لحام دقيق وعمل الجمبر.",toolBooks.solderIron),
+        node("power_supply","PSU","Lab Power Supply","الباور سبلاي","Power the board and read current draw.","تشغيل اللوحة وقراءة استهلاك التيار.",toolBooks.powerSupply),
+        node("flux","FLUX","Flux","الفلكس","Clean solder flow and better joints.","تحسين حركة القصدير وجودة اللحام.",toolBooks.flux),
+        node("ipa","IPA","IPA Alcohol","كحول IPA","Clean flux, dirt and residue.","تنظيف الفلكس والأوساخ والبقايا.",toolBooks.ipa),
+        node("esd","ESD","ESD Mat","بساط ESD","Protect sensitive electronics.","حماية الإلكترونيات الحساسة.",toolBooks.esd)
     ]),
     branch("components","⚡","Electronic Components","المكونات الإلكترونية","Learn parts, symbols and tests.","تعلم القطع، الرموز وطريقة الفحص.",[
         node("resistor","R","Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.resistor),
@@ -798,6 +785,7 @@ function renderBranchPage(){
 function openNode(item){
     currentNode = item;
     currentBookPage = 0;
+    currentBranch = currentBranch || findBranchByNodeId(item.id);
     localStorage.setItem("master_repair_last", item.id);
     renderBookPage();
     showPage("bookPage");
@@ -814,13 +802,15 @@ function renderBookPage(){
 
     document.getElementById("bookVisual").innerHTML = `
         <div class="visual">
-            <div class="chip">${page.mode.toUpperCase()}</div>
-            <div class="screen">${page.display}</div>
-            <div class="symbol">${page.symbol}</div>
-            <div class="flow">
-                <div class="pad">IN</div>
-                <div class="meter"><div>${page.display}</div></div>
-                <div class="pad">OUT</div>
+            <div class="visual-title">${page.mode.toUpperCase()}</div>
+            <div class="component-layout">
+                <div class="component-body">${page.display}</div>
+                <div class="schematic-box">${page.symbol}</div>
+                <div class="test-row">
+                    <div class="pad">IN</div>
+                    <div class="meter"><div>${page.display}</div></div>
+                    <div class="pad">OUT</div>
+                </div>
             </div>
         </div>
     `;

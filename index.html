@@ -94,6 +94,7 @@ button{
 <button onclick="openPage('comp3')">3. RF / Signal 📡</button>
 <button onclick="openPage('comp4')">4. Connectors 🔌</button>
 <button onclick="openPage('comp5')">5. Sensors 🧠</button>
+<button onclick="openPage('comp6')">6. Audio 🔊</button>
 </div>
 
 <button onclick="openPage('home')">⬅ Back / رجوع</button>
@@ -105,37 +106,15 @@ button{
 <div id="c2" class="page">
 <div class="card">
 <h2>Level 2 / المستوى 2</h2>
-
-<div class="grid">
-<button onclick="openPage('comp6')">Multimeter 📊</button>
-</div>
-
 <button onclick="openPage('home')">Back</button>
 </div>
 </div>
 
-<!-- LEVEL 3-5 -->
+<!-- LEVEL 3-10 -->
 <div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
-
-<!-- LEVEL 6 AUDIO -->
-<div id="c6" class="page">
-<div class="card">
-
-<h2>6. Audio & Multimédia 🔊</h2>
-
-<p>Microphones</p>
-<p>Haut-parleurs (via connecteurs)</p>
-<p>IC audio codec</p>
-<p>Amplificateurs</p>
-
-<button onclick="openPage('home')">⬅ Back / رجوع</button>
-
-</div>
-</div>
-
-<!-- LEVEL 7-10 -->
+<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
 <div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
@@ -148,13 +127,19 @@ button{
 <div id="comp4" class="page"><div class="card"><h2>Connectors 🔌</h2><p>Battery / Screen / Charging</p><button onclick="openPage('c1')">Back</button></div></div>
 <div id="comp5" class="page"><div class="card"><h2>Sensors 🧠</h2><p>Gyroscope / Light / Fingerprint</p><button onclick="openPage('c1')">Back</button></div></div>
 
-<!-- MULTIMETER -->
+<!-- AUDIO (FIXED INSIDE LEVEL 1) -->
 <div id="comp6" class="page">
 <div class="card">
-<h2>Multimeter 📊</h2>
-<p>Voltage / Current / Resistance</p>
-<p>Continuity / Diode test</p>
-<button onclick="openPage('c2')">Back</button>
+
+<h2>6. Audio & Multimédia 🔊</h2>
+
+<p>Microphones</p>
+<p>Haut-parleurs (via connecteurs)</p>
+<p>IC audio codec</p>
+<p>Amplificateurs</p>
+
+<button onclick="openPage('c1')">⬅ Back / رجوع</button>
+
 </div>
 </div>
 

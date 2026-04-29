@@ -1,37 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repair Academy</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+    --bg:#070707;
+    --panel:#141414;
+    --panel2:#1d1d1d;
+    --text:#ffffff;
+    --muted:#a7a7a7;
+    --gold:#f5c542;
+    --red:#b00020;
+    --green:#22c55e;
+    --line:#2b2b2b;
+}
+
+*{box-sizing:border-box;}
+
 body{
     margin:0;
-    font-family:Arial;
-    background:#0b0b0b;
+    font-family:Arial, sans-serif;
+    background:
+        radial-gradient(circle at top, rgba(245,197,66,.16), transparent 35%),
+        linear-gradient(180deg, #0b0b0b, #050505);
+    color:var(--text);
+    min-height:100vh;
+}
+
+.app{
+    width:100%;
+    max-width:520px;
+    margin:0 auto;
+    padding:14px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.logo{
+    text-align:left;
+}
+
+.logo h1{
+    font-family:'Orbitron', sans-serif;
+    font-size:22px;
+    margin:0;
+    letter-spacing:0;
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+.status{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.icon-btn{
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:#101010;
     color:white;
+    font-size:20px;
+}
+
+.page{
+    display:none;
+    animation:fade .18s ease;
+}
+
+.page.active{display:block;}
+
+@keyframes fade{
+    from{opacity:.4; transform:translateY(4px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.hero{
+    background:
+        linear-gradient(135deg, rgba(245,197,66,.18), rgba(176,0,32,.10)),
+        var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:14px;
+    text-align:left;
+}
+
+.hero h2{
+    margin:0 0 8px;
+    font-size:21px;
+}
+
+.hero p{
+    margin:0;
+    color:var(--muted);
+    line-height:1.45;
+    font-size:14px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin:12px 0;
+}
+
+.stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px;
     text-align:center;
 }
 
-h1{
-    font-family:'Orbitron', sans-serif;
-    margin:15px;
-    font-size:22px;
+.stat strong{
+    display:block;
+    color:var(--gold);
+    font-size:18px;
 }
 
-.page{display:none;padding:15px;}
-.active{display:block;}
+.stat small{
+    color:var(--muted);
+    font-size:11px;
+}
 
-.card{
-    background:#1a1a1a;
-    margin:10px;
-    padding:15px;
-    border-radius:16px;
-    border:1px solid #2a2a2a;
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:18px 2px 10px;
+}
+
+.section-title h3{
+    margin:0;
+    font-size:16px;
+}
+
+.section-title small{
+    color:var(--muted);
 }
 
 .grid{
@@ -40,122 +162,613 @@ h1{
     gap:10px;
 }
 
-button{
-    padding:14px;
+.card-btn{
+    min-height:92px;
+    text-align:left;
+    padding:13px;
     border-radius:10px;
-    border:1px solid #333;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, #191919, #101010);
+    color:white;
+    cursor:pointer;
+}
+
+.card-btn:active{
+    transform:scale(.98);
+}
+
+.card-btn strong{
+    display:block;
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.card-btn small{
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.35;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:9px;
+    padding:4px 7px;
+    border-radius:999px;
+    background:rgba(245,197,66,.14);
+    color:var(--gold);
+    font-size:11px;
+}
+
+.panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.panel h2{
+    margin:0 0 8px;
+    font-size:21px;
+}
+
+.panel p{
+    color:var(--muted);
+    line-height:1.5;
+    margin:8px 0;
+    font-size:14px;
+}
+
+.list{
+    display:grid;
+    gap:9px;
+}
+
+.lesson{
+    background:var(--panel2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+    text-align:left;
+}
+
+.lesson strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.lesson p{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.action-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:12px;
+}
+
+button{
+    padding:13px;
+    border-radius:10px;
+    border:1px solid var(--line);
     background:#111;
     color:white;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.sos{
-    background:#8b0000;
-    border:1px solid #aa0000;
-    margin-top:15px;
+.primary{
+    background:var(--gold);
+    color:#111;
+    border-color:#d7aa25;
 }
 
-p{margin:6px 0;}
+.danger{
+    background:linear-gradient(180deg, #b00020, #780015);
+    border-color:#cf1235;
+}
+
+.back{
+    width:100%;
+    margin-top:10px;
+}
+
+.progress-wrap{
+    margin-top:12px;
+    background:#090909;
+    border:1px solid var(--line);
+    border-radius:999px;
+    overflow:hidden;
+    height:12px;
+}
+
+.progress{
+    height:100%;
+    width:10%;
+    background:linear-gradient(90deg, var(--gold), var(--green));
+}
+
+.sos-box{
+    border:1px solid rgba(176,0,32,.55);
+    background:rgba(176,0,32,.12);
+}
+
+.footer{
+    color:#777;
+    font-size:11px;
+    text-align:center;
+    padding:14px 0 5px;
+}
+
+@media(max-width:360px){
+    .grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:1fr;}
+    .action-row{grid-template-columns:1fr;}
+}
 </style>
 </head>
 
 <body>
+<div class="app">
 
-<h1>⚡ Repair Academy ⚡</h1>
+    <div class="topbar">
+        <div class="logo">
+            <h1><span>Repair</span> Academy</h1>
+            <div class="status" id="telegramStatus">Mini-app Telegram</div>
+        </div>
+        <button class="icon-btn" onclick="goHome()">⌂</button>
+    </div>
 
-<!-- HOME -->
-<div id="home" class="page active">
-<div class="card">
+    <div id="home" class="page active">
+        <div class="hero">
+            <h2>Deviens meilleur en réparation mobile</h2>
+            <p>Apprends les composants, les pannes, les zones importantes et les bases du diagnostic étape par étape.</p>
 
-<div class="grid">
-<button onclick="openPage('c1')">Level 1</button>
-<button onclick="openPage('c2')">Level 2</button>
-<button onclick="openPage('c3')">Level 3</button>
-<button onclick="openPage('c4')">Level 4</button>
-<button onclick="openPage('c5')">Level 5</button>
-<button onclick="openPage('c6')">Level 6</button>
-<button onclick="openPage('c7')">Level 7</button>
-<button onclick="openPage('c8')">Level 8</button>
-<button onclick="openPage('c9')">Level 9</button>
-<button onclick="openPage('c10')">Level 10</button>
-</div>
+            <div class="progress-wrap">
+                <div class="progress"></div>
+            </div>
+        </div>
 
-<button class="sos" onclick="openSOS()">SOS</button>
+        <div class="stats">
+            <div class="stat">
+                <strong>10</strong>
+                <small>Niveaux</small>
+            </div>
+            <div class="stat">
+                <strong>6</strong>
+                <small>Bases</small>
+            </div>
+            <div class="stat">
+                <strong>SOS</strong>
+                <small>Aide rapide</small>
+            </div>
+        </div>
 
-</div>
-</div>
+        <div class="section-title">
+            <h3>Parcours</h3>
+            <small>Choisis un niveau</small>
+        </div>
 
-<!-- LEVEL 1 -->
-<div id="c1" class="page">
-<div class="card">
+        <div class="grid" id="levelsGrid"></div>
 
-<h2>Level 1 - Basics</h2>
+        <div class="section-title">
+            <h3>Assistance</h3>
+            <small>Besoin d’aide ?</small>
+        </div>
 
-<div class="grid">
-<button onclick="openPage('comp1')">IC</button>
-<button onclick="openPage('comp2')">Power</button>
-<button onclick="openPage('comp3')">RF</button>
-<button onclick="openPage('comp4')">Connectors</button>
-<button onclick="openPage('comp5')">Sensors</button>
-<button onclick="openPage('comp6')">Audio</button>
-</div>
+        <div class="panel sos-box">
+            <h2>SOS Réparation</h2>
+            <p>Accède au support Telegram pour demander de l’aide, montrer une panne ou poser une question.</p>
+            <button class="danger" onclick="openSOS()">Ouvrir SOS</button>
+        </div>
+    </div>
 
-<button onclick="openPage('home')">Back</button>
+    <div id="levelPage" class="page">
+        <div class="panel">
+            <h2 id="levelTitle"></h2>
+            <p id="levelDesc"></p>
+        </div>
 
-</div>
-</div>
+        <div class="section-title">
+            <h3>Modules</h3>
+            <small id="moduleCount"></small>
+        </div>
 
-<!-- LEVEL 2 -->
-<div id="c2" class="page"><div class="card"><h2>Level 2</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c3" class="page"><div class="card"><h2>Level 3</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c4" class="page"><div class="card"><h2>Level 4</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c5" class="page"><div class="card"><h2>Level 5</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c6" class="page"><div class="card"><h2>Level 6</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c7" class="page"><div class="card"><h2>Level 7</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c8" class="page"><div class="card"><h2>Level 8</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c9" class="page"><div class="card"><h2>Level 9</h2><button onclick="openPage('home')">Back</button></div></div>
-<div id="c10" class="page"><div class="card"><h2>Level 10</h2><button onclick="openPage('home')">Back</button></div></div>
+        <div class="grid" id="modulesGrid"></div>
+        <button class="back" onclick="goHome()">Retour accueil</button>
+    </div>
 
-<!-- COMPONENTS -->
-<div id="comp1" class="page"><div class="card"><h2>IC</h2><p>SoC / PMIC / RAM</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp2" class="page"><div class="card"><h2>Power</h2><p>Inductors / Capacitors / MOSFET</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp3" class="page"><div class="card"><h2>RF</h2><p>Filters / Antenna</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp4" class="page"><div class="card"><h2>Connectors</h2><p>Battery / Screen / Charging</p><button onclick="openPage('c1')">Back</button></div></div>
-<div id="comp5" class="page"><div class="card"><h2>Sensors</h2><p>Gyroscope / Light / Fingerprint</p><button onclick="openPage('c1')">Back</button></div></div>
+    <div id="modulePage" class="page">
+        <div class="panel">
+            <h2 id="moduleTitle"></h2>
+            <p id="moduleDesc"></p>
+        </div>
 
-<!-- AUDIO FIX CLEAN -->
-<div id="comp6" class="page">
-<div class="card">
+        <div class="section-title">
+            <h3>Fiche rapide</h3>
+            <small>à retenir</small>
+        </div>
 
-<h2>Audio & Multimédia</h2>
+        <div class="list" id="lessonList"></div>
 
-<p>Microphones</p>
-<p>Speakers</p>
-<p>Audio Codec IC</p>
-<p>Amplifiers</p>
+        <div class="action-row">
+            <button onclick="goBackLevel()">Retour niveau</button>
+            <button class="primary" onclick="markDone()">Terminé</button>
+        </div>
+    </div>
 
-<button onclick="openPage('c1')">Back</button>
+    <div class="footer">Repair Academy • Version apprentissage</div>
 
-</div>
 </div>
 
 <script>
-const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand();
+const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
 
-function openPage(page){
-let el=document.getElementById(page);
-if(!el) return;
+if(tg){
+    tg.ready();
+    tg.expand();
+    document.getElementById("telegramStatus").textContent = "Connecté à Telegram";
+}else{
+    document.getElementById("telegramStatus").textContent = "Mode test navigateur";
+}
 
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-el.classList.add("active");
+const levels = [
+    {
+        id:1,
+        title:"Level 1",
+        name:"Bases composants",
+        desc:"Découvre les grandes familles de composants présents sur une carte mère.",
+        modules:[
+            {
+                title:"IC",
+                desc:"Les circuits intégrés principaux du téléphone.",
+                lessons:[
+                    ["SoC", "Le cerveau du téléphone. Il gère la puissance, les calculs et beaucoup de fonctions."],
+                    ["PMIC", "Gère l’alimentation électrique et distribue les tensions aux composants."],
+                    ["RAM / Stockage", "La mémoire rapide et la mémoire où sont gardées les données."]
+                ]
+            },
+            {
+                title:"Power",
+                desc:"Tout ce qui concerne l’alimentation et les tensions.",
+                lessons:[
+                    ["Condensateur", "Aide à stabiliser une tension et filtrer les parasites."],
+                    ["Inductance", "Souvent utilisée dans les circuits d’alimentation."],
+                    ["MOSFET", "Interrupteur électronique qui contrôle le passage du courant."]
+                ]
+            },
+            {
+                title:"RF",
+                desc:"La partie réseau, antenne, signal et communication.",
+                lessons:[
+                    ["Antenne", "Permet de capter et envoyer les signaux réseau, Wi-Fi ou Bluetooth."],
+                    ["Filtres RF", "Nettoient et sélectionnent les bonnes fréquences."],
+                    ["PA", "Amplifie le signal avant émission."]
+                ]
+            },
+            {
+                title:"Connectors",
+                desc:"Les connecteurs importants à reconnaître.",
+                lessons:[
+                    ["Batterie", "Connecteur qui apporte l’énergie principale au téléphone."],
+                    ["Écran", "Transmet image, tactile et parfois rétroéclairage."],
+                    ["Charge", "Port ou nappe liée à l’USB et à la recharge."]
+                ]
+            },
+            {
+                title:"Sensors",
+                desc:"Les capteurs qui aident le téléphone à comprendre son environnement.",
+                lessons:[
+                    ["Gyroscope", "Détecte l’orientation et les mouvements."],
+                    ["Capteur lumière", "Ajuste la luminosité automatique."],
+                    ["Empreinte", "Permet l’identification biométrique."]
+                ]
+            },
+            {
+                title:"Audio",
+                desc:"Microphones, haut-parleurs et traitement du son.",
+                lessons:[
+                    ["Microphone", "Transforme la voix en signal électrique."],
+                    ["Speaker", "Produit le son entendu par l’utilisateur."],
+                    ["Audio Codec IC", "Gère la conversion et le traitement du son."]
+                ]
+            }
+        ]
+    },
+    {
+        id:2,
+        title:"Level 2",
+        name:"Outils atelier",
+        desc:"Apprends les outils essentiels : multimètre, alimentation, microscope, station air chaud.",
+        modules:[
+            {
+                title:"Multimètre",
+                desc:"L’outil numéro un pour contrôler une carte.",
+                lessons:[
+                    ["Mode continuité", "Permet de vérifier si deux points sont connectés."],
+                    ["Mode diode", "Très utile pour comparer une ligne avec une carte saine."],
+                    ["Tension", "Permet de vérifier si une alimentation arrive bien."]
+                ]
+            },
+            {
+                title:"Alimentation",
+                desc:"Permet d’alimenter une carte et observer sa consommation.",
+                lessons:[
+                    ["Court-circuit", "Une consommation anormale peut indiquer un problème."],
+                    ["Ampérage", "Aide à lire le comportement de la carte."],
+                    ["Sécurité", "Toujours régler la bonne tension avant de brancher."]
+                ]
+            }
+        ]
+    },
+    {
+        id:3,
+        title:"Level 3",
+        name:"Diagnostic panne",
+        desc:"Comprendre comment chercher une panne sans remplacer des pièces au hasard.",
+        modules:[
+            {
+                title:"No Power",
+                desc:"Téléphone qui ne s’allume pas.",
+                lessons:[
+                    ["Batterie", "Vérifier tension batterie et connecteur."],
+                    ["Court-circuit", "Chercher une ligne qui chauffe ou consomme trop."],
+                    ["Bouton power", "Vérifier si le signal power arrive."]
+                ]
+            },
+            {
+                title:"Pas de charge",
+                desc:"Téléphone qui ne prend pas la charge.",
+                lessons:[
+                    ["Port de charge", "Inspecter saleté, casse ou oxydation."],
+                    ["Ligne VBUS", "Vérifier si le 5V arrive."],
+                    ["IC charge", "Peut être responsable si les lignes sont correctes."]
+                ]
+            }
+        ]
+    },
+    {
+        id:4,
+        title:"Level 4",
+        name:"Micro-soudure",
+        desc:"Bases de soudure, flux, chaleur et remplacement de petits composants.",
+        modules:[
+            {
+                title:"Flux",
+                desc:"Indispensable pour faire une soudure propre.",
+                lessons:[
+                    ["Rôle", "Aide l’étain à mieux se placer."],
+                    ["Nettoyage", "Après travail, nettoyer les résidus."],
+                    ["Qualité", "Un bon flux change énormément le résultat."]
+                ]
+            }
+        ]
+    },
+    {
+        id:5,
+        title:"Level 5",
+        name:"Lecture carte mère",
+        desc:"Identifier les zones et suivre une ligne sur une carte.",
+        modules:[
+            {
+                title:"Zones",
+                desc:"Apprendre à repérer les blocs importants.",
+                lessons:[
+                    ["Power", "Zone liée aux alimentations."],
+                    ["RF", "Zone réseau et antenne."],
+                    ["CPU", "Zone centrale, très sensible."]
+                ]
+            }
+        ]
+    },
+    {
+        id:6,
+        title:"Level 6",
+        name:"Pannes écran",
+        desc:"Diagnostic écran noir, tactile absent, image instable.",
+        modules:[
+            {
+                title:"Écran noir",
+                desc:"Trouver si le souci vient de l’écran ou de la carte.",
+                lessons:[
+                    ["Tester autre écran", "Première étape simple si possible."],
+                    ["Connecteur", "Inspecter pins tordus ou cassés."],
+                    ["Rétroéclairage", "Si image très sombre, suspecter la ligne backlight."]
+                ]
+            }
+        ]
+    },
+    {
+        id:7,
+        title:"Level 7",
+        name:"Pannes réseau",
+        desc:"Comprendre SIM, antennes, baseband et signal.",
+        modules:[
+            {
+                title:"Pas de réseau",
+                desc:"Panne complexe à diagnostiquer avec méthode.",
+                lessons:[
+                    ["SIM", "Vérifier lecture SIM et tiroir."],
+                    ["IMEI", "Si absent, suspecter partie baseband."],
+                    ["Antenne", "Vérifier contacts et nappes."]
+                ]
+            }
+        ]
+    },
+    {
+        id:8,
+        title:"Level 8",
+        name:"Oxydation",
+        desc:"Nettoyage, inspection et zones sensibles après liquide.",
+        modules:[
+            {
+                title:"Liquide",
+                desc:"Réagir correctement après contact avec eau ou humidité.",
+                lessons:[
+                    ["Débrancher", "Éviter d’alimenter une carte oxydée."],
+                    ["Inspection", "Chercher traces blanches, vertes ou noires."],
+                    ["Nettoyage", "Nettoyer avant de tester sérieusement."]
+                ]
+            }
+        ]
+    },
+    {
+        id:9,
+        title:"Level 9",
+        name:"Cas réels",
+        desc:"Études de pannes étape par étape.",
+        modules:[
+            {
+                title:"Cas client",
+                desc:"Méthode simple pour ne rien oublier.",
+                lessons:[
+                    ["Symptôme", "Noter exactement ce que fait le téléphone."],
+                    ["Historique", "Chute, eau, réparation précédente."],
+                    ["Tests", "Procéder étape par étape."]
+                ]
+            }
+        ]
+    },
+    {
+        id:10,
+        title:"Level 10",
+        name:"Mode expert",
+        desc:"Analyse avancée, logique de lignes et réparation difficile.",
+        modules:[
+            {
+                title:"Analyse avancée",
+                desc:"Aller plus loin dans la compréhension carte mère.",
+                lessons:[
+                    ["Comparer", "Comparer les mesures avec une carte saine."],
+                    ["Schéma", "Lire le chemin d’une ligne importante."],
+                    ["Décision", "Réparer seulement quand la cause est claire."]
+                ]
+            }
+        ]
+    }
+];
 
-try{tg.sendData(page);}catch(e){}
+let currentLevel = null;
+let currentModule = null;
+
+function showPage(id){
+    document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0,0);
+}
+
+function renderLevels(){
+    const grid = document.getElementById("levelsGrid");
+    grid.innerHTML = "";
+
+    levels.forEach(level => {
+        const btn = document.createElement("button");
+        btn.className = "card-btn";
+        btn.onclick = () => openLevel(level.id);
+        btn.innerHTML = `
+            <strong>${level.title}</strong>
+            <small>${level.name}</small>
+            <span class="badge">${level.modules.length} module${level.modules.length > 1 ? "s" : ""}</span>
+        `;
+        grid.appendChild(btn);
+    });
+}
+
+function openLevel(id){
+    currentLevel = levels.find(level => level.id === id);
+    currentModule = null;
+
+    document.getElementById("levelTitle").textContent = currentLevel.title + " - " + currentLevel.name;
+    document.getElementById("levelDesc").textContent = currentLevel.desc;
+    document.getElementById("moduleCount").textContent = currentLevel.modules.length + " module" + (currentLevel.modules.length > 1 ? "s" : "");
+
+    const grid = document.getElementById("modulesGrid");
+    grid.innerHTML = "";
+
+    currentLevel.modules.forEach((module, index) => {
+        const btn = document.createElement("button");
+        btn.className = "card-btn";
+        btn.onclick = () => openModule(index);
+        btn.innerHTML = `
+            <strong>${module.title}</strong>
+            <small>${module.desc}</small>
+            <span class="badge">Ouvrir</span>
+        `;
+        grid.appendChild(btn);
+    });
+
+    sendTelegramData("level_" + id);
+    showPage("levelPage");
+}
+
+function openModule(index){
+    currentModule = currentLevel.modules[index];
+
+    document.getElementById("moduleTitle").textContent = currentModule.title;
+    document.getElementById("moduleDesc").textContent = currentModule.desc;
+
+    const list = document.getElementById("lessonList");
+    list.innerHTML = "";
+
+    currentModule.lessons.forEach(item => {
+        const box = document.createElement("div");
+        box.className = "lesson";
+        box.innerHTML = `
+            <strong>${item[0]}</strong>
+            <p>${item[1]}</p>
+        `;
+        list.appendChild(box);
+    });
+
+    sendTelegramData("module_" + currentModule.title);
+    showPage("modulePage");
+}
+
+function goHome(){
+    currentLevel = null;
+    currentModule = null;
+    showPage("home");
+}
+
+function goBackLevel(){
+    if(currentLevel){
+        openLevel(currentLevel.id);
+    }else{
+        goHome();
+    }
+}
+
+function markDone(){
+    if(tg){
+        tg.HapticFeedback.notificationOccurred("success");
+        tg.showAlert("Module terminé !");
+    }else{
+        alert("Module terminé !");
+    }
 }
 
 function openSOS(){
-window.open("https://t.me/c/3919937885/2","_blank");
+    const sosLink = "https://t.me/+OVTmcEQLg00zMTQ0";
+    if(tg){
+        tg.openTelegramLink(sosLink);
+    }else{
+        window.open(sosLink, "_blank");
+    }
 }
+
+function sendTelegramData(data){
+    try{
+        if(tg){
+            tg.sendData(data);
+        }
+    }catch(e){}
+}
+
+renderLevels();
 </script>
 
 </body>

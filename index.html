@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Master Repair Academy • Plateforme Éducative</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Repair Academy</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -17,8 +17,6 @@
     --muted:#9b9b9b;
     --soft:#dedede;
     --red:#b00020;
-    --purple:#a855f7;
-    --orange:#f97316;
 }
 *{box-sizing:border-box;}
 body{
@@ -106,7 +104,7 @@ body[dir="rtl"]{direction:rtl;}
 }
 .stats{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr;
     gap:8px;
     margin:11px 0;
 }
@@ -150,8 +148,6 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     color:#111;
 }
 .danger{background:linear-gradient(180deg,#b00020,#780015);}
-.secondary{background:linear-gradient(135deg,var(--purple),#7c3aed);}
-.warning{background:linear-gradient(135deg,var(--orange),#ea580c);}
 .main-action{width:100%;}
 .section-title{text-align:center;margin:18px 2px 10px;}
 .section-title h3{margin:0;font-size:17px;font-weight:900;}
@@ -184,8 +180,6 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     font-size:11px;
     font-weight:900;
 }
-.badge-gold{background:var(--gold);color:#111;}
-.badge-purple{background:var(--purple);color:#fff;}
 .list{display:grid;gap:8px;}
 .lesson{
     border:1px solid var(--line);
@@ -276,6 +270,7 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     font-size:12px;
     font-weight:900;
 }
+
 .meter-visual{
     width:100%;
     max-width:292px;
@@ -283,7 +278,10 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     padding:15px;
     border-radius:24px;
     border:1px solid rgba(56,189,248,.35);
-    background:radial-gradient(circle at top,rgba(56,189,248,.14),transparent 36%),linear-gradient(180deg,#262626,#101010);
+    background:
+        radial-gradient(circle at top,rgba(56,189,248,.14),transparent 36%),
+        linear-gradient(180deg,#262626,#101010);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),0 0 28px rgba(56,189,248,.12);
 }
 .meter-screen{
     height:56px;
@@ -295,6 +293,7 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     justify-content:center;
     font-size:22px;
     font-weight:900;
+    letter-spacing:1px;
     border:3px solid #0b0b0b;
 }
 .dial{
@@ -327,7 +326,10 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     font-weight:900;
     color:#aaa;
 }
-.mode.active{color:var(--gold);text-shadow:0 0 10px rgba(242,201,76,.65);}
+.mode.active{
+    color:var(--gold);
+    text-shadow:0 0 10px rgba(242,201,76,.65);
+}
 .m-off{top:6px;left:52px;}
 .m-vdc{top:20px;right:13px;}
 .m-vac{right:4px;top:55px;}
@@ -379,21 +381,28 @@ button:disabled{opacity:.4;cursor:not-allowed;}
 }
 .probe.red{background:#e11d48;color:#e11d48;}
 .probe.black{background:#cbd5e1;color:#cbd5e1;}
-.sos-box{border-color:rgba(176,0,32,.55);background:rgba(176,0,32,.12);}
-.footer{color:#777;font-size:11px;text-align:center;padding:15px 0 5px;font-weight:700;}
-.badge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px;}
-.badge-item{background:linear-gradient(145deg,#2a2a2a,#111);padding:12px;border-radius:14px;text-align:center;border:1px solid var(--line);}
-.badge-icon{font-size:28px;margin-bottom:6px;}
-.quiz-option{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;background:#1a1a1a;text-align:left;}
-.quiz-option.correct{background:rgba(39,196,107,.2);border-color:var(--green);}
-.rank-card{background:linear-gradient(135deg,#1e1e2f,#0a0a0a);border-radius:16px;padding:14px;text-align:center;}
+
+.sos-box{
+    border-color:rgba(176,0,32,.55);
+    background:rgba(176,0,32,.12);
+}
+.footer{
+    color:#777;
+    font-size:11px;
+    text-align:center;
+    padding:15px 0 5px;
+    font-weight:700;
+}
 @media(max-width:390px){
     .app{padding:12px;}
     .logo h1{font-size:16px;}
-    .stats{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:330px){
+    .stats,.book-controls,.action-row{grid-template-columns:1fr;}
 }
 </style>
 </head>
+
 <body>
 <div class="app">
     <div class="topbar">
@@ -406,7 +415,6 @@ button:disabled{opacity:.4;cursor:not-allowed;}
         <button class="lang-btn" id="langButton" onclick="toggleLanguage()">AR</button>
     </div>
 
-    <!-- HOME -->
     <div id="home" class="page active">
         <div class="hero">
             <h2 class="title" id="heroTitle"></h2>
@@ -414,188 +422,687 @@ button:disabled{opacity:.4;cursor:not-allowed;}
             <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
             <p class="text" id="progressText"></p>
         </div>
+
         <div class="stats">
             <div class="stat"><strong id="doneCount">0</strong><small id="completedLabel"></small></div>
             <div class="stat"><strong id="totalCount">0</strong><small id="stepsLabel"></small></div>
-            <div class="stat"><strong id="streakCount">0</strong><small>Streak</small></div>
-            <div class="stat"><strong id="pointsCount">0</strong><small>Points</small></div>
+            <div class="stat"><strong>SOS</strong><small id="supportLabel"></small></div>
         </div>
-        <div><button class="primary main-action" onclick="continueLearning()" id="continueButton"></button></div>
-        <div class="section-title"><h3 id="quickTitle">🏆 Actions Rapides</h3></div>
-        <div class="action-row">
-            <button class="secondary" onclick="showBadges()">🎖️ Badges</button>
-            <button class="warning" onclick="showDailyQuest()">📅 Quête</button>
-            <button class="primary" onclick="showExamMode()">📝 Examen</button>
-            <button class="secondary" onclick="shareProgress()">📤 Partager</button>
+
+        <button class="primary main-action" onclick="continueLearning()" id="continueButton"></button>
+
+        <div class="section-title">
+            <h3 id="branchesTitle"></h3>
+            <p id="branchesSubtitle"></p>
         </div>
-        <div class="section-title"><h3 id="branchesTitle"></h3><p id="branchesSubtitle"></p></div>
+
         <div id="branchList" class="branch-list"></div>
-        
-        <div class="section-title"><h3>🏅 Classement</h3><p>Top apprentis</p></div>
-        <div id="rankPreview" class="rank-card" style="margin-bottom:12px;"><span style="color:var(--gold);">🔥</span> <span id="rankMessage">Connecte-toi pour voir ton rang</span></div>
-        
-        <div class="panel sos-box"><h2 class="title" id="sosTitle"></h2><p class="text" id="sosText"></p><br><button class="danger" onclick="openSOS()" id="sosButton"></button></div>
+
+        <div class="section-title">
+            <h3 id="supportTitle"></h3>
+            <p id="supportSubtitle"></p>
+        </div>
+
+        <div class="panel sos-box">
+            <h2 class="title" id="sosTitle"></h2>
+            <p class="text" id="sosText"></p>
+            <br>
+            <button class="danger" onclick="openSOS()" id="sosButton"></button>
+        </div>
     </div>
 
-    <!-- BRANCH PAGE -->
-    <div id="branchPage" class="page"><div class="panel"><h2 class="title" id="branchTitle"></h2><p class="text" id="branchDesc"></p><span class="badge" id="branchProgress"></span></div>
-        <div class="section-title"><h3 id="chaptersTitle"></h3><p id="chaptersSubtitle"></p></div>
+    <div id="branchPage" class="page">
+        <div class="panel">
+            <h2 class="title" id="branchTitle"></h2>
+            <p class="text" id="branchDesc"></p>
+            <span class="badge" id="branchProgress"></span>
+        </div>
+
+        <div class="section-title">
+            <h3 id="chaptersTitle"></h3>
+            <p id="chaptersSubtitle"></p>
+        </div>
+
         <div id="chapterList" class="chapter-list"></div>
         <button class="main-action" onclick="goHome()" id="branchBackButton"></button>
     </div>
 
-    <!-- BOOK PAGE -->
-    <div id="bookPage" class="page"><div class="panel"><h2 class="title" id="bookTitle"></h2><p class="text" id="bookDesc"></p><div class="book-counter" id="bookCounter"></div></div>
+    <div id="bookPage" class="page">
+        <div class="panel">
+            <h2 class="title" id="bookTitle"></h2>
+            <p class="text" id="bookDesc"></p>
+            <div class="book-counter" id="bookCounter"></div>
+        </div>
+
         <div id="bookVisual"></div>
-        <div class="panel"><h2 class="title" id="bookPageTitle"></h2><p class="text" id="bookPageText"></p></div>
+
+        <div class="panel">
+            <h2 class="title" id="bookPageTitle"></h2>
+            <p class="text" id="bookPageText"></p>
+        </div>
+
         <div class="list" id="bookPoints"></div>
-        <div class="book-controls"><button onclick="previousBookPage()" id="prevButton"></button><button onclick="nextBookPage()" id="nextButton"></button></div>
-        <div class="action-row"><button onclick="goBranch()" id="bookBackButton"></button><button class="primary" onclick="markDone()" id="bookDoneButton"></button></div>
+
+        <div class="book-controls">
+            <button onclick="previousBookPage()" id="prevButton"></button>
+            <button onclick="nextBookPage()" id="nextButton"></button>
+        </div>
+
+        <div class="action-row">
+            <button onclick="goBranch()" id="bookBackButton"></button>
+            <button class="primary" onclick="markDone()" id="bookDoneButton"></button>
+        </div>
     </div>
-
-    <!-- BADGES MODAL -->
-    <div id="badgesPage" class="page"><div class="panel"><h2>🎖️ Mes Badges</h2><div id="badgesList" class="badge-grid"></div><button class="main-action" onclick="goHome()">Retour</button></div></div>
-
-    <!-- DAILY QUEST -->
-    <div id="questPage" class="page"><div class="panel"><h2>📅 Quotidienne</h2><p id="questText"></p><button class="primary" id="questClaimBtn" onclick="claimDailyQuest()">Réclamer 🎁</button><br><br><button class="main-action" onclick="goHome()">Retour</button></div></div>
-
-    <!-- EXAM MODE -->
-    <div id="examPage" class="page"><div class="panel"><h2>📝 Examen</h2><p id="examQuestion"></p><div id="examOptions"></div><button class="primary" id="examNextBtn" onclick="nextExamQuestion()">Suivant</button><br><br><button class="main-action" onclick="goHome()">Quitter</button></div></div>
 
     <div class="footer" id="footerText"></div>
 </div>
 
 <script>
 const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-if(tg){ tg.ready(); tg.expand(); }
+if(tg){
+    tg.ready();
+    tg.expand();
+}
 
 let currentLang = localStorage.getItem("master_repair_lang") || "en";
-let currentBranch = null, currentNode = null, currentBookPage = 0;
-let userPoints = parseInt(localStorage.getItem("userPoints") || "0");
-let userStreak = parseInt(localStorage.getItem("userStreak") || "0");
-let lastActive = localStorage.getItem("lastActive") || "";
-let examQuestions = [], examIndex = 0, examScore = 0, examActive = false;
+let currentBranch = null;
+let currentNode = null;
+let currentBookPage = 0;
 
-// === BASE DATA (same as original but shortened for space, keep full structure) ===
-const ui={en:{dir:"ltr",langButton:"AR",connected:"Connected",browser:"Test",heroTitle:"Repair Learning",completed:"Done",steps:"Steps",support:"SOS"},ar:{dir:"rtl",langButton:"EN",connected:"متصل",browser:"اختبار",heroTitle:"تعلم الإصلاح",completed:"مكتمل",steps:"خطوات",support:"دعم"}};
-function tr(k){return ui[currentLang][k]||k;}
+const ui = {
+    en:{
+        dir:"ltr",
+        langButton:"AR",
+        connected:"Connected to Telegram",
+        browser:"Browser Test Mode",
+        heroTitle:"Motherboard Repair Learning Path",
+        heroText:"Choose a branch, then open its chapters. Clean, short and ready to grow.",
+        completed:"Completed",
+        steps:"Steps",
+        support:"Support",
+        continue:"Continue Learning",
+        branchesTitle:"Learning Branches",
+        branchesSubtitle:"Choose a training area",
+        chaptersTitle:"Chapters",
+        chaptersSubtitle:"Choose a lesson",
+        supportTitle:"Support",
+        supportSubtitle:"Need help?",
+        sosTitle:"SOS Repair",
+        sosText:"Open the Telegram group to ask for help.",
+        sosButton:"Open SOS",
+        back:"Back",
+        done:"Done",
+        prev:"Previous",
+        next:"Next",
+        footer:"Master Repair Academy • Learning Tree",
+        completedProgress:"completed",
+        open:"Open",
+        doneState:"Done",
+        completedMessage:"Step completed!"
+    },
+    ar:{
+        dir:"rtl",
+        langButton:"EN",
+        connected:"متصل بتيليجرام",
+        browser:"وضع الاختبار",
+        heroTitle:"مسار تعلم إصلاح اللوحات",
+        heroText:"اختر فرعا، ثم افتح دروسه. واجهة قصيرة ونظيفة وقابلة للتوسع.",
+        completed:"مكتمل",
+        steps:"خطوات",
+        support:"الدعم",
+        continue:"متابعة التعلم",
+        branchesTitle:"فروع التعلم",
+        branchesSubtitle:"اختر مجال التدريب",
+        chaptersTitle:"الدروس",
+        chaptersSubtitle:"اختر درسا",
+        supportTitle:"الدعم",
+        supportSubtitle:"تحتاج مساعدة؟",
+        sosTitle:"دعم الإصلاح",
+        sosText:"افتح مجموعة تيليجرام لطلب المساعدة.",
+        sosButton:"فتح الدعم",
+        back:"رجوع",
+        done:"تم",
+        prev:"السابق",
+        next:"التالي",
+        footer:"Master Repair Academy • شجرة التعلم",
+        completedProgress:"مكتمل",
+        open:"فتح",
+        doneState:"تم",
+        completedMessage:"تم إنهاء الخطوة!"
+    }
+};
+
+function tr(key){return ui[currentLang][key];}
+function pair(en, ar){return {en, ar};}
 function txt(obj){return obj[currentLang];}
-function pair(a,b){return {en:a,ar:b};}
 
-// === ALL LESSONS (your existing 50+ lessons) ===
-// For brevity I keep the structure but you already have full branches array.
-// I'll add a few exam questions, badges, daily quest system on top of existing working code.
-// Since code is long, I'll inject new features into your existing system.
+function makePage(kind, mode, display, symbol, titleEn, titleAr, textEn, textAr, points){
+    return {
+        kind,
+        mode,
+        display,
+        symbol,
+        title:pair(titleEn,titleAr),
+        text:pair(textEn,textAr),
+        points:points.map(item => ({
+            title:pair(item[0],item[1]),
+            text:pair(item[2],item[3])
+        }))
+    };
+}
 
-function updatePointsAndStreak(){
-    const today = new Date().toISOString().slice(0,10);
-    if(lastActive !== today){ userStreak++; if(userStreak>365) userStreak=365; lastActive=today; localStorage.setItem("lastActive",today); }
-    localStorage.setItem("userStreak",userStreak);
-    document.getElementById("streakCount").innerText = userStreak;
-    document.getElementById("pointsCount").innerText = userPoints;
-}
-function addPoints(amt){
-    userPoints+=amt; localStorage.setItem("userPoints",userPoints);
-    document.getElementById("pointsCount").innerText=userPoints;
-    if(tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
-}
-function showBadges(){
-    const badges = JSON.parse(localStorage.getItem("earnedBadges")||"[]");
-    const container=document.getElementById("badgesList");
-    const allBadges=[{id:"first",icon:"🏅",name:"Premier Pas"},{id:"streak7",icon:"🔥",name:"7 jours"},{id:"scholar",icon:"📚",name:"Scholar"},{id:"expert",icon:"⚡",name:"Expert"}];
-    container.innerHTML=allBadges.map(b=>`<div class="badge-item"><div class="badge-icon">${b.icon}</div><div>${b.name}</div>${badges.includes(b.id)?'<span class="badge badge-gold">✅</span>':'<span class="badge">🔒</span>'}</div>`).join("");
-    showPage("badgesPage");
-}
-function checkBadges(){
-    let earned=JSON.parse(localStorage.getItem("earnedBadges")||"[]");
-    if(allNodes().filter(n=>doneIds().includes(n.id)).length>=1 && !earned.includes("first")){ earned.push("first"); addPoints(50); if(tg) tg.showAlert?.("🏅 Badge débloqué : Premier Pas ! +50 pts"); }
-    if(userStreak>=7 && !earned.includes("streak7")){ earned.push("streak7"); addPoints(100); if(tg) tg.showAlert?.("🔥 Badge : 7 jours de suite ! +100 pts"); }
-    localStorage.setItem("earnedBadges",JSON.stringify(earned));
-}
-function showDailyQuest(){
-    const q = localStorage.getItem("dailyQuest") || "Lire une leçon";
-    let claimed = localStorage.getItem("questClaimed") === "true";
-    document.getElementById("questText").innerHTML = claimed ? `✅ Quête terminée : ${q}` : `🎯 Objectif : ${q}<br>+30 points`;
-    document.getElementById("questClaimBtn").disabled = claimed;
-    showPage("questPage");
-}
-function claimDailyQuest(){
-    if(localStorage.getItem("questClaimed")==="true") return;
-    addPoints(30);
-    localStorage.setItem("questClaimed","true");
-    document.getElementById("questClaimBtn").disabled=true;
-    document.getElementById("questText").innerHTML="✅ Quête terminée ! +30 points";
-    if(tg && tg.showAlert) tg.showAlert("+30 points ! Reviens demain.");
-}
-function resetDailyQuest(){
-    const today=new Date().toISOString().slice(0,10);
-    const lastReset=localStorage.getItem("lastQuestReset")||"";
-    if(lastReset!==today){ localStorage.setItem("questClaimed","false"); localStorage.setItem("lastQuestReset",today); 
-        const quests=["Lire un chapitre","Finir une leçon","Réviser un composant","Partager ta progression"]; 
-        localStorage.setItem("dailyQuest",quests[Math.floor(Math.random()*quests.length)]); }
-}
-function shareProgress(){
-    const done=doneIds().length,total=allNodes().length;
-    const msg=`📱 Master Repair Academy : ${done}/${total} leçons complétées, ${userPoints} points, ${userStreak} jours 🔥`;
-    if(tg && tg.showPopup) tg.showPopup({title:"Partager",message:msg,buttons:[{type:"ok"}]});
-    else alert(msg);
-}
-function showExamMode(){
-    examQuestions = [
-        {q:"Que mesure le mode diode sur un multimetre ?",opts:["Courant","Tension directe","Resistance","Continuite"],ans:1},
-        {q:"Quel outil est le plus sûr pour ouvrir un iPhone ?",opts:["Tournevis plat","Plectre + chauffe","Pince","Cutter"],ans:1},
-        {q:"Que signifie ESD ?",opts:["Electrostatic Discharge","Electronic Supply","Energy Save","Extra Speed"],ans:0}
+function makeBook(titleEn, titleAr, descEn, descAr, symbol, roleEn, roleAr, testEn, testAr, symptomEn, symptomAr){
+    return [
+        makePage("component", "role", titleEn, symbol, titleEn, titleAr, roleEn, roleAr, [
+            ["Role","الدور",roleEn,roleAr],
+            ["Before repair","قبل الإصلاح","Understand the function before replacing anything.","افهم الوظيفة قبل تغيير أي شيء."]
+        ]),
+        makePage("component", "schema", "SCHEMA", symbol, "Schematic Symbol", "رمز المخطط", "This is the simplified symbol or block used in electronic logic.", "هذا هو الرمز أو البلوك المبسط المستخدم في منطق الدوائر.", [
+            ["Why it matters","لماذا مهم؟","Schematics help you follow the line and understand the circuit.","المخططات تساعدك على تتبع الخط وفهم الدائرة."],
+            ["Boardview","البوردفيو","Use boardview to find the real location on the board.","استخدم البوردفيو لمعرفة مكان القطعة الحقيقي على اللوحة."]
+        ]),
+        makePage("component", "test", "TEST", symbol, "How To Test", "طريقة الفحص", testEn, testAr, [
+            ["Correct mode","الوضع الصحيح","Use the correct multimeter mode before measuring.","استخدم وضع الملتيميتر الصحيح قبل القياس."],
+            ["Confirm","التأكيد","Compare with a known good board when possible.","قارن مع لوحة سليمة إذا أمكن."]
+        ]),
+        makePage("component", "fault", "FAULT", symbol, "Common Symptoms", "الأعراض الشائعة", symptomEn, symptomAr, [
+            ["Rule","القاعدة","Never replace without proof.","لا تغير بدون دليل."],
+            ["Method","الطريقة","Observe, measure, confirm, then repair.","لاحظ، قس، أكد، ثم أصلح."]
+        ])
     ];
-    examIndex=0; examScore=0; examActive=true;
-    loadExamQuestion();
-    showPage("examPage");
 }
-function loadExamQuestion(){
-    if(examIndex>=examQuestions.length){ finishExam(); return; }
-    const q=examQuestions[examIndex];
-    document.getElementById("examQuestion").innerText=q.q;
-    const container=document.getElementById("examOptions");
-    container.innerHTML=q.opts.map((opt,i)=>`<button class="quiz-option" onclick="answerExam(${i})">${opt}</button>`).join("");
+
+function toolBook(titleEn, titleAr, symbol, roleEn, roleAr, useEn, useAr, mistakeEn, mistakeAr){
+    return [
+        makePage("none","role",titleEn,symbol,titleEn,titleAr,roleEn,roleAr,[
+            ["Role","الدور",roleEn,roleAr],
+            ["Safe use","استخدام آمن",useEn,useAr]
+        ]),
+        makePage("none","fault","MISTAKE",symbol,"Common Mistakes","الأخطاء الشائعة",mistakeEn,mistakeAr,[
+            ["Rule","القاعدة","Use the tool slowly and with control.","استخدم الأداة ببطء وتحكم."],
+            ["Check","افحص","Stop if something feels forced or unsafe.","توقف إذا شعرت أن هناك قوة زائدة أو خطر."]
+        ])
+    ];
 }
-function answerExam(idx){
-    if(examQuestions[examIndex].ans===idx){ examScore++; addPoints(10); if(tg) tg.HapticFeedback?.notificationOccurred("success"); }
-    examIndex++;
-    loadExamQuestion();
+
+function node(id, icon, titleEn, titleAr, descEn, descAr, book){
+    return {
+        id,
+        icon,
+        title:pair(titleEn,titleAr),
+        desc:pair(descEn,descAr),
+        book
+    };
 }
-function finishExam(){
-    alert(`Examen terminé ! Score: ${examScore}/${examQuestions.length} +${examScore*10} points`);
-    addPoints(examScore*10);
-    goHome();
+
+function branch(id, icon, titleEn, titleAr, descEn, descAr, nodes){
+    return {
+        id,
+        icon,
+        title:pair(titleEn,titleAr),
+        desc:pair(descEn,descAr),
+        nodes
+    };
 }
-function nextExamQuestion(){ /* already handled */ }
-function renderRanking(){
-    let rankMsg = `🔥 Niveau ${Math.floor(userPoints/200)+1} • ${userPoints} pts • Top ${userStreak}j`;
-    document.getElementById("rankMessage").innerText = rankMsg;
+
+const multimeterBook = [
+    makePage("meter","OFF","OFF","OFF","OFF Mode","وضع الإيقاف","Turns the multimeter off and protects the battery.","يقوم بإيقاف الملتيميتر ويحافظ على البطارية.",[
+        ["Use","الاستخدام","Use OFF when you finish measuring.","استخدم OFF عند الانتهاء من القياس."],
+        ["Habit","عادة مهمة","Always return to OFF after work.","ارجع دائما إلى OFF بعد العمل."]
+    ]),
+    makePage("meter","VDC","4.20 V","V⎓","DC Voltage - V⎓","الفولت المستمر - V⎓","Measures direct voltage such as battery voltage and board power lines.","يقيس الفولت المستمر مثل فولت البطارية وخطوط الطاقة في اللوحة.",[
+        ["How","الطريقة","Black probe on ground, red probe on the point.","السلك الأسود على الأرضي، والأحمر على نقطة القياس."],
+        ["Use","الاستخدام","Battery, VBUS, VDD and power rails.","البطارية، VBUS، VDD وخطوط الطاقة."]
+    ]),
+    makePage("meter","VAC","230 V","V~","AC Voltage - V~","الفولت المتردد - V~","Measures alternating voltage. This is mostly for wall power, not phone boards.","يقيس الفولت المتردد. يستخدم غالبا للكهرباء المنزلية وليس لوحات الهاتف.",[
+        ["Warning","تحذير","AC mains can be dangerous. Beginners should avoid live mains testing.","كهرباء المنزل خطيرة. على المبتدئ تجنب فحصها مباشرة."],
+        ["Phone repair","إصلاح الهواتف","Most phone board work uses DC voltage, not AC.","أغلب عمل لوحات الهواتف يستخدم الفولت المستمر وليس المتردد."]
+    ]),
+    makePage("meter","Ω","220 Ω","Ω","Resistance - Ω","المقاومة - Ω","Measures resistance when power is disconnected.","يقيس المقاومة عند فصل الطاقة.",[
+        ["Power off","الجهاز مطفأ","Never measure resistance on a powered board.","لا تقس المقاومة على لوحة موصولة بالطاقة."],
+        ["Use","الاستخدام","Check resistors and suspicious lines.","فحص المقاومات والخطوط المشبوهة."]
+    ]),
+    makePage("meter","CONT","BEEP",")))","Continuity","الاستمرارية","Checks if two points are connected. Many meters beep when connected.","يفحص هل توجد وصلة بين نقطتين. كثير من الأجهزة تصدر صوتا عند الاتصال.",[
+        ["Use","الاستخدام","Fuses, broken lines, connector paths and ground.","الفيوزات، الخطوط المقطوعة، مسارات الكونكتور والأرضي."],
+        ["Warning","تحذير","A beep only means connection exists. It does not always mean the part is good.","الصوت يعني وجود اتصال فقط، ولا يعني دائما أن القطعة سليمة."]
+    ]),
+    makePage("meter","DIODE","0.528","▷|","Diode Mode","وضع الدايود","Gives a voltage-drop value and is very useful for comparing board lines.","يعطي قيمة هبوط فولت، وهو مفيد جدا لمقارنة خطوط اللوحة.",[
+        ["Use","الاستخدام","Compare a line with a known good board.","قارن الخط مع لوحة سليمة."],
+        ["Important","مهم","This mode is one of the most important modes in phone repair.","هذا الوضع من أهم الأوضاع في إصلاح الهواتف."]
+    ]),
+    makePage("meter","A","0.18 A","A","Current - A","التيار - A","Measures current flow. This mode must be used carefully.","يقيس مرور التيار. يجب استخدام هذا الوضع بحذر.",[
+        ["Warning","تحذير","Current measurement is not connected like voltage measurement.","قياس التيار لا يوصل مثل قياس الفولت."],
+        ["Beginner advice","نصيحة للمبتدئ","Start with voltage, continuity and diode mode first.","ابدأ أولا بالفولت والاستمرارية والدايود."]
+    ]),
+    makePage("meter","mA","25 mA","mA/µA","mA / µA Current","تيار mA / µA","Measures small current values on meters that support it.","يقيس قيم تيار صغيرة في الأجهزة التي تدعمه.",[
+        ["Use","الاستخدام","Useful for small electronics, but less common for beginner phone board work.","مفيد للإلكترونيات الصغيرة، لكنه أقل استخداما للمبتدئ في لوحات الهاتف."],
+        ["Safety","السلامة","Wrong port or wrong mode can blow the meter fuse.","المدخل أو الوضع الخاطئ قد يتلف فيوز الملتيميتر."]
+    ]),
+    makePage("meter","CAP","10 µF","CAP","Capacitance","السعة","Measures capacitance on meters that support capacitor testing.","يقيس سعة المكثف في الأجهزة التي تدعم فحص المكثفات.",[
+        ["Use","الاستخدام","Can help test removed capacitors, not always reliable in-circuit.","قد يساعد في فحص مكثفات مفكوكة، وليس دائما دقيقا داخل الدائرة."],
+        ["Power off","فصل الطاقة","Capacitors should be discharged before testing.","يجب تفريغ المكثفات قبل الفحص."]
+    ]),
+    makePage("meter","Hz","1 kHz","Hz","Frequency - Hz","التردد - Hz","Measures frequency on supported meters.","يقيس التردد في الأجهزة التي تدعم ذلك.",[
+        ["Use","الاستخدام","Advanced use for signals and clock-style checks.","استخدام متقدم لفحص الإشارات أو الساعة."],
+        ["Beginner note","ملاحظة للمبتدئ","Not a priority at the beginning of phone repair.","ليس أولوية في بداية تعلم إصلاح الهواتف."]
+    ]),
+    makePage("meter","TEMP","35°C","°C","Temperature","الحرارة","Measures temperature when the meter supports a temperature probe.","يقيس الحرارة إذا كان الجهاز يدعم مجس حرارة.",[
+        ["Use","الاستخدام","Useful for checking heat behavior and overheating areas.","مفيد لفحص سلوك الحرارة والمناطق التي تسخن."],
+        ["Note","ملاحظة","Thermal camera or alcohol method may also help in short detection.","الكاميرا الحرارية أو طريقة الكحول قد تساعد أيضا في كشف الشورت."]
+    ]),
+    makePage("meter","PORT","COM","COM","Ports: COM / VΩ / 10A","المداخل: COM / VΩ / 10A","The black probe usually goes to COM. The red probe usually goes to VΩ for voltage, resistance, continuity and diode mode.","السلك الأسود غالبا في COM. الأحمر غالبا في VΩ للفولت والمقاومة والاستمرارية والدايود.",[
+        ["COM","COM","Common port for the black probe.","المدخل الأساسي للسلك الأسود."],
+        ["VΩ","VΩ","Port for voltage, resistance, continuity and diode mode.","مدخل الفولت والمقاومة والاستمرارية والدايود."],
+        ["10A","10A","Only for high current measurement. Wrong use can be dangerous.","فقط لقياس التيار العالي. استخدامه بالخطأ قد يكون خطيرا."]
+    ])
+];
+
+const toolBooks = {
+    screwdriver: toolBook("Screwdrivers","المفكات","T","Screwdrivers remove phone screws safely.","المفكات تزيل براغي الهاتف بأمان.","Choose the exact bit size and keep screws organized by position.","اختر المقاس الصحيح ورتب البراغي حسب مكانها.","Forcing the wrong screwdriver can destroy screw heads.","استخدام مفك خاطئ بالقوة قد يتلف رأس البرغي."),
+    tweezers: toolBook("Tweezers","الملاقط","P","Tweezers handle small parts, flex cables and components.","الملاقط تمسك القطع الصغيرة والفلاتات والمكونات.","Use light pressure and avoid pulling flex cables aggressively.","استخدم ضغطا خفيفا وتجنب سحب الفلاتات بقوة.","Cheap or sharp tweezers can tear flex cables or scratch the board.","ملاقط سيئة أو حادة قد تقطع الفلاتة أو تخدش اللوحة."),
+    displayGlue: toolBook("Display Glue","غراء الشاشة","GLUE","Display glue seals or refits a screen after repair.","غراء الشاشة يثبت أو يغلق الشاشة بعد الإصلاح.","Clean the frame, apply a thin layer and respect curing time.","نظف الإطار، ضع طبقة رقيقة واحترم وقت الجفاف.","Too much glue can overflow inside the phone.","الغراء الزائد قد يدخل داخل الهاتف."),
+    heatingPlate: toolBook("Heating Plate","اللوحة الحرارية","HEAT","A heating plate softens adhesive for safer opening.","اللوحة الحرارية تلين اللاصق لفتح أكثر أمانا.","Use controlled heat and never overheat a phone with battery inside.","استخدم حرارة متحكم بها ولا تفرط في تسخين هاتف يحتوي على بطارية.","Too much heat can damage screen, frame or battery.","الحرارة الزائدة قد تتلف الشاشة أو الإطار أو البطارية."),
+    microscope: toolBook("Microscope","الميكروسكوب","MICRO","A microscope reveals corrosion, damaged pins and tiny components.","الميكروسكوب يكشف الأكسدة والبنات التالفة والمكونات الصغيرة.","Inspect connectors, IC area, solder joints and liquid damage before repair.","افحص الكونكتورات ومنطقة الشرائح واللحام وأضرار السوائل قبل الإصلاح.","Working without inspection makes diagnosis random.","العمل بدون فحص يجعل التشخيص عشوائيا."),
+    hotAir: toolBook("Hot Air Station","محطة الهواء الساخن","AIR","Hot air removes and solders components using controlled heat.","الهواء الساخن يزيل ويلحم المكونات بحرارة متحكم بها.","Control airflow, temperature and distance from the board.","تحكم في الهواء والحرارة والمسافة عن اللوحة.","Too much heat can move nearby components or lift pads.","الحرارة الزائدة قد تحرك مكونات قريبة أو ترفع البادات."),
+    solderIron: toolBook("Soldering Iron","كاوية اللحام","IRON","A soldering iron is used for precise soldering and jumper work.","كاوية اللحام تستخدم للحام الدقيق وعمل الجمبر.","Use clean tip, flux and correct temperature.","استخدم رأس نظيف، فلكس وحرارة مناسبة.","A dirty tip or too much pressure can damage pads.","رأس متسخ أو ضغط زائد قد يتلف البادات."),
+    powerSupply: toolBook("Lab Power Supply","الباور سبلاي","PSU","A lab power supply powers the board and shows current draw.","الباور سبلاي يشغل اللوحة ويعرض استهلاك التيار.","Set voltage and current limit before connecting.","اضبط الفولت وحد التيار قبل التوصيل.","Wrong voltage can destroy the board immediately.","الفولت الخاطئ قد يدمر اللوحة فورا."),
+    flux: toolBook("Flux","الفلكس","FLUX","Flux helps solder flow cleanly and attach correctly.","الفلكس يساعد القصدير على الحركة والالتصاق بشكل صحيح.","Apply a small amount and clean residue after repair.","ضع كمية قليلة ونظف البقايا بعد الإصلاح.","Too much flux makes the area dirty and hard to inspect.","الفلكس الزائد يجعل المنطقة متسخة وصعبة الفحص."),
+    ipa: toolBook("IPA Alcohol","كحول IPA","IPA","IPA cleans flux, dirt and light residue from the board.","كحول IPA ينظف الفلكس والأوساخ والبقايا الخفيفة.","Use with brush carefully and let the board dry.","استخدمه مع فرشاة بحذر واترك اللوحة تجف.","Do not power the board while it is wet.","لا تشغل اللوحة وهي مبللة."),
+    esd: toolBook("ESD Mat","بساط ESD","ESD","ESD protection reduces static electricity risk.","حماية ESD تقلل خطر الكهرباء الساكنة.","Use ESD mat and wrist strap when working on sensitive boards.","استخدم بساط ESD وسوار حماية عند العمل على اللوحات الحساسة.","Static electricity can damage ICs without visible marks.","الكهرباء الساكنة قد تتلف الشرائح بدون علامات ظاهرة.")
+};
+
+const books = {
+    resistor: makeBook("Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─/\\/\\/─","A resistor limits or controls current in a circuit.","المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.","Test with resistance mode Ω. Power must be off.","افحصها بوضع المقاومة Ω مع فصل الطاقة.","Wrong value or bad soldering can create abnormal behavior.","قيمة خاطئة أو لحام سيئ قد يسبب سلوكا غير طبيعي."),
+    capacitor: makeBook("Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─| |─","A capacitor stores energy and filters electrical noise on power lines.","المكثف يخزن الطاقة وينقي التشويش الكهربائي في خطوط الطاقة.","Use continuity or diode mode to check for short to ground.","استخدم الاستمرارية أو الدايود لفحص الشورت مع الأرضي.","A shorted capacitor can stop a power line completely.","المكثف الشورت قد يوقف خط طاقة بالكامل."),
+    diode: makeBook("Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─|>|─","A diode allows current to pass mainly in one direction.","الدايود يسمح بمرور التيار غالبا في اتجاه واحد.","Test with diode mode. One direction gives a value, the opposite side usually blocks.","افحصه بوضع الدايود. اتجاه يعطي قيمة والاتجاه الآخر غالبا يمنع المرور.","Wrong orientation or shorted diode can stop the circuit.","التركيب العكسي أو الدايود الشورت قد يوقف الدائرة."),
+    coil: makeBook("Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─oooo─","A coil is used in power circuits and voltage regulation.","الملف يستخدم في دوائر الطاقة وتنظيم الفولت.","Use continuity mode. Most coils beep because resistance is low.","استخدم الاستمرارية. أغلب الملفات تعطي صفارة لأن مقاومتها منخفضة.","A broken coil can cut a power line.","الملف المقطوع قد يقطع خط طاقة."),
+    fuse: makeBook("Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─[F]─","A fuse protects a circuit and opens when current is too high.","الفيوز يحمي الدائرة وينقطع عندما يكون التيار عاليا.","Use continuity mode. A good fuse usually beeps.","استخدم الاستمرارية. الفيوز السليم غالبا يعطي صفارة.","A blown fuse cuts the path. Do not bypass it without understanding why.","الفيوز التالف يقطع المسار. لا تتجاوزه بدون فهم السبب."),
+    connector: makeBook("Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","CN / J","A connector links the board to battery, screen, charge flex or other parts.","الكونكتور يربط اللوحة بالبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.","Inspect with microscope first. Then test pins depending on the line.","افحصه بالميكروسكوب أولا، ثم افحص البنات حسب الخط.","Bent pins, dirt or forcing a flex can create many faults.","البنات المعوجة، الأوساخ أو إدخال الفلاتة بالقوة قد تسبب أعطالا كثيرة."),
+    ic: makeBook("IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.","┌ IC ┐","An IC is a chip containing many electronic circuits inside one package.","الشريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.","Do not test like a simple part. Check power, ground, enable and surrounding components.","لا تفحصها مثل قطعة بسيطة. افحص الطاقة، الأرضي، التفعيل والمكونات حولها.","Never replace an IC without proof. IC replacement is advanced work.","لا تغير أي شريحة بدون دليل. تغيير الشرائح عمل متقدم.")
+};
+
+const systemBooks = {
+    start: makeBook("Start Learning","ابدأ التعلم","Understand the roadmap and learning order.","افهم الخريطة وترتيب التعلم.","START","Start with tools, then components, then safety and board systems.","ابدأ بالأدوات، ثم المكونات، ثم السلامة وأنظمة اللوحة.","Follow the app step by step and complete lessons in order.","اتبع التطبيق خطوة بخطوة وأكمل الدروس بالترتيب.","Skipping basics can make advanced repair confusing.","تجاوز الأساسيات يجعل الإصلاح المتقدم مربكا."),
+    safety: makeBook("Safety","السلامة","Battery, ESD, heat and safe work.","البطارية، ESD، الحرارة والعمل الآمن.","SAFE","Safety protects the technician, the device and customer data.","السلامة تحمي التقني والجهاز وبيانات العميل.","Check battery condition, disconnect power and control heat before working.","افحص البطارية، افصل الطاقة وتحكم بالحرارة قبل العمل.","Overheating, ESD and battery damage can create serious problems.","الحرارة الزائدة، الكهرباء الساكنة وتلف البطارية قد تسبب مشاكل خطيرة."),
+    opening: makeBook("Phone Opening","فتح الهاتف","Open phones without damage.","فتح الهاتف بدون أضرار.","OPEN","Opening is a repair skill. Many devices are damaged before diagnosis starts.","الفتح مهارة إصلاح. كثير من الأجهزة تتلف قبل بداية التشخيص.","Use heat carefully, organize screws and disconnect flex cables gently.","استخدم الحرارة بحذر، نظم البراغي وافصل الفلاتات بلطف.","Broken flex, missing screws and damaged connectors are common beginner mistakes.","الفلاتات المقطوعة، ضياع البراغي وتلف الكونكتورات أخطاء شائعة."),
+    circuits: makeBook("Circuit Basics","أساسيات الدوائر","Lines, ground and power flow.","الخطوط، الأرضي وتدفق الطاقة.","VDD → LOAD → GND","A circuit is a path where power or signal moves from one point to another.","الدائرة مسار تتحرك فيه الطاقة أو الإشارة من نقطة إلى أخرى.","Follow input, output, ground, enable and connected components.","تتبع المدخل، المخرج، الأرضي، التفعيل والمكونات المتصلة.","A broken line, short or missing enable signal can stop the circuit.","خط مقطوع، شورت أو غياب إشارة التفعيل قد يوقف الدائرة."),
+    pmic: makeBook("PMIC","شريحة إدارة الطاقة","Main power management IC.","شريحة إدارة الطاقة الرئيسية.","VBAT → PMIC → VDD","PMIC creates and controls many board voltages.","PMIC تنتج وتتحكم في فولتات كثيرة على اللوحة.","Check VBAT input, enable signals and output rails.","افحص مدخل VBAT، إشارات التفعيل ومخارج الطاقة.","Missing rails can cause total no power or boot failure.","غياب الخطوط قد يسبب موت كامل أو فشل إقلاع."),
+    cpu: makeBook("CPU / SoC","المعالج","Main brain of the phone.","العقل الرئيسي للهاتف.","PMIC → CPU","CPU starts executing boot logic after power is ready.","المعالج يبدأ تنفيذ الإقلاع بعد جاهزية الطاقة.","Check power rails, clock, reset and storage before suspecting CPU.","افحص الطاقة، الساعة، الريست والتخزين قبل اتهام المعالج.","CPU faults are advanced and rarer than line or power faults.","أعطال المعالج متقدمة وأندر من أعطال الخطوط والطاقة."),
+    storage: makeBook("Storage / NAND / UFS","التخزين / NAND / UFS","Bootloader, system and data storage.","البوتلودر، النظام وتخزين البيانات.","CPU ↔ NAND/UFS","The CPU reads boot data from storage.","المعالج يقرأ بيانات الإقلاع من التخزين.","Check storage power rails and communication lines.","افحص خطوط طاقة التخزين وخطوط الاتصال.","Storage faults can cause boot loop, no boot or data issues.","أعطال التخزين قد تسبب بوت لوب، عدم إقلاع أو مشاكل بيانات."),
+    display: makeBook("Display System","نظام الشاشة","Image signal and display power.","إشارة الصورة وطاقة الشاشة.","CPU → MIPI → LCD","Display system sends image data from CPU to screen.","نظام الشاشة يرسل بيانات الصورة من المعالج إلى الشاشة.","Check connector, display voltages and MIPI filters.","افحص الكونكتور، فولتات الشاشة وفلاتر MIPI.","No image can be screen, connector, power or MIPI issue.","غياب الصورة قد يكون شاشة، كونكتور، طاقة أو MIPI."),
+    backlight: makeBook("Backlight System","نظام الإضاءة","Screen light circuit.","دائرة إضاءة الشاشة.","BL IC → COIL → LED","Backlight creates the light that makes the LCD visible.","الإضاءة الخلفية تعطي الضوء الذي يجعل الشاشة مرئية.","Check backlight IC, coil, diode, connector and output voltage.","افحص شريحة الإضاءة، الملف، الدايود، الكونكتور وفولت الخرج.","Image visible with flashlight can mean backlight fault.","ظهور الصورة بكشاف قد يعني عطل إضاءة."),
+    charge: makeBook("Charging System","نظام الشحن","USB to battery charging path.","مسار الشحن من USB إلى البطارية.","USB → VBUS → CHG IC → BAT","Charging starts from USB and passes through protection to the charging IC and battery.","الشحن يبدأ من USB ويمر عبر الحماية إلى شريحة الشحن والبطارية.","Check cable, port, VBUS, fuse, charging IC and battery connector.","افحص الكابل، المنفذ، VBUS، الفيوز، شريحة الشحن وكونكتور البطارية.","No charge does not always mean the charging IC is bad.","عدم الشحن لا يعني دائما تلف شريحة الشحن."),
+    usb: makeBook("USB / Data System","نظام USB / البيانات","USB data, Type-C and protection lines.","بيانات USB و Type-C وخطوط الحماية.","D+ D- / CC","USB handles charging negotiation and data transfer.","USB يدير تفاوض الشحن ونقل البيانات.","Check port, D+/D-, CC lines and ESD protection.","افحص المنفذ، خطوط D+/D- و CC وحماية ESD.","Bad USB lines can cause no data or no fast charge.","تلف خطوط USB قد يسبب غياب البيانات أو الشحن السريع."),
+    audio: makeBook("Audio System","نظام الصوت","Codec, amplifier, microphone and speaker lines.","الكودك، الأمبليفاير، الميكروفون وخطوط السماعة.","AUDIO IC → AMP → SPK","Audio ICs process sound input and output.","شرائح الصوت تعالج الإدخال والإخراج الصوتي.","Check speaker, mic, connector, audio IC power and filters.","افحص السماعة، المايك، الكونكتور، طاقة شريحة الصوت والفلاتر.","No sound can be part, line, codec or amplifier issue.","غياب الصوت قد يكون قطعة، خط، كودك أو أمبليفاير."),
+    camera: makeBook("Camera System","نظام الكاميرا","Camera power and MIPI lines.","طاقة الكاميرا وخطوط MIPI.","CAM → MIPI → CPU","Camera needs power and data lines to send image to CPU.","الكاميرا تحتاج طاقة وخطوط بيانات لإرسال الصورة للمعالج.","Check connector, camera voltages, MIPI filters and physical damage.","افحص الكونكتور، فولتات الكاميرا، فلاتر MIPI والضرر الظاهر.","Black camera can be module, connector, power or data line.","الكاميرا السوداء قد تكون موديول، كونكتور، طاقة أو خط بيانات."),
+    rf: makeBook("RF / Network System","نظام الشبكة","Baseband, RF IC, PA, filters and antennas.","البيسباند، RF IC، PA، الفلاتر والهوائيات.","BASEBAND → RF → PA → ANT","Network system handles cellular signal transmission and reception.","نظام الشبكة يدير إرسال واستقبال إشارة الشبكة.","Check SIM, IMEI, antennas, RF lines, filters and baseband area.","افحص الشريحة، IMEI، الهوائيات، خطوط RF، الفلاتر ومنطقة البيسباند.","No network can be software, SIM, antenna, RF or baseband issue.","غياب الشبكة قد يكون سوفتوير، شريحة، هوائي، RF أو بيسباند.")
+};
+
+const branches = [
+    branch("start","START","Start","البداية","Begin the academy roadmap.","ابدأ خريطة الأكاديمية.",[
+        node("start","START","Start Learning","ابدأ التعلم","Understand the learning path before starting.","افهم مسار التعلم قبل البداية.",systemBooks.start)
+    ]),
+    branch("tools","TOOLS","Tools","الأدوات","Learn essential repair tools.","تعلم أدوات الإصلاح الأساسية.",[
+        node("screwdriver","T","Screwdrivers","المفكات","Open phones without damaging screws.","فتح الهواتف بدون إتلاف البراغي.",toolBooks.screwdriver),
+        node("tweezers","P","Tweezers","الملاقط","Handle small parts and flex cables.","التعامل مع القطع الصغيرة والفلاتات.",toolBooks.tweezers),
+        node("display_glue","GLUE","Display Glue","غراء الشاشة","Seal or refit displays cleanly.","تثبيت أو إغلاق الشاشة بشكل نظيف.",toolBooks.displayGlue),
+        node("heating_plate","HEAT","Heating Plate","اللوحة الحرارية","Soften adhesive safely.","تليين اللاصق بأمان.",toolBooks.heatingPlate),
+        node("microscope","MIC","Microscope","الميكروسكوب","Inspect tiny damage and components.","فحص الأضرار والمكونات الصغيرة.",toolBooks.microscope),
+        node("multimeter","V","Multimeter","الملتيميتر","All modes, symbols and safe usage.","كل الأوضاع، الرموز وطريقة الاستخدام الآمن.",multimeterBook),
+        node("hot_air","AIR","Hot Air Station","محطة الهواء الساخن","Remove and solder components.","إزالة ولحام المكونات.",toolBooks.hotAir),
+        node("solder_iron","IRON","Soldering Iron","كاوية اللحام","Precise soldering and jumper work.","لحام دقيق وعمل الجمبر.",toolBooks.solderIron),
+        node("power_supply","PSU","Lab Power Supply","الباور سبلاي","Power the board and read current draw.","تشغيل اللوحة وقراءة استهلاك التيار.",toolBooks.powerSupply),
+        node("flux","FLUX","Flux","الفلكس","Clean solder flow and better joints.","تحسين حركة القصدير وجودة اللحام.",toolBooks.flux),
+        node("ipa","IPA","IPA Alcohol","كحول IPA","Clean flux, dirt and residue.","تنظيف الفلكس والأوساخ والبقايا.",toolBooks.ipa),
+        node("esd","ESD","ESD Mat","بساط ESD","Protect sensitive electronics.","حماية الإلكترونيات الحساسة.",toolBooks.esd)
+    ]),
+    branch("components","⚡","Electronic Components","المكونات الإلكترونية","Learn parts, symbols and tests.","تعلم القطع، الرموز وطريقة الفحص.",[
+        node("resistor","R","Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.resistor),
+        node("capacitor","C","Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.capacitor),
+        node("diode","D","Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.diode),
+        node("coil","L","Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.coil),
+        node("fuse","F","Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.fuse),
+        node("connector","CN","Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.",books.connector),
+        node("ic","IC","IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.",books.ic)
+    ]),
+    branch("safety","SAFE","Safety & Phone Opening","السلامة وفتح الهاتف","Work safely before diagnosis.","اعمل بأمان قبل التشخيص.",[
+        node("safety","SAFE","Safety","السلامة","Battery, ESD, heat and safe work.","البطارية، ESD، الحرارة والعمل الآمن.",systemBooks.safety),
+        node("opening","OPEN","Phone Opening","فتح الهاتف","Open phones without damage.","فتح الهاتف بدون أضرار.",systemBooks.opening)
+    ]),
+    branch("systems","BOARD","Boot Logic & Board Systems","منطق الإقلاع وأنظمة اللوحة","Learn how the board wakes up and runs systems.","تعلم كيف تستيقظ اللوحة وتشغل الأنظمة.",[
+        node("circuits","LINE","Circuit Basics","أساسيات الدوائر","Lines, ground and power flow.","الخطوط، الأرضي وتدفق الطاقة.",systemBooks.circuits),
+        node("pmic","PMIC","PMIC","شريحة إدارة الطاقة","Main power management IC.","شريحة إدارة الطاقة الرئيسية.",systemBooks.pmic),
+        node("cpu","CPU","CPU / SoC","المعالج","Main brain of the phone.","العقل الرئيسي للهاتف.",systemBooks.cpu),
+        node("storage","NAND","Storage / NAND / UFS","التخزين / NAND / UFS","Bootloader, system and data storage.","البوتلودر، النظام وتخزين البيانات.",systemBooks.storage),
+        node("display","LCD","Display System","نظام الشاشة","Image signal and display power.","إشارة الصورة وطاقة الشاشة.",systemBooks.display),
+        node("backlight","BL","Backlight System","نظام الإضاءة","Screen light circuit.","دائرة إضاءة الشاشة.",systemBooks.backlight),
+        node("charge","CHG","Charging System","نظام الشحن","USB to battery charging path.","مسار الشحن من USB إلى البطارية.",systemBooks.charge),
+        node("usb","USB","USB / Data System","نظام USB / البيانات","USB data, Type-C and protection lines.","بيانات USB و Type-C وخطوط الحماية.",systemBooks.usb),
+        node("audio","AUD","Audio System","نظام الصوت","Codec, amplifier, microphone and speaker lines.","الكودك، الأمبليفاير، الميكروفون وخطوط السماعة.",systemBooks.audio),
+        node("camera","CAM","Camera System","نظام الكاميرا","Camera power and MIPI lines.","طاقة الكاميرا وخطوط MIPI.",systemBooks.camera),
+        node("rf","RF","RF / Network System","نظام الشبكة","Baseband, RF IC, PA, filters and antennas.","البيسباند، RF IC، PA، الفلاتر والهوائيات.",systemBooks.rf)
+    ])
+];
+
+function allNodes(){
+    return branches.flatMap(group => group.nodes);
 }
-function allNodes(){ return branches.flatMap(g=>g.nodes); }
-function doneIds(){ return JSON.parse(localStorage.getItem("master_repair_done")||"[]"); }
-function saveDone(id){ let d=doneIds(); if(!d.includes(id)) d.push(id); localStorage.setItem("master_repair_done",JSON.stringify(d)); addPoints(15); checkBadges(); }
-function findNodeById(id){ return allNodes().find(n=>n.id===id); }
-function branchProgress(g){ let d=doneIds(); return {count:g.nodes.filter(n=>d.includes(n.id)).length,total:g.nodes.length}; }
-function renderProgress(){ let total=allNodes().length,done=doneIds().length; document.getElementById("doneCount").innerText=done; document.getElementById("totalCount").innerText=total; document.getElementById("progressBar").style.width=(total?Math.round(done/total*100):0)+"%"; document.getElementById("progressText").innerHTML=Math.round(done/total*100)+"% complet"; updatePointsAndStreak(); renderRanking(); }
-function renderHome(){ renderProgress(); let list=document.getElementById("branchList"); list.innerHTML=""; branches.forEach(g=>{ let p=branchProgress(g); let btn=document.createElement("button"); btn.className="branch-card"+(p.count===p.total?" done":""); btn.onclick=()=>openBranch(g.id); btn.innerHTML=`<strong>${txt(g.title)}</strong><small>${txt(g.desc)}</small><span class="badge">${p.count}/${p.total}</span>`; list.appendChild(btn); }); }
-function openBranch(id){ currentBranch=branches.find(g=>g.id===id); renderBranchPage(); showPage("branchPage"); }
-function renderBranchPage(){ let p=branchProgress(currentBranch); document.getElementById("branchTitle").innerText=txt(currentBranch.title); document.getElementById("branchDesc").innerText=txt(currentBranch.desc); document.getElementById("branchProgress").innerText=p.count+"/"+p.total; let list=document.getElementById("chapterList"); list.innerHTML=""; currentBranch.nodes.forEach(n=>{ let done=doneIds().includes(n.id); let btn=document.createElement("button"); btn.className="chapter-card"+(done?" done":""); btn.onclick=()=>openNode(n); btn.innerHTML=`<strong>${txt(n.title)}</strong><small>${txt(n.desc)}</small><span class="badge">${done?"✅":"📘"}</span>`; list.appendChild(btn); }); }
-function openNode(n){ currentNode=n; currentBookPage=0; currentBranch=currentBranch||branches.find(g=>g.nodes.some(nd=>nd.id===n.id)); renderBookPage(); showPage("bookPage"); }
-function renderBookPage(){ let p=currentNode.book[currentBookPage]; document.getElementById("bookTitle").innerText=txt(currentNode.title); document.getElementById("bookDesc").innerText=txt(currentNode.desc); document.getElementById("bookCounter").innerText=(currentBookPage+1)+"/"+currentNode.book.length; document.getElementById("bookPageTitle").innerText=txt(p.title); document.getElementById("bookPageText").innerText=txt(p.text); let html=""; if(p.kind==="meter") html=`<div class="meter-visual"><div class="meter-screen">${p.display}</div><div class="dial"><div class="dial-center">${p.mode}</div></div><div class="ports"><div class="port black">COM</div><div class="port red">VΩ</div></div><div class="probes"><div class="probe black"></div><div class="probe red"></div></div></div>`; else if(p.kind==="component") html=`<div class="visual"><div class="visual-title">${p.mode}</div><div class="component-body">${p.display}</div><div class="schematic-box">${p.symbol}</div></div>`; document.getElementById("bookVisual").innerHTML=html||""; let list=document.getElementById("bookPoints"); list.innerHTML=""; p.points.forEach(pt=>{list.innerHTML+=`<div class="lesson"><strong>${txt(pt.title)}</strong><p>${txt(pt.text)}</p></div>`;}); document.getElementById("prevButton").disabled=currentBookPage===0; document.getElementById("nextButton").disabled=currentBookPage===currentNode.book.length-1; }
-function previousBookPage(){ if(currentBookPage>0){ currentBookPage--; renderBookPage(); window.scrollTo(0,0); } }
-function nextBookPage(){ if(currentBookPage<currentNode.book.length-1){ currentBookPage++; renderBookPage(); window.scrollTo(0,0); } }
-function continueLearning(){ let nodes=allNodes(), done=doneIds(); let next=nodes.find(n=>!done.includes(n.id)); if(!next){ if(tg&&tg.showAlert) tg.showAlert("🎉 Félicitations ! Parcours terminé !"); return; } currentBranch=branches.find(g=>g.nodes.some(nd=>nd.id===next.id)); openNode(next); }
-function markDone(){ if(currentNode){ saveDone(currentNode.id); renderProgress(); if(tg&&tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success"); if(tg&&tg.showAlert) tg.showAlert("✅ Leçon validée ! +15 points"); else alert("+15 points"); goBranch(); } }
-function showPage(id){ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active")); document.getElementById(id).classList.add("active"); window.scrollTo(0,0); }
-function goHome(){ currentBranch=null; currentNode=null; renderHome(); showPage("home"); }
-function goBranch(){ if(currentBranch){ renderBranchPage(); showPage("branchPage"); }else goHome(); }
-function openSOS(){ let link="https://t.me/+OVTmcEQLg00zMTQ0"; if(tg&&tg.openTelegramLink) tg.openTelegramLink(link); else window.open(link,"_blank"); }
-function toggleLanguage(){ currentLang=currentLang==="en"?"ar":"en"; localStorage.setItem("master_repair_lang",currentLang); applyLanguage(); }
-function applyLanguage(){ document.documentElement.dir=ui[currentLang].dir; document.getElementById("langButton").innerText=ui[currentLang].langButton; document.getElementById("telegramStatus").innerText=tg?ui[currentLang].connected:ui[currentLang].browser; document.getElementById("heroTitle").innerText=ui[currentLang].heroTitle; document.getElementById("completedLabel").innerText=ui[currentLang].completed; document.getElementById("stepsLabel").innerText=ui[currentLang].steps; document.getElementById("continueButton").innerText="Continuer"; document.getElementById("branchesTitle").innerText="Branches"; document.getElementById("branchesSubtitle").innerText="Choisis un domaine"; document.getElementById("chaptersTitle").innerText="Chapitres"; document.getElementById("sosTitle").innerText="SOS Repair"; document.getElementById("sosText").innerText="Groupe d'entraide"; document.getElementById("sosButton").innerText="Ouvrir SOS"; document.getElementById("prevButton").innerText="◀"; document.getElementById("nextButton").innerText="▶"; document.getElementById("bookBackButton").innerText="← Retour"; document.getElementById("bookDoneButton").innerText="✅ Valider"; document.getElementById("branchBackButton").innerText="← Retour"; document.getElementById("footerText").innerText="Master Repair Academy • Gamified Learning"; renderHome(); }
-resetDailyQuest();
+
+function doneIds(){
+    return JSON.parse(localStorage.getItem("master_repair_done") || "[]");
+}
+
+function saveDone(id){
+    const ids = doneIds();
+    if(!ids.includes(id)) ids.push(id);
+    localStorage.setItem("master_repair_done", JSON.stringify(ids));
+    localStorage.setItem("master_repair_last", id);
+}
+
+function findNodeById(id){
+    return allNodes().find(item => item.id === id);
+}
+
+function findBranchByNodeId(id){
+    return branches.find(group => group.nodes.some(item => item.id === id));
+}
+
+function branchProgress(group){
+    const done = doneIds();
+    const count = group.nodes.filter(item => done.includes(item.id)).length;
+    return {count, total:group.nodes.length};
+}
+
+function applyLanguage(){
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = tr("dir");
+    document.body.dir = tr("dir");
+
+    document.getElementById("langButton").textContent = tr("langButton");
+    document.getElementById("telegramStatus").textContent = tg ? tr("connected") : tr("browser");
+    document.getElementById("heroTitle").textContent = tr("heroTitle");
+    document.getElementById("heroText").textContent = tr("heroText");
+    document.getElementById("completedLabel").textContent = tr("completed");
+    document.getElementById("stepsLabel").textContent = tr("steps");
+    document.getElementById("supportLabel").textContent = tr("support");
+    document.getElementById("continueButton").textContent = tr("continue");
+    document.getElementById("branchesTitle").textContent = tr("branchesTitle");
+    document.getElementById("branchesSubtitle").textContent = tr("branchesSubtitle");
+    document.getElementById("chaptersTitle").textContent = tr("chaptersTitle");
+    document.getElementById("chaptersSubtitle").textContent = tr("chaptersSubtitle");
+    document.getElementById("supportTitle").textContent = tr("supportTitle");
+    document.getElementById("supportSubtitle").textContent = tr("supportSubtitle");
+    document.getElementById("sosTitle").textContent = tr("sosTitle");
+    document.getElementById("sosText").textContent = tr("sosText");
+    document.getElementById("sosButton").textContent = tr("sosButton");
+    document.getElementById("prevButton").textContent = tr("prev");
+    document.getElementById("nextButton").textContent = tr("next");
+    document.getElementById("bookBackButton").textContent = tr("back");
+    document.getElementById("bookDoneButton").textContent = tr("done");
+    document.getElementById("branchBackButton").textContent = tr("back");
+    document.getElementById("footerText").textContent = tr("footer");
+
+    renderHome();
+
+    if(currentBranch && document.getElementById("branchPage").classList.contains("active")){
+        renderBranchPage();
+    }
+
+    if(currentNode && document.getElementById("bookPage").classList.contains("active")){
+        renderBookPage();
+    }
+}
+
+function toggleLanguage(){
+    currentLang = currentLang === "en" ? "ar" : "en";
+    localStorage.setItem("master_repair_lang", currentLang);
+    applyLanguage();
+}
+
+function renderProgress(){
+    const total = allNodes().length;
+    const done = doneIds().length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+
+    document.getElementById("doneCount").textContent = done;
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("progressText").textContent = pct + "% " + tr("completedProgress");
+    document.getElementById("progressBar").style.width = pct + "%";
+}
+
+function renderHome(){
+    renderProgress();
+
+    const list = document.getElementById("branchList");
+    list.innerHTML = "";
+
+    branches.forEach(group => {
+        const progress = branchProgress(group);
+        const done = progress.count === progress.total;
+
+        const button = document.createElement("button");
+        button.className = "branch-card" + (done ? " done" : "");
+        button.onclick = () => openBranch(group.id);
+        button.innerHTML = `
+            <strong>${txt(group.title)}</strong>
+            <small>${txt(group.desc)}</small>
+            <span class="badge">${progress.count} / ${progress.total}</span>
+        `;
+        list.appendChild(button);
+    });
+}
+
+function openBranch(id){
+    currentBranch = branches.find(group => group.id === id);
+    renderBranchPage();
+    showPage("branchPage");
+}
+
+function renderBranchPage(){
+    const progress = branchProgress(currentBranch);
+
+    document.getElementById("branchTitle").textContent = txt(currentBranch.title);
+    document.getElementById("branchDesc").textContent = txt(currentBranch.desc);
+    document.getElementById("branchProgress").textContent = progress.count + " / " + progress.total;
+
+    const list = document.getElementById("chapterList");
+    list.innerHTML = "";
+
+    currentBranch.nodes.forEach(item => {
+        const done = doneIds().includes(item.id);
+
+        const button = document.createElement("button");
+        button.className = "chapter-card" + (done ? " done" : "");
+        button.onclick = () => openNode(item);
+        button.innerHTML = `
+            <strong>${txt(item.title)}</strong>
+            <small>${txt(item.desc)}</small>
+            <span class="badge">${done ? tr("doneState") : tr("open")}</span>
+        `;
+        list.appendChild(button);
+    });
+}
+
+function openNode(item){
+    currentNode = item;
+    currentBookPage = 0;
+    currentBranch = currentBranch || findBranchByNodeId(item.id);
+    localStorage.setItem("master_repair_last", item.id);
+    renderBookPage();
+    showPage("bookPage");
+}
+
+function renderBookPage(){
+    const page = currentNode.book[currentBookPage];
+
+    document.getElementById("bookTitle").textContent = txt(currentNode.title);
+    document.getElementById("bookDesc").textContent = txt(currentNode.desc);
+    document.getElementById("bookCounter").textContent = (currentBookPage + 1) + " / " + currentNode.book.length;
+    document.getElementById("bookPageTitle").textContent = txt(page.title);
+    document.getElementById("bookPageText").textContent = txt(page.text);
+
+    document.getElementById("bookVisual").innerHTML = createVisual(page);
+
+    const list = document.getElementById("bookPoints");
+    list.innerHTML = "";
+
+    page.points.forEach(point => {
+        const box = document.createElement("div");
+        box.className = "lesson";
+        box.innerHTML = `
+            <strong>${txt(point.title)}</strong>
+            <p>${txt(point.text)}</p>
+        `;
+        list.appendChild(box);
+    });
+
+    document.getElementById("prevButton").disabled = currentBookPage === 0;
+    document.getElementById("nextButton").disabled = currentBookPage === currentNode.book.length - 1;
+}
+
+function createVisual(page){
+    if(page.kind === "meter"){
+        return createMeterVisual(page);
+    }
+
+    if(page.kind === "component"){
+        return createComponentVisual(page);
+    }
+
+    return "";
+}
+
+function createMeterVisual(page){
+    const mode = page.mode;
+
+    return `
+        <div class="meter-visual">
+            <div class="meter-screen">${page.display}</div>
+
+            <div class="dial">
+                <span class="mode m-off ${mode === "OFF" ? "active" : ""}">OFF</span>
+                <span class="mode m-vdc ${mode === "VDC" ? "active" : ""}">V⎓</span>
+                <span class="mode m-vac ${mode === "VAC" ? "active" : ""}">V~</span>
+                <span class="mode m-ohm ${mode === "Ω" ? "active" : ""}">Ω</span>
+                <span class="mode m-cont ${mode === "CONT" ? "active" : ""}">)))</span>
+                <span class="mode m-diode ${mode === "DIODE" ? "active" : ""}">▷|</span>
+                <span class="mode m-a ${mode === "A" ? "active" : ""}">A</span>
+                <span class="mode m-ma ${mode === "mA" ? "active" : ""}">mA</span>
+                <div class="dial-center">${mode}</div>
+            </div>
+
+            <div class="ports">
+                <div class="port black">COM</div>
+                <div class="port red">VΩ</div>
+                <div class="port gold">10A</div>
+            </div>
+
+            <div class="probes">
+                <div class="probe black"></div>
+                <div class="probe red"></div>
+            </div>
+        </div>
+    `;
+}
+
+function createComponentVisual(page){
+    return `
+        <div class="visual">
+            <div class="visual-title">${page.mode.toUpperCase()}</div>
+            <div class="component-layout">
+                <div class="component-body">${page.display}</div>
+                <div class="schematic-box">${page.symbol}</div>
+                <div class="test-row">
+                    <div class="pad">IN</div>
+                    <div class="meter"><div>${page.display}</div></div>
+                    <div class="pad">OUT</div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function previousBookPage(){
+    if(currentBookPage > 0){
+        currentBookPage--;
+        renderBookPage();
+        window.scrollTo(0,0);
+    }
+}
+
+function nextBookPage(){
+    if(currentBookPage < currentNode.book.length - 1){
+        currentBookPage++;
+        renderBookPage();
+        window.scrollTo(0,0);
+    }
+}
+
+function continueLearning(){
+    const nodes = allNodes();
+    const done = doneIds();
+
+    let next = nodes.find(item => !done.includes(item.id));
+
+    if(!next){
+        const last = localStorage.getItem("master_repair_last");
+        next = findNodeById(last) || nodes[0];
+    }
+
+    currentBranch = findBranchByNodeId(next.id);
+    openNode(next);
+}
+
+function markDone(){
+    if(currentNode){
+        saveDone(currentNode.id);
+        renderProgress();
+    }
+
+    if(tg && tg.HapticFeedback){
+        tg.HapticFeedback.notificationOccurred("success");
+    }
+
+    if(tg && tg.showAlert){
+        tg.showAlert(tr("completedMessage"));
+    }else{
+        alert(tr("completedMessage"));
+    }
+}
+
+function showPage(id){
+    document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0,0);
+}
+
+function goHome(){
+    currentBranch = null;
+    currentNode = null;
+    renderHome();
+    showPage("home");
+}
+
+function goBranch(){
+    if(currentBranch){
+        renderBranchPage();
+        showPage("branchPage");
+    }else{
+        goHome();
+    }
+}
+
+function openSOS(){
+    const link = "https://t.me/+OVTmcEQLg00zMTQ0";
+
+    if(tg && tg.openTelegramLink){
+        tg.openTelegramLink(link);
+    }else{
+        window.open(link,"_blank");
+    }
+}
+
 applyLanguage();
-setInterval(()=>{ resetDailyQuest(); }, 3600000);
 </script>
 </body>
 </html>

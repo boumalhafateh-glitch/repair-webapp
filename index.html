@@ -393,6 +393,14 @@ button:disabled{opacity:.4;cursor:not-allowed;}
     padding:15px 0 5px;
     font-weight:700;
 }
+/* NOUVEAU STYLE POUR LES BADGES */
+.badge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px;}
+.badge-item{background:linear-gradient(145deg,#2a2a2a,#111);border-radius:14px;padding:12px;text-align:center;border:1px solid var(--line);}
+.badge-icon{font-size:32px;margin-bottom:5px;}
+.badge-name{font-size:13px;font-weight:bold;}
+.badge-locked{opacity:0.5;}
+.rank-card{background:linear-gradient(135deg,#1e1e2f,#0a0a0a);border-radius:16px;padding:14px;text-align:center;margin-bottom:12px;border:1px solid var(--gold);}
+.rank-emoji{font-size:28px;}
 @media(max-width:390px){
     .app{padding:12px;}
     .logo h1{font-size:16px;}
@@ -423,13 +431,27 @@ button:disabled{opacity:.4;cursor:not-allowed;}
             <p class="text" id="progressText"></p>
         </div>
 
+        <!-- STATS AVEC POINTS ET STREAK -->
         <div class="stats">
             <div class="stat"><strong id="doneCount">0</strong><small id="completedLabel"></small></div>
             <div class="stat"><strong id="totalCount">0</strong><small id="stepsLabel"></small></div>
-            <div class="stat"><strong>SOS</strong><small id="supportLabel"></small></div>
+            <div class="stat"><strong id="pointCount">0</strong><small>Points</small></div>
         </div>
 
-        <button class="primary main-action" onclick="continueLearning()" id="continueButton"></button>
+        <!-- RANG + BOUTONS ACTION -->
+        <div class="rank-card" id="rankCard">
+            <div class="rank-emoji" id="rankEmoji">🏅</div>
+            <div><strong id="rankName">Apprenti</strong></div>
+            <div><small id="rankNext">+50 pts pour next rank</small></div>
+        </div>
+
+        <div class="action-row">
+            <button class="primary" onclick="continueLearning()" id="continueButton" style="grid-column:span 2;"></button>
+        </div>
+        <div class="action-row">
+            <button onclick="showBadges()">🎖️ Badges</button>
+            <button onclick="showDailyQuest()">📅 Quête</button>
+        </div>
 
         <div class="section-title">
             <h3 id="branchesTitle"></h3>
@@ -457,12 +479,10 @@ button:disabled{opacity:.4;cursor:not-allowed;}
             <p class="text" id="branchDesc"></p>
             <span class="badge" id="branchProgress"></span>
         </div>
-
         <div class="section-title">
             <h3 id="chaptersTitle"></h3>
             <p id="chaptersSubtitle"></p>
         </div>
-
         <div id="chapterList" class="chapter-list"></div>
         <button class="main-action" onclick="goHome()" id="branchBackButton"></button>
     </div>
@@ -473,24 +493,39 @@ button:disabled{opacity:.4;cursor:not-allowed;}
             <p class="text" id="bookDesc"></p>
             <div class="book-counter" id="bookCounter"></div>
         </div>
-
         <div id="bookVisual"></div>
-
         <div class="panel">
             <h2 class="title" id="bookPageTitle"></h2>
             <p class="text" id="bookPageText"></p>
         </div>
-
         <div class="list" id="bookPoints"></div>
-
         <div class="book-controls">
             <button onclick="previousBookPage()" id="prevButton"></button>
             <button onclick="nextBookPage()" id="nextButton"></button>
         </div>
-
         <div class="action-row">
             <button onclick="goBranch()" id="bookBackButton"></button>
             <button class="primary" onclick="markDone()" id="bookDoneButton"></button>
+        </div>
+    </div>
+
+    <!-- PAGE BADGES -->
+    <div id="badgesPage" class="page">
+        <div class="panel">
+            <h2>🏆 Mes Badges</h2>
+            <div id="badgesList" class="badge-grid"></div>
+            <button class="main-action" onclick="goHome()">Retour</button>
+        </div>
+    </div>
+
+    <!-- PAGE QUETE -->
+    <div id="questPage" class="page">
+        <div class="panel">
+            <h2>📅 Quête du jour</h2>
+            <p class="text" id="questText"></p>
+            <button class="primary" id="claimQuestBtn" onclick="claimDailyQuest()">Réclamer +30 pts</button>
+            <br><br>
+            <button class="main-action" onclick="goHome()">Retour</button>
         </div>
     </div>
 
@@ -498,12 +533,192 @@ button:disabled{opacity:.4;cursor:not-allowed;}
 </div>
 
 <script>
+// ==================== TELEGRAM ====================
 const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
 if(tg){
     tg.ready();
     tg.expand();
 }
 
+// ==================== SYSTEME DE POINTS ET STREAK ====================
+let userPoints = parseInt(localStorage.getItem("userPoints") || "0");
+let userXp = userPoints;
+let lastActiveDate = localStorage.getItem("lastActiveDate") || "";
+let userStreak = parseInt(localStorage.getItem("userStreak") || "0");
+
+function updateStreak() {
+    const today = new Date().toISOString().slice(0,10);
+    if(lastActiveDate !== today) {
+        if(lastActiveDate !== "") {
+            userStreak++;
+        } else {
+            userStreak = 1;
+        }
+        lastActiveDate = today;
+        localStorage.setItem("lastActiveDate", today);
+        localStorage.setItem("userStreak", userStreak);
+    }
+    document.getElementById("streakCount")?.setAttribute("data-streak", userStreak);
+}
+
+function addPoints(amount) {
+    userPoints += amount;
+    userXp = userPoints;
+    localStorage.setItem("userPoints", userPoints);
+    updateRankDisplay();
+    if(tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
+}
+
+function getRank() {
+    if(userPoints < 100) return {name:"Apprenti", emoji:"🥉", next:100 - userPoints};
+    if(userPoints < 300) return {name:"Technicien", emoji:"🥈", next:300 - userPoints};
+    if(userPoints < 600) return {name:"Expert", emoji:"🥇", next:600 - userPoints};
+    if(userPoints < 1000) return {name:"Master", emoji:"🏆", next:1000 - userPoints};
+    return {name:"Grand Maître", emoji:"👑", next:0};
+}
+
+function updateRankDisplay() {
+    const rank = getRank();
+    document.getElementById("rankEmoji").textContent = rank.emoji;
+    document.getElementById("rankName").textContent = rank.name;
+    if(rank.next > 0) {
+        document.getElementById("rankNext").textContent = rank.next + " pts pour prochain rang";
+    } else {
+        document.getElementById("rankNext").textContent = "🏆 Rang maximum atteint !";
+    }
+    document.getElementById("pointCount").textContent = userPoints;
+}
+
+// ==================== BADGES ====================
+const badgesList = [
+    {id:"first_lesson", name:"Premier Pas", icon:"🎯", desc:"Terminer ta première leçon"},
+    {id:"five_lessons", name:"Apprenti Motivé", icon:"🔥", desc:"5 leçons complétées"},
+    {id:"ten_lessons", name:"Déterminé", icon:"⚡", desc:"10 leçons complétées"},
+    {id:"streak_3", name:"3 jours de suite", icon:"📅", desc:"3 jours d'affilée"},
+    {id:"streak_7", name:"Une semaine", icon:"🌟", desc:"7 jours de suite"},
+    {id:"branch_complete", name:"Spécialiste", icon:"💪", desc:"Branche complétée"},
+    {id:"all_lessons", name:"Légende", icon:"👑", desc:"Toutes les leçons"}
+];
+
+function getEarnedBadges() {
+    return JSON.parse(localStorage.getItem("earnedBadges") || "[]");
+}
+
+function saveBadge(badgeId) {
+    let earned = getEarnedBadges();
+    if(!earned.includes(badgeId)) {
+        earned.push(badgeId);
+        localStorage.setItem("earnedBadges", JSON.stringify(earned));
+        addPoints(50);
+        if(tg && tg.showAlert) tg.showAlert("🏆 Badge débloqué ! +50 pts");
+        else alert("🏆 Badge débloqué ! +50 pts");
+    }
+}
+
+function checkBadges() {
+    const doneCount = doneIds().length;
+    const totalCount = allNodes().length;
+    const earned = getEarnedBadges();
+    
+    if(doneCount >= 1 && !earned.includes("first_lesson")) saveBadge("first_lesson");
+    if(doneCount >= 5 && !earned.includes("five_lessons")) saveBadge("five_lessons");
+    if(doneCount >= 10 && !earned.includes("ten_lessons")) saveBadge("ten_lessons");
+    if(userStreak >= 3 && !earned.includes("streak_3")) saveBadge("streak_3");
+    if(userStreak >= 7 && !earned.includes("streak_7")) saveBadge("streak_7");
+    if(doneCount === totalCount && totalCount > 0 && !earned.includes("all_lessons")) saveBadge("all_lessons");
+    
+    // Vérifier si une branche est complète
+    for(let branch of branches) {
+        const progress = branchProgress(branch);
+        if(progress.count === progress.total && progress.total > 0) {
+            if(!earned.includes("branch_complete")) saveBadge("branch_complete");
+            break;
+        }
+    }
+}
+
+function showBadges() {
+    const earned = getEarnedBadges();
+    const container = document.getElementById("badgesList");
+    container.innerHTML = badgesList.map(b => {
+        const isEarned = earned.includes(b.id);
+        return `
+            <div class="badge-item ${!isEarned ? 'badge-locked' : ''}">
+                <div class="badge-icon">${b.icon}</div>
+                <div class="badge-name">${b.name}</div>
+                <small style="color:var(--muted);">${b.desc}</small>
+                ${isEarned ? '<span class="badge" style="margin-top:8px;">✅</span>' : '<span class="badge" style="margin-top:8px;">🔒</span>'}
+            </div>
+        `;
+    }).join("");
+    showPage("badgesPage");
+}
+
+// ==================== QUETE QUOTIDIENNE ====================
+const dailyQuests = [
+    {text:"Terminer 1 leçon", reward:30, check: () => doneIds().length > parseInt(localStorage.getItem("quest_start_done") || "0")},
+    {text:"Lire 3 pages de contenu", reward:30, check: () => true},
+    {text:"Débloquer un badge", reward:40, check: () => getEarnedBadges().length > parseInt(localStorage.getItem("quest_start_badges") || "0")}
+];
+
+function getDailyQuest() {
+    let quest = localStorage.getItem("dailyQuest");
+    let questDate = localStorage.getItem("dailyQuestDate");
+    const today = new Date().toISOString().slice(0,10);
+    if(!quest || questDate !== today) {
+        const randomIndex = Math.floor(Math.random() * dailyQuests.length);
+        quest = JSON.stringify({index: randomIndex, claimed: false});
+        localStorage.setItem("dailyQuest", quest);
+        localStorage.setItem("dailyQuestDate", today);
+        // Sauvegarder les valeurs de départ pour vérification
+        localStorage.setItem("quest_start_done", doneIds().length);
+        localStorage.setItem("quest_start_badges", getEarnedBadges().length);
+    }
+    return JSON.parse(quest);
+}
+
+function showDailyQuest() {
+    const quest = getDailyQuest();
+    const questData = dailyQuests[quest.index];
+    const isClaimed = quest.claimed;
+    const isCompleted = questData.check();
+    
+    const container = document.getElementById("questText");
+    const btn = document.getElementById("claimQuestBtn");
+    
+    if(isClaimed) {
+        container.innerHTML = `✅ Quête terminée : ${questData.text}<br>+${questData.reward} points déjà récoltés ! Reviens demain.`;
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+    } else if(isCompleted) {
+        container.innerHTML = `🎯 ${questData.text}<br>✅ Objectif atteint ! Clique pour réclamer ${questData.reward} points.`;
+        btn.disabled = false;
+        btn.style.opacity = "1";
+    } else {
+        container.innerHTML = `🎯 Quête du jour : ${questData.text}<br>Récompense : ${questData.reward} points<br>Continue tes progrès !`;
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+    }
+    
+    showPage("questPage");
+}
+
+function claimDailyQuest() {
+    const quest = getDailyQuest();
+    if(quest.claimed) return;
+    
+    const questData = dailyQuests[quest.index];
+    if(questData.check()) {
+        addPoints(questData.reward);
+        quest.claimed = true;
+        localStorage.setItem("dailyQuest", JSON.stringify(quest));
+        if(tg && tg.showAlert) tg.showAlert(`🎉 +${questData.reward} points ! Reviens demain.`);
+        else alert(`🎉 +${questData.reward} points ! Reviens demain.`);
+        showDailyQuest();
+    }
+}
+
+// ==================== TON CODE ORIGINAL (gardé intact) ====================
 let currentLang = localStorage.getItem("master_repair_lang") || "en";
 let currentBranch = null;
 let currentNode = null;
@@ -794,9 +1009,13 @@ function doneIds(){
 
 function saveDone(id){
     const ids = doneIds();
-    if(!ids.includes(id)) ids.push(id);
-    localStorage.setItem("master_repair_done", JSON.stringify(ids));
-    localStorage.setItem("master_repair_last", id);
+    if(!ids.includes(id)) {
+        ids.push(id);
+        localStorage.setItem("master_repair_done", JSON.stringify(ids));
+        localStorage.setItem("master_repair_last", id);
+        addPoints(25);
+        checkBadges();
+    }
 }
 
 function findNodeById(id){
@@ -824,7 +1043,6 @@ function applyLanguage(){
     document.getElementById("heroText").textContent = tr("heroText");
     document.getElementById("completedLabel").textContent = tr("completed");
     document.getElementById("stepsLabel").textContent = tr("steps");
-    document.getElementById("supportLabel").textContent = tr("support");
     document.getElementById("continueButton").textContent = tr("continue");
     document.getElementById("branchesTitle").textContent = tr("branchesTitle");
     document.getElementById("branchesSubtitle").textContent = tr("branchesSubtitle");
@@ -872,6 +1090,8 @@ function renderProgress(){
 
 function renderHome(){
     renderProgress();
+    updateStreak();
+    updateRankDisplay();
 
     const list = document.getElementById("branchList");
     list.innerHTML = "";
@@ -964,21 +1184,17 @@ function createVisual(page){
     if(page.kind === "meter"){
         return createMeterVisual(page);
     }
-
     if(page.kind === "component"){
         return createComponentVisual(page);
     }
-
     return "";
 }
 
 function createMeterVisual(page){
     const mode = page.mode;
-
     return `
         <div class="meter-visual">
             <div class="meter-screen">${page.display}</div>
-
             <div class="dial">
                 <span class="mode m-off ${mode === "OFF" ? "active" : ""}">OFF</span>
                 <span class="mode m-vdc ${mode === "VDC" ? "active" : ""}">V⎓</span>
@@ -990,13 +1206,11 @@ function createMeterVisual(page){
                 <span class="mode m-ma ${mode === "mA" ? "active" : ""}">mA</span>
                 <div class="dial-center">${mode}</div>
             </div>
-
             <div class="ports">
                 <div class="port black">COM</div>
                 <div class="port red">VΩ</div>
                 <div class="port gold">10A</div>
             </div>
-
             <div class="probes">
                 <div class="probe black"></div>
                 <div class="probe red"></div>
@@ -1045,6 +1259,11 @@ function continueLearning(){
     let next = nodes.find(item => !done.includes(item.id));
 
     if(!next){
+        if(tg && tg.showAlert){
+            tg.showAlert("🎉 Félicitations ! Tu as complété tout le parcours !");
+        } else {
+            alert("🎉 Félicitations ! Tu as complété tout le parcours !");
+        }
         const last = localStorage.getItem("master_repair_last");
         next = findNodeById(last) || nodes[0];
     }
@@ -1057,6 +1276,7 @@ function markDone(){
     if(currentNode){
         saveDone(currentNode.id);
         renderProgress();
+        updateRankDisplay();
     }
 
     if(tg && tg.HapticFeedback){
@@ -1064,10 +1284,12 @@ function markDone(){
     }
 
     if(tg && tg.showAlert){
-        tg.showAlert(tr("completedMessage"));
+        tg.showAlert(tr("completedMessage") + " +25 points");
     }else{
-        alert(tr("completedMessage"));
+        alert(tr("completedMessage") + " +25 points");
     }
+    
+    goBranch();
 }
 
 function showPage(id){
@@ -1094,7 +1316,6 @@ function goBranch(){
 
 function openSOS(){
     const link = "https://t.me/+OVTmcEQLg00zMTQ0";
-
     if(tg && tg.openTelegramLink){
         tg.openTelegramLink(link);
     }else{
@@ -1102,6 +1323,8 @@ function openSOS(){
     }
 }
 
+// Initialisation
+updateStreak();
 applyLanguage();
 </script>
 </body>

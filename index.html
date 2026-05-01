@@ -1,1329 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0d0d0d">
-    <title>Master Repair Academy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Telegram WebApp -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Repair Academy</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <style>
-        :root {
-            --tg-theme-bg: #0d0d0d;
-            --tg-theme-text: #ffffff;
-            --tg-theme-hint: #9b9b9b;
-            --tg-theme-link: #38bdf8;
-            --tg-theme-button: #f2c94c;
-            --tg-theme-button-text: #111111;
-            --tg-theme-secondary-bg: #1c1c1c;
-            --tg-theme-header-bg: #0d0d0d;
-            --tg-theme-section-bg: #1c1c1c;
-            --tg-theme-section-header-text: #9b9b9b;
-            --tg-theme-subtitle-text: #9b9b9b;
-            --tg-theme-destructive-text: #b00020;
-            --line: #303030;
-            --gold: #f2c94c;
-            --cyan: #38bdf8;
-            --green: #27c46b;
-            --red: #b00020;
-            --soft: #dedede;
-            --muted: #9b9b9b;
-        }
+<style>
+body{
+    margin:0;
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+h1{
+    margin:20px;
+}
 
-        body {
-            font-family: 'Manrope', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--tg-theme-bg, #0d0d0d);
-            color: var(--tg-theme-text, #ffffff);
-            min-height: 100vh;
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
-        }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:20px;
+}
 
-        .app-container {
-            max-width: 600px;
-            width: 100%;
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+.btn{
+    padding:20px;
+    border-radius:15px;
+    background:#1e293b;
+    cursor:pointer;
+}
 
-        /* Top Bar */
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 4px 0 12px;
-            gap: 8px;
-        }
+.lock{
+    background:#111;
+    opacity:0.5;
+}
 
-        .icon-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: var(--tg-theme-secondary-bg, #1c1c1c);
-            border: 1px solid var(--line);
-            color: var(--tg-theme-text, #fff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-            backdrop-filter: blur(8px);
-        }
+.done{
+    background:green;
+}
 
-        .icon-btn:active {
-            transform: scale(0.95);
-            background: #2a2a2a;
-        }
+#content{
+    display:none;
+    padding:20px;
+}
 
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex: 1;
-        }
-
-        .logo-mark {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--cyan);
-            font-weight: 900;
-            font-size: 18px;
-            margin-bottom: 4px;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
-        }
-
-        .logo-title {
-            font-size: 17px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-            color: #eafaff;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .logo-title span {
-            color: var(--gold);
-        }
-
-        .status-tag {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--tg-theme-hint, #9b9b9b);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-top: 2px;
-        }
-
-        .lang-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: rgba(242, 201, 76, 0.1);
-            border: 1px solid rgba(242, 201, 76, 0.4);
-            color: var(--gold);
-            font-weight: 800;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-
-        .lang-btn:active {
-            background: rgba(242, 201, 76, 0.2);
-        }
-
-        /* Pages */
-        .page {
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            animation: pageFadeIn 0.25s ease;
-            flex: 1;
-        }
-
-        .page.active {
-            display: flex;
-        }
-
-        @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Cards & Panels */
-        .card {
-            background: var(--tg-theme-secondary-bg, #1c1c1c);
-            border-radius: 20px;
-            padding: 18px;
-            border: 1px solid var(--line);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s;
-        }
-
-        .hero-card {
-            background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(242, 201, 76, 0.08)), var(--tg-theme-secondary-bg, #1c1c1c);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: 900;
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-
-        .card-text {
-            font-size: 14px;
-            color: var(--tg-theme-hint, #9b9b9b);
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin: 4px 0;
-        }
-        .stat-box {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 14px;
-            padding: 12px 4px;
-            text-align: center;
-            border: 1px solid var(--line);
-        }
-        .stat-value {
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--gold);
-        }
-        .stat-label {
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 2px;
-            font-weight: 600;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            margin: 10px 0;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--cyan), var(--gold), var(--green));
-            width: 0%;
-            border-radius: 10px;
-            transition: width 0.4s ease;
-        }
-
-        .main-action-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: 16px;
-            border: none;
-            background: var(--tg-theme-button, var(--gold));
-            color: var(--tg-theme-button-text, #111);
-            font-weight: 800;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(242, 201, 76, 0.3);
-            letter-spacing: 0.3px;
-        }
-        .main-action-btn:active {
-            transform: scale(0.98);
-            opacity: 0.9;
-        }
-        .main-action-btn:disabled {
-            opacity: 0.5;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .secondary-btn {
-            background: var(--tg-theme-secondary-bg, #1c1c1c);
-            color: var(--tg-theme-text, #fff);
-            border: 1px solid var(--line);
-            box-shadow: none;
-        }
-        .danger-btn {
-            background: var(--tg-theme-destructive-text, #b00020);
-            color: white;
-            border: none;
-            box-shadow: 0 4px 12px rgba(176, 0, 32, 0.4);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin: 8px 0 4px;
-        }
-        .section-title {
-            font-size: 17px;
-            font-weight: 800;
-        }
-        .section-subtitle {
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .list-vertical {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .branch-card, .chapter-card {
-            background: var(--tg-theme-secondary-bg, #1c1c1c);
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            position: relative;
-            overflow: hidden;
-        }
-        .branch-card:active, .chapter-card:active {
-            background: #2a2a2a;
-            transform: scale(0.99);
-        }
-        .branch-card.done {
-            border-color: rgba(39, 196, 107, 0.6);
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .card-title {
-            font-size: 16px;
-            font-weight: 800;
-        }
-        .badge {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--gold);
-            white-space: nowrap;
-        }
-        .badge.done {
-            background: rgba(39, 196, 107, 0.2);
-            color: var(--green);
-        }
-        .card-desc {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .book-control-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .action-btn {
-            padding: 12px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 14px;
-            border: 1px solid var(--line);
-            background: var(--tg-theme-secondary-bg, #1c1c1c);
-            color: var(--tg-theme-text, #fff);
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .action-btn:active {
-            background: #2a2a2a;
-        }
-        .action-btn.primary {
-            background: var(--gold);
-            color: #111;
-            border: none;
-            font-weight: 800;
-        }
-
-        /* Visuals */
-        .visual-container {
-            margin: 10px 0;
-            background: rgba(0,0,0,0.3);
-            border-radius: 22px;
-            padding: 16px;
-            border: 1px solid var(--line);
-        }
-        /* Meter visual ... keeping similar but professional */
-        .meter-screen {
-            font-size: 28px;
-            font-weight: 900;
-            background: #9fd7b2;
-            color: #071107;
-            padding: 10px;
-            border-radius: 14px;
-            text-align: center;
-            margin-bottom: 16px;
-            letter-spacing: 1px;
-            border: 2px solid #0b0b0b;
-        }
-        .dial {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 12px;
-            border-radius: 50%;
-            background: #0d0d0d;
-            border: 8px solid #2b2b2b;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .dial-center-text {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--gold);
-            color: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 12px;
-        }
-        .mode-marker {
-            position: absolute;
-            font-size: 10px;
-            font-weight: 700;
-            color: #aaa;
-            transition: color 0.2s;
-        }
-        .mode-marker.active {
-            color: var(--gold);
-            text-shadow: 0 0 8px var(--gold);
-        }
-        .ports-row {
-            display: flex;
-            gap: 8px;
-            margin: 10px 0;
-        }
-        .port-tag {
-            flex: 1;
-            background: #0a0a0a;
-            border-radius: 10px;
-            padding: 8px;
-            text-align: center;
-            font-weight: 800;
-            font-size: 12px;
-            border: 1px solid #333;
-        }
-        .port-tag.red {
-            color: #ff6b6b;
-        }
-        .port-tag.black {
-            color: #cfcfcf;
-        }
-        .port-tag.gold {
-            color: var(--gold);
-        }
-        .probes {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 8px;
-        }
-        .probe {
-            width: 10px;
-            height: 60px;
-            border-radius: 10px;
-            position: relative;
-        }
-        .probe:before {
-            content: "";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-bottom: 14px solid currentColor;
-        }
-        .component-visual {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-        .comp-symbol {
-            font-size: 36px;
-            font-weight: 900;
-            background: #101010;
-            padding: 12px 24px;
-            border-radius: 16px;
-            border: 1px solid rgba(242, 201, 76, 0.4);
-            color: var(--gold);
-        }
-        .schematic-tag {
-            font-size: 14px;
-            background: rgba(255,255,255,0.05);
-            padding: 6px 18px;
-            border-radius: 20px;
-            border: 1px solid var(--line);
-        }
-        .test-io {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        .io-box {
-            background: #101010;
-            border-radius: 12px;
-            padding: 10px 16px;
-            font-weight: 700;
-            border: 1px solid #333;
-        }
-        .meter-mini {
-            width: 80px;
-            height: 50px;
-            background: #9fd7b2;
-            border-radius: 12px;
-            color: #071107;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            border: 2px solid #0b0b0b;
-        }
-
-        .point-item {
-            background: rgba(255,255,255,0.03);
-            border-radius: 16px;
-            padding: 14px;
-            border: 1px solid var(--line);
-        }
-        .point-title {
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-        .point-text {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .footer {
-            text-align: center;
-            color: #555;
-            font-size: 11px;
-            padding: 20px 0 10px;
-            margin-top: auto;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: 600;
-            z-index: 999;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            animation: toastIn 0.3s ease;
-        }
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-    </style>
+.back{
+    margin-top:20px;
+    padding:10px;
+    background:#333;
+}
+</style>
 </head>
+
 <body>
-<div class="app-container">
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <button class="icon-btn" id="backButton" style="visibility: hidden;">←</button>
-        <div class="logo-area">
-            <div class="logo-mark">⌁</div>
-            <h1 class="logo-title"><span>MASTER</span> REPAIR ACADEMY</h1>
-            <div class="status-tag" id="connectionStatus">Loading...</div>
-        </div>
-        <button class="lang-btn" id="langToggle">AR</button>
-    </div>
 
-    <!-- Home Page -->
-    <div id="homePage" class="page active">
-        <div class="card hero-card">
-            <div class="card-title" id="heroTitle"></div>
-            <div class="card-text" id="heroText"></div>
-            <div class="progress-container">
-                <div class="progress-fill" id="progressBar"></div>
-            </div>
-            <div class="card-text" id="progressLabel"></div>
-        </div>
+<h1>Repair Academy</h1>
 
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-value" id="doneCount">0</div>
-                <div class="stat-label" id="completedLabel"></div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="totalCount">0</div>
-                <div class="stat-label" id="stepsLabel"></div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value">SOS</div>
-                <div class="stat-label" id="supportLabel"></div>
-            </div>
-        </div>
+<div id="menu" class="grid"></div>
 
-        <button class="main-action-btn" id="continueBtn"></button>
-
-        <div class="section-header">
-            <span class="section-title" id="branchesTitle"></span>
-            <span class="section-subtitle" id="branchesSubtitle"></span>
-        </div>
-        <div class="list-vertical" id="branchList"></div>
-
-        <div class="card" style="border-color: rgba(176,0,32,0.5); background: rgba(176,0,32,0.08);">
-            <div class="card-title" id="sosTitle"></div>
-            <div class="card-text" id="sosText"></div>
-            <button class="main-action-btn danger-btn" id="sosBtn" style="margin-top: 12px;"></button>
-        </div>
-    </div>
-
-    <!-- Branch Page -->
-    <div id="branchPage" class="page">
-        <div class="card">
-            <div class="card-title" id="branchTitle"></div>
-            <div class="card-text" id="branchDesc"></div>
-            <span class="badge" id="branchProgressBadge"></span>
-        </div>
-        <div class="section-header">
-            <span class="section-title" id="chaptersTitle"></span>
-            <span class="section-subtitle" id="chaptersSubtitle"></span>
-        </div>
-        <div class="list-vertical" id="chapterList"></div>
-        <button class="main-action-btn secondary-btn" id="branchBackBtn"></button>
-    </div>
-
-    <!-- Book Page -->
-    <div id="bookPage" class="page">
-        <div class="card">
-            <div class="card-title" id="bookTitle"></div>
-            <div class="card-text" id="bookDesc"></div>
-            <div class="badge" id="bookCounter"></div>
-        </div>
-
-        <div class="visual-container" id="bookVisual"></div>
-
-        <div class="card">
-            <div class="card-title" id="bookPageTitle"></div>
-            <div class="card-text" id="bookPageText"></div>
-        </div>
-
-        <div class="list-vertical" id="bookPoints"></div>
-
-        <div class="book-control-row">
-            <button class="action-btn" id="prevBtn"></button>
-            <button class="action-btn" id="nextBtn"></button>
-        </div>
-
-        <div class="book-control-row" style="margin-top: 4px;">
-            <button class="action-btn" id="bookBackBtn"></button>
-            <button class="action-btn primary" id="markDoneBtn"></button>
-        </div>
-    </div>
-
-    <div class="footer" id="footerText"></div>
-</div>
+<div id="content"></div>
 
 <script>
-    (function() {
-        // ---------- Telegram Integration ----------
-        const tg = window.Telegram?.WebApp;
-        const isTelegram = !!tg;
-        let cloudStorageAvailable = false;
 
-        if (tg) {
-            tg.ready();
-            tg.expand();
-            tg.enableClosingConfirmation();
-            tg.isClosingConfirmationEnabled = true;
-            // Apply Telegram theme colors
-            document.documentElement.style.setProperty('--tg-theme-bg', tg.themeParams.bg_color || '#0d0d0d');
-            document.documentElement.style.setProperty('--tg-theme-text', tg.themeParams.text_color || '#ffffff');
-            document.documentElement.style.setProperty('--tg-theme-hint', tg.themeParams.hint_color || '#9b9b9b');
-            document.documentElement.style.setProperty('--tg-theme-link', tg.themeParams.link_color || '#38bdf8');
-            document.documentElement.style.setProperty('--tg-theme-button', tg.themeParams.button_color || '#f2c94c');
-            document.documentElement.style.setProperty('--tg-theme-button-text', tg.themeParams.button_text_color || '#111111');
-            document.documentElement.style.setProperty('--tg-theme-secondary-bg', tg.themeParams.secondary_bg_color || '#1c1c1c');
-            document.documentElement.style.setProperty('--tg-theme-section-bg', tg.themeParams.section_bg_color || '#1c1c1c');
-            document.documentElement.style.setProperty('--tg-theme-destructive-text', tg.themeParams.destructive_text_color || '#b00020');
+let progress = {
+    "chap1_lvl1": true,
+    "chap1_lvl2": false,
+    "chap1_lvl3": false
+};
 
-            // MainButton
-            tg.MainButton.setParams({
-                text: '',
-                color: tg.themeParams.button_color || '#f2c94c',
-                text_color: tg.themeParams.button_text_color || '#111111'
-            });
-            tg.MainButton.onClick(() => {
-                if (currentMainAction) currentMainAction();
-            });
+const menu = document.getElementById("menu");
+const content = document.getElementById("content");
 
-            // BackButton
-            tg.BackButton.onClick(() => {
-                navigateBack();
-            });
-            updateBackButton();
-        }
+// ================= MENU =================
+function loadMenu(){
+    menu.innerHTML = "";
 
-        // ---------- Data ----------
-        const langData = {
-            en: {
-                dir: 'ltr',
-                langBtn: 'AR',
-                connected: 'Connected to Telegram',
-                browser: 'Browser Mode',
-                heroTitle: 'Motherboard Repair Learning Path',
-                heroText: 'Choose a branch, then open its chapters.',
-                completed: 'Completed',
-                steps: 'Steps',
-                support: 'Support',
-                continue: 'Continue Learning',
-                branchesTitle: 'Learning Branches',
-                branchesSubtitle: 'Choose a training area',
-                chaptersTitle: 'Chapters',
-                chaptersSubtitle: 'Choose a lesson',
-                sosTitle: 'SOS Repair',
-                sosText: 'Open the Telegram group to ask for help.',
-                sosBtn: 'Open SOS',
-                back: 'Back',
-                done: 'Mark Done',
-                prev: 'Previous',
-                next: 'Next',
-                footer: 'Master Repair Academy • Professional',
-                completedProgress: 'completed',
-                open: 'Open',
-                doneState: 'Done',
-                toastDone: 'Lesson completed!',
-                toastError: 'Error saving progress'
-            },
-            ar: {
-                dir: 'rtl',
-                langBtn: 'EN',
-                connected: 'متصل بتيليجرام',
-                browser: 'وضع المتصفح',
-                heroTitle: 'مسار تعلم إصلاح اللوحات',
-                heroText: 'اختر فرعاً ثم افتح دروسه.',
-                completed: 'مكتمل',
-                steps: 'خطوات',
-                support: 'الدعم',
-                continue: 'متابعة التعلم',
-                branchesTitle: 'فروع التعلم',
-                branchesSubtitle: 'اختر مجال التدريب',
-                chaptersTitle: 'الدروس',
-                chaptersSubtitle: 'اختر درساً',
-                sosTitle: 'دعم الإصلاح',
-                sosText: 'افتح مجموعة تيليجرام لطلب المساعدة.',
-                sosBtn: 'فتح الدعم',
-                back: 'رجوع',
-                done: 'تم',
-                prev: 'السابق',
-                next: 'التالي',
-                footer: 'Master Repair Academy • احترافي',
-                completedProgress: 'مكتمل',
-                open: 'فتح',
-                doneState: 'تم',
-                toastDone: 'تم إنهاء الدرس!',
-                toastError: 'خطأ في حفظ التقدم'
-            }
-        };
+    addButton("Chapitre 1 - Outils", openChap1);
+}
 
-        function t(key) { return langData[currentLang][key] || key; }
-        function txt(obj) { return obj[currentLang]; }
+// ================= BUTTON CREATOR =================
+function addButton(text, action){
+    let div = document.createElement("div");
+    div.className = "btn";
+    div.innerText = text;
+    div.onclick = action;
+    menu.appendChild(div);
+}
 
-        // ---------- State ----------
-        let currentLang = 'en';
-        let doneLessons = [];
-        let currentBranchId = null;
-        let currentNodeId = null;
-        let currentBookPage = 0;
-        let currentMainAction = null;
-        let navigationStack = [];
+// ================= CHAPITRE 1 =================
+function openChap1(){
+    menu.style.display="none";
+    content.style.display="block";
 
-        // ---------- Learning Data (same structure but optimized) ----------
-        function makePage(kind, mode, display, symbol, titleEn, titleAr, textEn, textAr, points) {
-            return { kind, mode, display, symbol, title: { en: titleEn, ar: titleAr }, text: { en: textEn, ar: textAr }, points: points.map(p => ({ title: { en: p[0], ar: p[1] }, text: { en: p[2], ar: p[3] } })) };
-        }
+    content.innerHTML = `
+        <h2>Outils</h2>
 
-        function makeComponentBook(titleEn, titleAr, descEn, descAr, symbol, roleEn, roleAr, testEn, testAr, symptomEn, symptomAr) {
-            return [
-                makePage("component", "role", titleEn, symbol, titleEn, titleAr, roleEn, roleAr, [["Role","الدور", roleEn, roleAr], ["Before repair","قبل الإصلاح", "Understand the function before replacing anything.", "افهم الوظيفة قبل تغيير أي شيء."]]),
-                makePage("component", "schema", "SCHEMA", symbol, "Schematic Symbol", "رمز المخطط", "This is the simplified symbol.", "هذا هو الرمز المبسط.", [["Why","لماذا", "Schematics help follow lines.", "المخططات تساعد في تتبع الخطوط."], ["Boardview","البوردفيو", "Use boardview to locate parts.", "استخدم البوردفيو لتحديد الأماكن."]]),
-                makePage("component", "test", "TEST", symbol, "How To Test", "طريقة الفحص", testEn, testAr, [["Mode","الوضع", "Use correct multimeter mode.", "استخدم وضع الملتيميتر الصحيح."], ["Confirm","التأكيد", "Compare with good board.", "قارن مع لوحة سليمة."]]),
-                makePage("component", "fault", "FAULT", symbol, "Common Symptoms", "الأعراض الشائعة", symptomEn, symptomAr, [["Rule","القاعدة", "Never replace without proof.", "لا تغير بدون دليل."], ["Method","الطريقة", "Observe, measure, confirm.", "لاحظ، قس، أكد."]])
-            ];
-        }
+        ${levelBtn("Niveau 1", "chap1_lvl1", lvl1)}
+        ${levelBtn("Niveau 2", "chap1_lvl2", lvl2)}
+        ${levelBtn("Niveau 3", "chap1_lvl3", lvl3)}
 
-        function makeToolBook(titleEn, titleAr, symbol, roleEn, roleAr, useEn, useAr, mistakeEn, mistakeAr) {
-            return [
-                makePage("none", "role", titleEn, symbol, titleEn, titleAr, roleEn, roleAr, [["Role","الدور", roleEn, roleAr], ["Safe use","استخدام آمن", useEn, useAr]]),
-                makePage("none", "fault", "MISTAKE", symbol, "Common Mistakes", "الأخطاء الشائعة", mistakeEn, mistakeAr, [["Rule","القاعدة", "Use slowly with control.", "استخدم ببطء وتحكم."], ["Check","افحص", "Stop if forced or unsafe.", "توقف إذا شعرت بخطر."]])
-            ];
-        }
+        <div class="back" onclick="back()">⬅ Retour</div>
+    `;
+}
 
-        const systemBooks = {
-            start: makeComponentBook("Start Learning", "ابدأ التعلم", "Understand the roadmap.", "افهم الخريطة وترتيب التعلم.", "START", "Start with tools, then components.", "ابدأ بالأدوات ثم المكونات.", "Follow step by step.", "اتبع التطبيق خطوة بخطوة.", "Skipping basics makes repair confusing.", "تجاوز الأساسيات مربك."),
-            safety: makeComponentBook("Safety", "السلامة", "Battery, ESD, heat safety.", "البطارية، ESD، الحرارة.", "SAFE", "Safety protects technician and device.", "السلامة تحمي التقني والجهاز.", "Check battery, disconnect power.", "افحص البطارية وافصل الطاقة.", "Overheating, ESD can cause problems.", "الحرارة الزائدة والكهرباء الساكنة تسبب مشاكل."),
-            opening: makeComponentBook("Phone Opening", "فتح الهاتف", "Open without damage.", "فتح الهاتف بدون أضرار.", "OPEN", "Opening is a skill.", "الفتح مهارة.", "Use heat carefully, organize screws.", "استخدم الحرارة ونظم البراغي.", "Missing screws, broken flex common.", "ضياع البراغي والفلاتات أخطاء شائعة."),
-            circuits: makeComponentBook("Circuit Basics", "أساسيات الدوائر", "Lines, ground, power flow.", "الخطوط، الأرضي، تدفق الطاقة.", "VDD→LOAD→GND", "A circuit path for power/signal.", "مسار للطاقة أو الإشارة.", "Follow input, output, ground.", "تتبع المدخل والمخرج والأرضي.", "Broken line or short stops circuit.", "الخط المقطوع أو الشورت يوقف الدائرة."),
-            pmic: makeComponentBook("PMIC", "شريحة إدارة الطاقة", "Main power management IC.", "الدارة الرئيسية للطاقة.", "VBAT→PMIC→VDD", "PMIC creates board voltages.", "تنتج وتتحكم في الفولتات.", "Check VBAT, enable, outputs.", "افحص VBAT وإشارات التفعيل.", "Missing rails cause no power.", "غياب الخطوط يسبب موت كامل."),
-            cpu: makeComponentBook("CPU / SoC", "المعالج", "Main brain of the phone.", "العقل الرئيسي للهاتف.", "PMIC→CPU", "CPU executes boot logic.", "المعالج ينفذ منطق الإقلاع.", "Check power rails, clock, reset.", "افحص الطاقة والساعة والريست.", "CPU faults are rare but advanced.", "أعطال المعالج نادرة ومتقدمة."),
-            storage: makeComponentBook("Storage", "التخزين", "Bootloader and data storage.", "البوتلودر وتخزين البيانات.", "CPU↔NAND/UFS", "CPU reads boot from storage.", "المعالج يقرأ الإقلاع.", "Check storage power rails.", "افحص خطوط طاقة التخزين.", "Storage faults cause boot loop.", "أعطال التخزين تسبب بوت لوب."),
-            display: makeComponentBook("Display System", "نظام الشاشة", "Image signal and power.", "إشارة الصورة والطاقة.", "CPU→MIPI→LCD", "Display sends image data.", "نظام الشاشة يرسل الصورة.", "Check connector, voltages.", "افحص الكونكتور والفولتات.", "No image may be screen or line.", "غياب الصورة قد يكون شاشة أو خط."),
-            backlight: makeComponentBook("Backlight", "الإضاءة", "Screen light circuit.", "دائرة إضاءة الشاشة.", "BL IC→COIL→LED", "Backlight makes LCD visible.", "الإضاءة تجعل الشاشة مرئية.", "Check backlight IC, coil.", "افحص شريحة الإضاءة والملف.", "Flashlight image means backlight fault.", "ظهور الصورة بكشاف يعني عطل إضاءة."),
-            charge: makeComponentBook("Charging", "الشحن", "USB to battery path.", "مسار الشحن USB إلى البطارية.", "USB→VBUS→CHG IC→BAT", "Charging path with protection.", "مسار الشحن مع الحماية.", "Check cable, port, VBUS.", "افحص الكابل والمنفذ VBUS.", "No charge not always IC fault.", "عدم الشحن ليس دائماً عطل الشريحة."),
-            usb: makeComponentBook("USB / Data", "USB / البيانات", "USB data and Type-C.", "بيانات USB و Type-C.", "D+ D- / CC", "USB handles data and negotiation.", "يدير البيانات والتفاوض.", "Check port, D+/D-, CC lines.", "افحص المنفذ وخطوط البيانات.", "Bad lines cause no data/fast charge.", "الخطوط التالفة تمنع البيانات."),
-            audio: makeComponentBook("Audio", "الصوت", "Codec, amplifier, mic, speaker.", "الكودك، الأمبليفاير.", "AUDIO IC→AMP→SPK", "Audio ICs process sound.", "شرائح الصوت تعالج الصوت.", "Check speaker, mic, connector.", "افحص السماعة والمايك.", "No sound can be codec or part.", "غياب الصوت قد يكون كودك أو قطعة."),
-            camera: makeComponentBook("Camera", "الكاميرا", "Camera power and MIPI.", "طاقة الكاميرا و MIPI.", "CAM→MIPI→CPU", "Camera sends image to CPU.", "الكاميرا ترسل الصورة.", "Check connector, voltages.", "افحص الكونكتور والفولتات.", "Black camera: module or line.", "الكاميرا السوداء: موديول أو خط."),
-            rf: makeComponentBook("RF / Network", "الشبكة", "Baseband, RF, PA, antennas.", "البيسباند، RF، PA.", "BASEBAND→RF→PA→ANT", "Network handles cellular signal.", "الشبكة تدير الإرسال والاستقبال.", "Check SIM, IMEI, antennas.", "افحص الشريحة والهوائي.", "No network: software or RF.", "غياب الشبكة: سوفتوير أو RF.")
-        };
+// ================= LEVEL BUTTON =================
+function levelBtn(name, key, action){
+    let state = "";
 
-        const toolBooks = {
-            screwdriver: makeToolBook("Screwdrivers", "المفكات", "T", "Screwdrivers remove screws safely.", "المفكات تزيل البراغي بأمان.", "Choose exact bit size, organize screws.", "اختر المقاس الصحيح ونظم البراغي.", "Forcing wrong driver destroys heads.", "استخدام مفك خاطئ يتلف الرأس."),
-            tweezers: makeToolBook("Tweezers", "الملاقط", "P", "Tweezers handle small parts.", "الملاقط تمسك القطع الصغيرة.", "Use light pressure, avoid pulling flex.", "استخدم ضغطاً خفيفاً.", "Sharp tweezers tear flex cables.", "الملاقط الحادة تقطع الفلاتات."),
-            displayGlue: makeToolBook("Display Glue", "غراء الشاشة", "GLUE", "Glue seals or refits screen.", "الغراء يثبت الشاشة.", "Clean frame, apply thin layer.", "نظف الإطار وضع طبقة رقيقة.", "Too much glue overflows inside.", "الغراء الزائد يدخل الهاتف."),
-            heatingPlate: makeToolBook("Heating Plate", "لوحة حرارية", "HEAT", "Softens adhesive safely.", "تلين اللاصق بأمان.", "Use controlled heat, remove battery first.", "حرارة متحكم بها، انزع البطارية.", "Overheating damages screen/battery.", "الحرارة الزائدة تتلف الشاشة."),
-            microscope: makeToolBook("Microscope", "ميكروسكوب", "MIC", "Reveals corrosion, tiny damage.", "يكشف الأكسدة والضرر.", "Inspect connectors, IC area.", "افحص الكونكتورات والمنطقة.", "Working without inspection is random.", "العمل بدون فحص عشوائي."),
-            multimeter: (() => {
-                const pages = [
-                    makePage("meter", "OFF", "OFF", "OFF", "OFF Mode", "وضع الإيقاف", "Turns multimeter off.", "يوقف الملتيميتر.", [["Use","الاستخدام","Use after measuring.","استخدم بعد القياس."],["Habit","عادة","Always return to OFF.","عد دائماً إلى OFF."]]),
-                    makePage("meter", "VDC", "4.20 V", "V⎓", "DC Voltage", "الفولت المستمر", "Measures direct voltage.", "يقيس الفولت المستمر.", [["How","الطريقة","Black probe on ground, red on point.","السلك الأسود على الأرضي."],["Use","الاستخدام","Battery, VBUS, VDD.","البطارية، VBUS، VDD."]]),
-                    makePage("meter", "VAC", "230 V", "V~", "AC Voltage", "الفولت المتردد", "Measures AC voltage.", "يقيس الفولت المتردد.", [["Warning","تحذير","AC mains dangerous for beginners.","كهرباء المنزل خطيرة."],["Phone","الهواتف","Phone boards use DC.","لوحات الهواتف تستخدم DC."]]),
-                    makePage("meter", "Ω", "220 Ω", "Ω", "Resistance", "المقاومة", "Measures resistance power off.", "يقيس المقاومة مع فصل الطاقة.", [["Power off","فصل الطاقة","Never measure on powered board.","لا تقس على لوحة موصولة."],["Use","الاستخدام","Check resistors.","فحص المقاومات."]]),
-                    makePage("meter", "CONT", "BEEP", ")))", "Continuity", "الاستمرارية", "Checks if points connected.", "يفحص اتصال نقطتين.", [["Use","الاستخدام","Fuses, broken lines.","الفيوزات والخطوط."],["Note","ملاحظة","Beep doesn't guarantee part good.","الصوت لا يعني سلامة القطعة."]]),
-                    makePage("meter", "DIODE", "0.528", "▷|", "Diode Mode", "وضع الدايود", "Gives voltage-drop value.", "يعطي قيمة هبوط فولت.", [["Use","الاستخدام","Compare lines with good board.","قارن الخطوط مع لوحة سليمة."],["Important","مهم","One of most important modes.","من أهم الأوضاع."]]),
-                    makePage("meter", "A", "0.18 A", "A", "Current A", "التيار A", "Measures current flow.", "يقيس مرور التيار.", [["Warning","تحذير","Current measured differently.","قياس التيار مختلف."],["Beginner","مبتدئ","Start with voltage/diode first.","ابدأ بالفولت والدايود."]]),
-                    makePage("meter", "mA", "25 mA", "mA", "mA Current", "تيار mA", "Small current measurement.", "قياس تيار صغير.", [["Use","الاستخدام","For small electronics.","للإلكترونيات الصغيرة."],["Safety","سلامة","Wrong port blows fuse.","المنفذ الخاطئ يتلف الفيوز."]]),
-                    makePage("meter", "CAP", "10 µF", "CAP", "Capacitance", "السعة", "Measures capacitance.", "يقيس السعة.", [["Use","الاستخدام","Test removed capacitors.","فحص مكثفات مفكوكة."],["Note","ملاحظة","Discharge before testing.","فرغ قبل الفحص."]]),
-                    makePage("meter", "Hz", "1 kHz", "Hz", "Frequency", "التردد", "Measures frequency.", "يقيس التردد.", [["Use","الاستخدام","Advanced signals check.", "فحص متقدم للإشارات."],["Note","ملاحظة","Not priority for beginners.","ليس أولوية للمبتدئين."]]),
-                    makePage("meter", "TEMP", "35°C", "°C", "Temperature", "الحرارة", "Measures temperature.", "يقيس الحرارة.", [["Use","الاستخدام","Check overheating areas.", "فحص المناطق الساخنة."],["Alternative","بديل","Thermal camera or alcohol.","كاميرا حرارية أو كحول."]]),
-                    makePage("meter", "PORT", "COM", "COM", "Ports: COM / VΩ / 10A", "المداخل", "Black probe to COM.", "السلك الأسود في COM.", [["COM","COM","Common black port.","مدخل السلك الأسود."],["VΩ","VΩ","Voltage/resistance/diode.","الفولت/المقاومة/الدايود."],["10A","10A","High current only.","للتيار العالي فقط."]])
-                ];
-                return pages;
-            })(),
-            hotAir: makeToolBook("Hot Air Station", "محطة الهواء", "AIR", "Removes/solders components.", "يزيل ويلحم المكونات.", "Control temp, airflow, distance.", "تحكم بالحرارة والهواء والمسافة.", "Too much heat lifts pads.", "الحرارة الزائدة ترفع البادات."),
-            solderIron: makeToolBook("Soldering Iron", "كاوية لحام", "IRON", "Precise soldering and jumper.", "لحام دقيق وعمل جمبر.", "Use clean tip, flux, correct temp.", "رأس نظيف، فلكس، حرارة مناسبة.", "Dirty tip damages pads.", "الرأس المتسخ يتلف البادات."),
-            powerSupply: makeToolBook("Lab PSU", "باور سبلاي", "PSU", "Powers board and shows current.", "يشغل اللوحة ويعرض التيار.", "Set voltage/current limit before connecting.", "اضبط الفولت والتيار قبل التوصيل.", "Wrong voltage destroys board.", "الفولت الخاطئ يدمر اللوحة."),
-            flux: makeToolBook("Flux", "فلكس", "FLUX", "Helps solder flow cleanly.", "يساعد القصدير على الحركة.", "Apply small amount, clean residue.", "ضع كمية قليلة ونظف البقايا.", "Too much flux makes area dirty.", "الفلكس الزائد يجعل المنطقة متسخة."),
-            ipa: makeToolBook("IPA Alcohol", "كحول IPA", "IPA", "Cleans flux, dirt, residue.", "ينظف الفلكس والأوساخ.", "Use with brush, let board dry.", "استخدم مع فرشاة واتركها تجف.", "Don't power wet board.", "لا تشغل اللوحة وهي مبللة."),
-            esd: makeToolBook("ESD Mat", "بساط ESD", "ESD", "Reduces static electricity risk.", "يقلل خطر الكهرباء الساكنة.", "Use mat and wrist strap.", "استخدم البساط والسوار.", "Static damages ICs invisibly.", "الكهرباء الساكنة تتلف الشرائح.")
-        };
+    if(!progress[key]) state="lock";
+    if(progress[key] && localStorage.getItem(key)) state="done";
 
-        const componentBooks = {
-            resistor: makeComponentBook("Resistor", "المقاومة", "Role, symbol, test method.", "الدور، الرمز، الفحص.", "─/\\/\\─", "Limits or controls current.", "تحد أو تتحكم بالتيار.", "Test with Ω mode, power off.", "افحص بوضع المقاومة مع فصل الطاقة.", "Wrong value causes abnormal behavior.", "قيمة خاطئة تسبب سلوكاً غير طبيعي."),
-            capacitor: makeComponentBook("Capacitor", "مكثف", "Role, symbol, test method.", "الدور، الرمز، الفحص.", "─| |─", "Stores energy, filters noise.", "يخزن الطاقة وينقي التشويش.", "Use continuity/diode mode for short.", "استخدم الاستمرارية لكشف الشورت.", "Shorted capacitor stops power line.", "مكثف شورت يوقف خط الطاقة."),
-            diode: makeComponentBook("Diode", "دايود", "Role, symbol, test method.", "الدور، الرمز، الفحص.", "─|>|─", "Allows current one direction.", "يسمح بالتيار في اتجاه واحد.", "Diode mode: one direction value.", "وضع الدايود: قيمة في اتجاه.", "Wrong orientation stops circuit.", "التوجيه العكسي يوقف الدائرة."),
-            coil: makeComponentBook("Coil", "ملف", "Role, symbol, test method.", "الدور، الرمز، الفحص.", "─oooo─", "Used in power circuits, regulation.", "يستخدم في دوائر الطاقة.", "Continuity mode: should beep.", "وضع الاستمرارية: غالباً يصفر.", "Broken coil cuts power line.", "الملف المقطوع يقطع الخط."),
-            fuse: makeComponentBook("Fuse", "فيوز", "Role, symbol, test method.", "الدور، الرمز، الفحص.", "─[F]─", "Protects circuit, opens when overcurrent.", "يحمي الدائرة وينقطع عند التيار العالي.", "Continuity: good fuse beeps.", "الاستمرارية: الفيوز السليم يصفر.", "Blown fuse: don't bypass blindly.", "لا تتجاوز الفيوز بدون سبب."),
-            connector: makeComponentBook("Connector", "كونكتور", "Role, symbol, test method.", "الدور، الرمز، الفحص.", "CN/J", "Links board to battery, screen, etc.", "يربط اللوحة بالبطارية والشاشة.", "Inspect with microscope, test pins.", "افحص بالميكروسكوب واختبر البنات.", "Bent pins/dirt cause many faults.", "البنات المعوجة والأوساخ تسبب أعطالاً."),
-            ic: makeComponentBook("IC", "IC", "General IC logic and diagnosis.", "منطق الشريحة والتشخيص.", "┌ IC ┐", "Chip containing many circuits.", "شريحة تحتوي دوائر كثيرة.", "Check power, ground, enable, components.", "افحص الطاقة والأرضي والتفعيل.", "Never replace IC without proof.", "لا تغير الشريحة بدون دليل.")
-        };
+    return `<div class="btn ${state}" onclick="${progress[key] ? action.name+'()' : ''}">
+        ${name}
+    </div>`;
+}
 
-        const branches = [
-            { id: "start", title: { en: "Start", ar: "البداية" }, desc: { en: "Begin the academy roadmap.", ar: "ابدأ خريطة الأكاديمية." }, nodes: [{ id: "start", icon: "START", title: { en: "Start Learning", ar: "ابدأ التعلم" }, desc: { en: "Understand the learning path before starting.", ar: "افهم مسار التعلم قبل البداية." }, book: systemBooks.start }] },
-            { id: "tools", title: { en: "Tools", ar: "الأدوات" }, desc: { en: "Learn essential repair tools.", ar: "تعلم أدوات الإصلاح الأساسية." }, nodes: [
-                { id: "screwdriver", icon: "T", title: { en: "Screwdrivers", ar: "المفكات" }, desc: { en: "Open phones without damaging screws.", ar: "فتح الهواتف بدون إتلاف البراغي." }, book: toolBooks.screwdriver },
-                { id: "tweezers", icon: "P", title: { en: "Tweezers", ar: "الملاقط" }, desc: { en: "Handle small parts and flex cables.", ar: "التعامل مع القطع الصغيرة والفلاتات." }, book: toolBooks.tweezers },
-                { id: "display_glue", icon: "GLUE", title: { en: "Display Glue", ar: "غراء الشاشة" }, desc: { en: "Seal or refit displays cleanly.", ar: "تثبيت أو إغلاق الشاشة." }, book: toolBooks.displayGlue },
-                { id: "heating_plate", icon: "HEAT", title: { en: "Heating Plate", ar: "اللوحة الحرارية" }, desc: { en: "Soften adhesive safely.", ar: "تليين اللاصق بأمان." }, book: toolBooks.heatingPlate },
-                { id: "microscope", icon: "MIC", title: { en: "Microscope", ar: "الميكروسكوب" }, desc: { en: "Inspect tiny damage and components.", ar: "فحص الأضرار والمكونات الصغيرة." }, book: toolBooks.microscope },
-                { id: "multimeter", icon: "V", title: { en: "Multimeter", ar: "الملتيميتر" }, desc: { en: "All modes, symbols and safe usage.", ar: "كل الأوضاع والرموز والاستخدام الآمن." }, book: toolBooks.multimeter },
-                { id: "hot_air", icon: "AIR", title: { en: "Hot Air Station", ar: "محطة الهواء الساخن" }, desc: { en: "Remove and solder components.", ar: "إزالة ولحام المكونات." }, book: toolBooks.hotAir },
-                { id: "solder_iron", icon: "IRON", title: { en: "Soldering Iron", ar: "كاوية اللحام" }, desc: { en: "Precise soldering and jumper work.", ar: "لحام دقيق وعمل الجمبر." }, book: toolBooks.solderIron },
-                { id: "power_supply", icon: "PSU", title: { en: "Lab Power Supply", ar: "الباور سبلاي" }, desc: { en: "Power the board and read current draw.", ar: "تشغيل اللوحة وقراءة التيار." }, book: toolBooks.powerSupply },
-                { id: "flux", icon: "FLUX", title: { en: "Flux", ar: "الفلكس" }, desc: { en: "Clean solder flow and better joints.", ar: "تحسين حركة القصدير وجودة اللحام." }, book: toolBooks.flux },
-                { id: "ipa", icon: "IPA", title: { en: "IPA Alcohol", ar: "كحول IPA" }, desc: { en: "Clean flux, dirt and residue.", ar: "تنظيف الفلكس والأوساخ." }, book: toolBooks.ipa },
-                { id: "esd", icon: "ESD", title: { en: "ESD Mat", ar: "بساط ESD" }, desc: { en: "Protect sensitive electronics.", ar: "حماية الإلكترونيات الحساسة." }, book: toolBooks.esd }
-            ]},
-            { id: "components", title: { en: "Components", ar: "المكونات" }, desc: { en: "Learn parts, symbols and tests.", ar: "تعلم القطع والرموز والفحص." }, nodes: [
-                { id: "resistor", icon: "R", title: { en: "Resistor", ar: "المقاومة" }, desc: { en: "Role, symbol and test method.", ar: "الدور والرمز وطريقة الفحص." }, book: componentBooks.resistor },
-                { id: "capacitor", icon: "C", title: { en: "Capacitor", ar: "مكثف" }, desc: { en: "Role, symbol and test method.", ar: "الدور والرمز وطريقة الفحص." }, book: componentBooks.capacitor },
-                { id: "diode", icon: "D", title: { en: "Diode", ar: "دايود" }, desc: { en: "Role, symbol and test method.", ar: "الدور والرمز وطريقة الفحص." }, book: componentBooks.diode },
-                { id: "coil", icon: "L", title: { en: "Coil", ar: "ملف" }, desc: { en: "Role, symbol and test method.", ar: "الدور والرمز وطريقة الفحص." }, book: componentBooks.coil },
-                { id: "fuse", icon: "F", title: { en: "Fuse", ar: "فيوز" }, desc: { en: "Role, symbol and test method.", ar: "الدور والرمز وطريقة الفحص." }, book: componentBooks.fuse },
-                { id: "connector", icon: "CN", title: { en: "Connector", ar: "كونكتور" }, desc: { en: "Role, symbol and test method.", ar: "الدور والرمز وطريقة الفحص." }, book: componentBooks.connector },
-                { id: "ic", icon: "IC", title: { en: "IC", ar: "IC" }, desc: { en: "General IC logic and safe diagnosis.", ar: "منطق الشريحة والتشخيص الآمن." }, book: componentBooks.ic }
-            ]},
-            { id: "safety", title: { en: "Safety & Opening", ar: "السلامة وفتح الهاتف" }, desc: { en: "Work safely before diagnosis.", ar: "اعمل بأمان قبل التشخيص." }, nodes: [
-                { id: "safety", icon: "SAFE", title: { en: "Safety", ar: "السلامة" }, desc: { en: "Battery, ESD, heat and safe work.", ar: "البطارية، ESD، الحرارة والعمل الآمن." }, book: systemBooks.safety },
-                { id: "opening", icon: "OPEN", title: { en: "Phone Opening", ar: "فتح الهاتف" }, desc: { en: "Open phones without damage.", ar: "فتح الهاتف بدون أضرار." }, book: systemBooks.opening }
-            ]},
-            { id: "systems", title: { en: "Boot & Systems", ar: "الإقلاع والأنظمة" }, desc: { en: "Learn how the board wakes up and runs systems.", ar: "تعلم كيف تستيقظ اللوحة وتشغل الأنظمة." }, nodes: [
-                { id: "circuits", icon: "LINE", title: { en: "Circuit Basics", ar: "أساسيات الدوائر" }, desc: { en: "Lines, ground and power flow.", ar: "الخطوط والأرضي وتدفق الطاقة." }, book: systemBooks.circuits },
-                { id: "pmic", icon: "PMIC", title: { en: "PMIC", ar: "PMIC" }, desc: { en: "Main power management IC.", ar: "دارة إدارة الطاقة الرئيسية." }, book: systemBooks.pmic },
-                { id: "cpu", icon: "CPU", title: { en: "CPU / SoC", ar: "المعالج" }, desc: { en: "Main brain of the phone.", ar: "العقل الرئيسي للهاتف." }, book: systemBooks.cpu },
-                { id: "storage", icon: "NAND", title: { en: "Storage", ar: "التخزين" }, desc: { en: "Bootloader and data storage.", ar: "البوتلودر وتخزين البيانات." }, book: systemBooks.storage },
-                { id: "display", icon: "LCD", title: { en: "Display System", ar: "نظام الشاشة" }, desc: { en: "Image signal and display power.", ar: "إشارة الصورة وطاقة الشاشة." }, book: systemBooks.display },
-                { id: "backlight", icon: "BL", title: { en: "Backlight", ar: "الإضاءة" }, desc: { en: "Screen light circuit.", ar: "دائرة إضاءة الشاشة." }, book: systemBooks.backlight },
-                { id: "charge", icon: "CHG", title: { en: "Charging", ar: "الشحن" }, desc: { en: "USB to battery charging path.", ar: "مسار الشحن USB إلى البطارية." }, book: systemBooks.charge },
-                { id: "usb", icon: "USB", title: { en: "USB / Data", ar: "USB / البيانات" }, desc: { en: "USB data and Type-C.", ar: "بيانات USB و Type-C." }, book: systemBooks.usb },
-                { id: "audio", icon: "AUD", title: { en: "Audio", ar: "الصوت" }, desc: { en: "Codec, amplifier, mic, speaker.", ar: "الكودك، الأمبليفاير." }, book: systemBooks.audio },
-                { id: "camera", icon: "CAM", title: { en: "Camera", ar: "الكاميرا" }, desc: { en: "Camera power and MIPI.", ar: "طاقة الكاميرا و MIPI." }, book: systemBooks.camera },
-                { id: "rf", icon: "RF", title: { en: "RF / Network", ar: "الشبكة" }, desc: { en: "Baseband, RF, PA, antennas.", ar: "البيسباند، RF، PA." }, book: systemBooks.rf }
-            ]}
-        ];
+// ================= LEVELS =================
+function lvl1(){
+    content.innerHTML = `
+        <h2>Tournevis</h2>
+        <p>Outil de base pour ouvrir les appareils.</p>
 
-        const allNodes = branches.flatMap(b => b.nodes);
+        <button onclick="finish('chap1_lvl1','chap1_lvl2')">Terminer</button>
+        <div class="back" onclick="openChap1()">⬅ Retour</div>
+    `;
+}
 
-        // ---------- Persistence (CloudStorage + localStorage fallback) ----------
-        async function loadProgress() {
-            if (isTelegram && tg.CloudStorage) {
-                try {
-                    const items = await new Promise((resolve, reject) => {
-                        tg.CloudStorage.getItems(['doneLessons', 'language', 'lastNode'], (error, values) => {
-                            if (error) reject(error);
-                            else resolve(values);
-                        });
-                    });
-                    if (items) {
-                        if (items.doneLessons) doneLessons = JSON.parse(items.doneLessons);
-                        if (items.language) currentLang = items.language;
-                        if (items.lastNode && !doneLessons.includes(items.lastNode)) {
-                            // optional auto-open last, but we'll just use it for continue
-                            localStorage.setItem('master_last_node', items.lastNode);
-                        }
-                        cloudStorageAvailable = true;
-                    }
-                } catch (e) {
-                    console.warn('CloudStorage load fallback to localStorage', e);
-                    loadFromLocalStorage();
-                }
-            } else {
-                loadFromLocalStorage();
-            }
-            if (!doneLessons.length && localStorage.getItem('master_repair_done')) {
-                doneLessons = JSON.parse(localStorage.getItem('master_repair_done'));
-            }
-            if (!currentLang || currentLang !== 'en' && currentLang !== 'ar') currentLang = localStorage.getItem('master_repair_lang') || 'en';
-        }
+function lvl2(){
+    content.innerHTML = `
+        <h2>Pince</h2>
+        <p>Permet de manipuler les composants.</p>
 
-        function loadFromLocalStorage() {
-            doneLessons = JSON.parse(localStorage.getItem('master_repair_done') || '[]');
-            currentLang = localStorage.getItem('master_repair_lang') || 'en';
-        }
+        <button onclick="finish('chap1_lvl2','chap1_lvl3')">Terminer</button>
+        <div class="back" onclick="openChap1()">⬅ Retour</div>
+    `;
+}
 
-        async function saveProgress() {
-            localStorage.setItem('master_repair_done', JSON.stringify(doneLessons));
-            localStorage.setItem('master_repair_lang', currentLang);
-            if (isTelegram && tg.CloudStorage && cloudStorageAvailable) {
-                try {
-                    await new Promise((resolve, reject) => {
-                        tg.CloudStorage.setItems({
-                            doneLessons: JSON.stringify(doneLessons),
-                            language: currentLang,
-                            lastNode: currentNodeId || ''
-                        }, (error, success) => {
-                            if (error) reject(error);
-                            else resolve(success);
-                        });
-                    });
-                } catch (e) { console.warn('CloudStorage save error', e); }
-            }
-        }
+function lvl3(){
+    content.innerHTML = `
+        <h2>Fer à souder</h2>
+        <p>Utilisé pour souder les composants électroniques.</p>
 
-        function markLessonDone(id) {
-            if (!doneLessons.includes(id)) {
-                doneLessons.push(id);
-                saveProgress();
-                showToast(t('toastDone'));
-                if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-            }
-        }
+        <button onclick="finish('chap1_lvl3')">Terminer</button>
+        <div class="back" onclick="openChap1()">⬅ Retour</div>
+    `;
+}
 
-        // ---------- Navigation ----------
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+// ================= FINISH =================
+function finish(current, next){
+    localStorage.setItem(current, true);
+    if(next) progress[next] = true;
 
-        function navigateTo(pageId, push = true) {
-            if (push && pageId !== 'homePage') {
-                navigationStack.push(activePageId());
-            }
-            showPage(pageId);
-            updateBackButton();
-        }
+    openChap1();
+}
 
-        function activePageId() {
-            const active = document.querySelector('.page.active');
-            return active ? active.id : 'homePage';
-        }
+// ================= BACK =================
+function back(){
+    content.style.display="none";
+    menu.style.display="grid";
+}
 
-        function navigateBack() {
-            if (navigationStack.length > 0) {
-                const prev = navigationStack.pop();
-                showPage(prev);
-            } else {
-                goHome();
-            }
-            updateBackButton();
-        }
+// INIT
+loadMenu();
 
-        function goHome() {
-            navigationStack = [];
-            currentBranchId = null;
-            currentNodeId = null;
-            renderHome();
-            showPage('homePage');
-            updateBackButton();
-        }
-
-        function openBranch(id) {
-            currentBranchId = id;
-            renderBranchPage();
-            navigateTo('branchPage');
-        }
-
-        function openNode(node) {
-            currentNodeId = node.id;
-            currentBookPage = 0;
-            if (!currentBranchId) {
-                const branch = branches.find(b => b.nodes.some(n => n.id === node.id));
-                if (branch) currentBranchId = branch.id;
-            }
-            renderBookPage();
-            navigateTo('bookPage');
-        }
-
-        function continueLearning() {
-            const firstUndone = allNodes.find(n => !doneLessons.includes(n.id));
-            if (firstUndone) {
-                openNode(firstUndone);
-            } else {
-                openNode(allNodes[0]);
-            }
-        }
-
-        function updateBackButton() {
-            const backBtn = document.getElementById('backButton');
-            if (!isTelegram) {
-                backBtn.style.visibility = navigationStack.length > 0 || activePageId() !== 'homePage' ? 'visible' : 'hidden';
-                backBtn.onclick = navigateBack;
-            } else {
-                // In Telegram, rely on native BackButton
-                if (activePageId() !== 'homePage') {
-                    tg.BackButton.show();
-                } else {
-                    tg.BackButton.hide();
-                }
-                backBtn.style.display = 'none'; // hide our custom button
-            }
-        }
-
-        // ---------- Render Functions ----------
-        function renderHome() {
-            const total = allNodes.length;
-            const done = doneLessons.length;
-            const pct = total ? Math.round((done / total) * 100) : 0;
-
-            document.getElementById('doneCount').textContent = done;
-            document.getElementById('totalCount').textContent = total;
-            document.getElementById('progressLabel').textContent = `${pct}% ${t('completedProgress')}`;
-            document.getElementById('progressBar').style.width = pct + '%';
-            document.getElementById('heroTitle').textContent = t('heroTitle');
-            document.getElementById('heroText').textContent = t('heroText');
-            document.getElementById('continueBtn').textContent = t('continue');
-            document.getElementById('branchesTitle').textContent = t('branchesTitle');
-            document.getElementById('branchesSubtitle').textContent = t('branchesSubtitle');
-            document.getElementById('sosTitle').textContent = t('sosTitle');
-            document.getElementById('sosText').textContent = t('sosText');
-            document.getElementById('sosBtn').textContent = t('sosBtn');
-            document.getElementById('completedLabel').textContent = t('completed');
-            document.getElementById('stepsLabel').textContent = t('steps');
-            document.getElementById('supportLabel').textContent = t('support');
-
-            const branchList = document.getElementById('branchList');
-            branchList.innerHTML = '';
-            branches.forEach(branch => {
-                const doneCount = branch.nodes.filter(n => doneLessons.includes(n.id)).length;
-                const totalBranch = branch.nodes.length;
-                const isDone = doneCount === totalBranch;
-                const card = document.createElement('div');
-                card.className = `branch-card ${isDone ? 'done' : ''}`;
-                card.onclick = () => openBranch(branch.id);
-                card.innerHTML = `
-                    <div class="card-header">
-                        <span class="card-title">${txt(branch.title)}</span>
-                        <span class="badge ${isDone ? 'done' : ''}">${doneCount}/${totalBranch}</span>
-                    </div>
-                    <div class="card-desc">${txt(branch.desc)}</div>
-                `;
-                branchList.appendChild(card);
-            });
-
-            // Connect MainButton for continue
-            if (isTelegram) {
-                tg.MainButton.setText(t('continue'));
-                tg.MainButton.show();
-                currentMainAction = continueLearning;
-            }
-        }
-
-        function renderBranchPage() {
-            const branch = branches.find(b => b.id === currentBranchId);
-            if (!branch) return;
-            const doneCount = branch.nodes.filter(n => doneLessons.includes(n.id)).length;
-            document.getElementById('branchTitle').textContent = txt(branch.title);
-            document.getElementById('branchDesc').textContent = txt(branch.desc);
-            document.getElementById('branchProgressBadge').textContent = `${doneCount}/${branch.nodes.length}`;
-            document.getElementById('chaptersTitle').textContent = t('chaptersTitle');
-            document.getElementById('chaptersSubtitle').textContent = t('chaptersSubtitle');
-            document.getElementById('branchBackBtn').textContent = t('back');
-
-            const chapterList = document.getElementById('chapterList');
-            chapterList.innerHTML = '';
-            branch.nodes.forEach(node => {
-                const isDone = doneLessons.includes(node.id);
-                const card = document.createElement('div');
-                card.className = `chapter-card ${isDone ? 'done' : ''}`;
-                card.onclick = () => openNode(node);
-                card.innerHTML = `
-                    <div class="card-header">
-                        <span class="card-title">${txt(node.title)}</span>
-                        <span class="badge ${isDone ? 'done' : ''}">${isDone ? t('doneState') : t('open')}</span>
-                    </div>
-                    <div class="card-desc">${txt(node.desc)}</div>
-                `;
-                chapterList.appendChild(card);
-            });
-
-            if (isTelegram) {
-                tg.MainButton.hide();
-                currentMainAction = null;
-            }
-        }
-
-        function renderBookPage() {
-            const node = allNodes.find(n => n.id === currentNodeId);
-            if (!node) return;
-            const book = node.book;
-            if (!book || book.length === 0) return;
-            const page = book[currentBookPage];
-
-            document.getElementById('bookTitle').textContent = txt(node.title);
-            document.getElementById('bookDesc').textContent = txt(node.desc);
-            document.getElementById('bookCounter').textContent = `${currentBookPage + 1} / ${book.length}`;
-            document.getElementById('bookPageTitle').textContent = txt(page.title);
-            document.getElementById('bookPageText').textContent = txt(page.text);
-            document.getElementById('prevBtn').textContent = t('prev');
-            document.getElementById('nextBtn').textContent = t('next');
-            document.getElementById('bookBackBtn').textContent = t('back');
-            document.getElementById('markDoneBtn').textContent = t('done');
-
-            document.getElementById('prevBtn').disabled = currentBookPage === 0;
-            document.getElementById('nextBtn').disabled = currentBookPage === book.length - 1;
-
-            const visualDiv = document.getElementById('bookVisual');
-            visualDiv.innerHTML = generateVisual(page);
-
-            const pointsList = document.getElementById('bookPoints');
-            pointsList.innerHTML = '';
-            page.points.forEach(p => {
-                const item = document.createElement('div');
-                item.className = 'point-item';
-                item.innerHTML = `<div class="point-title">${txt(p.title)}</div><div class="point-text">${txt(p.text)}</div>`;
-                pointsList.appendChild(item);
-            });
-
-            if (isTelegram) {
-                tg.MainButton.setText(t('done'));
-                tg.MainButton.show();
-                currentMainAction = () => markLessonDone(node.id);
-            }
-        }
-
-        function generateVisual(page) {
-            if (page.kind === 'meter') return generateMeterVisual(page);
-            if (page.kind === 'component') return generateComponentVisual(page);
-            return '';
-        }
-
-        function generateMeterVisual(page) {
-            const mode = page.mode;
-            const modes = [
-                { class: 'm-off', label: 'OFF', pos: 'top:6px;left:52px;' },
-                { class: 'm-vdc', label: 'V⎓', pos: 'top:20px;right:13px;' },
-                { class: 'm-vac', label: 'V~', pos: 'right:4px;top:55px;' },
-                { class: 'm-ohm', label: 'Ω', pos: 'right:18px;bottom:17px;' },
-                { class: 'm-cont', label: ')))', pos: 'left:52px;bottom:5px;' },
-                { class: 'm-diode', label: '▷|', pos: 'left:15px;bottom:18px;' },
-                { class: 'm-a', label: 'A', pos: 'left:4px;top:55px;' },
-                { class: 'm-ma', label: 'mA', pos: 'left:14px;top:20px;' }
-            ];
-            return `
-                <div class="meter-screen">${page.display}</div>
-                <div class="dial">
-                    ${modes.map(m => `<span class="mode-marker ${m.class} ${m.class.slice(2) === mode.toLowerCase() ? 'active' : ''}" style="${m.pos}">${m.label}</span>`).join('')}
-                    <div class="dial-center-text">${page.display.split(' ')[0] || mode}</div>
-                </div>
-                <div class="ports-row">
-                    <div class="port-tag black">COM</div>
-                    <div class="port-tag red">VΩ</div>
-                    <div class="port-tag gold">10A</div>
-                </div>
-                <div class="probes">
-                    <div class="probe" style="background:#cbd5e1;color:#cbd5e1;"></div>
-                    <div class="probe" style="background:#e11d48;color:#e11d48;"></div>
-                </div>
-            `;
-        }
-
-        function generateComponentVisual(page) {
-            return `
-                <div class="component-visual">
-                    <div style="font-size:12px;text-transform:uppercase;font-weight:800;color:var(--cyan);margin-bottom:4px;">${page.mode}</div>
-                    <div class="comp-symbol">${page.display}</div>
-                    <div class="schematic-tag">${page.symbol}</div>
-                    <div class="test-io">
-                        <div class="io-box">IN</div>
-                        <div class="meter-mini">${page.display}</div>
-                        <div class="io-box">OUT</div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // ---------- UI Helpers ----------
-        function showToast(message) {
-            const existing = document.querySelector('.toast');
-            if (existing) existing.remove();
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2500);
-        }
-
-        // ---------- Event Listeners ----------
-        document.getElementById('continueBtn').addEventListener('click', continueLearning);
-        document.getElementById('sosBtn').addEventListener('click', () => {
-            const link = "https://t.me/+OVTmcEQLg00zMTQ0";
-            if (isTelegram) tg.openTelegramLink(link);
-            else window.open(link, '_blank');
-        });
-        document.getElementById('branchBackBtn').addEventListener('click', goHome);
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            if (currentBookPage > 0) {
-                currentBookPage--;
-                renderBookPage();
-            }
-        });
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            const node = allNodes.find(n => n.id === currentNodeId);
-            if (node && currentBookPage < node.book.length - 1) {
-                currentBookPage++;
-                renderBookPage();
-            }
-        });
-        document.getElementById('bookBackBtn').addEventListener('click', () => {
-            if (currentBranchId) {
-                renderBranchPage();
-                navigateTo('branchPage', false);
-            } else goHome();
-        });
-        document.getElementById('markDoneBtn').addEventListener('click', () => {
-            if (currentNodeId) {
-                markLessonDone(currentNodeId);
-                renderHome(); // reflect progress
-                if (currentBranchId) renderBranchPage();
-            }
-        });
-
-        document.getElementById('langToggle').addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = t('dir');
-            saveProgress();
-            applyLanguage();
-        });
-
-        // Back button for non-Telegram
-        if (!isTelegram) {
-            document.getElementById('backButton').addEventListener('click', navigateBack);
-        }
-
-        function applyLanguage() {
-            document.getElementById('langToggle').textContent = t('langBtn');
-            document.getElementById('connectionStatus').textContent = isTelegram ? t('connected') : t('browser');
-            document.getElementById('footerText').textContent = t('footer');
-            if (activePageId() === 'homePage') renderHome();
-            else if (activePageId() === 'branchPage') renderBranchPage();
-            else if (activePageId() === 'bookPage') renderBookPage();
-        }
-
-        // ---------- Initialization ----------
-        async function init() {
-            await loadProgress();
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = t('dir');
-            applyLanguage();
-            updateBackButton();
-            // if there's a last node saved and user hasn't completed everything, maybe pre-load continue?
-        }
-
-        init();
-    })();
 </script>
+
 </body>
 </html>

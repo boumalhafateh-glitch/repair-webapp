@@ -3,433 +3,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Master Repair Academy</title>
+<title>MASTER REPAIR ACADEMY</title>
+<meta name="theme-color" content="#0c1220">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Manrope:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-    --bg:#080808;
-    --surface:#111;
-    --surface-2:#1b1b1b;
-    --line:#303030;
-    --gold:#f2c94c;
-    --cyan:#38bdf8;
-    --green:#27c46b;
-    --muted:#9b9b9b;
-    --soft:#dedede;
-    --danger:#b00020;
+    --bg:#05070f;
+    --surface:#10131e;
+    --surface-2:#141a2d;
+    --line:rgba(113,129,255,0.18);
+    --blue:#3b82f6;
+    --purple:#8b5cf6;
+    --cyan:#28c4ff;
+    --gold:#f9b34d;
+    --green:#22c55e;
+    --muted:#98a2b3;
+    --soft:#d8d8e4;
+    --danger:#ef4444;
 }
 *{box-sizing:border-box;}
-body{
-    margin:0;
-    min-height:100vh;
-    color:#fff;
-    font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
-    background: radial-gradient(circle at top left,rgba(56,189,248,.16),transparent 28%), radial-gradient(circle at top right,rgba(242,201,76,.16),transparent 30%), linear-gradient(180deg,#0d0d0d,#050505);
-}
-body[dir="rtl"]{direction:rtl;}
-.app{max-width:560px;margin:auto;padding:16px;}
-.topbar{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;gap:10px;margin-bottom:16px;}
-.icon-btn,.lang-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:#121212;color:#fff;font-weight:900;cursor:pointer;}
-.lang-btn{color:var(--gold);}
-.logo{text-align:center;}
-.logo-mark{width:34px;height:34px;margin:0 auto 5px;border-radius:12px;border:1px solid rgba(56,189,248,.55);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:900;box-shadow:0 0 18px rgba(56,189,248,.26);}
-.logo h1{margin:0;font-size:17px;font-weight:900;letter-spacing:.6px;color:#eafaff;text-shadow:0 0 8px rgba(56,189,248,.48);}
-.logo h1 span{color:var(--gold);}
-.status{font-size:11px;color:var(--muted);font-weight:700;}
-.page{display:none;animation:fade .18s ease-out;}
-.page.active{display:block;}
-@keyframes fade{from{opacity:.4;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.hero,.panel,.branch-card,.lesson-card{border:1px solid var(--line);border-radius:18px;background:rgba(20,20,20,.95);padding:18px;margin-bottom:14px;box-shadow:0 18px 40px rgba(0,0,0,.22);}
-.title{margin:0;font-size:22px;font-weight:900;line-height:1.2;}
-.subtitle{margin:10px 0 0;color:var(--soft);font-size:14px;line-height:1.65;font-weight:600;}
-.progress-wrap{height:12px;border-radius:999px;background:#080808;border:1px solid var(--line);overflow:hidden;margin-top:16px;}
-.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));transition:width .4s ease;}
-button{min-height:46px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#111;color:#fff;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;transition:transform .2s ease,background .2s ease;}
-button:hover:not(:disabled){transform:translateY(-1px);}
-button:disabled{opacity:.4;cursor:not-allowed;}
-.primary{background:linear-gradient(135deg,var(--gold),#ffe08a);color:#111;}
-.secondary{background:#161616;color:#fff;}
-.danger{background:linear-gradient(180deg,var(--danger),#780015);}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
-.stat{border:1px solid var(--line);border-radius:14px;background:#141414;padding:14px;text-align:center;}
-.stat strong{display:block;color:var(--gold);font-size:20px;}
-.stat small{display:block;color:var(--muted);font-size:12px;margin-top:4px;}
-.branch-list{display:grid;gap:12px;}
-.branch-card{cursor:pointer;transition:border-color .2s,transform .2s;position:relative;text-align:left;}
-.branch-card:hover{transform:translateY(-2px);border-color:rgba(56,189,248,.65);}
-.branch-card h3{margin:0 0 8px;font-size:18px;}
-.branch-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5;}
-.badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 10px;border-radius:999px;background:rgba(242,201,76,.12);color:var(--gold);font-size:12px;font-weight:900;}
-.lesson-card{display:grid;gap:14px;}
-.lesson-card h3{margin:0;font-size:20px;}
-.lesson-card p{margin:0;color:var(--soft);font-size:14px;line-height:1.7;}
-.lesson-meta{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;}
-.lesson-meta small{color:var(--muted);font-size:13px;}
-.lesson-points{display:grid;gap:10px;margin-top:10px;}
-.point{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;background:#0f0f0f;}
-.point strong{display:block;margin-bottom:6px;font-size:14px;color:var(--gold);}
-.point span{display:block;color:var(--soft);font-size:13px;line-height:1.6;}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(20,20,20,.96);border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:#fff;font-weight:700;box-shadow:0 14px 40px rgba(0,0,0,.35);z-index:1000;opacity:0;animation:toastIn .25s forwards;}
-@keyframes toastIn{to{opacity:1;}}
-.footer{color:#777;font-size:11px;text-align:center;padding:18px 0 6px;font-weight:700;}
-@media(max-width:400px){.topbar{grid-template-columns:38px 1fr 38px;} .app{padding:14px;}}
+html,body{margin:0;padding:0;width:100%;min-height:100%;font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;background:radial-gradient(circle at top left,rgba(56,189,248,.15),transparent 23%),radial-gradient(circle at bottom right,rgba(139,92,246,.14),transparent 25%),linear-gradient(180deg,#05070f,#060812);color:#fff;}
+body{overflow-x:hidden;}
+.app{max-width:620px;margin:0 auto;padding:18px 18px 86px;}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;}
+.brand{display:flex;flex-direction:column;gap:6px;}
+.brand-title{font-family:"Orbitron","Manrope",sans-serif;font-size:30px;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:#fff;text-shadow:0 0 18px rgba(56,189,248,.45),0 0 26px rgba(139,92,246,.35);line-height:1;}
+.brand-subtitle{font-size:13px;color:var(--muted);letter-spacing:.05em;}
+.lang-toggle{min-width:56px;padding:0 14px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(17,24,39,.92);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 12px 26px rgba(56,189,248,.12);}
+.page{display:none;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;transform:translateY(10px);}
+.page.active{display:block;opacity:1;pointer-events:auto;transform:translateY(0);}
+.hero{position:relative;padding:26px;overflow:hidden;border-radius:28px;background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(139,92,246,.18));border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);box-shadow:0 24px 80px rgba(0,0,0,.28);}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(56,189,248,.18),transparent 28%),radial-gradient(circle at bottom left,rgba(139,92,246,.14),transparent 30%);pointer-events:none;}
+.hero-title{font-family:"Orbitron","Manrope",sans-serif;font-size:42px;font-weight:900;line-height:1.05;text-transform:uppercase;color:#fff;text-shadow:0 0 26px rgba(56,189,248,.45);margin:0;}
+.hero-subtitle{margin:16px 0 0;font-size:15px;line-height:1.8;color:var(--soft);max-width:640px;}
+.score-row{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:22px;}
+.card{border:1px solid rgba(255,255,255,.08);border-radius:22px;background:rgba(10,14,27,.96);padding:18px;}
+.card strong{display:block;font-size:28px;font-weight:900;color:#fff;line-height:1;}
+.card small{color:var(--muted);display:block;margin-top:4px;font-size:13px;}
+.progress-wrap{margin-top:22px;height:14px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);overflow:hidden;}
+.progress{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .45s ease;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:28px 0 14px;}
+.section-head h2{margin:0;font-size:20px;font-weight:900;letter-spacing:.02em;}
+.section-head p{margin:0;color:var(--muted);font-size:13px;max-width:62%;}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.card-block{position:relative;min-height:180px;padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:rgba(15,20,35,.96);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+.card-block:hover{transform:translateY(-3px);border-color:rgba(56,189,248,.45);box-shadow:0 24px 45px rgba(56,189,248,.12);}
+.card-block.locked{cursor:default;opacity:.55;}
+.card-block h3{margin:0 0 10px;font-size:18px;line-height:1.2;color:#fff;}
+.card-block p{margin:0;color:var(--muted);font-size:13px;line-height:1.75;}
+.card-block .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(139,92,246,.14);color:var(--purple);font-size:12px;font-weight:700;margin-top:16px;}
+.badge-lock{display:inline-flex;align-items:center;gap:6px;color:var(--blue);}
+.level-list{display:grid;gap:12px;margin-top:18px;}
+.level-item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.08);background:rgba(10,14,27,.95);cursor:pointer;transition:background .25s ease,border-color .25s ease;}
+.level-item.locked{cursor:default;opacity:.55;}
+.level-item:hover{background:rgba(56,189,248,.05);border-color:rgba(56,189,248,.25);}
+.level-item h3{margin:0;font-size:16px;}
+.level-item small{color:var(--muted);}
+.level-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--soft);font-size:12px;font-weight:700;}
+.panel-block{border-radius:24px;background:rgba(10,14,27,.96);border:1px solid rgba(255,255,255,.08);padding:22px;margin-top:20px;}
+.panel-block h3{margin:0;font-size:22px;line-height:1.1;}
+.panel-block p{margin:14px 0 0;font-size:15px;line-height:1.9;color:var(--muted);}
+.tip-box{margin-top:20px;padding:18px;border-radius:18px;border:1px solid rgba(56,189,248,.2);background:rgba(56,189,248,.08);}
+.tip-box strong{display:block;color:#b5d7ff;font-size:14px;margin-bottom:8px;}
+.tip-box p{margin:0;color:var(--soft);font-size:14px;line-height:1.7;}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 18px;border-radius:16px;border:1px solid transparent;font-size:15px;font-weight:900;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;}
+.button:hover{transform:translateY(-1px);}
+.primary-button{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;box-shadow:0 18px 40px rgba(56,189,248,.18);}
+.secondary-button{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.1);}
+.outline-button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.18);}
+.button:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+.quiz-card{border-radius:24px;background:rgba(10,14,27,.96);border:1px solid rgba(255,255,255,.08);padding:22px;margin-top:20px;}
+.quiz-card h3{margin:0;font-size:20px;}
+.options{display:grid;gap:12px;margin-top:18px;}
+.option-button{padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#fff;text-align:left;cursor:pointer;transition:background .2s ease,border-color .2s ease;}
+.option-button:hover{background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.35);}
+.option-button.correct{border-color:var(--green);background:rgba(34,197,94,.16);}
+.option-button.wrong{border-color:var(--danger);background:rgba(239,68,68,.16);}
+.option-button.disabled{pointer-events:none;opacity:.75;}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(10,14,27,.98);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px 18px;color:#fff;font-weight:700;backdrop-filter:blur(8px);box-shadow:0 24px 60px rgba(0,0,0,.35);z-index:10000;animation:toastIn .2s ease forwards;}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,6px);}to{opacity:1;transform:translate(-50%,0);} }
+.sos-button{position:fixed;right:18px;bottom:18px;z-index:100;min-width:52px;height:52px;border-radius:999px;border:none;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-weight:900;cursor:pointer;box-shadow:0 18px 45px rgba(56,189,248,.25);display:flex;align-items:center;justify-content:center;gap:10px;backdrop-filter:blur(6px);}
+.sos-button span{display:none;}
+.sos-button::before{content:'SOS';font-size:13px;letter-spacing:.18em;}
+@media(min-width:560px){.sos-button span{display:inline-flex;}}
+@media(max-width:520px){.section-head{flex-direction:column;align-items:flex-start;} .grid{grid-template-columns:1fr;} .score-row{grid-template-columns:1fr;}}
+@media(max-width:420px){.app{padding:16px 12px 96px;} .hero-title{font-size:32px;} .card strong{font-size:24px;} .button{font-size:14px;}}
 </style>
 </head>
 <body>
 <div class="app">
     <div class="topbar">
-        <button class="icon-btn" onclick="goHome()" aria-label="Home">⌂</button>
-        <div class="logo">
-            <div class="logo-mark" aria-hidden="true">⌁</div>
-            <h1><span>MASTER</span> REPAIR</h1>
-            <div class="status" id="telegramStatus"></div>
+        <div class="brand">
+            <div class="brand-title" id="brandTitle"></div>
+            <div class="brand-subtitle" id="brandSubtitle"></div>
         </div>
-        <button class="lang-btn" id="langButton" onclick="toggleLanguage()">AR</button>
+        <button class="lang-toggle" id="langButton" aria-label="Toggle language"></button>
     </div>
 
-    <div id="home" class="page active">
-        <div class="hero">
-            <h2 class="title" id="heroTitle"></h2>
-            <p class="subtitle" id="heroText"></p>
-            <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
-            <p class="subtitle" id="progressText"></p>
+    <div class="hero">
+        <div class="hero-title" id="heroTitle"></div>
+        <div class="hero-subtitle" id="heroSubtitle"></div>
+        <div class="score-row">
+            <div class="card"><small id="xpLabel"></small><strong id="xpValue"></strong></div>
+            <div class="card"><small id="progressLabel"></small><strong id="progressText"></strong></div>
         </div>
-
-        <div class="stats">
-            <div class="stat"><strong id="doneCount">0</strong><small id="completedLabel"></small></div>
-            <div class="stat"><strong id="totalCount">0</strong><small id="stepsLabel"></small></div>
-        </div>
-
-        <button class="primary" onclick="continueLearning()" id="continueButton"></button>
-
-        <div class="section-title">
-            <h3 id="branchesTitle"></h3>
-            <p class="subtitle" id="branchesSubtitle"></p>
-        </div>
-
-        <div id="branchList" class="branch-list"></div>
+        <div class="progress-wrap"><div class="progress" id="globalProgress"></div></div>
     </div>
 
-    <div id="branchPage" class="page">
-        <div class="panel">
-            <h2 class="title" id="branchTitle"></h2>
-            <p class="subtitle" id="branchDesc"></p>
-            <div class="lesson-meta">
-                <small id="branchProgress"></small>
-                <span class="badge" id="branchNext"></span>
+    <div id="homePage" class="page active">
+        <div class="section-head">
+            <h2 id="homeSectionTitle"></h2>
+            <p id="homeSectionText"></p>
+        </div>
+        <div class="grid" id="chapterGrid"></div>
+    </div>
+
+    <div id="chapterPage" class="page">
+        <div class="section-head">
+            <h2 id="chapterTitle"></h2>
+            <p id="chapterText"></p>
+        </div>
+        <div class="panel-block">
+            <div class="level-list" id="levelList"></div>
+            <div class="actions">
+                <button class="button primary-button" id="startLevelButton"></button>
+                <button class="button outline-button" id="chapterQuizButton"></button>
             </div>
         </div>
-
-        <div class="lesson-card" id="branchLessonCard"></div>
-        <button class="primary" id="branchActionButton" onclick="openLesson(currentLessonIndex)"></button>
-        <button class="secondary" onclick="goHome()" id="branchBackButton"></button>
+        <button class="button secondary-button" id="backToHomeButton"></button>
     </div>
 
-    <div id="lessonPage" class="page">
-        <div class="panel">
-            <h2 class="title" id="lessonBranchTitle"></h2>
-            <p class="subtitle" id="lessonTitle"></p>
-            <div class="lesson-meta">
-                <small id="lessonStatus"></small>
-                <span class="badge" id="lessonPosition"></span>
+    <div id="levelPage" class="page">
+        <div class="panel-block">
+            <h3 id="levelTitle"></h3>
+            <p id="levelSubtitle"></p>
+            <div class="tip-box"><strong id="tipLabel"></strong><p id="levelTip"></p></div>
+            <div class="actions">
+                <button class="button primary-button" id="completeLevelButton"></button>
+                <button class="button outline-button" id="returnToChapterButton"></button>
             </div>
         </div>
-
-        <div class="lesson-card" id="lessonCard">
-            <p class="subtitle" id="lessonDesc"></p>
-            <div class="lesson-points" id="lessonPoints"></div>
-        </div>
-
-        <button class="primary" id="lessonDoneButton" onclick="toggleLessonDone()"></button>
-        <button class="secondary" id="lessonContinueButton" onclick="continueBranch()"></button>
     </div>
 
-    <div class="footer" id="footerText"></div>
+    <div id="quizPage" class="page">
+        <div class="panel-block">
+            <h3 id="quizTitle"></h3>
+            <p id="quizSubtitle"></p>
+            <div id="quizCard" class="quiz-card"></div>
+            <div class="actions" id="quizActions"></div>
+        </div>
+    </div>
 </div>
-
+<button class="sos-button" id="sosButton" aria-label="SOS"><span id="sosLabel"></span></button>
 <script>
-const branches = [
-    {
-        id: "tools",
-        title: {en: "Repair Tools", ar: "أدوات الإصلاح"},
-        desc: {en: "Start with the essential tools for safe phone repair.", ar: "ابدأ بالأدوات الأساسية لإصلاح الهاتف بأمان."},
-        lessons: [
-            {id: "screwdriver", title:{en:"Screwdrivers",ar:"المفكات"}, desc:{en:"Choose the right bit and track each screw by position.",ar:"اختر مقاس المفك المناسب ونظم البراغي حسب مكانها."}, points:[{en:"Keep screws organized.",ar:"نظم البراغي."},{en:"Use the right bit size.",ar:"استخدم مقاس المفك الصحيح."}]},
-            {id: "multimeter", title:{en:"Multimeter Basics",ar:"أساسيات الملتيميتر"}, desc:{en:"Measure voltage, continuity and diode drops safely.",ar:"قِس الفولت والاستمرارية وقياسات الدايود بأمان."}, points:[{en:"Turn the meter off after use.",ar:"أطفئ الجهاز بعد الاستخدام."},{en:"Use the correct mode.",ar:"استخدم الوضع الصحيح."}]},
-            {id: "soldering", title:{en:"Soldering Skills",ar:"مهارات اللحام"}, desc:{en:"Keep the tip clean, use flux and control the temperature.",ar:"حافظ على رأس الكاوية نظيفًا واستخدم الفلكس وتحكَّم في الحرارة."}, points:[{en:"Clean the tip often.",ar:"نظف الرأس كثيرًا."},{en:"Avoid too much pressure.",ar:"تجنب الضغط الزائد."}]}
-        ]
-    },
-    {
-        id: "components",
-        title: {en: "Core Components", ar: "المكونات الأساسية"},
-        desc: {en: "Learn the parts you will test most often.", ar: "تعلم القطع التي ستفحصها غالبًا."},
-        lessons: [
-            {id: "resistor", title:{en:"Resistor",ar:"المقاومة"}, desc:{en:"A resistor limits current and protects circuits.",ar:"المقاومة تحد التيار وتحمي الدائرة."}, points:[{en:"Measure resistance with power off.",ar:"قِس المقاومة مع فصل الطاقة."},{en:"A bad resistor can stop the board.",ar:"المقاومة التالفة قد توقف اللوحة."}]},
-            {id: "capacitor", title:{en:"Capacitor",ar:"المكثف"}, desc:{en:"A capacitor stores energy and filters noise.",ar:"المكثف يخزن الطاقة وينقي التشويش."}, points:[{en:"Check for short circuits.",ar:"افحص وجود دارة قصر."},{en:"Discharge before testing.",ar:"افرغ الشحنة قبل الفحص."}]}
-        ]
-    },
-    {
-        id: "systems",
-        title: {en: "Board Systems", ar: "أنظمة اللوحة"},
-        desc: {en: "Understand how power and signals move on a phone board.", ar: "افهم كيف تتحرك الطاقة والإشارات على اللوحة."},
-        lessons: [
-            {id: "power", title:{en:"Power Flow",ar:"تدفق الطاقة"}, desc:{en:"Follow voltage from battery to the main IC.",ar:"تتبع الفولت من البطارية إلى المعالج الرئيسي."}, points:[{en:"Check VBAT and power rails.",ar:"افحص VBAT وخطوط الطاقة."},{en:"A missing rail often prevents booting.",ar:"غياب خط غالبًا يمنع الإقلاع."}]},
-            {id: "display", title:{en:"Display System",ar:"نظام الشاشة"}, desc:{en:"Learn the common causes of no image.",ar:"تعرف على أسباب عدم ظهور الصورة."}, points:[{en:"Inspect the connector first.",ar:"افحص الموصل أولًا."},{en:"Check display power and data lines.",ar:"افحص طاقة الشاشة وخطوط البيانات."}]}
-        ]
-    }
-];
-
-const ui = {
-    en: {
-        dir:"ltr",
-        langButton:"AR",
-        status:"Browser mode",
-        heroTitle:"One lesson at a time",
-        heroText:"Open the next lesson in the branch. Complete it, then continue.",
-        completed:"Completed",
-        steps:"Total lessons",
-        continue:"Continue learning",
-        branchesTitle:"Learning paths",
-        branchesSubtitle:"Choose one path and cover each lesson step by step.",
-        resume:"Resume lesson",
-        start:"Start lesson",
-        next:"Continue",
-        done:"Mark as completed",
-        completedMessage:"Lesson completed!",
-        branchComplete:"Branch complete!",
-        footer:"Master Repair Academy"
-    },
-    ar:{
-        dir:"rtl",
-        langButton:"EN",
-        status:"وضع المتصفح",
-        heroTitle:"درس واحد في كل مرة",
-        heroText:"افتح الدرس التالي في الفرع. أكمله ثم تابع.",
-        completed:"مكتمل",
-        steps:"إجمالي الدروس",
-        continue:"متابعة التعلم",
-        branchesTitle:"مسارات التعلم",
-        branchesSubtitle:"اختر مسارًا واغطي كل درس خطوة بخطوة.",
-        resume:"استئناف الدرس",
-        start:"ابدأ الدرس",
-        next:"تابع",
-        done:"علّم أنه منتهي",
-        completedMessage:"تم الدرس!",
-        branchComplete:"اكتمل الفرع!",
-        footer:"Master Repair Academy"
-    }
+const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+const storageKeys = {lang:'mra_lang', state:'mra_state'};
+const translations = {
+  en:{
+    dir:'ltr', brand:'MASTER REPAIR ACADEMY', subtitle:'Learn motherboard repair with structure, XP and real cases.',
+    hero:'Cyber repair academy for modern technicians.', xp:'XP', progress:'Global progress', homeTitle:'Choose your chapter', homeText:'Progress through each chapter one level at a time.',
+    chapterStart:'Start chapter', chapterQuiz:'Take quiz', back:'Back', complete:'Complete level', next:'Next level', quiz:'Chapter quiz', quizPass:'Chapter unlocked! Continue to the next mission.', quizFail:'Review the chapter and try again.',
+    quizSubtitle:'Answer questions to unlock the next chapter.', levelTip:'Pro tip', levelCompleted:'Level completed', chapterLocked:'Locked', chapterOpen:'Open', chapterDone:'Done', sos:'SOS',
+    telegramMain:'Continue learning', quizResult:'Quiz result', quizScore:'Score', quizRetry:'Retry quiz', quizReturn:'Return', levelStatus:'Unlock next level after completion.',
+    levelReady:'Ready to learn', chapterProgress:'Chapter progress', chapterDescription:'Complete all levels and pass the quiz to unlock the next chapter.', quizCompleted:'Quiz passed', quizLocked:'Complete levels first to unlock quiz.'
+  },
+  ar:{
+    dir:'rtl', brand:'أكاديمية الماستر للإصلاح', subtitle:'تعلم إصلاح اللوحات الأم بخطوات منظمة ونقاط خبرة وحالات حقيقية.',
+    hero:'أكاديمية الإصلاح السيبراني للفنيين المعاصرين.', xp:'نقاط', progress:'التقدم العام', homeTitle:'اختر الفصل', homeText:'تقدم خلال كل فصل درسًا تلو الآخر.',
+    chapterStart:'ابدأ الفصل', chapterQuiz:'اختبار الفصل', back:'رجوع', complete:'أكمل الدرس', next:'الدرس التالي', quiz:'الاختبار', quizPass:'تم فتح الفصل! تابع المهمة التالية.', quizFail:'راجع الفصل وحاول مرة أخرى.',
+    quizSubtitle:'أجب على الأسئلة لفتح الفصل التالي.', levelTip:'نصيحة', levelCompleted:'تم الدرس', chapterLocked:'مغلق', chapterOpen:'افتح', chapterDone:'منتهي', sos:'SOS',
+    telegramMain:'واصل التعلم', quizResult:'نتيجة الاختبار', quizScore:'النقاط', quizRetry:'إعادة الاختبار', quizReturn:'عودة', levelStatus:'افتح الدرس التالي بعد الإكمال.',
+    levelReady:'جاهز للتعلم', chapterProgress:'تقدم الفصل', chapterDescription:'أكمل جميع الدروس واجتز الاختبار لفتح الفصل التالي.', quizCompleted:'الاختبار ناجح', quizLocked:'أكمل الدروس أولاً لفتح الاختبار.'
+  }
 };
-
-let currentLang = localStorage.getItem("repair_academy_lang") || "en";
-let currentBranchId = null;
-let currentLessonIndex = 0;
-
-function tr(key){return ui[currentLang][key];}
-function txt(obj){return obj[currentLang];}
-
-function doneIds(){
-    return JSON.parse(localStorage.getItem("repair_academy_done") || "[]");
+const chapters = [
+  {id:'tools', title:{en:'Tools',ar:'الأدوات'}, description:{en:'Learn core tools for safe phone repair.',ar:'تعلم الأدوات الأساسية لإصلاح الهاتف بأمان.'}, levels:[
+     {title:{en:'Tool kit introduction',ar:'مقدمة مجموعة الأدوات'}, subtitle:{en:'Understand screwdrivers, tweezers and insulation tools.',ar:'افهم المفكات والملاقط والأدوات المعزولة.'}, example:{en:'A PH00 screwdriver is ideal for small phone screws.',ar:'مفك PH00 مناسب لبراغي الهواتف الصغيرة.'}, tip:{en:'Keep screws sorted by position before disassembly.',ar:'رتب البراغي حسب الموقع قبل الفك.'}},
+     {title:{en:'Screwdriver handling',ar:'التعامل مع المفكات'}, subtitle:{en:'Use the correct bit and avoid cam-out damage.',ar:'استخدم رأسًا مناسبًا وتجنب تلف رأس البرغي.'}, example:{en:'Apply steady pressure and turn slowly to prevent stripping.',ar:'اضغط بثبات واستدر ببطء لتجنب تلف الرأس.'}, tip:{en:'Use magnetic bits to keep screws secure.',ar:'استخدم رؤوسًا مغناطيسية لتثبيت البراغي.'}},
+     {title:{en:'Multimeter basics',ar:'أساسيات الملتيميتر'}, subtitle:{en:'Know meter modes and safe probe placement.',ar:'تعرف على أوضاع الملتيميتر ومكان وضع المجسات بأمان.'}, example:{en:'Use VDC mode for battery voltage and continuity for trace checks.',ar:'استخدم وضع VDC لفولت البطارية والاستمرارية لفحص المسارات.'}, tip:{en:'Always start with the meter on a higher range if unsure.',ar:'ابدأ دائمًا بنطاق أعلى إذا كنت غير متأكد.'}},
+     {title:{en:'Soldering iron care',ar:'رعاية كاوية اللحام'}, subtitle:{en:'Keep the tip clean and use flux for stable joints.',ar:'حافظ على نظافة الرأس واستخدم الفلكس للوصلات المستقرة.'}, example:{en:'Wipe the tip on a wet sponge and tin it before work.',ar:'امسح الرأس على إسفنجة مبللة وقم بتبطينها بالقصدير قبل العمل.'}, tip:{en:'Use a temperature-controlled iron to avoid pad damage.',ar:'استخدم كاوية بدرجة حرارة مضبوطة لتجنب تلف البادات.'}},
+     {title:{en:'Hot air basics',ar:'أساسيات الهواء الساخن'}, subtitle:{en:'Protect nearby components during rework.',ar:'احمِ المكونات المجاورة أثناء العمل بالهواء الساخن.'}, example:{en:'Use low airflow and 320°C for a small chip removal.',ar:'استخدم تيار هواء منخفض و320°C لإزالة رقاقة صغيرة.'}, tip:{en:'Shield sensitive parts with Kapton tape.',ar:'حدد الأجزاء الحساسة بشريط كابتون.'}}
+  ], quiz:[
+     {question:{en:'Which tool secures small screws without slipping?',ar:'أي أداة تثبت البراغي الصغيرة دون انزلاق؟'}, options:[{en:'Needle nose pliers',ar:'ملقط مدبب'},{en:'PH00 screwdriver',ar:'مفك PH00'},{en:'Hot air gun',ar:'مسدس الهواء الساخن'}], answer:1},
+     {question:{en:'What is the first step before soldering?',ar:'ما هي الخطوة الأولى قبل اللحام؟'}, options:[{en:'Apply flux',ar:'ضع الفلكس'},{en:'Heat the connector',ar:'سخن الموصل'},{en:'Clean and tin the tip',ar:'نظف واطلي الرأس'}], answer:2},
+     {question:{en:'Why use a temperature-controlled iron?',ar:'لماذا نستخدم كاوية بدرجة حرارة مضبوطة؟'}, options:[{en:'Faster heating',ar:'تسخين أسرع'},{en:'Prevent pad damage',ar:'منع تلف البادات'},{en:'Better solder color',ar:'لون لحام أفضل'}], answer:1}
+  ]},
+  {id:'multimeter', title:{en:'Multimeter',ar:'الملتيميتر'}, description:{en:'Master meter modes for testing phone circuits.',ar:'تقن أوضاع الملتيميتر لفحص دوائر الهاتف.'}, levels:[
+     {title:{en:'Voltage checks',ar:'فحوص الفولت'}, subtitle:{en:'Measure DC voltage on batteries and rails.',ar:'قِس الفولت المستمر على البطاريات والخطوط.'}, example:{en:'Test battery voltage at the battery connector.',ar:'اختبر فولت البطارية عند موصل البطارية.'}, tip:{en:'Black probe goes to COM, red to VΩ for voltage.',ar:'المجس الأسود في COM والأحمر في VΩ للفولت.'}},
+     {title:{en:'Continuity mode',ar:'وضع الاستمرارية'}, subtitle:{en:'Verify tracks and connectors with beep tests.',ar:'تحقق من المسارات والموصلات بصوت الصفارة.'}, example:{en:'A shorted trace will beep continuously.',ar:'المسار المقصر يعطي صفارة مستمرة.'}, tip:{en:'Disconnect power before continuity testing.',ar:'افصل الطاقة قبل اختبار الاستمرارية.'}},
+     {title:{en:'Diode measurement',ar:'قياس الدايود'}, subtitle:{en:'Check diode orientation and forward drop.',ar:'افحص اتجاه الدايود وسقوط الفولت الأمامي.'}, example:{en:'A good diode shows a value forward and open reverse.',ar:'الدايود الجيد يعطي قيمة للأمام وفتحًا للعكس.'}, tip:{en:'Compare with a known good board when possible.',ar:'قارن مع لوحة سليمة إن أمكن.'}},
+     {title:{en:'Resistance mode',ar:'وضع المقاومة'}, subtitle:{en:'Measure resistors and suspicious traces.',ar:'قِس المقاومات والمسارات المشبوهة.'}, example:{en:'A resistor should match its color-code value closely.',ar:'يجب أن تطابق المقاومة قيمتها المقروئية من الألوان.'}, tip:{en:'Do not measure resistance on powered circuits.',ar:'لا تقِس المقاومة في دوائر موصولة بالطاقة.'}},
+     {title:{en:'Current safety',ar:'سلامة قياس التيار'}, subtitle:{en:'Use current mode carefully and choose the right port.',ar:'استخدم وضع التيار بحذر واختر المدخل الصحيح.'}, example:{en:'A shorted test lead can blow the meter fuse.',ar:'قد يتلف فيوز الجهاز إذا كان الطرف قصيرًا.'}, tip:{en:'Only connect in series for current measurement.',ar:'وصل في التسلسل فقط لقياس التيار.'}}
+  ], quiz:[
+     {question:{en:'Which mode checks if two points are connected?',ar:'أي وضع يفحص ما إذا كانت نقطتان متصلتين؟'}, options:[{en:'VDC',ar:'VDC'},{en:'Continuity',ar:'الاستمرارية'},{en:'Ohms',ar:'أوم'}], answer:1},
+     {question:{en:'A diode test should show:',ar:'اختبار الدايود يجب أن يظهر:'}, options:[{en:'Same value both ways',ar:'نفس القيمة في كلا الاتجاهين'},{en:'Value one way and open reverse',ar:'قيمة باتجاه وفتح بالعكس'},{en:'Zero ohms',ar:'صفر أوم'}], answer:1},
+     {question:{en:'What must be off before resistance measurement?',ar:'ماذا يجب أن يكون مطفأ قبل قياس المقاومة؟'}, options:[{en:'The circuit power',ar:'طاقة الدائرة'},{en:'The meter',ar:'الملتيميتر'},{en:'The display',ar:'الشاشة'}], answer:0}
+  ]},
+  {id:'power', title:{en:'Power',ar:'الطاقة'}, description:{en:'Inspect battery and power rails for stable operation.',ar:'افحص البطارية وخطوط الطاقة لاستقرار التشغيل.'}, levels:[
+     {title:{en:'Battery line',ar:'خط البطارية'}, subtitle:{en:'Track VBAT from connector to PMIC.',ar:'تتبع VBAT من الموصل إلى PMIC.'}, example:{en:'A broken battery flex often causes no power.',ar:'فلاتة البطارية المكسورة غالبًا تسبب عدم تشغيل.'}, tip:{en:'Check battery voltage before any board testing.',ar:'افحص فولت البطارية قبل أي اختبار للوحة.'}},
+     {title:{en:'Power rails',ar:'خطوط الطاقة'}, subtitle:{en:'Verify VDD and core rails at IC pins.',ar:'تحقق من VDD وخطوط النواة عند أرجل الشرائح.'}, example:{en:'A missing 1.8V rail can block the CPU from booting.',ar:'غياب خط 1.8V يمكن أن يمنع المعالج من الإقلاع.'}, tip:{en:'Use the meter on the correct DC range.',ar:'استخدم الملتيميتر على نطاق DC الصحيح.'}},
+     {title:{en:'Ground path',ar:'مسار الأرضي'}, subtitle:{en:'Confirm ground returns and common nets.',ar:'تأكد من عودة الأرضي والشبكات المشتركة.'}, example:{en:'A weak ground may show unstable voltages.',ar:'الأرضي الضعيف قد يظهر فولتات غير ثابتة.'}, tip:{en:'Probe ground points with care and no pressure.',ar:'افحص نقاط الأرضي بحذر وبدون ضغط.'}},
+     {title:{en:'Charging port',ar:'منفذ الشحن'}, subtitle:{en:'Check VBUS and data pins on the USB connector.',ar:'افحص VBUS وأرجل البيانات على موصل USB.'}, example:{en:'Dirty pins can prevent charging even if battery is good.',ar:'البنات المتسخة غالبًا تقطع الشحن حتى لو كانت البطارية جيدة.'}, tip:{en:'Clean the connector before guessing the IC.',ar:'نظف الموصل قبل الظن بالشريحة.'}},
+     {title:{en:'Power sequencing',ar:'تسلسل الطاقة'}, subtitle:{en:'Observe enable and reset signals during boot.',ar:'راقب إشارات التفعيل والريست أثناء الإقلاع.'}, example:{en:'Missing enable pulse may keep the board asleep.',ar:'غياب نبضة التفعيل قد يبقي اللوحة نائمة.'}, tip:{en:'Use an oscilloscope only if available.',ar:'استخدم راسم إشارة فقط إن كان متاحًا.'}}
+  ], quiz:[
+     {question:{en:'What is VBAT?',ar:'ما هو VBAT؟'}, options:[{en:'Battery voltage',ar:'فولت البطارية'},{en:'Signal line',ar:'خط الإشارة'},{en:'Audio ground',ar:'أرضي الصوت'}], answer:0},
+     {question:{en:'A missing power rail usually causes:',ar:'غياب خط الطاقة عادة يسبب:'}, options:[{en:'No boot',ar:'عدم الإقلاع'},{en:'Loud sound',ar:'صوت عالي'},{en:'Faster charging',ar:'شحن أسرع'}], answer:0},
+     {question:{en:'What should be off before power measurement?',ar:'ماذا يجب أن يكون مطفأ قبل قياس الطاقة؟'}, options:[{en:'The board',ar:'اللوحة'},{en:'The multimeter',ar:'الملتيميتر'},{en:'The display',ar:'الشاشة'}], answer:0}
+  ]},
+  {id:'components', title:{en:'Components',ar:'المكونات'}, description:{en:'Understand resistors, capacitors, diodes and ICs.',ar:'افهم المقاومات والمكثفات والدايودات والشرائح.'}, levels:[
+     {title:{en:'Resistors',ar:'المقاومات'}, subtitle:{en:'Identify type and value on boards.',ar:'تعرّف النوع والقيمة على اللوحات.'}, example:{en:'A burnt resistor may show open or wrong ohms.',ar:'المقاومة المحروقة قد تظهر مفتوحة أو قيمة خاطئة.'}, tip:{en:'Compare with a good board if unsure.',ar:'قارن مع لوحة سليمة إن لم تكن متأكدًا.'}},
+     {title:{en:'Capacitors',ar:'المكثفات'}, subtitle:{en:'Check for shorts and capacitance leaks.',ar:'افحص وجود شورت وتسرب سعة.'}, example:{en:'A shorted capacitor can kill a power rail.',ar:'مكثف مقصر يمكن أن يقتل خطًا كهربائيًا.'}, tip:{en:'Discharge before measuring with the meter.',ar:'افرغ الشحنة قبل القياس بالملتيميتر.'}},
+     {title:{en:'Diodes',ar:'الدايودات'}, subtitle:{en:'Verify forward and reverse readings.',ar:'تحقق من القياسات الأمامية والعكسية.'}, example:{en:'A good diode passes one way and blocks the other.',ar:'الدايود الجيد يمر في اتجاه ويمنع في العكس.'}, tip:{en:'Use diode mode, not resistance mode.',ar:'استخدم وضع الدايود وليس وضع المقاومة.'}},
+     {title:{en:'Inductors',ar:'الملفات'}, subtitle:{en:'Look for low resistance and continuity.',ar:'ابحث عن مقاومة منخفضة واستمرارية.'}, example:{en:'A broken coil can cut the power path completely.',ar:'الملف المقطوع يمكن أن يقطع مسار الطاقة تمامًا.'}, tip:{en:'Test coils with continuity or low ohms.',ar:'اختبر الملفات بالاستمرارية أو المقاومة المنخفضة.'}},
+     {title:{en:'IC chips',ar:'الشرائح'}, subtitle:{en:'Inspect power rails and surrounding parts.',ar:'افحص خطوط الطاقة والمكونات المحيطة.'}, example:{en:'An IC fault is rare without surrounding power issues.',ar:'عطل الشريحة نادر دون مشاكل طاقة حولها.'}, tip:{en:'Never replace an IC without proof.',ar:'لا تبدل الشريحة بدون دليل.'}}
+  ], quiz:[
+     {question:{en:'Which component stores energy?',ar:'أي مكون يخزن الطاقة؟'}, options:[{en:'Resistor',ar:'مقاومة'},{en:'Capacitor',ar:'مكثف'},{en:'Diode',ar:'دايود'}], answer:1},
+     {question:{en:'A good diode in diode mode shows:',ar:'دايود جيد في وضع الدايود يظهر:'}, options:[{en:'Same value both ways',ar:'نفس القيمة في كلا الاتجاهين'},{en:'Value one way only',ar:'قيمة باتجاه واحد فقط'},{en:'Zero volts',ar:'صفر فولت'}], answer:1},
+     {question:{en:'IC replacement requires:',ar:'تبديل الشريحة يتطلب:'}, options:[{en:'Strong work',ar:'عمل قوي'},{en:'Proof and diagnosis',ar:'دليل وتشخيص'},{en:'Cleaning only',ar:'تنظيف فقط'}], answer:1}
+  ]},
+  {id:'schematics', title:{en:'Schematics',ar:'المخططات'}, description:{en:'Read symbols and trace board nets efficiently.',ar:'اقرأ الرموز وتتبع شبكات اللوحة بكفاءة.'}, levels:[
+     {title:{en:'Symbol reading',ar:'قراءة الرموز'}, subtitle:{en:'Identify resistors, capacitors and diodes from symbols.',ar:'تعرّف المقاومات والمكثفات والدايودات من الرموز.'}, example:{en:'A zig-zag symbol means resistor.',ar:'الرمز المتعرج يعني مقاومة.'}, tip:{en:'Learn common symbols before troubleshooting.',ar:'تعلم الرموز الشائعة قبل الاستكشاف.'}},
+     {title:{en:'Power nets',ar:'شبكات الطاقة'}, subtitle:{en:'Follow VCC, VDD and ground lines on the schematic.',ar:'تتبع خطوط VCC وVDD والأرضي على المخطط.'}, example:{en:'A missing rail on schematic points to a power fault.',ar:'اختفاء خط على المخطط يشير إلى عطل في الطاقة.'}, tip:{en:'Mark nets with colors while reading.',ar:'علم الشبكات بالألوان أثناء القراءة.'}},
+     {title:{en:'Signal tracing',ar:'تتبع الإشارة'}, subtitle:{en:'Trace signal paths from connector to IC.',ar:'تتبع مسارات الإشارة من الموصل إلى الشريحة.'}, example:{en:'A bad signal line can cause display failure.',ar:'خط إشارة سيئ قد يسبب فشل الشاشة.'}, tip:{en:'Use continuity mode for trace verification.',ar:'استخدم وضع الاستمرارية للتحقق من المسار.'}},
+     {title:{en:'Ground reference',ar:'مرجع الأرضي'}, subtitle:{en:'Recognize ground planes and common nets.',ar:'تعرف على طائرات الأرضي والشبكات المشتركة.'}, example:{en:'All grounds should connect through the same net.',ar:'يجب أن تتصل كافة الأرضيات عبر نفس الشبكة.'}, tip:{en:'Ground issues often mimic power faults.',ar:'مشاكل الأرضي غالبًا تشبه أعطال الطاقة.'}},
+     {title:{en:'Boardview basics',ar:'أساسيات البوردفيو'}, subtitle:{en:'Use boardview to locate components from schematic.',ar:'استخدم البوردفيو لتحديد مواقع المكونات من المخطط.'}, example:{en:'A schematic symbol can lead you to the real chip location.',ar:'الرمز في المخطط يقودك إلى موقع الشريحة الحقيقي.'}, tip:{en:'Keep both schematic and boardview open if possible.',ar:'احتفظ بالمخطط والبوردفيو مفتوحين إذا أمكن.'}}
+  ], quiz:[
+     {question:{en:'What does a zig-zag symbol represent?',ar:'ماذا يمثل الرمز المتعرج؟'}, options:[{en:'Capacitor',ar:'مكثف'},{en:'Resistor',ar:'مقاومة'},{en:'Diode',ar:'دايود'}], answer:1},
+     {question:{en:'Ground nets are important because:',ar:'شبكات الأرضي مهمة لأن:'}, options:[{en:'They carry power',ar:'تحمل الطاقة'},{en:'They provide reference and return path',ar:'توفر مرجعًا ومسارًا للعودة'},{en:'They store data',ar:'تخزن البيانات'}], answer:1},
+     {question:{en:'Boardview helps you:',ar:'البوردفيو يساعدك على:'}, options:[{en:'Measure voltage',ar:'قياس الفولت'},{en:'Locate real components on the board',ar:'تحديد المكونات الحقيقية على اللوحة'},{en:'Replace the battery',ar:'استبدال البطارية'}], answer:1}
+  ]},
+  {id:'diagnosis', title:{en:'Diagnosis',ar:'التشخيص'}, description:{en:'Use inspection and measurement to isolate faults.',ar:'استخدم الفحص والقياس لعزل الأعطال.'}, levels:[
+     {title:{en:'Visual inspection',ar:'الفحص البصري'}, subtitle:{en:'Look for damage, corrosion and lifted pads.',ar:'ابحث عن التلف والتآكل والبادات المرفوعة.'}, example:{en:'Burn marks near power components often indicate shorts.',ar:'علامات الحرق قرب مكونات الطاقة تشير غالبًا إلى دوائر قصر.'}, tip:{en:'Use a magnifier for small details.',ar:'استخدم مكبرًا للتفاصيل الصغيرة.'}},
+     {title:{en:'Voltage probing',ar:'فحص الفولت'}, subtitle:{en:'Measure critical voltages on each rail.',ar:'قِس الفولتات الحرجة على كل خط.'}, example:{en:'Compare regulator output to expected voltage.',ar:'قارن خرج المنظم بالفولت المتوقع.'}, tip:{en:'Probe directly and avoid shorts with the tip.',ar:'افحص مباشرة وتجنب الشورت بطرف المجس.'}},
+     {title:{en:'Known-good compare',ar:'المقارنة بلوحة سليمة'}, subtitle:{en:'Use a working board as reference.',ar:'استخدم لوحة سليمة كمرجع.'}, example:{en:'Matching readings confirm the line is good.',ar:'القراءات المتطابقة تؤكد أن الخط جيد.'}, tip:{en:'Compare identical model and revision boards.',ar:'قارن فقط لوحات بنفس الموديل والإصدار.'}},
+     {title:{en:'Short detection',ar:'اكتشاف الشورت'}, subtitle:{en:'Find low resistance paths with continuity mode.',ar:'ابحث عن المسارات منخفضة المقاومة بوضع الاستمرارية.'}, example:{en:'A beep across power and ground indicates a short.',ar:'الصفارة بين الطاقة والأرضي تشير إلى شورت.'}, tip:{en:'Disconnect components to isolate the faulty area.',ar:'افصل المكونات لعزل المنطقة الخاطئة.'}},
+     {title:{en:'Fault isolation',ar:'عزل العطل'}, subtitle:{en:'Work step by step from symptom to root cause.',ar:'اعمل خطوة بخطوة من العرض حتى السبب الجذري.'}, example:{en:'Start with power, then move to signal issues.',ar:'ابدأ بالطاقة ثم انتقل إلى مشاكل الإشارة.'}, tip:{en:'Document readings to avoid repeating steps.',ar:'وثق القراءات لتجنب تكرار الخطوات.'}}
+  ], quiz:[
+     {question:{en:'What is the first diagnostic step?',ar:'ما هي الخطوة الأولى في التشخيص؟'}, options:[{en:'Replace the chip',ar:'استبدل الشريحة'},{en:'Visual inspection',ar:'الفحص البصري'},{en:'Use hot air',ar:'استخدم الهواء الساخن'}], answer:1},
+     {question:{en:'A short between power and ground shows:',ar:'الشورت بين الطاقة والأرضي يظهر:'}, options:[{en:'Beep in continuity mode',ar:'صفارة في وضع الاستمرارية'},{en:'High resistance',ar:'مقاومة عالية'},{en:'No result',ar:'لا نتيجة'}], answer:0},
+     {question:{en:'Known-good comparison verifies:',ar:'المقارنة بلوحة سليمة تتحقق من:'}, options:[{en:'Expected voltages',ar:'الفولتات المتوقعة'},{en:'Speaker volume',ar:'مستوى الصوت'},{en:'Battery health',ar:'صحة البطارية'}], answer:0}
+  ]},
+  {id:'faults', title:{en:'Common Faults',ar:'الأعطال الشائعة'}, description:{en:'Learn the most frequent phone board failures.',ar:'تعلم أكثر أعطال لوحات الهواتف شيوعًا.'}, levels:[
+     {title:{en:'No power',ar:'لا يوجد طاقة'}, subtitle:{en:'Check battery, fuse and power switches.',ar:'افحص البطارية والفيوز ومفاتيح الطاقة.'}, example:{en:'A blown fuse is a common no-power cause.',ar:'الفيوز المحروق سبب شائع لانعدام الطاقة.'}, tip:{en:'Verify the fuse before changing ICs.',ar:'تحقق من الفيوز قبل تغيير الشرائح.'}},
+     {title:{en:'No display',ar:'لا توجد شاشة'}, subtitle:{en:'Inspect the display connector and backlight.',ar:'افحص موصل الشاشة والإضاءة الخلفية.'}, example:{en:'A loose flex cable can produce a black screen.',ar:'كابل فليكس مفكوك يمكن أن ينتج شاشة سوداء.'}, tip:{en:'Use a flashlight to distinguish backlight faults.',ar:'استخدم مصباحًا لتمييز أعطال الإضاءة الخلفية.''}},
+     {title:{en:'No charge',ar:'لا يشحن'}, subtitle:{en:'Check USB port, VBUS and charging IC.',ar:'افحص منفذ USB وVBUS وشريحة الشحن.'}, example:{en:'Corroded pins often cut charging current.',ar:'البنات المتآكلة غالبًا تقطع الشحن حتى لو كانت البطارية جيدة.'}, tip:{en:'Clean the port before diagnosing the IC.',ar:'نظف المنفذ قبل تشخيص الشريحة.'}},
+     {title:{en:'No audio',ar:'لا يوجد صوت'}, subtitle:{en:'Inspect speaker line and audio codec power.',ar:'افحص خط السماعة وطاقة كودك الصوت.'}, example:{en:'A disconnected speaker flex can mute sound.',ar:'فليكس السماعة المفصول يمكن أن يكتم الصوت.'}, tip:{en:'Test with a known-good speaker.',ar:'اختبر بسماعة سليمة.'}},
+     {title:{en:'Touch failure',ar:'فشل اللمس'}, subtitle:{en:'Check the touch controller and screen cable.',ar:'افحص وحدة تحكم اللمس وكابل الشاشة.'}, example:{en:'A torn touchscreen cable can cause no response.',ar:'كابل شاشة ممزق يمكن أن يسبب عدم استجابة.'}, tip:{en:'Do not flex the cable while testing.',ar:'لا تثن الكابل أثناء الفحص.'}}
+  ], quiz:[
+     {question:{en:'A black screen often means:',ar:'الشاشة السوداء غالبًا تعني:'}, options:[{en:'Battery problem',ar:'مشكلة بطارية'},{en:'Display or backlight issue',ar:'مشكلة شاشة أو إضاءة خلفية'},{en:'Software only',ar:'سوفتوير فقط'}], answer:1},
+     {question:{en:'No charging can be caused by:',ar:'عدم الشحن يمكن أن ينتج عن:'}, options:[{en:'Dirty USB port',ar:'منفذ USB متسخ'},{en:'High volume',ar:'مستوى صوت مرتفع'},{en:'Clean screen',ar:'شاشة نظيفة'}], answer:0},
+     {question:{en:'Touch issues often start with:',ar:'مشاكل اللمس غالبًا تبدأ بـ:'}, options:[{en:'Broken touch flex',ar:'فليكس اللمس المكسور'},{en:'Bad battery',ar:'بطارية سيئة'},{en:'Speaker issue',ar:'مشكلة سماعة'}], answer:0}
+  ]},
+  {id:'techniques', title:{en:'Repair Techniques',ar:'تقنيات الإصلاح'}, description:{en:'Use advanced repair methods for board recovery.',ar:'استخدم تقنيات إصلاح متقدمة لاستعادة اللوحة.'}, levels:[
+     {title:{en:'Jumper repair',ar:'إصلاح الجمبر'}, subtitle:{en:'Replace damaged traces with thin wire.',ar:'استبدل المسارات التالفة بسلك رفيع.'}, example:{en:'A lifted trace can be bridged with enameled wire.',ar:'يمكن جسر مسار مرفوع بسلك معزول.'}, tip:{en:'Keep the wire tight and insulated.',ar:'اجعل السلك مشدودًا ومعزولًا.'}},
+     {title:{en:'Flex replacement',ar:'استبدال الفلكس'}, subtitle:{en:'Replace damaged connectors and flex cables.',ar:'استبدل الموصلات والفلكسات التالفة.'}, example:{en:'A torn charging flex can be replaced safely.',ar:'يمكن استبدال فليكس الشحن الممزق بأمان.'}, tip:{en:'Organize screws and keep flex direction clear.',ar:'نظم البراغي واجعل اتجاه الفليكس واضحًا.'}},
+     {title:{en:'Reflow basics',ar:'أساسيات الريفلو'}, subtitle:{en:'Use hot air for reflowing solder joints.',ar:'استخدم الهواء الساخن لإعادة تدفق اللحام.'}, example:{en:'Reflowing a cold joint can restore connectivity.',ar:'إعادة تدفق وصلة باردة قد تستعيد الاتصال.'}, tip:{en:'Avoid overheating nearby ICs.',ar:'تجنب حرارة زائدة للمكونات المجاورة.'}},
+     {title:{en:'Cleaning contacts',ar:'تنظيف الموصلات'}, subtitle:{en:'Use IPA and brushes for corrosion removal.',ar:'استخدم IPA وفرشاة لإزالة التآكل.'}, example:{en:'Dirty contacts often cause intermittent faults.',ar:'الموصلات المتسخة غالبًا تسبب أعطال متقطعة.'}, tip:{en:'Let the board dry completely before powering on.',ar:'دع اللوحة تجف تمامًا قبل التشغيل.'}},
+     {title:{en:'Thermal control',ar:'التحكم الحراري'}, subtitle:{en:'Manage heat during soldering and removal.',ar:'تحكم في الحرارة أثناء اللحام والإزالة.'}, example:{en:'Use heat shields to protect plastic parts.',ar:'استخدم دروع حرارة لحماية الأجزاء البلاستيكية.'}, tip:{en:'Lower temperature and longer time is safer.',ar:'درجة حرارة أقل ووقت أطول أكثر أمانًا.'}}
+  ], quiz:[
+     {question:{en:'A jumper wire is used to:',ar:'يستخدم سلك الجمبر لـ:'}, options:[{en:'Connect broken traces',ar:'ربط المسارات المكسورة'},{en:'Clean the screen',ar:'تنظيف الشاشة'},{en:'Measure voltage',ar:'قياس الفولت'}], answer:0},
+     {question:{en:'What protects nearby parts during hot air work?',ar:'ما الذي يحمي الأجزاء المجاورة أثناء الهواء الساخن؟'}, options:[{en:'Kapton tape',ar:'شريط كابتون'},{en:'Sandpaper',ar:'ورق الصنفرة'},{en:'Glue',ar:'الغراء'}], answer:0},
+     {question:{en:'After cleaning with IPA, you should:',ar:'بعد التنظيف بالـIPA يجب:'}, options:[{en:'Turn on immediately',ar:'شغله فورًا'},{en:'Let it dry',ar:'دعه يجف'},{en:'Cover it',ar:'غطيه'}], answer:1}
+  ]},
+  {id:'cases', title:{en:'Practical Cases',ar:'الحالات العملية'}, description:{en:'Apply knowledge to real repair scenarios.',ar:'طبق المعرفة في سيناريوهات إصلاح حقيقية.'}, levels:[
+     {title:{en:'No charge case',ar:'حالة عدم الشحن'}, subtitle:{en:'Diagnose a phone that does not respond to USB.',ar:'شخص حالة هاتف لا يستجيب لـUSB.'}, example:{en:'A bad charging coil often shows no VBUS.',ar:'غالبًا ما يظهر ملف الشحن السيئ عدم وجود VBUS.'}, tip:{en:'Start with the port and fuse before the IC.',ar:'ابدأ بالمنفذ والفيوز قبل الشريحة.'}},
+     {title:{en:'Black screen case',ar:'حالة الشاشة السوداء'}, subtitle:{en:'Inspect display path and backlight circuit.',ar:'افحص مسار الشاشة ودائرة الإضاءة الخلفية.'}, example:{en:'A damaged display connector can hide a good panel.',ar:'موصل شاشة تالف قد يخفي لوحة سليمة.'}, tip:{en:'Check the display cable before replacing the screen.',ar:'افحص كابل الشاشة قبل استبدالها.'}},
+     {title:{en:'No audio case',ar:'حالة عدم الصوت'}, subtitle:{en:'Test speaker line and audio IC power.',ar:'اختبر خط السماعة وطاقة شريحة الصوت.'}, example:{en:'A disconnected speaker flex can mute sound.',ar:'فليكس السماعة المفصول يمكن أن يكتم الصوت.'}, tip:{en:'Use a known-good speaker for comparison.',ar:'استخدم سماعة سليمة للمقارنة.'}},
+     {title:{en:'Camera fault',ar:'عطل الكاميرا'}, subtitle:{en:'Verify MIPI and camera power lines.',ar:'تحقق من خطوط طاقة الكاميرا وMIPI.'}, example:{en:'A broken camera flex can cause no image.',ar:'كابل كاميرا مكسور يمكن أن يسبب عدم ظهور الصورة.'}, tip:{en:'Inspect the connector pins carefully.',ar:'افحص بنات الموصل بعناية.'}},
+     {title:{en:'Battery drain',ar:'تفريغ البطارية'}, subtitle:{en:'Find a short or power leak on the board.',ar:'ابحث عن شورت أو تسرب طاقة على اللوحة.'}, example:{en:'A leaking capacitor may draw current when off.',ar:'المكثف المتسرب قد يسحب تيارًا وهو مطفأ.'}, tip:{en:'Measure current draw with a proper power supply.',ar:'قِس سحب التيار بمزود طاقة مناسب.'}}
+  ], quiz:[
+     {question:{en:'A black screen with sound likely means:',ar:'شاشة سوداء مع صوت تعني على الأرجح:'}, options:[{en:'Broken speaker',ar:'سماعة مكسورة'},{en:'Display or backlight issue',ar:'مشكلة شاشة أو إضاءة خلفية'},{en:'Battery issue',ar:'مشكلة بطارية'}], answer:1},
+     {question:{en:'A phone that will not charge may have:',ar:'هاتف لا يشحن قد يكون لديه:'}, options:[{en:'Bad charging coil',ar:'ملف شحن تالف'},{en:'Clean battery',ar:'بطارية نظيفة'},{en:'Perfect screen',ar:'شاشة مثالية'}], answer:0},
+     {question:{en:'Camera not detected often starts with:',ar:'عدم اكتشاف الكاميرا غالبًا يبدأ بـ:'}, options:[{en:'Audio IC',ar:'شريحة الصوت'},{en:'Camera flex and power',ar:'فليكس الكاميرا والطاقة'},{en:'Battery connector',ar:'موصل البطارية'}], answer:1}
+  ]},
+  {id:'expert', title:{en:'Expert Level',ar:'المستوى المتقدم'}, description:{en:'Advanced diagnosis and repair for experienced technicians.',ar:'تشخيص وإصلاح متقدم للفنيين ذوي الخبرة.'}, levels:[
+     {title:{en:'PMIC workflow',ar:'سير عمل PMIC'}, subtitle:{en:'Inspect input, enable and output rails.',ar:'افحص المدخل وإشارات التفعيل ومخارج الطاقة.'}, example:{en:'A dead PMIC often shows no secondary rails.',ar:'PMIC الميت غالبًا لا يظهر خطوطًا ثانوية.'}, tip:{en:'Compare the PMIC area with schematics.',ar:'قارن منطقة PMIC بالمخططات.'}},
+     {title:{en:'Storage faults',ar:'أعطال التخزين'}, subtitle:{en:'Check NAND power and data lines.',ar:'افحص طاقة NAND وخطوط البيانات.'}, example:{en:'A bad storage chip can prevent boot completely.',ar:'شريحة تخزين سيئة تمنع الإقلاع تمامًا.'}, tip:{en:'Inspect BGA balls and surrounding filters.',ar:'افحص كرات BGA والفلاتر المحيطة.'}},
+     {title:{en:'CPU boot lines',ar:'خطوط إقلاع المعالج'}, subtitle:{en:'Verify clocks, reset and power enable.',ar:'تحقق من الساعة والريست وتفعيل الطاقة.'}, example:{en:'Missing clock can stop the processor from starting.',ar:'غياب الساعة قد يمنع المعالج من البدء.'}, tip:{en:'Use the correct scope probe if available.',ar:'استخدم مجس راسم مناسب إن توفر.'}},
+     {title:{en:'RF and antenna',ar:'RF والهوائي'}, subtitle:{en:'Inspect RF paths and antenna connections.',ar:'افحص مسارات RF وتوصيلات الهوائي.'}, example:{en:'A broken antenna track can kill reception.',ar:'مسار هوائي مكسور يمكن أن يقتل الاستقبال.'}, tip:{en:'Avoid touching RF filters with bare hands.',ar:'تجنب لمس فلاتر RF بالأيدي العارية.'}},
+     {title:{en:'Thermal damage',ar:'تلف الحرارة'}, subtitle:{en:'Check for overheated chips and burned traces.',ar:'افحص الشرائح الساخنة والمسارات المحروقة.'}, example:{en:'Dark areas often point to heat damage.',ar:'المناطق الداكنة غالبًا تشير إلى تلف حراري.'}, tip:{en:'Cool the board gradually to prevent warpage.',ar:'برد اللوحة تدريجياً لتجنب الالتواء.'}}
+  ], quiz:[
+     {question:{en:'PMIC diagnosis starts with:',ar:'تشخيص PMIC يبدأ بـ:'}, options:[{en:'Display test',ar:'اختبار الشاشة'},{en:'VBAT and enable signals',ar:'VBAT وإشارات التفعيل'},{en:'Speaker check',ar:'اختبار السماعة'}], answer:1},
+     {question:{en:'Storage faults usually affect:',ar:'أعطال التخزين عادة تؤثر على:'}, options:[{en:'Boot process',ar:'عملية الإقلاع'},{en:'Screen brightness',ar:'سطوع الشاشة'},{en:'Audio quality',ar:'جودة الصوت'}], answer:0},
+     {question:{en:'RF issues can come from:',ar:'مشاكل RF يمكن أن تأتي من:'}, options:[{en:'Broken antenna track',ar:'مسار هوائي مكسور'},{en:'Bad battery',ar:'بطارية سيئة'},{en:'Dirty screen',ar:'شاشة متسخة'}], answer:0}
+  ]}
+];
+let state = loadState();
+let currentChapter = null;
+let currentLevel = null;
+let currentQuiz = null;
+let quizIndex = 0;
+let quizScore = 0;
+function loadState(){
+  const saved = localStorage.getItem(storageKeys.state);
+  if(!saved) return {xp:0, completedLevels:{}, quizPassed:[], unlocked:['tools']};
+  try{return JSON.parse(saved);}catch{return {xp:0, completedLevels:{}, quizPassed:[], unlocked:['tools']};}
 }
-
-function saveDone(key){
-    const done = doneIds();
-    if(!done.includes(key)){
-        done.push(key);
-        localStorage.setItem("repair_academy_done", JSON.stringify(done));
-    }
-}
-
-function getBranch(id){
-    return branches.find(branch => branch.id === id);
-}
-
-function getBranchProgress(branch){
-    const done = doneIds();
-    const completed = branch.lessons.filter((lesson,index) => done.includes(`${branch.id}_${index}`)).length;
-    return {completed, total: branch.lessons.length};
-}
-
-function getNextLessonIndex(branch){
-    const done = doneIds();
-    return branch.lessons.findIndex((lesson,index) => !done.includes(`${branch.id}_${index}`));
-}
-
-function renderHome(){
-    const completedLessons = branches.reduce((sum, branch) => sum + getBranchProgress(branch).completed, 0);
-    const totalLessons = branches.reduce((sum, branch) => sum + branch.lessons.length, 0);
-    const percent = totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0;
-
-    document.documentElement.lang = currentLang;
-    document.documentElement.dir = tr('dir');
-    document.body.dir = tr('dir');
-    document.getElementById("heroTitle").textContent = tr("heroTitle");
-    document.getElementById("heroText").textContent = tr("heroText");
-    document.getElementById("doneCount").textContent = completedLessons;
-    document.getElementById("totalCount").textContent = totalLessons;
-    document.getElementById("completedLabel").textContent = tr("completed");
-    document.getElementById("stepsLabel").textContent = tr("steps");
-    document.getElementById("continueButton").textContent = tr("continue");
-    document.getElementById("branchesTitle").textContent = tr("branchesTitle");
-    document.getElementById("branchesSubtitle").textContent = tr("branchesSubtitle");
-    document.getElementById("langButton").textContent = tr("langButton");
-    document.getElementById("telegramStatus").textContent = tr("status");
-    document.getElementById("footerText").textContent = tr("footer");
-
-    document.getElementById("progressText").textContent = `${percent}% ${tr("completed")}`;
-    document.getElementById("progressBar").style.width = `${percent}%`;
-
-    const list = document.getElementById("branchList");
-    list.innerHTML = "";
-
-    branches.forEach(branch => {
-        const progress = getBranchProgress(branch);
-        const card = document.createElement("button");
-        card.className = "branch-card";
-        card.onclick = () => openBranch(branch.id);
-        card.innerHTML = `
-            <h3>${txt(branch.title)}</h3>
-            <p>${txt(branch.desc)}</p>
-            <div class="badge">${progress.completed}/${progress.total}</div>
-        `;
-        list.appendChild(card);
-    });
-}
-
-function showPage(id){
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0,0);
-}
-
-function openBranch(branchId){
-    currentBranchId = branchId;
-    const branch = getBranch(branchId);
-    const nextLessonIndex = getNextLessonIndex(branch);
-    currentLessonIndex = nextLessonIndex === -1 ? branch.lessons.length - 1 : nextLessonIndex;
-    renderBranch();
-    showPage('branchPage');
-}
-
-function renderBranch(){
-    const branch = getBranch(currentBranchId);
-    const progress = getBranchProgress(branch);
-    const nextLessonIndex = getNextLessonIndex(branch);
-    const currentIndex = nextLessonIndex === -1 ? branch.lessons.length - 1 : nextLessonIndex;
-    const lesson = branch.lessons[currentIndex];
-    const remaining = progress.total - progress.completed - 1;
-    const isBranchComplete = progress.completed === progress.total;
-
-    document.getElementById('branchTitle').textContent = txt(branch.title);
-    document.getElementById('branchDesc').textContent = txt(branch.desc);
-    document.getElementById('branchProgress').textContent = `${progress.completed}/${progress.total} ${tr('completed')}`;
-    document.getElementById('branchNext').textContent = isBranchComplete ? tr('branchComplete') : `${remaining + 1} ${tr('next')}`;
-
-    document.getElementById('branchLessonCard').innerHTML = `
-        <h3>${txt(lesson.title)}</h3>
-        <p>${txt(lesson.desc)}</p>
-        <div class="lesson-meta"><small>${tr('start')}</small><span class="badge">${currentIndex + 1}/${branch.lessons.length}</span></div>
-    `;
-
-    document.getElementById('branchActionButton').textContent = isBranchComplete ? tr('branchComplete') : tr('start');
-    document.getElementById('branchBackButton').textContent = tr('back');
-}
-
-function openLesson(index){
-    currentLessonIndex = index;
-    renderLesson();
-    showPage('lessonPage');
-}
-
-function renderLesson(){
-    const branch = getBranch(currentBranchId);
-    const lesson = branch.lessons[currentLessonIndex];
-    const lessonKey = `${branch.id}_${currentLessonIndex}`;
-    const done = doneIds().includes(lessonKey);
-    const nextIndex = getNextLessonIndex(branch);
-    const hasNext = nextIndex !== -1 && nextIndex > currentLessonIndex;
-
-    document.getElementById('lessonBranchTitle').textContent = txt(branch.title);
-    document.getElementById('lessonTitle').textContent = txt(lesson.title);
-    document.getElementById('lessonDesc').textContent = txt(lesson.desc);
-    document.getElementById('lessonStatus').textContent = done ? tr('completed') : tr('start');
-    document.getElementById('lessonPosition').textContent = `${currentLessonIndex + 1}/${branch.lessons.length}`;
-    document.getElementById('lessonDoneButton').textContent = done ? tr('next') : tr('done');
-    document.getElementById('lessonContinueButton').textContent = hasNext ? tr('next') : tr('back');
-    document.getElementById('lessonContinueButton').disabled = !done && !hasNext;
-
-    document.getElementById('lessonPoints').innerHTML = lesson.points.map(point => `
-        <div class="point">
-            <strong>${point.en}</strong>
-            <span>${point.ar}</span>
-        </div>
-    `).join('');
-
-    document.getElementById('lessonContinueButton').onclick = () => {
-        if(done && hasNext){
-            openLesson(nextIndex);
-        } else {
-            goHome();
-        }
-    };
-}
-
-function toggleLessonDone(){
-    const branch = getBranch(currentBranchId);
-    const lessonKey = `${branch.id}_${currentLessonIndex}`;
-    saveDone(lessonKey);
-    showToast(tr('completedMessage'));
-    renderLesson();
-    renderHome();
-}
-
-function continueBranch(){
-    const branch = getBranch(currentBranchId);
-    const nextIndex = getNextLessonIndex(branch);
-    if(nextIndex !== -1){
-        openLesson(nextIndex);
-    } else {
-        showToast(tr('branchComplete'));
-        goHome();
-    }
-}
-
-function continueLearning(){
-    for(const branch of branches){
-        const nextIndex = getNextLessonIndex(branch);
-        if(nextIndex !== -1){
-            openBranch(branch.id);
-            return;
-        }
-    }
-    if(branches.length) openBranch(branches[0].id);
-}
-
-function toggleLanguage(){
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    localStorage.setItem('repair_academy_lang', currentLang);
-    renderHome();
-    if(document.getElementById('branchPage').classList.contains('active')) renderBranch();
-    if(document.getElementById('lessonPage').classList.contains('active')) renderLesson();
-}
-
-function goHome(){
-    renderHome();
-    showPage('home');
-}
-
-function showToast(message){
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2400);
-}
-
-window.addEventListener('load', () => {
-    renderHome();
-});
+function saveState(){localStorage.setItem(storageKeys.state, JSON.stringify(state));}
+function saveLang(){localStorage.setItem(storageKeys.lang, stateLang);}
+let stateLang = localStorage.getItem(storageKeys.lang) || 'en';
+function t(key){return translations[stateLang][key] || '';}
+function txt(item){return item ? item[stateLang] || '' : '';}
+function isUnlocked(id){return state.unlocked.includes(id);} 
+function completedLevels(chapter){return state.completedLevels[chapter.id] || [];}
+function levelDone(chapter,index){return completedLevels(chapter).includes(index);}
+function nextAvailableLevel(chapter){const done=completedLevels(chapter);return chapter.levels.findIndex((_,i)=>!done.includes(i));}
+function chapterPercent(chapter){return Math.round((completedLevels(chapter).length/chapter.levels.length)*100);} 
+function chapterQuizReady(chapter){return completedLevels(chapter).length===chapter.levels.length;}
+function chapterPassed(chapter){return state.quizPassed.includes(chapter.id);}
+function unlockChapter(id){if(!state.unlocked.includes(id)){state.unlocked.push(id); saveState();}}
+function unlockNextChapter(currentId){const index=chapters.findIndex(item=>item.id===currentId); if(index!==-1 && index<chapters.length-1){unlockChapter(chapters[index+1].id);}}
+function addXP(amount){state.xp += amount; saveState();}
+function showToast(message){const toast=document.createElement('div');toast.className='toast';toast.textContent=message;document.body.appendChild(toast);setTimeout(()=>toast.remove(),2400);}
+function setDir(){document.documentElement.lang=stateLang;document.documentElement.dir=translations[stateLang].dir;}
+function renderCurrentPage(){setDir(); document.getElementById('langButton').textContent=stateLang.toUpperCase(); renderHome(); if(document.getElementById('chapterPage').classList.contains('active')) renderChapter(); if(document.getElementById('levelPage').classList.contains('active')) renderLevel(); if(document.getElementById('quizPage').classList.contains('active')) renderQuiz(); updateTelegramButton(); document.getElementById('sosLabel').textContent=t('sos');}
+function updateTelegramButton(){if(!tg || !tg.MainButton) return; tg.MainButton.setText(t('telegramMain')); if(document.getElementById('homePage').classList.contains('active')){tg.MainButton.show(); tg.MainButton.onClick = continueLearning;} else {tg.MainButton.hide();}}
+function showPage(id){document.querySelectorAll('.page').forEach(page=>page.classList.remove('active'));document.getElementById(id).classList.add('active'); renderCurrentPage();}
+function openChapter(id){currentChapter = getChapterById(id); currentLevel = nextAvailableLevel(currentChapter); renderChapter(); showPage('chapterPage');}
+function getChapterById(id){return chapters.find(ch=>ch.id===id);} 
+function renderHome(){document.getElementById('brandTitle').textContent=t('brand');document.getElementById('brandSubtitle').textContent=t('subtitle');document.getElementById('heroTitle').textContent=t('hero');document.getElementById('heroSubtitle').textContent=t('homeText');document.getElementById('xpLabel').textContent=t('xp');document.getElementById('xpValue').textContent=state.xp;document.getElementById('progressLabel').textContent=t('progress');const totalLevels=chapters.reduce((sum,c)=>sum+c.levels.length,0);const doneLevels=chapters.reduce((sum,c)=>sum+completedLevels(c).length,0);const percent=totalLevels?Math.round((doneLevels/totalLevels)*100):0;document.getElementById('progressText').textContent=`${percent}%`;document.getElementById('globalProgress').style.width=`${percent}%`;document.getElementById('homeSectionTitle').textContent=t('homeTitle');document.getElementById('homeSectionText').textContent=t('homeText');const grid=document.getElementById('chapterGrid');grid.innerHTML='';chapters.forEach(ch=>{const card=document.createElement('button');card.type='button';card.className='card-block'+(isUnlocked(ch.id)?'':' locked');if(isUnlocked(ch.id)){card.onclick=()=>openChapter(ch.id);} const progress=`${completedLevels(ch).length}/${ch.levels.length}`;const lockLabel=isUnlocked(ch.id)?t('chapterOpen'):t('chapterLocked');card.innerHTML=`<h3>${txt(ch.title)}</h3><p>${txt(ch.description)}</p><div class="badge">${progress} • ${lockLabel}</div>`;grid.appendChild(card);});}
+function renderChapter(){document.getElementById('chapterTitle').textContent=txt(currentChapter.title);document.getElementById('chapterText').textContent=txt(currentChapter.description);document.getElementById('backToHomeButton').textContent=t('back');const levelList=document.getElementById('levelList');levelList.innerHTML='';const nextLevelIndex=nextAvailableLevel(currentChapter);currentChapter.levels.forEach((level,index)=>{const item=document.createElement('button');item.type='button';item.className='level-item'+((index!==nextLevelIndex && !levelDone(currentChapter,index))?' locked':''); if(!(index!==nextLevelIndex && !levelDone(currentChapter,index))){item.onclick=()=>openLevel(index);} const status=levelDone(currentChapter,index)?t('chapterDone'):index===nextLevelIndex?t('levelReady'):t('chapterLocked'); item.innerHTML=`<div><h3>${txt(level.title)}</h3><small>${txt(level.subtitle)}</small></div><div class="level-tag">${status}</div>`;levelList.appendChild(item);});document.getElementById('startLevelButton').textContent=t('chapterStart');document.getElementById('chapterQuizButton').textContent=t('chapterQuiz');document.getElementById('chapterQuizButton').disabled = !chapterQuizReady(currentChapter);document.getElementById('chapterQuizButton').title = chapterQuizReady(currentChapter) ? '' : t('quizLocked');}
+function openLevel(index){currentLevel=index; renderLevel(); showPage('levelPage');}
+function renderLevel(){const level=currentChapter.levels[currentLevel];document.getElementById('levelTitle').textContent=txt(level.title);document.getElementById('levelSubtitle').textContent=txt(level.subtitle);document.getElementById('tipLabel').textContent=t('levelTip');document.getElementById('levelTip').textContent=txt(level.tip);document.getElementById('completeLevelButton').textContent=levelDone(currentChapter,currentLevel)?t('next'):t('complete');document.getElementById('returnToChapterButton').textContent=t('back');}
+function completeLevel(chapterId,index){const chapter=getChapterById(chapterId); if(levelDone(chapter,index)) {const next=index+1<chapter.levels.length?index+1:index; if(next<chapter.levels.length){openLevel(next);} return;} const completed=completedLevels(chapter);completed.push(index);state.completedLevels[chapter.id]=completed;addXP(15);saveState(); showToast(t('levelCompleted')); renderLevel(); renderChapter(); renderHome();}
+function openQuiz(chapterId){currentChapter=getChapterById(chapterId);currentQuiz=currentChapter.quiz;quizIndex=0;quizScore=0;renderQuiz();showPage('quizPage');}
+function renderQuiz(){document.getElementById('quizTitle').textContent=`${t('quiz')} • ${txt(currentChapter.title)}`;document.getElementById('quizSubtitle').textContent=t('quizSubtitle');const card=document.getElementById('quizCard');card.innerHTML='';const q=currentQuiz[quizIndex];const question=document.createElement('div');question.innerHTML=`<h3>${txt(q.question)}</h3>`;card.appendChild(question);const options=document.createElement('div');options.className='options';q.options.forEach((opt,i)=>{const btn=document.createElement('button');btn.type='button';btn.className='option-button';btn.innerHTML=`${txt(opt)}`;btn.onclick=()=>answerQuiz(i);options.appendChild(btn);});card.appendChild(options);const actions=document.getElementById('quizActions');actions.innerHTML='';}
+function answerQuiz(answerIndex){const q=currentQuiz[quizIndex];const buttons=[...document.querySelectorAll('.option-button')];buttons.forEach((btn,i)=>{btn.classList.add('disabled'); if(i===q.answer){btn.classList.add('correct');} if(i===answerIndex && i!==q.answer){btn.classList.add('wrong');}}); if(answerIndex===q.answer){quizScore++; showToast('✓');} else {showToast('✗');} setTimeout(()=>{quizIndex++; if(quizIndex>=currentQuiz.length){finishQuiz();} else {renderQuiz();}},600);}
+function finishQuiz(){const card=document.getElementById('quizCard');const actions=document.getElementById('quizActions');const passed = quizScore >= Math.ceil(currentQuiz.length * 0.7); card.innerHTML=`<h3>${t('quizResult')}</h3><p>${t('quizScore')}: ${quizScore}/${currentQuiz.length}</p><p>${passed? t('quizPass'): t('quizFail')}</p>`;actions.innerHTML='';const btn=document.createElement('button');btn.type='button';btn.className='button primary-button';btn.textContent=passed? t('quizReturn'):t('quizRetry'); btn.onclick=()=>{ if(passed){if(!state.quizPassed.includes(currentChapter.id)){state.quizPassed.push(currentChapter.id);} addXP(30); unlockNextChapter(currentChapter.id); saveState(); showPage('chapterPage'); renderChapter(); renderHome(); } else {quizIndex=0;quizScore=0; renderQuiz(); }};actions.appendChild(btn);}
+function continueLearning(){const available=chapters.find(ch=>isUnlocked(ch.id) && nextAvailableLevel(ch)!==-1); if(available){openChapter(available.id);} else {const nextUnlock = chapters.find(ch=>isUnlocked(ch.id) && !chapterQuizReady(ch)); if(nextUnlock){openChapter(nextUnlock.id);} else {const firstUnlocked=chapters.find(ch=>isUnlocked(ch.id)); if(firstUnlocked) openChapter(firstUnlocked.id);} }}
+function init(){setDir(); document.getElementById('langButton').textContent=stateLang.toUpperCase(); document.getElementById('langButton').addEventListener('click', ()=>{stateLang = stateLang==='en'?'ar':'en'; saveLang(); renderCurrentPage();}); document.getElementById('backToHomeButton').addEventListener('click', ()=>{showPage('homePage');}); document.getElementById('returnToChapterButton').addEventListener('click', ()=>{showPage('chapterPage');}); document.getElementById('startLevelButton').addEventListener('click', ()=>{if(currentChapter){const next=nextAvailableLevel(currentChapter); if(next!==-1) openLevel(next);}}); document.getElementById('chapterQuizButton').addEventListener('click', ()=>{if(currentChapter && chapterQuizReady(currentChapter)){openQuiz(currentChapter.id);}}); document.getElementById('sosButton').addEventListener('click', ()=>{window.open('https://t.me/c/3919937885/2','_blank');}); if(tg && tg.MainButton){tg.ready(); tg.MainButton.setText(t('telegramMain')); tg.MainButton.show(); tg.onEvent('mainButtonClicked', ()=>{ if(document.getElementById('homePage').classList.contains('active')) continueLearning(); });}
+ renderCurrentPage(); }
+init();
 </script>
 </body>
 </html>

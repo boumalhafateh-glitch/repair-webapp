@@ -530,6 +530,294 @@ input:focus-visible{
         transition-duration:.01ms !important;
     }
 }
+
+/* Tab Navigation */
+.tabs{
+    display:flex;
+    gap:4px;
+    margin-bottom:14px;
+    background:#111;
+    border-radius:13px;
+    padding:4px;
+}
+.tab{
+    flex:1;
+    padding:10px 8px;
+    border:none;
+    border-radius:10px;
+    background:transparent;
+    color:#777;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .2s;
+}
+.tab.active{
+    background:linear-gradient(135deg,var(--gold),#ffe08a);
+    color:#111;
+}
+.tab:hover:not(.active){color:#aaa;}
+
+/* Quiz Styles */
+.quiz-container{
+    text-align:center;
+}
+.quiz-question{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:20px;
+    color:#fff;
+}
+.quiz-options{
+    display:grid;
+    gap:10px;
+}
+.quiz-option{
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:#1a1a1a;
+    color:#fff;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .2s;
+    text-align:left;
+}
+.quiz-option:hover{
+    border-color:var(--cyan);
+    background:#222;
+}
+.quiz-option.correct{
+    border-color:var(--green);
+    background:rgba(39,196,107,.15);
+}
+.quiz-option.wrong{
+    border-color:var(--red);
+    background:rgba(176,0,32,.15);
+}
+.quiz-progress{
+    margin-bottom:16px;
+    color:var(--muted);
+    font-size:13px;
+}
+.quiz-score{
+    font-size:32px;
+    font-weight:900;
+    color:var(--gold);
+    margin:20px 0;
+}
+
+/* Profile Styles */
+.profile-header{
+    text-align:center;
+    padding:20px;
+}
+.profile-avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--cyan),var(--gold));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    font-weight:900;
+    color:#111;
+    margin:0 auto 12px;
+}
+.profile-name{
+    font-size:20px;
+    font-weight:900;
+    margin-bottom:4px;
+}
+.profile-level{
+    color:var(--gold);
+    font-size:14px;
+    font-weight:700;
+}
+.stat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:16px 0;
+}
+.stat-card{
+    background:#1a1a1a;
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:16px;
+    text-align:center;
+}
+.stat-card.big{
+    grid-column:span 2;
+}
+.stat-card .value{
+    font-size:28px;
+    font-weight:900;
+    color:var(--cyan);
+}
+.stat-card .label{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
+}
+.cert-list{
+    display:grid;
+    gap:8px;
+}
+.cert-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    background:#1a1a1a;
+    border:1px solid var(--line);
+    border-radius:13px;
+}
+.cert-icon{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--gold),#ffe08a);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+.cert-info strong{display:block;font-size:14px;}
+.cert-info small{color:var(--muted);font-size:12px;}
+
+/* SOS Button Enhanced */
+.sos-btn-enhanced{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:linear-gradient(180deg,#b00020,#780015);
+    animation:pulse 2s infinite;
+}
+@keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(176,0,32,.4);}
+    50%{box-shadow:0 0 0 8px rgba(176,0,32,0);}
+}
+.sos-btn-enhanced::before{
+    content:"🔴";
+    animation:blink 1s infinite;
+}
+@keyframes blink{
+    0%,100%{opacity:1;}
+    50%{opacity:.5;}
+}
+
+/* Quick SOS Modal */
+.sos-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    padding:20px;
+}
+.sos-modal.active{display:flex;}
+.sos-modal-content{
+    background:#1a1a1a;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px;
+    max-width:400px;
+    width:100%;
+}
+.sos-modal h3{
+    color:var(--red);
+    margin:0 0 16px;
+    font-size:18px;
+}
+.sos-modal textarea{
+    width:100%;
+    height:100px;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:#111;
+    color:#fff;
+    font-family:inherit;
+    font-size:14px;
+    resize:none;
+}
+.sos-modal-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:16px;
+}
+.sos-modal-buttons button{
+    padding:12px;
+    border-radius:10px;
+    font-weight:700;
+}
+.sos-modal-buttons .cancel{
+    background:#222;
+    border:1px solid var(--line);
+}
+
+/* Favorites */
+.fav-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:#1a1a1a;
+    color:var(--muted);
+    font-size:18px;
+    cursor:pointer;
+    transition:all .2s;
+}
+.fav-btn.active{
+    color:var(--gold);
+    border-color:var(--gold);
+}
+.fav-btn:hover{
+    transform:scale(1.1);
+}
+
+/* Vocabulary Section */
+.vocab-grid{
+    display:grid;
+    gap:8px;
+}
+.vocab-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 16px;
+    background:#1a1a1a;
+    border:1px solid var(--line);
+    border-radius:10px;
+}
+.vocab-item .en{
+    color:var(--cyan);
+    font-weight:700;
+}
+.vocab-item .ar{
+    color:var(--gold);
+    font-weight:700;
+    text-align:right;
+}
+.vocab-item .def{
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
 </style>
 </head>
 
@@ -548,6 +836,14 @@ input:focus-visible{
     </div>
 
     <div id="home" class="page active">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('home')" id="tabHome">🏠 Home</button>
+            <button class="tab" onclick="switchTab('lessons')" id="tabLessons">📚 Lessons</button>
+            <button class="tab" onclick="switchTab('quiz')" id="tabQuiz">❓ Quiz</button>
+            <button class="tab" onclick="switchTab('profile')" id="tabProfile">👤 Profile</button>
+        </div>
+        
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search lessons..." aria-label="Search lessons">
             <div class="search-results" id="searchResults"></div>
@@ -584,7 +880,7 @@ input:focus-visible{
             <h2 class="title" id="sosTitle"></h2>
             <p class="text" id="sosText"></p>
             <br>
-            <button class="danger" onclick="openSOS()" id="sosButton"></button>
+            <button class="danger sos-btn-enhanced" onclick="openSOS()" id="sosButton"></button>
         </div>
     </div>
 
@@ -628,6 +924,72 @@ input:focus-visible{
         <div class="action-row">
             <button onclick="goBranch()" id="bookBackButton"></button>
             <button class="primary" onclick="markDone()" id="bookDoneButton"></button>
+        </div>
+    </div>
+
+    <div id="quizPage" class="page">
+        <div class="panel">
+            <h2 class="title" id="quizTitle">Knowledge Quiz</h2>
+            <p class="text" id="quizSubtitle">Test your repair knowledge</p>
+        </div>
+        
+        <div class="quiz-container" id="quizContent">
+            <div class="quiz-progress" id="quizProgress">Question 1 of 5</div>
+            <div class="quiz-question" id="quizQuestion"></div>
+            <div class="quiz-options" id="quizOptions"></div>
+        </div>
+        
+        <div class="quiz-result" id="quizResult" style="display:none;">
+            <div class="quiz-score" id="quizScore">4/5</div>
+            <p class="text" id="quizMessage"></p>
+            <button class="primary main-action" onclick="restartQuiz()">Try Again</button>
+            <button class="main-action" onclick="goHome()" style="margin-top:10px;">Back to Home</button>
+        </div>
+    </div>
+
+    <div id="profilePage" class="page">
+        <div class="profile-header">
+            <div class="profile-avatar">M</div>
+            <div class="profile-name">Repair Learner</div>
+            <div class="profile-level" id="profileLevel">Beginner Technician</div>
+        </div>
+        
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="value" id="profileDone">0</div>
+                <div class="label">Lessons Done</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" id="profileTotal">33</div>
+                <div class="label">Total Lessons</div>
+            </div>
+            <div class="stat-card big">
+                <div class="value" id="profilePercent">0%</div>
+                <div class="label">Progress</div>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <h3>Certificates</h3>
+        </div>
+        <div class="cert-list" id="certList"></div>
+        
+        <div class="section-title" style="margin-top:20px;">
+            <h3>Vocabulary</h3>
+        </div>
+        <div class="vocab-grid" id="vocabList"></div>
+    </div>
+
+    <!-- SOS Modal -->
+    <div class="sos-modal" id="sosModal">
+        <div class="sos-modal-content">
+            <h3>🔴 Live Repair Help</h3>
+            <p class="text">Describe your problem briefly before joining the group:</p>
+            <textarea id="sosMessage" placeholder="Example: iPhone 13 no display after drop..."></textarea>
+            <div class="sos-modal-buttons">
+                <button class="cancel" onclick="closeSOSModal()">Cancel</button>
+                <button class="danger" onclick="confirmSOS()">Join Group</button>
+            </div>
         </div>
     </div>
 
@@ -675,7 +1037,16 @@ const ui = {
         completedProgress:"completed",
         open:"Open",
         doneState:"Done",
-        completedMessage:"Step completed!"
+        completedMessage:"Step completed!",
+        // New
+        quizTitle:"Knowledge Quiz",
+        quizSubtitle:"Test your repair knowledge",
+        profileTitle:"My Profile",
+        certificates:"Certificates",
+        vocabulary:"Vocabulary",
+        lessonsTab:"Lessons",
+        quizTab:"Quiz",
+        profileTab:"Profile"
     },
     ar:{
         dir:"rtl",
@@ -705,7 +1076,16 @@ const ui = {
         completedProgress:"مكتمل",
         open:"فتح",
         doneState:"تم",
-        completedMessage:"تم إنهاء الخطوة!"
+        completedMessage:"تم إنهاء الخطوة!",
+        // New
+        quizTitle:"اختبار المعرفة",
+        quizSubtitle:"اختبر معرفتك بالإصلاح",
+        profileTitle:"ملفي",
+        certificates:"الشهادات",
+        vocabulary:"المفردات",
+        lessonsTab:"الدروس",
+        quizTab:"اختبار",
+        profileTab:"الملف"
     }
 };
 
@@ -1050,6 +1430,16 @@ function applyLanguage(){
     document.getElementById("bookDoneButton").textContent = tr("done");
     document.getElementById("branchBackButton").textContent = tr("back");
     document.getElementById("footerText").textContent = tr("footer");
+    
+    // Update tab labels
+    document.getElementById("tabHome").textContent = "🏠 Home";
+    document.getElementById("tabLessons").textContent = "📚 " + tr("lessonsTab");
+    document.getElementById("tabQuiz").textContent = "❓ " + tr("quizTab");
+    document.getElementById("tabProfile").textContent = "👤 " + tr("profileTab");
+    
+    // Update quiz page
+    document.getElementById("quizTitle").textContent = tr("quizTitle");
+    document.getElementById("quizSubtitle").textContent = tr("quizSubtitle");
 
     renderHome();
 
@@ -1330,6 +1720,321 @@ document.addEventListener("keydown", (e) => {
 // Expose functions globally for onclick handlers
 window.openSearchResult = openSearchResult;
 window.resetProgress = resetProgress;
+
+// ==================== NEW FEATURES ====================
+
+// Tab Navigation
+function switchTab(tabName){
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    
+    // Find the tab button and add active class
+    const tabIndex = {home:0, lessons:1, quiz:2, profile:3}[tabName];
+    document.querySelectorAll(".tab")[tabIndex].classList.add("active");
+    
+    if(tabName === "home"){
+        document.getElementById("home").classList.add("active");
+    }else if(tabName === "lessons"){
+        document.getElementById("home").classList.add("active");
+    }else if(tabName === "quiz"){
+        initQuiz();
+        document.getElementById("quizPage").classList.add("active");
+    }else if(tabName === "profile"){
+        renderProfile();
+        document.getElementById("profilePage").classList.add("active");
+    }
+    
+    window.scrollTo(0,0);
+}
+
+// Quiz System
+const quizData = [
+    {
+        question:"What does a resistor do in a circuit?",
+        options:["Stores energy","Limits current","Amplifies signal","Creates power"],
+        correct:1
+    },
+    {
+        question:"Which multimeter mode checks for short circuits?",
+        options:["VDC","Ω (Ohms)","Continuity","VAC"],
+        correct:2
+    },
+    {
+        question:"What is the first step before repairing a phone?",
+        options:["Open the phone","Check battery safety","Desolder components","Test the screen"],
+        correct:1
+    },
+    {
+        question:"What does a fuse protect?",
+        options:["The screen","The battery","The circuit","The user"],
+        correct:2
+    },
+    {
+        question:"Which tool is used for microsoldering?",
+        options:["Screwdriver","Tweezers","Hot air station","Multimeter"],
+        correct:2
+    }
+];
+
+let currentQuizQuestion = 0;
+let quizScore = 0;
+
+function initQuiz(){
+    currentQuizQuestion = 0;
+    quizScore = 0;
+    document.getElementById("quizContent").style.display = "block";
+    document.getElementById("quizResult").style.display = "none";
+    renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+    if(currentQuizQuestion >= quizData.length){
+        showQuizResult();
+        return;
+    }
+    
+    const q = quizData[currentQuizQuestion];
+    document.getElementById("quizProgress").textContent = `Question ${currentQuizQuestion + 1} of ${quizData.length}`;
+    document.getElementById("quizQuestion").textContent = q.question;
+    
+    const optionsHtml = q.options.map((opt, i) => `
+        <button class="quiz-option" onclick="answerQuiz(${i})">${opt}</button>
+    `).join("");
+    
+    document.getElementById("quizOptions").innerHTML = optionsHtml;
+}
+
+function answerQuiz(answerIndex){
+    const q = quizData[currentQuizQuestion];
+    const options = document.querySelectorAll(".quiz-option");
+    
+    if(answerIndex === q.correct){
+        options[answerIndex].classList.add("correct");
+        quizScore++;
+        showToast("Correct! ✓", "success");
+    }else{
+        options[answerIndex].classList.add("wrong");
+        options[q.correct].classList.add("correct");
+        showToast("Wrong answer", "error");
+    }
+    
+    // Disable all options
+    options.forEach(opt => opt.style.pointerEvents = "none");
+    
+    setTimeout(() => {
+        currentQuizQuestion++;
+        renderQuizQuestion();
+    }, 1000);
+}
+
+function showQuizResult(){
+    document.getElementById("quizContent").style.display = "none";
+    document.getElementById("quizResult").style.display = "block";
+    document.getElementById("quizScore").textContent = `${quizScore}/${quizData.length}`;
+    
+    const percent = (quizScore / quizData.length) * 100;
+    let message = "";
+    if(percent >= 80) message = "Excellent! You know your basics!";
+    else if(percent >= 60) message = "Good job! Keep learning!";
+    else message = "Keep practicing! Review the lessons.";
+    
+    document.getElementById("quizMessage").textContent = message;
+}
+
+function restartQuiz(){
+    initQuiz();
+}
+
+// Profile & Stats
+function renderProfile(){
+    const total = allNodes().length;
+    const done = doneIds().length;
+    const percent = total ? Math.round((done / total) * 100) : 0;
+    
+    document.getElementById("profileDone").textContent = done;
+    document.getElementById("profileTotal").textContent = total;
+    document.getElementById("profilePercent").textContent = percent + "%";
+    
+    // Level
+    let level = "Beginner Technician";
+    if(percent >= 100) level = "Master Repairer";
+    else if(percent >= 75) level = "Expert Technician";
+    else if(percent >= 50) level = "Advanced Learner";
+    else if(percent >= 25) level = "Intermediate";
+    document.getElementById("profileLevel").textContent = level;
+    
+    // Certificates
+    renderCertificates();
+    
+    // Vocabulary
+    renderVocabulary();
+}
+
+function renderCertificates(){
+    const certs = [
+        {name:"Tools Master", icon:"🔧", desc:"Complete all tools lessons"},
+        {name:"Components Expert", icon:"⚡", desc:"Complete all components"},
+        {name:"Safety First", icon:"🛡️", desc:"Complete safety lessons"},
+        {name:"Systems Pro", icon:"💻", desc:"Complete all systems"}
+    ];
+    
+    const done = doneIds();
+    const certList = document.getElementById("certList");
+    certList.innerHTML = "";
+    
+    certs.forEach((cert, i) => {
+        const branchIds = [
+            ["screwdriver","tweezers","multimeter","hot_air","solder_iron"],
+            ["resistor","capacitor","diode","coil","fuse","connector","ic"],
+            ["safety","opening"],
+            ["circuits","pmic","cpu","storage","display","backlight","charge","usb","audio","camera","rf"]
+        ];
+        
+        const branchDone = branchIds[i].filter(id => done.includes(id)).length;
+        const branchTotal = branchIds[i].length;
+        const earned = branchDone === branchTotal;
+        
+        const div = document.createElement("div");
+        div.className = "cert-item";
+        div.innerHTML = `
+            <div class="cert-icon">${cert.icon}</div>
+            <div class="cert-info">
+                <strong>${cert.name}</strong>
+                <small>${earned ? "✓ Earned" : `${branchDone}/${branchTotal} lessons`}</small>
+            </div>
+        `;
+        if(earned) div.style.borderColor = "var(--green)";
+        certList.appendChild(div);
+    });
+}
+
+function renderVocabulary(){
+    const vocab = [
+        {en:"Resistor", ar:"المقاومة", def:"Limits current flow"},
+        {en:"Capacitor", ar:"المكثف", def:"Stores electrical energy"},
+        {en:"Diode", ar:"الدايود", def:"Allows current one direction"},
+        {en:"Coil", ar:"الملف", def:"Stores energy in magnetic field"},
+        {en:"Fuse", ar:"الفيوز", def:"Protects from overcurrent"},
+        {en:"IC", ar:"الشريحة", def:"Integrated circuit chip"},
+        {en:"PCB", ar:"اللوحة", def:"Printed circuit board"},
+        {en:"VBUS", ar:"فولت البطارية", def:"Battery power line"},
+        {en:"GND", ar:"الأرضي", def:"Ground reference"},
+        {en:"MIPI", ar:"واجهة الشاشة", def:"Display data interface"}
+    ];
+    
+    const vocabList = document.getElementById("vocabList");
+    vocabList.innerHTML = "";
+    
+    vocab.forEach(v => {
+        const div = document.createElement("div");
+        div.className = "vocab-item";
+        div.innerHTML = `
+            <div>
+                <span class="en">${v.en}</span>
+                <span class="def">${v.def}</span>
+            </div>
+            <span class="ar">${v.ar}</span>
+        `;
+        vocabList.appendChild(div);
+    });
+}
+
+// Enhanced SOS
+function openSOS(){
+    document.getElementById("sosModal").classList.add("active");
+}
+
+function closeSOSModal(){
+    document.getElementById("sosModal").classList.remove("active");
+}
+
+function confirmSOS(){
+    const message = document.getElementById("sosMessage").value;
+    const link = "https://t.me/+OVTmcEQLg00zMTQ0";
+    
+    closeSOSModal();
+    
+    if(tg && tg.openTelegramLink){
+        tg.openTelegramLink(link);
+    }else{
+        window.open(link,"_blank");
+    }
+    
+    if(message){
+        showToast("Ready to get help! Describe your issue in the group.", "success");
+    }
+}
+
+// Favorites System
+function toggleFavorite(nodeId){
+    const favs = JSON.parse(localStorage.getItem("master_repair_favs") || "[]");
+    const index = favs.indexOf(nodeId);
+    
+    if(index > -1){
+        favs.splice(index, 1);
+        showToast("Removed from favorites", "success");
+    }else{
+        favs.push(nodeId);
+        showToast("Added to favorites!", "success");
+    }
+    
+    localStorage.setItem("master_repair_favs", JSON.stringify(favs));
+}
+
+function isFavorite(nodeId){
+    const favs = JSON.parse(localStorage.getItem("master_repair_favs") || "[]");
+    return favs.includes(nodeId);
+}
+
+// Add favorite button to book page
+function renderBookPage(){
+    const page = currentNode.book[currentBookPage];
+
+    document.getElementById("bookTitle").textContent = txt(currentNode.title);
+    document.getElementById("bookDesc").textContent = txt(currentNode.desc);
+    document.getElementById("bookCounter").textContent = (currentBookPage + 1) + " / " + currentNode.book.length;
+    document.getElementById("bookPageTitle").textContent = txt(page.title);
+    document.getElementById("bookPageText").textContent = txt(page.text);
+
+    // Add favorite button
+    const favBtn = document.createElement("button");
+    favBtn.className = "fav-btn" + (isFavorite(currentNode.id) ? " active" : "");
+    favBtn.innerHTML = "★";
+    favBtn.onclick = () => toggleFavorite(currentNode.id);
+    favBtn.setAttribute("aria-label","Toggle favorite");
+    
+    const bookPage = document.getElementById("bookPage");
+    // Remove old fav button if exists
+    const oldFav = bookPage.querySelector(".fav-btn");
+    if(oldFav) oldFav.remove();
+    bookPage.insertBefore(favBtn, bookPage.firstChild);
+
+    document.getElementById("bookVisual").innerHTML = createVisual(page);
+
+    const list = document.getElementById("bookPoints");
+    list.innerHTML = "";
+
+    page.points.forEach(point => {
+        const box = document.createElement("div");
+        box.className = "lesson";
+        box.innerHTML = `
+            <strong>${txt(point.title)}</strong>
+            <p>${txt(point.text)}</p>
+        `;
+        list.appendChild(box);
+    });
+
+    document.getElementById("prevButton").disabled = currentBookPage === 0;
+    document.getElementById("nextButton").disabled = currentBookPage === currentNode.book.length - 1;
+}
+
+// Expose new functions
+window.switchTab = switchTab;
+window.restartQuiz = restartQuiz;
+window.openSOS = openSOS;
+window.closeSOSModal = closeSOSModal;
+window.confirmSOS = confirmSOS;
+window.toggleFavorite = toggleFavorite;
 
 applyLanguage();
 initSearch();

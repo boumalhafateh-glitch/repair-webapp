@@ -818,6 +818,332 @@ input:focus-visible{
     font-size:12px;
     margin-top:4px;
 }
+
+/* Enhanced Component Visual */
+.component-visual-enhanced{
+    background:linear-gradient(180deg,#1a1a1a,#0a0a0a);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    margin:16px 0;
+}
+.component-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+}
+.component-symbol-large{
+    width:60px;
+    height:60px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--cyan),var(--gold));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:900;
+    color:#111;
+}
+.component-name{
+    flex:1;
+}
+.component-name h3{
+    margin:0;
+    font-size:18px;
+    color:#fff;
+}
+.component-name .type{
+    font-size:12px;
+    color:var(--muted);
+}
+.component-diagram{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:16px 0;
+}
+.diagram-box{
+    background:#111;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+}
+.diagram-box.title{
+    grid-column:span 2;
+    background:rgba(56,189,248,.1);
+    border-color:rgba(56,189,248,.3);
+}
+.diagram-box label{
+    display:block;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+.diagram-box .value{
+    font-size:16px;
+    font-weight:700;
+    color:var(--cyan);
+}
+.diagram-box .value.gold{color:var(--gold);}
+.diagram-box .value.green{color:var(--green);}
+.diagram-box .value.red{color:#ff6b6b;}
+
+/* Pinout Section */
+.pinout-section{
+    margin-top:16px;
+}
+.pinout-title{
+    font-size:14px;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:10px;
+}
+.pinout-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+}
+.pin{
+    background:#111;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 4px;
+    text-align:center;
+    font-size:11px;
+}
+.pin .num{
+    display:block;
+    font-weight:900;
+    color:var(--cyan);
+    font-size:13px;
+}
+.pin .name{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* Real Photos Placeholder */
+.real-component{
+    background:#0d0d0d;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    margin:16px 0;
+    text-align:center;
+}
+.real-component .placeholder{
+    height:80px;
+    background:linear-gradient(45deg,#1a1a1a,#2a2a2a);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--muted);
+    font-size:12px;
+}
+.real-component .label{
+    margin-top:10px;
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* Detailed Lesson Content */
+.lesson-detail{
+    background:#1a1a1a;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    margin:12px 0;
+}
+.lesson-detail h4{
+    color:var(--gold);
+    margin:0 0 12px;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.lesson-detail h4::before{
+    content:"▸";
+    color:var(--cyan);
+}
+.lesson-detail ul{
+    margin:0;
+    padding-left:20px;
+}
+.lesson-detail li{
+    color:var(--soft);
+    font-size:13px;
+    line-height:1.8;
+    margin-bottom:6px;
+}
+.lesson-detail li::marker{
+    color:var(--cyan);
+}
+
+/* Warning Box */
+.warning-box{
+    background:rgba(176,0,32,.15);
+    border:1px solid rgba(176,0,32,.4);
+    border-radius:12px;
+    padding:14px;
+    margin:12px 0;
+}
+.warning-box::before{
+    content:"⚠️ ";
+}
+.warning-box p{
+    margin:0;
+    color:#ff6b6b;
+    font-size:13px;
+}
+
+/* Tip Box */
+.tip-box{
+    background:rgba(39,196,107,.15);
+    border:1px solid rgba(39,196,107,.4);
+    border-radius:12px;
+    padding:14px;
+    margin:12px 0;
+}
+.tip-box::before{
+    content:"💡 ";
+}
+.tip-box p{
+    margin:0;
+    color:var(--green);
+    font-size:13px;
+}
+
+/* Note Box */
+.note-box{
+    background:rgba(56,189,248,.15);
+    border:1px solid rgba(56,189,248,.4);
+    border-radius:12px;
+    padding:14px;
+    margin:12px 0;
+}
+.note-box::before{
+    content:"📝 ";
+}
+.note-box p{
+    margin:0;
+    color:var(--cyan);
+    font-size:13px;
+}
+
+/* Step by Step */
+.step-list{
+    counter-reset:step;
+}
+.step-item{
+    display:flex;
+    gap:12px;
+    margin-bottom:12px;
+    align-items:flex-start;
+}
+.step-num{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),#ffe08a);
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:14px;
+    flex-shrink:0;
+}
+.step-content{
+    flex:1;
+    background:#1a1a1a;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px;
+}
+.step-content strong{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    margin-bottom:4px;
+}
+.step-content p{
+    margin:0;
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* Measurement Guide */
+.measure-guide{
+    background:#111;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    margin:12px 0;
+}
+.measure-guide h5{
+    color:var(--gold);
+    margin:0 0 12px;
+    font-size:14px;
+}
+.measure-step{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid #222;
+}
+.measure-step:last-child{
+    border-bottom:none;
+}
+.measure-step .icon{
+    width:24px;
+    height:24px;
+    border-radius:6px;
+    background:var(--cyan);
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+.measure-step .text{
+    flex:1;
+    font-size:13px;
+    color:var(--soft);
+}
+.measure-step .value{
+    font-weight:700;
+    color:var(--gold);
+}
+
+/* Component Comparison */
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:12px 0;
+    font-size:12px;
+}
+.compare-table th{
+    background:#111;
+    color:var(--gold);
+    padding:10px 8px;
+    text-align:left;
+    border:1px solid var(--line);
+}
+.compare-table td{
+    padding:10px 8px;
+    border:1px solid var(--line);
+    color:var(--soft);
+}
+.compare-table tr:nth-child(even) td{
+    background:#151515;
+}
 </style>
 </head>
 
@@ -1165,7 +1491,7 @@ function createProgressRing(percentage){
     `;
 }
 
-function makePage(kind, mode, display, symbol, titleEn, titleAr, textEn, textAr, points){
+function makePage(kind, mode, display, symbol, titleEn, titleAr, textEn, textAr, points, extraPoints = []){
     return {
         kind,
         mode,
@@ -1176,16 +1502,20 @@ function makePage(kind, mode, display, symbol, titleEn, titleAr, textEn, textAr,
         points:points.map(item => ({
             title:pair(item[0],item[1]),
             text:pair(item[2],item[3])
+        })),
+        extraPoints:extraPoints.map(item => ({
+            title:pair(item[0],item[1]),
+            text:pair(item[2],item[3])
         }))
     };
 }
 
-function makeBook(titleEn, titleAr, descEn, descAr, symbol, roleEn, roleAr, testEn, testAr, symptomEn, symptomAr){
+function makeBook(titleEn, titleAr, descEn, descAr, symbol, roleEn, roleAr, testEn, testAr, symptomEn, symptomAr, extraPoints = []){
     return [
         makePage("component", "role", titleEn, symbol, titleEn, titleAr, roleEn, roleAr, [
             ["Role","الدور",roleEn,roleAr],
             ["Before repair","قبل الإصلاح","Understand the function before replacing anything.","افهم الوظيفة قبل تغيير أي شيء."]
-        ]),
+        ], extraPoints),
         makePage("component", "schema", "SCHEMA", symbol, "Schematic Symbol", "رمز المخطط", "This is the simplified symbol or block used in electronic logic.", "هذا هو الرمز أو البلوك المبسط المستخدم في منطق الدوائر.", [
             ["Why it matters","لماذا مهم؟","Schematics help you follow the line and understand the circuit.","المخططات تساعدك على تتبع الخط وفهم الدائرة."],
             ["Boardview","البوردفيو","Use boardview to find the real location on the board.","استخدم البوردفيو لمعرفة مكان القطعة الحقيقي على اللوحة."]
@@ -1301,13 +1631,79 @@ const toolBooks = {
 };
 
 const books = {
-    resistor: makeBook("Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─/\\/\\/─","A resistor limits or controls current in a circuit.","المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.","Test with resistance mode Ω. Power must be off.","افحصها بوضع المقاومة Ω مع فصل الطاقة.","Wrong value or bad soldering can create abnormal behavior.","قيمة خاطئة أو لحام سيئ قد يسبب سلوكا غير طبيعي."),
-    capacitor: makeBook("Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─| |─","A capacitor stores energy and filters electrical noise on power lines.","المكثف يخزن الطاقة وينقي التشويش الكهربائي في خطوط الطاقة.","Use continuity or diode mode to check for short to ground.","استخدم الاستمرارية أو الدايود لفحص الشورت مع الأرضي.","A shorted capacitor can stop a power line completely.","المكثف الشورت قد يوقف خط طاقة بالكامل."),
-    diode: makeBook("Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─|>|─","A diode allows current to pass mainly in one direction.","الدايود يسمح بمرور التيار غالبا في اتجاه واحد.","Test with diode mode. One direction gives a value, the opposite side usually blocks.","افحصه بوضع الدايود. اتجاه يعطي قيمة والاتجاه الآخر غالبا يمنع المرور.","Wrong orientation or shorted diode can stop the circuit.","التركيب العكسي أو الدايود الشورت قد يوقف الدائرة."),
-    coil: makeBook("Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─oooo─","A coil is used in power circuits and voltage regulation.","الملف يستخدم في دوائر الطاقة وتنظيم الفولت.","Use continuity mode. Most coils beep because resistance is low.","استخدم الاستمرارية. أغلب الملفات تعطي صفارة لأن مقاومتها منخفضة.","A broken coil can cut a power line.","الملف المقطوع قد يقطع خط طاقة."),
-    fuse: makeBook("Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─[F]─","A fuse protects a circuit and opens when current is too high.","الفيوز يحمي الدائرة وينقطع عندما يكون التيار عاليا.","Use continuity mode. A good fuse usually beeps.","استخدم الاستمرارية. الفيوز السليم غالبا يعطي صفارة.","A blown fuse cuts the path. Do not bypass it without understanding why.","الفيوز التالف يقطع المسار. لا تتجاوزه بدون فهم السبب."),
-    connector: makeBook("Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","CN / J","A connector links the board to battery, screen, charge flex or other parts.","الكونكتور يربط اللوحة بالبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.","Inspect with microscope first. Then test pins depending on the line.","افحصه بالميكروسكوب أولا، ثم افحص البنات حسب الخط.","Bent pins, dirt or forcing a flex can create many faults.","البنات المعوجة، الأوساخ أو إدخال الفلاتة بالقوة قد تسبب أعطالا كثيرة."),
-    ic: makeBook("IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.","┌ IC ┐","An IC is a chip containing many electronic circuits inside one package.","الشريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.","Do not test like a simple part. Check power, ground, enable and surrounding components.","لا تفحصها مثل قطعة بسيطة. افحص الطاقة، الأرضي، التفعيل والمكونات حولها.","Never replace an IC without proof. IC replacement is advanced work.","لا تغير أي شريحة بدون دليل. تغيير الشرائح عمل متقدم.")
+    resistor: makeBook("Resistor","المقاومة","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─/\\/\\/─","A resistor limits or controls current in a circuit.","المقاومة تحد أو تتحكم في مرور التيار داخل الدائرة.",[
+        ["Role","الدور","Limits current flow to protect components or create voltage division.","تقيد مرور التيار لحماية المكونات أو إنشاء تقسيم الفولت."],
+        ["Before repair","قبل الإصلاح","Identify resistor by color code or marking. Check for burn marks.","حدد المقاومة من الكود اللوني أو العلامة. افحص علامات الاحتراق."],
+        ["Test multimeter","اختبار الملتيميتر","Set to Ω (Ohms). Disconnect one leg. Compare reading with marked value.","اضبط على Ω (أوم). افصل ساق واحدة. قارن القراءة بالقيمة المعلمة."],
+        ["Common values","القيم الشائعة","100Ω, 1kΩ, 10kΩ, 100kΩ - used for current limiting and voltage division.","100Ω, 1kΩ, 10kΩ, 100kΩ - تستخدم لتقسيم التيار والفولت."],
+        ["Failure signs","علامات التلف","Burn marks, cracked body, wrong reading >10% from marked value.","علامات احتراق، جسم متشقق، قراءة خاطئة >10% من القيمة المعلمة."]
+    ], [
+        ["Warning","تحذير","Never replace without proof. Check circuit first.","لا تغير بدون دليل. افحص الدائرة أولا."],
+        ["Method","الطريقة","Observe → Measure → Compare → Replace.","لاحظ → قس → قارن → غير."],
+        ["Power rating","القدرة","1/4W, 1/2W, 1W - choose correct wattage for heat dissipation.","1/4W, 1/2W, 1W - اختر الواط الصحيح لتبديد الحرارة."]
+    ]),
+    capacitor: makeBook("Capacitor","المكثف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─| |─","A capacitor stores energy and filters electrical noise on power lines.","المكثف يخزن الطاقة وينقي التشويش الكهربائي في خطوط الطاقة.",[
+        ["Role","الدور","Stores energy in electric field. Filters power lines and stabilizes voltage.","يخزن الطاقة في مجال كهربائي. يفلتر خطوط الطاقة ويstabilizes الفولت."],
+        ["Types","الأنواع","Ceramic (small), Electrolytic (big, polarized), Tantalum (stable).","سيراميك (صغير)، إلكتروليتي (كبير، مستقطب)، تانتالوم (مستقر)."],
+        ["Test multimeter","اختبار الملتيميتر","Use continuity mode. Should show brief charge then OL (open).","استخدم وضع الاستمرارية. يجب إظهار شحن قصير ثم OL (فتح)."],
+        ["Failure signs","علامات التلف","Bulging top, leaking electrolyte, short to ground.","انتفاخ الأعلى، تسرب إلكتروليت، شورت مع الأرضي."],
+        ["Important locations","المواقع المهمة","Near CPU, PMIC, power circuits - these are critical filtering points.","قرب المعالج، PMIC، دوائر الطاقة - هذه نقاط تصفية حرجة."]
+    ], [
+        ["Warning","تحذير","Electrolytic capacitors can explode if connected with wrong polarity!","المكثفات الإلكترونية قد تنفجر إذا وصلت بالقطبية الخاطئة!"],
+        ["Test in-circuit","الاختبار في الدائرة","Not always reliable. Best to test after removing from board.","ليس всегда دقيقا. الأفضل اختبار بعد إزالته من اللوحة."],
+        ["Value reading","قراءة القيمة","Marked in µF (microfarads) or pF (picofarads).","معلمة بـ µF (ميكروفاراد) أو pF (بيكوفاراد)."]
+    ]),
+    diode: makeBook("Diode","الدايود","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─|>|─","A diode allows current to pass mainly in one direction.","الدايود يسمح بمرور التيار غالبا في اتجاه واحد.",[
+        ["Role","الدور","Allows current flow in one direction only. Used for rectification and protection.","يسمح بمرور التيار في اتجاه واحد فقط. يستخدم للتوحيد والحماية."],
+        ["Types","الأنواع","Schottky (fast, low voltage drop), Zener (voltage reference), TVS (protection).","شوتكي (سريع، هبوط فولت منخفض)، زينر (مرجع فولت)، TVS (حماية)."],
+        ["Test multimeter","اختبار الملتيميتر","Diode mode. One direction shows ~0.6-0.7V, other shows OL.","وضع الدايود. اتجاه يُظهر ~0.6-0.7V، الآخر يُظهر OL."],
+        ["Forward voltage","فولت أمامي","Silicon: ~0.7V, Schottky: ~0.3V, Zener: varies by breakdown voltage.","سليكون: ~0.7V، شوتكي: ~0.3V، زينر: يختلف حسب فولت الانهيار."],
+        ["Failure signs","علامات التلف","Short (both directions show low), open (both show OL).","قصر (الاتجاهان يُظهران منخفض)، فتح (الاتجاهان يُظهران OL)."]
+    ], [
+        ["Important","مهم","Schottky diodes have lower forward voltage drop - important for power circuits."," diodes شوتكي لها هبوط فولت أمامي أقل - مهم لدوائر الطاقة."],
+        ["Protection","الحماية","TVS diodes protect against voltage spikes - look for them near connectors."," diodes TVS تحمي من ارتفاع الفولت - ابحث عنها قرب الكونكتورات."]
+    ]),
+    coil: makeBook("Coil","الملف","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─oooo─","A coil is used in power circuits and voltage regulation.","الملف يستخدم في دوائر الطاقة وتنظيم الفولت.",[
+        ["Role","الدور","Stores energy in magnetic field. Used for filtering and voltage conversion.","يخزن الطاقة في مجال مغناطيسي. يستخدم للترقية وتحويل الفولت."],
+        ["Inductance","التحريض","Measured in µH (microhenries). Higher = blocks AC, passes DC.","يقاس بـ µH (ميكروهنري). الأعلى = يحجب AC، يمرر DC."],
+        ["Test multimeter","اختبار الملتيميتر","Continuity mode. Most coils beep because resistance is low.","وضع الاستمرارية. أغلب الملفات تعطي صفارة لأن مقاومتها منخفضة."],
+        ["Failure signs","علامات التلف","Broken wire (no continuity), short to adjacent traces.","سلك مكسور (لا استمرارية)، قصر لمسارات مجاورة."],
+        ["Locations","المواقع","Near power circuits, display connectors, charging circuits.","قرب دوائر الطاقة، كونNECTORS الشاشة، دوائر الشحن."]
+    ], [
+        ["Tip","نصيحة","Coils can fail from physical damage or overheating. Check visually first.","الملفات قد تتلف من الضرر المادي أو الحرارة الزائدة. افحص بصريا أولا."],
+        ["Replacement","الاستبدال","Must match inductance value. Using wrong value can cause issues.","يجب مطابقة قيمة التحريض. استخدام قيمة خاطئة قد يسبب مشاكل."]
+    ]),
+    fuse: makeBook("Fuse","الفيوز","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","─[F]─","A fuse protects a circuit and opens when current is too high.","الفيوز يحمي الدائرة وينقطع عندما يكون التيار عاليا.",[
+        ["Role","الدور","Protects circuit from overcurrent. Single use (one-time) or resettable (PTC).","يحمي الدائرة من التيار الزائد. استخدام واحد (one-time) أو قابل لإعادة الضبط (PTC)."],
+        ["Types","الأنواع","Glass tube (fast blow), ceramic (slow), polymer PTC (resettable).","أنبوب زجاج (انفجار سريع)، سيراميك (بطيء)، بوليمر PTC (قابل لإعادة الضبط)."],
+        ["Rating","التقييم","Marked in Amps (A). Never replace with higher rating!","معلمة بالأمبير (A). لا تستبدل بقيمة أعلى أبدا!"],
+        ["Test multimeter","اختبار الملتيميتر","Continuity mode. Good fuse beeps. Blown fuse shows OL.","وضع الاستمرارية. الفيوز السليم يعطي صفارة. الفيوز التالف يُظهر OL."],
+        ["Finding fuses","إيجاد الفيوزات","Look near battery connector, USB port, power inputs.","ابحث قرب كونكتور البطارية، منفذ USB، مداخل الطاقة."]
+    ], [
+        ["Warning","تحذير","Always find WHY fuse blew before replacing!","دائما ابحث عن سبب احتراق الفيوز قبل الاستبدال!"],
+        ["Common causes","الأسباب الشائعة","Short circuit, component failure, power surge.","دائرة قصيرة، فشل مكون، ارتفاع طاقة."]
+    ]),
+    connector: makeBook("Connector","الكونكتور","Role, schematic symbol and test method.","الدور، رمز المخطط وطريقة الفحص.","CN / J","A connector links the board to battery, screen, charge flex or other parts.","الكونكتور يربط اللوحة بالبطارية، الشاشة، فلاتة الشحن أو أجزاء أخرى.",[
+        ["Role","الدور","Provides removable connection between board and components.","يوفر اتصال قابل للإزالة بين اللوحة والمكونات."],
+        ["Types","الأنYPES","Zero Insertion Force (ZIF), Board-to-Board (B2B), Flex (FFC).","قوة إدخال صفر (ZIF)، لوحة إلى لوحة (B2B)، مرن (FFC)."],
+        ["Inspection","الفحص","Use microscope. Check for bent pins, corrosion, broken locks.","استخدم الميكروسكوب. افحص البنات المعوجة، التآكل، الأقفال المكسورة."],
+        ["Testing","الاختبار","Check each pin for continuity to its destination on board.","افحص كل بنت للاستمرارية إلى وجهتها على اللوحة."],
+        ["Common issues","المشاكل الشائعة","Bent pins, broken flex, corrosion from liquid damage.","بنات معوجة، فلتكس مكسور، تآكل من أضرار السوائل."]
+    ], [
+        ["Tip","نصيحة","Always use proper insertion tool. Never force a flex cable!","دائما استخدم أداة إدخال مناسبة. لا تفرض فلتكس بالقوة!"],
+        ["Cleaning","التنظيف","Use IPA and soft brush. Never use sharp tools near connectors.","استخدم IPA وفرشاة ناعمة. لا تستخدم أدوات حادة قرب الكونNECTORS."]
+    ]),
+    ic: makeBook("IC","الدائرة المتكاملة","General IC logic and safe diagnosis.","منطق الشريحة وطريقة التشخيص الآمن.","┌ IC ┐","An IC is a chip containing many electronic circuits inside one package.","الشريحة تحتوي على دوائر إلكترونية كثيرة داخل قطعة واحدة.",[
+        ["Role","الدور","Processes data, controls power, manages communication - brain of device.","يعالج البيانات، يتحكم بالطاقة، يدير الاتصال - دماغ الجهاز."],
+        ["Types by function","الأنواع حسب الوظيفة","PMIC (power), SoC (processor), Memory (storage), RF (wireless).","PMIC (طاقة)، SoC (معالج)، ذاكرة (تخزين)، RF (لاسلكي)."],
+        ["Visual inspection","الفحص البصري","Check for burn marks, cracked package, lifted pads, corrosion.","افحص علامات الاحتراق، العلبة المتشققة، البادات المرفوعة، التآكل."],
+        ["Power check","فحص الطاقة","Check all power pins for correct voltage. Check enable signals.","افحص كل بنات الطاقة للفولت الصحيح. افحص إشارات التفعيل."],
+        ["Ground check","فحص الأرضي","Check all ground pins for continuity to ground plane.","افحص كل بنات الأرضي للاستمرارية للأرضي."]
+    ], [
+        ["Warning","تحذير","Never replace IC without proof! Requires advanced skills.","لا تغير الشريحة بدون دليل! يتطلب مهارات متقدمة."],
+        ["Diagnosis","التشخيص","Check power → Check ground → Check enable → Check signals.","افحص الطاقة → افحص الأرضي → افحص التفعيل → افحص الإشارات."],
+        ["Tools needed","الأدوات المطلوبة","Hot air station, microscope, fine tip iron, flux, solder wick.","محطة الهواء الساخن، ميكروسكوب، طرف رفيع، فلكس، فتيل لحام."]
+    ])
 };
 
 const systemBooks = {
@@ -1555,6 +1951,25 @@ function renderBookPage(){
         `;
         list.appendChild(box);
     });
+    
+    // Show extra detailed points if available
+    if(page.extraPoints && page.extraPoints.length > 0){
+        const detailTitle = document.createElement("div");
+        detailTitle.className = "section-title";
+        detailTitle.style.marginTop = "20px";
+        detailTitle.innerHTML = `<h3>${currentLang === 'en' ? '📖 Detailed Guide' : '📖 دليل مفصل'}</h3>`;
+        list.appendChild(detailTitle);
+        
+        page.extraPoints.forEach(point => {
+            const box = document.createElement("div");
+            box.className = "lesson-detail";
+            box.innerHTML = `
+                <h4>${txt(point.title)}</h4>
+                <p>${txt(point.text)}</p>
+            `;
+            list.appendChild(box);
+        });
+    }
 
     document.getElementById("prevButton").disabled = currentBookPage === 0;
     document.getElementById("nextButton").disabled = currentBookPage === currentNode.book.length - 1;
@@ -1606,20 +2021,148 @@ function createMeterVisual(page){
 }
 
 function createComponentVisual(page){
+    // Get more details from the current node
+    const node = currentNode;
+    if(!node || !node.book) return "";
+    
+    // Get component type info
+    const componentInfo = getComponentInfo(node.id);
+    
     return `
-        <div class="visual">
-            <div class="visual-title">${page.mode.toUpperCase()}</div>
-            <div class="component-layout">
-                <div class="component-body">${page.display}</div>
-                <div class="schematic-box">${page.symbol}</div>
-                <div class="test-row">
-                    <div class="pad">IN</div>
-                    <div class="meter"><div>${page.display}</div></div>
-                    <div class="pad">OUT</div>
+        <div class="component-visual-enhanced">
+            <div class="component-header">
+                <div class="component-symbol-large">${page.display}</div>
+                <div class="component-name">
+                    <h3>${txt(node.title)}</h3>
+                    <span class="type">${componentInfo.category}</span>
                 </div>
             </div>
+            
+            <div class="component-diagram">
+                <div class="diagram-box title">
+                    <label>Schematic Symbol</label>
+                    <div class="value gold">${page.symbol}</div>
+                </div>
+                <div class="diagram-box">
+                    <label>Type</label>
+                    <div class="value">${componentInfo.type}</div>
+                </div>
+                <div class="diagram-box">
+                    <label>Package</label>
+                    <div class="value">${componentInfo.package}</div>
+                </div>
+            </div>
+            
+            ${componentInfo.pinout ? `
+            <div class="pinout-section">
+                <div class="pinout-title">Pin Configuration</div>
+                <div class="pinout-grid">
+                    ${componentInfo.pinout.map(p => `
+                        <div class="pin">
+                            <span class="num">${p.num}</span>
+                            <span class="name">${p.name}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            <div class="real-component">
+                <div class="placeholder">📷 Component Photo</div>
+                <div class="label">Typical appearance on PCB</div>
+            </div>
         </div>
+        
+        ${componentInfo.warning ? `
+        <div class="warning-box">
+            <p>${componentInfo.warning}</p>
+        </div>
+        ` : ''}
+        
+        ${componentInfo.tip ? `
+        <div class="tip-box">
+            <p>${componentInfo.tip}</p>
+        </div>
+        ` : ''}
     `;
+}
+
+function getComponentInfo(componentId){
+    const info = {
+        resistor: {
+            category:"Passive Component",
+            type:"Fixed / Variable",
+            package:"SMD 0402/0603/1206",
+            pinout:[
+                {num:"1",name:"Input"},{num:"2",name:"Output"}
+            ],
+            warning:"Never replace without measuring first!",
+            tip:"Check for burn marks before testing."
+        },
+        capacitor: {
+            category:"Passive Component",
+            type:"Ceramic / Electrolytic / Tantalum",
+            package:"SMD / Through-hole",
+            pinout:[
+                {num:"1",name:"Positive"},{num:"2",name:"Negative"}
+            ],
+            warning:"Electrolytic capacitors are polarized!",
+            tip:"Check for bulging top on electrolytic capacitors."
+        },
+        diode: {
+            category:"Semiconductor",
+            type:"Schottky / Zener / TVS",
+            package:"SMD DO-214",
+            pinout:[
+                {num:"1",name:"Anode"},{num:"2",name:"Cathode"}
+            ],
+            warning:"Check polarity before testing!",
+            tip:"Schottky diodes have lower forward voltage drop."
+        },
+        coil: {
+            category:"Passive Component",
+            type:"Inductor / Choke",
+            package:"SMD / Shielded",
+            pinout:[
+                {num:"1",name:"In"},{num:"2",name:"Out"}
+            ],
+            tip:"Check for physical damage first."
+        },
+        fuse: {
+            category:"Protection",
+            type:"Fast-blow / Slow-blow / PTC",
+            package:"0402/1206/Glass",
+            pinout:[
+                {num:"1",name:"In"},{num:"2",name:"Out"}
+            ],
+            warning:"Find the cause before replacing!",
+            tip:"Check for short circuits first."
+        },
+        connector: {
+            category:"Interface",
+            type:"Board-to-Board / Flex",
+            package:"Various",
+            pinout:null,
+            warning:"Never force connection!",
+            tip:"Use microscope to check for bent pins."
+        },
+        ic: {
+            category:"Active Component",
+            type:"PMIC / SoC / Memory / RF",
+            package:"BGA / QFN / LGA",
+            pinout:null,
+            warning:"IC replacement requires advanced skills!",
+            tip:"Check power, ground, and enable first."
+        }
+    };
+    
+    return info[componentId] || {
+        category:"Component",
+        type:"Unknown",
+        package:"Standard",
+        pinout:null,
+        tip:"Follow standard testing procedures."
+    };
 }
 
 function previousBookPage(){

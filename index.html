@@ -2346,3 +2346,39 @@ window.COURSES_DATA = COURSES_DATA;
 window.COMPONENTS_DATA = COMPONENTS_DATA;
 window.TOOLS_DATA = TOOLS_DATA;
 window.QUIZ_DATA = QUIZ_DATA;
+```
+
+---
+
+## 4️⃣ Fichier `script.js` (LOGIQUE COMPLÈTE)
+
+```javascript
+/* ============================================
+   LOGIQUE COMPLÈTE - SMART REPAIR ACADEMY
+   ============================================ */
+
+// Initialisation Telegram Web App
+const tg = window.Telegram.WebApp;
+tg.expand();
+
+// État de l'application
+let AppState = {
+    currentPage: 'home',
+    currentCourse: null,
+    currentChapter: null,
+    currentQuiz: null,
+    currentQuestion: 0,
+    quizScore: 0,
+    userProgress: {
+        completedCourses: [],
+        completedChapters: [],
+        quizScores: {},
+        totalXP: 0,
+        level: 1,
+        badges: []
+    }
+};
+
+// ============================================
+// INITIALISATION
+// ============================================

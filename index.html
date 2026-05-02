@@ -1,1039 +1,2348 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MASTER REPAIR ACADEMY</title>
-<meta name="theme-color" content="#0c1220">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Manrope:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-    --line:#303030;
-    --gold:#f2c94c;
-    --cyan:#38bdf8;
-    --green:#27c46b;
-    --muted:#9b9b9b;
-    --soft:#dedede;
-    --red:#b00020;
-}
-*{box-sizing:border-box;}
-body{
-    margin:0;
-    min-height:100vh;
-    color:#fff;
-    font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
-    background:
-        radial-gradient(circle at top left,rgba(56,189,248,.16),transparent 30%),
-        radial-gradient(circle at top right,rgba(242,201,76,.16),transparent 30%),
-        radial-gradient(circle at bottom,rgba(176,0,32,.12),transparent 35%),
-        linear-gradient(180deg,#0d0d0d,#050505);
-}
-body[dir="rtl"]{direction:rtl;}
-.app{max-width:560px;margin:auto;padding:14px;}
-.topbar{
-    display:grid;
-    grid-template-columns:42px 1fr 42px;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-}
-.logo{text-align:center;}
-.logo-mark{
-    width:34px;
-    height:34px;
-    margin:0 auto 5px;
-    border-radius:12px;
-    border:1px solid rgba(56,189,248,.55);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--cyan);
-    font-weight:900;
-    box-shadow:0 0 18px rgba(56,189,248,.26);
-}
-.logo h1{
-    margin:0;
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:.6px;
-    color:#eafaff;
-    text-shadow:0 0 8px rgba(56,189,248,.48);
-}
-.logo h1 span{color:var(--gold);}
-.status{font-size:11px;color:var(--muted);font-weight:700;}
-.icon-btn,.lang-btn{
-    width:42px;
-    height:42px;
-    border:1px solid var(--line);
-    border-radius:13px;
-    background:#121212;
-    color:#fff;
-    font-weight:900;
-    cursor:pointer;
-}
-.lang-btn{color:var(--gold);}
-.page{display:none;animation:fade .18s;}
-.page.active{display:block;}
-@keyframes fade{
-    from{opacity:.45;transform:translateY(6px);}
-    to{opacity:1;}
-}
-.hero,.panel{
-    border:1px solid var(--line);
-    border-radius:16px;
-    background:rgba(20,20,20,.94);
-    padding:17px;
-    margin-bottom:12px;
-    text-align:center;
-    box-shadow:0 14px 35px rgba(0,0,0,.24);
-}
-.hero{
-    background:
-        linear-gradient(145deg,rgba(56,189,248,.14),rgba(242,201,76,.13)),
-        rgba(20,20,20,.96);
-}
-.title{margin:0;font-size:22px;font-weight:900;line-height:1.25;}
-.text{
-    margin:9px 0 0;
-    color:var(--soft);
-    font-size:14px;
-    line-height:1.65;
-    font-weight:600;
-}
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-    margin:11px 0;
-}
-.stat{
-    border:1px solid var(--line);
-    border-radius:13px;
-    padding:11px 6px;
-    background:#141414;
-    text-align:center;
-}
-.stat strong{display:block;color:var(--gold);font-size:18px;}
-.stat small{display:block;color:var(--muted);font-size:12px;}
-.progress-wrap{
-    height:10px;
-    border-radius:999px;
-    background:#080808;
-    border:1px solid var(--line);
-    overflow:hidden;
-    margin-top:14px;
-}
-.progress{
-    height:100%;
-    width:0;
-    background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));
-}
-button{
-    min-height:44px;
-    padding:11px;
-    border-radius:13px;
-    border:1px solid var(--line);
-    background:#111;
-    color:#fff;
-    font-family:inherit;
-    font-size:14px;
-    font-weight:900;
-    cursor:pointer;
-}
-button:disabled{opacity:.4;cursor:not-allowed;}
-.primary{
-    background:linear-gradient(135deg,var(--gold),#ffe08a);
-    color:#111;
-}
-.danger{background:linear-gradient(180deg,#b00020,#780015);}
-.main-action{width:100%;}
-.section-title{text-align:center;margin:18px 2px 10px;}
-.section-title h3{margin:0;font-size:17px;font-weight:900;}
-.section-title p{margin:3px 0 0;color:var(--muted);font-size:13px;}
-.branch-list,.chapter-list{display:grid;gap:10px;}
-.branch-card,.chapter-card{
-    min-height:88px;
-    border:1px solid var(--line);
-    border-radius:16px;
-    background:linear-gradient(180deg,#1c1c1c,#101010);
-    text-align:center;
-    padding:14px 12px;
-}
-.branch-card.done,.chapter-card.done{border-color:rgba(39,196,107,.8);}
-.branch-card strong,.chapter-card strong{display:block;font-size:16px;line-height:1.3;}
-.branch-card small,.chapter-card small{
-    display:block;
-    color:var(--muted);
-    font-size:12.5px;
-    margin-top:7px;
-    line-height:1.5;
-}
-.badge{
-    display:inline-block;
-    margin-top:9px;
-    padding:5px 9px;
-    border-radius:999px;
-    background:rgba(242,201,76,.12);
-    color:var(--gold);
-    font-size:11px;
-    font-weight:900;
-}
-.list{display:grid;gap:8px;}
-.lesson{
-    border:1px solid var(--line);
-    border-radius:14px;
-    background:#1b1b1b;
-    padding:13px;
-    text-align:center;
-}
-.lesson strong{font-size:15.5px;}
-.lesson p{color:var(--muted);font-size:13.5px;line-height:1.65;}
-.book-controls,.action-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-    margin-top:11px;
-}
-.book-counter{color:var(--gold);font-size:12px;font-weight:900;margin-top:10px;}
-.visual{
-    max-width:315px;
-    margin:14px auto 4px;
-    padding:14px;
-    border-radius:22px;
-    border:1px solid rgba(56,189,248,.32);
-    background:linear-gradient(180deg,#232323,#111);
-}
-.visual-title{
-    color:var(--cyan);
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:.5px;
-    margin-bottom:9px;
-}
-.component-layout{display:grid;gap:10px;}
-.component-body{
-    min-height:76px;
-    border:1px solid rgba(242,201,76,.45);
-    border-radius:16px;
-    background:#101010;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--gold);
-    font-size:22px;
-    font-weight:900;
-}
-.schematic-box{
-    border:1px solid rgba(242,201,76,.28);
-    border-radius:14px;
-    padding:12px;
-    color:var(--gold);
-    font-size:19px;
-    font-weight:900;
-    background:#0c0c0c;
-}
-.test-row{
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-    gap:8px;
-    align-items:center;
-}
-.pad{
-    border:1px solid #333;
-    border-radius:12px;
-    min-height:38px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#ccc;
-    font-size:11px;
-    font-weight:900;
-}
-.meter{
-    width:78px;
-    height:54px;
-    border:1px solid #444;
-    border-radius:12px;
-    padding:7px;
-}
-.meter div{
-    height:100%;
-    border-radius:8px;
-    background:#9fd7b2;
-    color:#071107;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    font-weight:900;
-}
+```
+📦 repair-academy/
+├── index.html
+├── style.css
+├── script.js
+├── data.js
+└── README.md
+```
 
-.meter-visual{
-    width:100%;
-    max-width:292px;
-    margin:14px auto 4px;
-    padding:15px;
-    border-radius:24px;
-    border:1px solid rgba(56,189,248,.35);
-    background:
-        radial-gradient(circle at top,rgba(56,189,248,.14),transparent 36%),
-        linear-gradient(180deg,#262626,#101010);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),0 0 28px rgba(56,189,248,.12);
-}
-.meter-screen{
-    height:56px;
-    border-radius:13px;
-    background:#9fd7b2;
-    color:#071107;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:1px;
-    border:3px solid #0b0b0b;
-}
-.dial{
-    width:128px;
-    height:128px;
-    margin:15px auto 10px;
-    border-radius:50%;
-    background:#0d0d0d;
-    border:8px solid #2b2b2b;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-.dial-center{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:var(--gold);
-    color:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    font-size:11px;
-}
-.mode{
-    position:absolute;
-    font-size:10.5px;
-    font-weight:900;
-    color:#aaa;
-}
-.mode.active{
-    color:var(--gold);
-    text-shadow:0 0 10px rgba(242,201,76,.65);
-}
-.m-off{top:6px;left:52px;}
-.m-vdc{top:20px;right:13px;}
-.m-vac{right:4px;top:55px;}
-.m-ohm{right:18px;bottom:17px;}
-.m-cont{left:52px;bottom:5px;}
-.m-diode{left:15px;bottom:18px;}
-.m-a{left:4px;top:55px;}
-.m-ma{left:14px;top:20px;}
-.ports{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-    margin-top:10px;
-}
-.port{
-    border:1px solid #333;
-    border-radius:10px;
-    padding:7px 4px;
-    background:#090909;
-    font-size:11px;
-    font-weight:900;
-}
-.port.red{color:#ff6b6b;}
-.port.black{color:#cfcfcf;}
-.port.gold{color:var(--gold);}
-.probes{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    margin-top:12px;
-}
-.probe{
-    width:8px;
-    height:54px;
-    border-radius:8px;
-    position:relative;
-}
-.probe:before{
-    content:"";
-    position:absolute;
-    top:-10px;
-    left:50%;
-    transform:translateX(-50%);
-    width:0;
-    height:0;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-    border-bottom:12px solid currentColor;
-}
-.probe.red{background:#e11d48;color:#e11d48;}
-.probe.black{background:#cbd5e1;color:#cbd5e1;}
-.sos-box{
-    border-color:rgba(176,0,32,.55);
-    background:rgba(176,0,32,.12);
-}
-.footer{
-    color:#777;
-    font-size:11px;
-    text-align:center;
-    padding:15px 0 5px;
-    font-weight:700;
-}
-@media(max-width:390px){
-    .app{padding:12px;}
-    .logo h1{font-size:16px;}
-}
-@media(max-width:330px){
-    .stats,.book-controls,.action-row{grid-template-columns:1fr;}
-}
-/* Loading States */
-.loading-skeleton{
-    background:linear-gradient(90deg,#1a1a1a 25%,#2a2a2a 50%,#1a1a1a 75%);
-    background-size:200% 100%;
-    animation:shimmer 1.5s infinite;
-}
-@keyframes shimmer{
-    0%{background-position:200% 0;}
-    100%{background-position:-200% 0;}
-}
-/* Search Box */
-.search-box{
-    position:relative;
-    margin-bottom:14px;
-}
-.search-box input{
-    width:100%;
-    padding:12px 16px 12px 44px;
-    border:1px solid var(--line);
-    border-radius:13px;
-    background:#121212;
-    color:#fff;
-    font-family:inherit;
-    font-size:14px;
-    font-weight:600;
-}
-.search-box input:focus{
-    outline:none;
-    border-color:var(--cyan);
-    box-shadow:0 0 0 3px rgba(56,189,248,.15);
-}
-.search-box::before{
-    content:"🔍";
-    position:absolute;
-    left:14px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:16px;
-}
-.search-results{
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#1a1a1a;
-    border:1px solid var(--line);
-    border-radius:13px;
-    margin-top:4px;
-    max-height:300px;
-    overflow-y:auto;
-    z-index:100;
-    display:none;
-}
-.search-results.active{display:block;}
-.search-result-item{
-    padding:12px 16px;
-    cursor:pointer;
-    border-bottom:1px solid #2a2a2a;
-}
-.search-result-item:hover{background:#252525;}
-.search-result-item strong{display:block;color:#fff;font-size:14px;}
-.search-result-item small{color:var(--muted);font-size:12px;}
-/* Toast Notifications */
-.toast-container{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:1000;
-}
-.toast{
-    background:#1a1a1a;
-    border:1px solid var(--line);
-    border-radius:13px;
-    padding:14px 20px;
-    color:#fff;
-    font-size:14px;
-    font-weight:600;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
-    animation:slideUp .3s ease;
-}
-.toast.success{border-color:var(--green);}
-.toast.error{border-color:var(--red);}
-@keyframes slideUp{
-    from{opacity:0;transform:translateY(20px);}
-    to{opacity:1;transform:translateY(0);}
-}
-/* Progress Ring */
-.progress-ring{
-    width:60px;
-    height:60px;
-    margin:0 auto 10px;
-}
-.progress-ring circle{
-    fill:none;
-    stroke-width:4;
-    transform:rotate(-90deg);
-    transform-origin:center;
-}
-.progress-ring .bg{stroke:#1a1a1a;}
-.progress-ring .fg{
-    stroke:var(--cyan);
-    stroke-dasharray:157;
-    stroke-dashoffset:157;
-    transition:stroke-dashoffset .5s ease;
-}
-/* Keyboard Navigation */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible{
-    outline:2px solid var(--cyan);
-    outline-offset:2px;
-}
-/* Reduced Motion */
-@media(prefers-reduced-motion:reduce){
-    *,*::before,*::after{
-        animation-duration:.01ms !important;
-        transition-duration:.01ms !important;
-    }
-}
-/* Tab Navigation */
-.tabs{
-    display:flex;
-    gap:4px;
-    margin-bottom:14px;
-    background:#111;
-    border-radius:13px;
-    padding:4px;
-}
-.tab{
-    flex:1;
-    padding:10px 8px;
-    border:none;
-    border-radius:10px;
-    background:transparent;
-    color:#777;
-    font-size:12px;
-    font-weight:700;
-    cursor:pointer;
-    transition:all .2s;
-}
-.tab.active{
-    background:linear-gradient(135deg,var(--gold),#ffe08a);
-    color:#111;
-}
-.tab:hover:not(.active){color:#aaa;}
-/* Quiz Styles */
-.quiz-container{text-align:center;}
-.quiz-question{
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:20px;
-    color:#fff;
-}
-.quiz-options{display:grid;gap:10px;}
-.quiz-option{
-    padding:14px;
-    border:1px solid var(--line);
-    border-radius:13px;
-    background:#1a1a1a;
-    color:#fff;
-    font-size:14px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all .2s;
-    text-align:left;
-}
-.quiz-option:hover{
-    border-color:var(--cyan);
-    background:#222;
-}
-.quiz-option.correct{
-    border-color:var(--green);
-    background:rgba(39,196,107,.15);
-}
-.quiz-option.wrong{
-    border-color:var(--red);
-    background:rgba(176,0,32,.15);
-}
-.quiz-progress{
-    margin-bottom:16px;
-    color:var(--muted);
-    font-size:13px;
-}
-.quiz-score{
-    font-size:32px;
-    font-weight:900;
-    color:var(--gold);
-    margin:20px 0;
-}
-/* Profile Styles */
-.profile-header{text-align:center;padding:20px;}
-.profile-avatar{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--cyan),var(--gold));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:32px;
-    font-weight:900;
-    color:#111;
-    margin:0 auto 12px;
-}
-.profile-name{font-size:20px;font-weight:900;margin-bottom:4px;}
-.profile-level{color:var(--gold);font-size:14px;font-weight:700;}
-.stat-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin:16px 0;
-}
-.stat-card{
-    background:#1a1a1a;
-    border:1px solid var(--line);
-    border-radius:13px;
-    padding:16px;
-    text-align:center;
-}
-.stat-card.big{grid-column:span 2;}
-.stat-card .value{
-    font-size:28px;
-    font-weight:900;
-    color:var(--cyan);
-}
-.stat-card .label{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:4px;
-}
-.cert-list{display:grid;gap:8px;}
-.cert-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px;
-    background:#1a1a1a;
-    border:1px solid var(--line);
-    border-radius:13px;
-}
-.cert-icon{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    background:linear-gradient(135deg,var(--gold),#ffe08a);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-}
-.cert-info strong{display:block;font-size:14px;}
-.cert-info small{color:var(--muted);font-size:12px;}
-/* SOS Button Enhanced */
-.sos-btn-enhanced{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    background:linear-gradient(180deg,#b00020,#780015);
-    animation:pulse 2s infinite;
-}
-@keyframes pulse{
-    0%,100%{box-shadow:0 0 0 0 rgba(176,0,32,.4);}    50%{box-shadow:0 0 0 8px rgba(176,0,32,0);}
-}
-.sos-btn-enhanced::before{
-    content:"🔴";
-    animation:blink 1s infinite;
-}
-@keyframes blink{
-    0%,100%{opacity:1;}    50%{opacity:.5;}
-}
-/* Quick SOS Modal */
-.sos-modal{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background:rgba(0,0,0,.9);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:2000;
-    padding:20px;
-}
-.sos-modal.active{display:flex;}
-.sos-modal-content{
-    background:#1a1a1a;
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:24px;
-    max-width:400px;
-    width:100%;
-}
-.sos-modal h3{
-    color:var(--red);
-    margin:0 0 16px;
-    font-size:18px;
-}
-.sos-modal textarea{
-    width:100%;
-    height:100px;
-    padding:12px;
-    border:1px solid var(--line);
-    border-radius:10px;
-    background:#111;
-    color:#fff;
-    font-family:inherit;
-    font-size:14px;
-    resize:none;
-}
-.sos-modal-buttons{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:16px;
-}
-.sos-modal-buttons button{
-    padding:12px;
-    border-radius:10px;
-    font-weight:700;
-}
-.sos-modal-buttons .cancel{
-    background:#222;
-    border:1px solid var(--line);
-}
-/* Favorites */
-.fav-btn{
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    background:#1a1a1a;
-    color:var(--muted);
-    font-size:18px;
-    cursor:pointer;
-    transition:all .2s;
-}
-.fav-btn.active{
-    color:var(--gold);
-    border-color:var(--gold);
-}
-.fav-btn:hover{transform:scale(1.1);}
-/* Vocabulary Section */
-.vocab-grid{display:grid;gap:8px;}
-.vocab-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 16px;
-    background:#1a1a1a;
-    border:1px solid var(--line);
-    border-radius:10px;
-}
-.vocab-item .en{color:var(--cyan);font-weight:700;}
-.vocab-item .ar{color:var(--gold);font-weight:700;text-align:right;}
-.vocab-item .def{display:block;color:var(--muted);font-size:12px;margin-top:4px;}
-</style>
+---
+
+## 1️⃣ Fichier `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>📱 Smart Repair Academy</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="app">
-    <div class="topbar">
-        <button class="icon-btn" id="menuButton" aria-label="Menu">☰</button>
-        <div class="logo">
-            <div class="logo-mark">M</div>
-            <h1>MASTER <span>REPAIR</span></h1>
-            <div class="status" id="topStatus"></div>
-        </div>
-        <button class="lang-btn" id="langButton" aria-label="Toggle language">EN</button>
-    </div>
+    <!-- Navigation Bottom -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" data-page="home">
+            <span class="icon">🏠</span>
+            <span class="label">Accueil</span>
+        </button>
+        <button class="nav-btn" data-page="courses">
+            <span class="icon">📚</span>
+            <span class="label">Cours</span>
+        </button>
+        <button class="nav-btn" data-page="components">
+            <span class="icon">🔌</span>
+            <span class="label">Composants</span>
+        </button>
+        <button class="nav-btn" data-page="tools">
+            <span class="icon">🛠️ </span>
+            <span class="label">Outils</span>
+        </button>
+        <button class="nav-btn" data-page="profile">
+            <span class="icon">👤</span>
+            <span class="label">Profil</span>
+        </button>
+    </nav>
 
-    <div class="hero">
-        <p class="title" id="heroTitle"></p>
-        <p class="text" id="heroSubtitle"></p>
-        <div class="stats">
-            <div class="stat"><strong id="xpValue"></strong><small id="xpLabel"></small></div>
-            <div class="stat"><strong id="progressText"></strong><small id="progressLabel"></small></div>
-            <div class="stat"><strong id="chapterCount"></strong><small id="chapterCountLabel"></small></div>
-        </div>
-        <div class="progress-wrap"><div class="progress" id="globalProgress"></div></div>
-    </div>
+    <!-- Pages Container -->
+    <main class="pages-container">
 
-    <div id="homePage" class="page active">
-        <div class="section-title">
-            <h3 id="homeSectionTitle"></h3>
-            <p id="homeSectionText"></p>
-        </div>
-        <div class="chapter-list" id="chapterGrid"></div>
-    </div>
+        <!-- PAGE: HOME -->
+        <section id="home" class="page active">
+            <header class="page-header">
+                <h1>🎓 Smart Repair Academy</h1>
+                <p class="subtitle">Devenez expert en réparation mobile</p>
+            </header>
 
-    <div id="chapterPage" class="page">
-        <div class="section-title">
-            <h3 id="chapterTitle"></h3>
-            <p id="chapterText"></p>
-        </div>
-        <div class="panel">
-            <div class="list" id="levelList"></div>
-            <div class="action-row">
-                <button class="primary main-action" id="startLevelButton"></button>
-                <button class="outline-button main-action" id="chapterQuizButton"></button>
+            <div class="welcome-card">
+                <div class="user-greeting">
+                    <h2 id="userName">Bonjour!</h2>
+                    <p>Prêt à apprendre aujourd'hui?</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="totalCourses">0</span>
+                        <span class="stat-label">Cours</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="completedCourses">0</span>
+                        <span class="stat-label">Complétés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="quizScore">0%</span>
+                        <span class="stat-label">Score Quiz</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <button class="button outline-button main-action" id="backToHomeButton"></button>
-    </div>
 
-    <div id="levelPage" class="page">
-        <div class="panel">
-            <h3 id="levelTitle"></h3>
-            <p id="levelSubtitle"></p>
-            <div class="tip-box"><strong id="tipLabel"></strong><p id="levelTip"></p></div>
-            <div class="action-row">
-                <button class="primary main-action" id="completeLevelButton"></button>
-                <button class="outline-button main-action" id="returnToChapterButton"></button>
+            <div class="progress-section">
+                <h3>📊 Progression Globale</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="globalProgress"></div>
+                </div>
+                <p class="progress-text"><span id="progressPercent">0</span>% complété</p>
             </div>
+
+            <div class="quick-actions">
+                <h3>⚡ Actions Rapides</h3>
+                <div class="action-grid">
+                    <button class="action-btn" onclick="navigateTo('courses')">
+                        <span>📖</span>
+                        <span>Continuer l'apprentissage</span>
+                    </button>
+                    <button class="action-btn" onclick="navigateTo('quiz')">
+                        <span>📝</span>
+                        <span>Passer un Quiz</span>
+                    </button>
+                    <button class="action-btn" onclick="navigateTo('components')">
+                        <span>🔍</span>
+                        <span>Recherche Composant</span>
+                    </button>
+                    <button class="action-btn" onclick="openTelegramGroup()">
+                        <span>💬</span>
+                        <span>Communauté</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3>📅 Activité Récente</h3>
+                <div id="activityList"></div>
+            </div>
+        </section>
+
+        <!-- PAGE: COURSES -->
+        <section id="courses" class="page">
+            <header class="page-header">
+                <h1>📚 Cours & Formations</h1>
+                <p class="subtitle">Apprenez étape par étape</p>
+            </header>
+
+            <div class="level-filter">
+                <button class="filter-btn active" data-level="all">Tous</button>
+                <button class="filter-btn" data-level="beginner">Débutant</button>
+                <button class="filter-btn" data-level="intermediate">Intermédiaire</button>
+                <button class="filter-btn" data-level="advanced">Avancé</button>
+                <button class="filter-btn" data-level="expert">Expert</button>
+            </div>
+
+            <div id="coursesList" class="courses-grid"></div>
+        </section>
+
+        <!-- PAGE: COURSE DETAIL -->
+        <section id="courseDetail" class="page">
+            <header class="page-header">
+                <button class="back-btn" onclick="navigateTo('courses')">← Retour</button>
+                <h1 id="courseTitle">Titre du Cours</h1>
+            </header>
+
+            <div class="course-info-card">
+                <div class="course-meta">
+                    <span class="badge" id="courseLevel">Niveau</span>
+                    <span class="duration" id="courseDuration">0h 0min</span>
+                </div>
+                <p id="courseDescription">Description du cours...</p>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="courseProgress"></div>
+                </div>
+                <p class="progress-text"><span id="courseProgressPercent">0</span>% complété</p>
+            </div>
+
+            <div class="chapters-list" id="chaptersList"></div>
+
+            <button class="btn-primary" id="startCourseBtn" onclick="startCurrentCourse()">
+                🚀 Commencer le Cours
+            </button>
+        </section>
+
+        <!-- PAGE: CHAPTER CONTENT -->
+        <section id="chapterContent" class="page">
+            <header class="page-header">
+                <button class="back-btn" onclick="navigateTo('courseDetail')">← Retour</button>
+                <h1 id="chapterTitle">Chapitre</h1>
+            </header>
+
+            <div class="chapter-content" id="chapterContentBody"></div>
+
+            <div class="chapter-navigation">
+                <button class="btn-secondary" id="prevChapter" onclick="previousChapter()">← Précédent</button>
+                <button class="btn-primary" id="nextChapter" onclick="nextChapter()">Suivant →</button>
+            </div>
+
+            <button class="btn-success" id="completeChapter" onclick="completeChapter()">
+                ✅ Marquer comme Complété
+            </button>
+        </section>
+
+        <!-- PAGE: COMPONENTS -->
+        <section id="components" class="page">
+            <header class="page-header">
+                <h1>🔌 Composants Électroniques</h1>
+                <p class="subtitle">Encyclopédie des composants</p>
+            </header>
+
+            <div class="search-box">
+                <input type="text" id="componentSearch" placeholder="🔍 Rechercher un composant..." oninput="searchComponents()">
+            </div>
+
+            <div class="category-tabs" id="componentCategories"></div>
+
+            <div id="componentsList" class="components-grid"></div>
+        </section>
+
+        <!-- PAGE: COMPONENT DETAIL -->
+        <section id="componentDetail" class="page">
+            <header class="page-header">
+                <button class="back-btn" onclick="navigateTo('components')">← Retour</button>
+                <h1 id="componentName">Composant</h1>
+            </header>
+
+            <div class="component-detail-card">
+                <div class="component-symbol" id="componentSymbol"></div>
+                <div class="component-info">
+                    <h3 id="componentFullName"></h3>
+                    <p class="component-category" id="componentCategory"></p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>📖 Description</h3>
+                <p id="componentDescription"></p>
+            </div>
+
+            <div class="info-section">
+                <h3>⚡ Fonctionnement</h3>
+                <p id="componentFunction"></p>
+            </div>
+
+            <div class="info-section">
+                <h3>🔧 Utilisation en Réparation</h3>
+                <p id="componentRepair"></p>
+            </div>
+
+            <div class="info-section">
+                <h3>⚠️ Problèmes Courants</h3>
+                <ul id="componentProblems"></ul>
+            </div>
+
+            <div class="info-section">
+                <h3>📏 Valeurs Typiques</h3>
+                <table class="values-table" id="componentValues"></table>
+            </div>
+        </section>
+
+        <!-- PAGE: TOOLS -->
+        <section id="tools" class="page">
+            <header class="page-header">
+                <h1>🛠️ Outils  de Travail</h1>
+                <p class="subtitle">Guide complet des outils</p>
+            </header>
+
+            <div class="category-tabs" id="toolCategories"></div>
+
+            <div id="toolsList" class="tools-grid"></div>
+        </section>
+
+        <!-- PAGE: TOOL DETAIL -->
+        <section id="toolDetail" class="page">
+            <header class="page-header">
+                <button class="back-btn" onclick="navigateTo('tools')">← Retour</button>
+                <h1 id="toolName">Outil</h1>
+            </header>
+
+            <div class="tool-detail-card">
+                <div class="tool-icon" id="toolIcon"></div>
+                <div class="tool-info">
+                    <h3 id="toolFullName"></h3>
+                    <p class="tool-category" id="toolCategory"></p>
+                    <p class="tool-price" id="toolPrice"></p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>📖 Description</h3>
+                <p id="toolDescription"></p>
+            </div>
+
+            <div class="info-section">
+                <h3>✅ Utilisation</h3>
+                <ul id="toolUsage"></ul>
+            </div>
+
+            <div class="info-section">
+                <h3>💡 Conseils Pro</h3>
+                <ul id="toolTips"></ul>
+            </div>
+
+            <div class="info-section">
+                <h3>🛒 Où Acheter</h3>
+                <p id="toolWhere"></p>
+            </div>
+        </section>
+
+        <!-- PAGE: QUIZ -->
+        <section id="quiz" class="page">
+            <header class="page-header">
+                <h1>📝 Quiz & Évaluation</h1>
+                <p class="subtitle">Testez vos connaissances</p>
+            </header>
+
+            <div id="quizMenu">
+                <div class="quiz-card" onclick="startQuiz('general')">
+                    <span class="quiz-icon">🎯</span>
+                    <div class="quiz-info">
+                        <h3>Quiz Général</h3>
+                        <p>20 questions - Tous niveaux</p>
+                    </div>
+                </div>
+                <div class="quiz-card" onclick="startQuiz('components')">
+                    <span class="quiz-icon">🔌</span>
+                    <div class="quiz-info">
+                        <h3>Quiz Composants</h3>
+                        <p>15 questions - Électronique</p>
+                    </div>
+                </div>
+                <div class="quiz-card" onclick="startQuiz('tools')">
+                    <span class="quiz-icon">🛠️ </span>
+                    <div class="quiz-info">
+                        <h3>Quiz Outils</h3>
+                        <p>15 questions - Matériel</p>
+                    </div>
+                </div>
+                <div class="quiz-card" onclick="startQuiz('diagnostic')">
+                    <span class="quiz-icon">🔍</span>
+                    <div class="quiz-info">
+                        <h3>Quiz Diagnostic</h3>
+                        <p>20 questions - Dépannage</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quizActive" style="display:none;">
+                <div class="quiz-progress">
+                    <span>Question <span id="currentQuestion">1</span>/</span><span id="totalQuestions">20</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="quizProgressBar"></div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h3 id="questionText"></h3>
+                    <div class="answers-list" id="answersList"></div>
+                </div>
+
+                <div class="quiz-feedback" id="quizFeedback"></div>
+
+                <button class="btn-primary" id="nextQuestion" onclick="nextQuestion()" style="display:none;">
+                    Question Suivante →
+                </button>
+            </div>
+
+            <div id="quizResult" style="display:none;">
+                <div class="result-card">
+                    <h2>🎉 Quiz Terminé!</h2>
+                    <div class="score-display">
+                        <span class="score-value" id="finalScore">0</span>
+                        <span class="score-total">/100</span>
+                    </div>
+                    <p id="resultMessage"></p>
+                    <button class="btn-primary" onclick="navigateTo('quiz')">Recommencer</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: PROFILE -->
+        <section id="profile" class="page">
+            <header class="page-header">
+                <h1>👤 Mon Profil</h1>
+            </header>
+
+            <div class="profile-card">
+                <div class="profile-avatar" id="profileAvatar">👤</div>
+                <h2 id="profileName">Nom Utilisateur</h2>
+                <p id="profileId">@username</p>
+                <div class="level-badge" id="userLevel">Niveau 1 - Débutant</div>
+            </div>
+
+            <div class="stats-section">
+                <h3>📊 Statistiques</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="statHours">0</span>
+                        <span class="stat-label">Heures d'apprentissage</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="statCourses">0</span>
+                        <span class="stat-label">Cours complétés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="statQuizzes">0</span>
+                        <span class="stat-label">Quiz réussis</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="statPoints">0</span>
+                        <span class="stat-label">Points XP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievements-section">
+                <h3>🏆 Badges & Récompenses</h3>
+                <div class="badges-grid" id="badgesList"></div>
+            </div>
+
+            <div class="settings-section">
+                <h3>⚙️ Paramètres</h3>
+                <button class="settings-btn" onclick="resetProgress()">
+                    🔄 Réinitialiser la Progression
+                </button>
+                <button class="settings-btn" onclick="exportData()">
+                    📤 Exporter mes Données
+                </button>
+                <button class="settings-btn" onclick="contactSupport()">
+                    📞 Support Technique
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Chapter Content -->
+    <div id="chapterModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <div id="quizPage" class="page">
-        <div class="panel">
-            <h3 id="quizTitle"></h3>
-            <p id="quizSubtitle"></p>
-            <div id="quizCard" class="quiz-card"></div>
-            <div class="action-row" id="quizActions"></div>
-        </div>
-    </div>
-</div>
-<button class="sos-button sos-btn-enhanced" id="sosButton" aria-label="SOS"><span id="sosLabel"></span></button>
-<div class="sos-modal" id="sosModal">
-    <div class="sos-modal-content">
-        <h3 id="sosModalTitle"></h3>
-        <textarea id="sosMessage" placeholder="Describe your issue..."></textarea>
-        <div class="sos-modal-buttons">
-            <button class="cancel" id="sosCancelButton"></button>
-            <button class="primary" id="sosSendButton"></button>
-        </div>
-    </div>
-</div>
-<script>
-if(!window.Telegram || !window.Telegram.WebApp){
-  console.log("Telegram WebApp not detected - running in browser mode");
-}
-const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-const storageKeys = {lang:'mra_lang', state:'mra_state'};
-const translations = {
-  en:{
-    dir:'ltr', brand:'MASTER REPAIR ACADEMY', subtitle:'Learn motherboard repair with structure, XP and real cases.',
-    hero:'Cyber repair academy for modern technicians.', xp:'XP', progress:'Global progress', homeTitle:'Choose your chapter', homeText:'Progress through each chapter one level at a time.',
-    chapterStart:'Start chapter', chapterQuiz:'Take quiz', back:'Back', complete:'Complete level', next:'Next level', quiz:'Chapter quiz', quizPass:'Chapter unlocked! Continue to the next mission.', quizFail:'Review the chapter and try again.',
-    quizSubtitle:'Answer questions to unlock the next chapter.', levelTip:'Pro tip', levelCompleted:'Level completed', chapterLocked:'Locked', chapterOpen:'Open', chapterDone:'Done', sos:'SOS',
-    telegramMain:'Continue learning', quizResult:'Quiz result', quizScore:'Score', quizRetry:'Retry quiz', quizReturn:'Return', levelStatus:'Unlock next level after completion.',
-    levelReady:'Ready to learn', chapterProgress:'Chapter progress', chapterDescription:'Complete all levels and pass the quiz to unlock the next chapter.', quizCompleted:'Quiz passed', quizLocked:'Complete levels first to unlock quiz.', correct:'✓ Correct!', wrong:'✗ Wrong!'
-  },
-  ar:{
-    dir:'rtl', brand:'أكاديمية الماستر للإصلاح', subtitle:'تعلم إصلاح اللوحات الأم بخطوات منظمة ونقاط خبرة وحالات حقيقية.',
-    hero:'أكاديمية الإصلاح السيبراني للفنيين المعاصرين.', xp:'نقاط', progress:'التقدم العام', homeTitle:'اختر الفصل', homeText:'تقدم خلال كل فصل درسًا تلو الآخر.',
-    chapterStart:'ابدأ الفصل', chapterQuiz:'اختبار الفصل', back:'رجوع', complete:'أكمل الدرس', next:'الدرس التالي', quiz:'الاختبار', quizPass:'تم فتح الفصل! تابع المهمة التالية.', quizFail:'راجع الفصل وحاول مرة أخرى.',
-    quizSubtitle:'أجب على الأسئلة لفتح الفصل التالي.', levelTip:'نصيحة', levelCompleted:'تم الدرس', chapterLocked:'مغلق', chapterOpen:'افتح', chapterDone:'منتهي', sos:'SOS',
-    telegramMain:'واصل التعلم', quizResult:'نتيجة الاختبار', quizScore:'النقاط', quizRetry:'إعادة الاختبار', quizReturn:'عودة', levelStatus:'افتح الدرس التالي بعد الإكمال.',
-    levelReady:'جاهز للتعلم', chapterProgress:'تقدم الفصل', chapterDescription:'أكمل جميع الدروس واجتز الاختبار لفتح الفصل التالي.', quizCompleted:'الاختبار ناجح', quizLocked:'أكمل الدروس أولاً لفتح الاختبار.', correct:'✓ صحيح!', wrong:'✗ خطأ!'
-  }
-};
-const chapters = [
-  {id:'tools', title:{en:'Tools',ar:'الأدوات'}, description:{en:'Learn core tools for safe phone repair.',ar:'تعلم الأدوات الأساسية لإصلاح الهاتف بأمان.'}, levels:[
-     {title:{en:'Tool kit introduction',ar:'مقدمة مجموعة الأدوات'}, subtitle:{en:'Understand screwdrivers, tweezers and insulation tools.',ar:'افهم المفكات والملاقط والأدوات المعزولة.'}, example:{en:'A PH00 screwdriver is ideal for small phone screws.',ar:'مفك PH00 مناسب لبراغي الهواتف الصغيرة.'}, tip:{en:'Keep screws sorted by position before disassembly.',ar:'رتب البراغي حسب الموقع قبل الفك.'}},
-     {title:{en:'Screwdriver handling',ar:'التعامل مع المفكات'}, subtitle:{en:'Use the correct bit and avoid cam-out damage.',ar:'استخدم رأسًا مناسبًا وتجنب تلف رأس البرغي.'}, example:{en:'Apply steady pressure and turn slowly to prevent stripping.',ar:'اضغط بثبات واستدر ببطء لتجنب تلف الرأس.'}, tip:{en:'Use magnetic bits to keep screws secure.',ar:'استخدم رؤوسًا مغناطيسية لتثبيت البراغي.'}},
-     {title:{en:'Multimeter basics',ar:'أساسيات الملتيميتر'}, subtitle:{en:'Know meter modes and safe probe placement.',ar:'تعرف على أوضاع الملتيميتر ومكان وضع المجسات بأمان.'}, example:{en:'Use VDC mode for battery voltage and continuity for trace checks.',ar:'استخدم وضع VDC لفولت البطارية والاستمرارية لفحص المسارات.'}, tip:{en:'Always start with the meter on a higher range if unsure.',ar:'ابدأ دائمًا بنطاق أعلى إذا كنت غير متأكد.'}},
-     {title:{en:'Soldering iron care',ar:'رعاية كاوية اللحام'}, subtitle:{en:'Keep the tip clean and use flux for stable joints.',ar:'حافظ على نظافة الرأس واستخدم الفلكس للوصلات المستقرة.'}, example:{en:'Wipe the tip on a wet sponge and tin it before work.',ar:'امسح الرأس على إسفنجة مبللة وقم بتبطينها بالقصدير قبل العمل.'}, tip:{en:'Use a temperature-controlled iron to avoid pad damage.',ar:'استخدم كاوية بدرجة حرارة مضبوطة لتجنب تلف البادات.'}},
-     {title:{en:'Hot air basics',ar:'أساسيات الهواء الساخن'}, subtitle:{en:'Protect nearby components during rework.',ar:'احمِ المكونات المجاورة أثناء العمل بالهواء الساخن.'}, example:{en:'Use low airflow and 320°C for a small chip removal.',ar:'استخدم تيار هواء منخفض و320°C لإزالة رقاقة صغيرة.'}, tip:{en:'Shield sensitive parts with Kapton tape.',ar:'حدد الأجزاء الحساسة بشريط كابتون.'}}
-  ], quiz:[
-     {question:{en:'Which tool secures small screws without slipping?',ar:'أي أداة تثبت البراغي الصغيرة دون انزلاق؟'}, options:[{en:'Needle nose pliers',ar:'ملقط مدبب'},{en:'PH00 screwdriver',ar:'مفك PH00'},{en:'Hot air gun',ar:'مسدس الهواء الساخن'}], answer:1},
-     {question:{en:'What is the first step before soldering?',ar:'ما هي الخطوة الأولى قبل اللحام؟'}, options:[{en:'Apply flux',ar:'ضع الفلكس'},{en:'Heat the connector',ar:'سخن الموصل'},{en:'Clean and tin the tip',ar:'نظف واطلي الرأس'}], answer:2},
-     {question:{en:'Why use a temperature-controlled iron?',ar:'لماذا نستخدم كاوية بدرجة حرارة مضبوطة؟'}, options:[{en:'Faster heating',ar:'تسخين أسرع'},{en:'Prevent pad damage',ar:'منع تلف البادات'},{en:'Better solder color',ar:'لون لحام أفضل'}], answer:1}
-  ]},
-  {id:'multimeter', title:{en:'Multimeter',ar:'الملتيميتر'}, description:{en:'Master meter modes for testing phone circuits.',ar:'تقن أوضاع الملتيميتر لفحص دوائر الهاتف.'}, levels:[
-     {title:{en:'Voltage checks',ar:'فحوص الفولت'}, subtitle:{en:'Measure DC voltage on batteries and rails.',ar:'قِس الفولت المستمر على البطاريات والخطوط.'}, example:{en:'Test battery voltage at the battery connector.',ar:'اختبر فولت البطارية عند موصل البطارية.'}, tip:{en:'Black probe goes to COM, red to VΩ for voltage.',ar:'المجس الأسود في COM والأحمر في VΩ للفولت.'}},
-     {title:{en:'Continuity mode',ar:'وضع الاستمرارية'}, subtitle:{en:'Verify tracks and connectors with beep tests.',ar:'تحقق من المسارات والموصلات بصوت الصفارة.'}, example:{en:'A shorted trace will beep continuously.',ar:'المسار المقصر يعطي صفارة مستمرة.'}, tip:{en:'Disconnect power before continuity testing.',ar:'افصل الطاقة قبل اختبار الاستمرارية.'}},
-     {title:{en:'Diode measurement',ar:'قياس الدايود'}, subtitle:{en:'Check diode orientation and forward drop.',ar:'افحص اتجاه الدايود وسقوط الفولت الأمامي.'}, example:{en:'A good diode shows a value forward and open reverse.',ar:'الدايود الجيد يعطي قيمة للأمام وفتحًا للعكس.'}, tip:{en:'Compare with a known good board when possible.',ar:'قارن مع لوحة سليمة إن أمكن.'}},
-     {title:{en:'Resistance mode',ar:'وضع المقاومة'}, subtitle:{en:'Measure resistors and suspicious traces.',ar:'قِس المقاومات والمسارات المشبوهة.'}, example:{en:'A resistor should match its color-code value closely.',ar:'يجب أن تطابق المقاومة قيمتها المقروئية من الألوان.'}, tip:{en:'Do not measure resistance on powered circuits.',ar:'لا تقِس المقاومة في دوائر موصولة بالطاقة.'}},
-     {title:{en:'Current safety',ar:'سلامة قياس التيار'}, subtitle:{en:'Use current mode carefully and choose the right port.',ar:'استخدم وضع التيار بحذر واختر المدخل الصحيح.'}, example:{en:'A shorted test lead can blow the meter fuse.',ar:'قد يتلف فيوز الجهاز إذا كان الطرف قصيرًا.'}, tip:{en:'Only connect in series for current measurement.',ar:'وصل في التسلسل فقط لقياس التيار.'}}
-  ], quiz:[
-     {question:{en:'Which mode checks if two points are connected?',ar:'أي وضع يفحص ما إذا كانت نقطتان متصلتين؟'}, options:[{en:'VDC',ar:'VDC'},{en:'Continuity',ar:'الاستمرارية'},{en:'Ohms',ar:'أوم'}], answer:1},
-     {question:{en:'A diode test should show:',ar:'اختبار الدايود يجب أن يظهر:'}, options:[{en:'Same value both ways',ar:'نفس القيمة في كلا الاتجاهين'},{en:'Value one way and open reverse',ar:'قيمة باتجاه وفتح بالعكس'},{en:'Zero ohms',ar:'صفر أوم'}], answer:1},
-     {question:{en:'What must be off before resistance measurement?',ar:'ماذا يجب أن يكون مطفأ قبل قياس المقاومة؟'}, options:[{en:'The circuit power',ar:'طاقة الدائرة'},{en:'The meter',ar:'الملتيميتر'},{en:'The display',ar:'الشاشة'}], answer:0}
-  ]},
-  {id:'power', title:{en:'Power',ar:'الطاقة'}, description:{en:'Inspect battery and power rails for stable operation.',ar:'افحص البطارية وخطوط الطاقة لاستقرار التشغيل.'}, levels:[
-     {title:{en:'Battery line',ar:'خط البطارية'}, subtitle:{en:'Track VBAT from connector to PMIC.',ar:'تتبع VBAT من الموصل إلى PMIC.'}, example:{en:'A broken battery flex often causes no power.',ar:'فلاتة البطارية المكسورة غالبًا تسبب عدم تشغيل.'}, tip:{en:'Check battery voltage before any board testing.',ar:'افحص فولت البطارية قبل أي اختبار للوحة.'}},
-     {title:{en:'Power rails',ar:'خطوط الطاقة'}, subtitle:{en:'Verify VDD and core rails at IC pins.',ar:'تحقق من VDD وخطوط النواة عند أرجل الشرائح.'}, example:{en:'A missing 1.8V rail can block the CPU from booting.',ar:'غياب خط 1.8V يمكن أن يمنع المعالج من الإقلاع.'}, tip:{en:'Use the meter on the correct DC range.',ar:'استخدم الملتيميتر على نطاق DC الصحيح.'}},
-     {title:{en:'Ground path',ar:'مسار الأرضي'}, subtitle:{en:'Confirm ground returns and common nets.',ar:'تأكد من عودة الأرضي والشبكات المشتركة.'}, example:{en:'A weak ground may show unstable voltages.',ar:'الأرضي الضعيف قد يظهر فولتات غير ثابتة.'}, tip:{en:'Probe ground points with care and no pressure.',ar:'افحص نقاط الأرضي بحذر وبدون ضغط.'}},
-     {title:{en:'Charging port',ar:'منفذ الشحن'}, subtitle:{en:'Check VBUS and data pins on the USB connector.',ar:'افحص VBUS وأرجل البيانات على موصل USB.'}, example:{en:'Dirty pins can prevent charging even if battery is good.',ar:'البنات المتسخة غالبًا تقطع الشحن حتى لو كانت البطارية جيدة.'}, tip:{en:'Clean the connector before guessing the IC.',ar:'نظف الموصل قبل الظن بالشريحة.'}},
-     {title:{en:'Power sequencing',ar:'تسلسل الطاقة'}, subtitle:{en:'Observe enable and reset signals during boot.',ar:'راقب إشارات التفعيل والريست أثناء الإقلاع.'}, example:{en:'Missing enable pulse may keep the board asleep.',ar:'غياب نبضة التفعيل قد يبقي اللوحة نائمة.'}, tip:{en:'Use an oscilloscope only if available.',ar:'استخدم راسم إشارة فقط إن كان متاحًا.'}}
-  ], quiz:[
-     {question:{en:'What is VBAT?',ar:'ما هو VBAT؟'}, options:[{en:'Battery voltage',ar:'فولت البطارية'},{en:'Signal line',ar:'خط الإشارة'},{en:'Audio ground',ar:'أرضي الصوت'}], answer:0},
-     {question:{en:'A missing power rail usually causes:',ar:'غياب خط الطاقة عادة يسبب:'}, options:[{en:'No boot',ar:'عدم الإقلاع'},{en:'Loud sound',ar:'صوت عالي'},{en:'Faster charging',ar:'شحن أسرع'}], answer:0},
-     {question:{en:'What should be off before power measurement?',ar:'ماذا يجب أن يكون مطفأ قبل قياس الطاقة؟'}, options:[{en:'The board',ar:'اللوحة'},{en:'The multimeter',ar:'الملتيميتر'},{en:'The display',ar:'الشاشة'}], answer:0}
-  ]},
-  {id:'components', title:{en:'Components',ar:'المكونات'}, description:{en:'Understand resistors, capacitors, diodes and ICs.',ar:'افهم المقاومات والمكثفات والدايودات والشرائح.'}, levels:[
-     {title:{en:'Resistors',ar:'المقاومات'}, subtitle:{en:'Identify type and value on boards.',ar:'تعرّف النوع والقيمة على اللوحات.'}, example:{en:'A burnt resistor may show open or wrong ohms.',ar:'المقاومة المحروقة قد تظهر مفتوحة أو قيمة خاطئة.'}, tip:{en:'Compare with a good board if unsure.',ar:'قارن مع لوحة سليمة إن لم تكن متأكدًا.'}},
-     {title:{en:'Capacitors',ar:'المكثفات'}, subtitle:{en:'Check for shorts and capacitance leaks.',ar:'افحص وجود شورت وتسرب سعة.'}, example:{en:'A shorted capacitor can kill a power rail.',ar:'مكثف مقصر يمكن أن يقتل خطًا كهربائيًا.'}, tip:{en:'Discharge before measuring with the meter.',ar:'افرغ الشحنة قبل القياس بالملتيميتر.'}},
-     {title:{en:'Diodes',ar:'الدايودات'}, subtitle:{en:'Verify forward and reverse readings.',ar:'تحقق من القياسات الأمامية والعكسية.'}, example:{en:'A good diode passes one way and blocks the other.',ar:'الدايود الجيد يمر في اتجاه ويمنع في العكس.'}, tip:{en:'Use diode mode, not resistance mode.',ar:'استخدم وضع الدايود وليس وضع المقاومة.'}},
-     {title:{en:'Inductors',ar:'الملفات'}, subtitle:{en:'Look for low resistance and continuity.',ar:'ابحث عن مقاومة منخفضة واستمرارية.'}, example:{en:'A broken coil can cut the power path completely.',ar:'الملف المقطوع يمكن أن يقطع مسار الطاقة تمامًا.'}, tip:{en:'Test coils with continuity or low ohms.',ar:'اختبر الملفات بالاستمرارية أو المقاومة المنخفضة.'}},
-     {title:{en:'IC chips',ar:'الشرائح'}, subtitle:{en:'Inspect power rails and surrounding parts.',ar:'افحص خطوط الطاقة والمكونات المحيطة.'}, example:{en:'An IC fault is rare without surrounding power issues.',ar:'عطل الشريحة نادر دون مشاكل طاقة حولها.'}, tip:{en:'Never replace an IC without proof.',ar:'لا تبدل الشريحة بدون دليل.'}}
-  ], quiz:[
-     {question:{en:'Which component stores energy?',ar:'أي مكون يخزن الطاقة؟'}, options:[{en:'Resistor',ar:'مقاومة'},{en:'Capacitor',ar:'مكثف'},{en:'Diode',ar:'دايود'}], answer:1},
-     {question:{en:'A good diode in diode mode shows:',ar:'دايود جيد في وضع الدايود يظهر:'}, options:[{en:'Same value both ways',ar:'نفس القيمة في كلا الاتجاهين'},{en:'Value one way only',ar:'قيمة باتجاه واحد فقط'},{en:'Zero volts',ar:'صفر فولت'}], answer:1},
-     {question:{en:'IC replacement requires:',ar:'تبديل الشريحة يتطلب:'}, options:[{en:'Strong work',ar:'عمل قوي'},{en:'Proof and diagnosis',ar:'دليل وتشخيص'},{en:'Cleaning only',ar:'تنظيف فقط'}], answer:1}
-  ]},
-  {id:'schematics', title:{en:'Schematics',ar:'المخططات'}, description:{en:'Read symbols and trace board nets efficiently.',ar:'اقرأ الرموز وتتبع شبكات اللوحة بكفاءة.'}, levels:[
-     {title:{en:'Symbol reading',ar:'قراءة الرموز'}, subtitle:{en:'Identify resistors, capacitors and diodes from symbols.',ar:'تعرّف المقاومات والمكثفات والدايودات من الرموز.'}, example:{en:'A zig-zag symbol means resistor.',ar:'الرمز المتعرج يعني مقاومة.'}, tip:{en:'Learn common symbols before troubleshooting.',ar:'تعلم الرموز الشائعة قبل الاستكشاف.'}},
-     {title:{en:'Power nets',ar:'شبكات الطاقة'}, subtitle:{en:'Follow VCC, VDD and ground lines on the schematic.',ar:'تتبع خطوط VCC وVDD والأرضي على المخطط.'}, example:{en:'A missing rail on schematic points to a power fault.',ar:'اختفاء خط على المخطط يشير إلى عطل في الطاقة.'}, tip:{en:'Mark nets with colors while reading.',ar:'علم الشبكات بالألوان أثناء القراءة.'}},
-     {title:{en:'Signal tracing',ar:'تتبع الإشارة'}, subtitle:{en:'Trace signal paths from connector to IC.',ar:'تتبع مسارات الإشارة من الموصل إلى الشريحة.'}, example:{en:'A bad signal line can cause display failure.',ar:'خط إشارة سيئ قد يسبب فشل الشاشة.'}, tip:{en:'Use continuity mode for trace verification.',ar:'استخدم وضع الاستمرارية للتحقق من المسار.'}},
-     {title:{en:'Ground reference',ar:'مرجع الأرضي'}, subtitle:{en:'Recognize ground planes and common nets.',ar:'تعرف على طائرات الأرضي والشبكات المشتركة.'}, example:{en:'All grounds should connect through the same net.',ar:'يجب أن تتصل كافة الأرضيات عبر نفس الشبكة.'}, tip:{en:'Ground issues often mimic power faults.',ar:'مشاكل الأرضي غالبًا تشبه أعطال الطاقة.'}},
-     {title:{en:'Boardview basics',ar:'أساسيات البوردفيو'}, subtitle:{en:'Use boardview to locate components from schematic.',ar:'استخدم البوردفيو لتحديد مواقع المكونات من المخطط.'}, example:{en:'A schematic symbol can lead you to the real chip location.',ar:'الرمز في المخطط يقودك إلى موقع الشريحة الحقيقي.'}, tip:{en:'Keep both schematic and boardview open if possible.',ar:'احتفظ بالمخطط والبوردفيو مفتوحين إذا أمكن.'}}
-  ], quiz:[
-     {question:{en:'What does a zig-zag symbol represent?',ar:'ماذا يمثل الرمز المتعرج؟'}, options:[{en:'Capacitor',ar:'مكثف'},{en:'Resistor',ar:'مقاومة'},{en:'Diode',ar:'دايود'}], answer:1},
-     {question:{en:'Ground nets are important because:',ar:'شبكات الأرضي مهمة لأن:'}, options:[{en:'They carry power',ar:'تحمل الطاقة'},{en:'They provide reference and return path',ar:'توفر مرجعًا ومسارًا للعودة'},{en:'They store data',ar:'تخزن البيانات'}], answer:1},
-     {question:{en:'Boardview helps you:',ar:'البوردفيو يساعدك على:'}, options:[{en:'Measure voltage',ar:'قياس الفولت'},{en:'Locate real components on the board',ar:'تحديد المكونات الحقيقية على اللوحة'},{en:'Replace the battery',ar:'استبدال البطارية'}], answer:1}
-  ]},
-  {id:'diagnosis', title:{en:'Diagnosis',ar:'التشخيص'}, description:{en:'Use inspection and measurement to isolate faults.',ar:'استخدم الفحص والقياس لعزل الأعطال.'}, levels:[
-     {title:{en:'Visual inspection',ar:'الفحص البصري'}, subtitle:{en:'Look for damage, corrosion and lifted pads.',ar:'ابحث عن التلف والتآكل والبادات المرفوعة.'}, example:{en:'Burn marks near power components often indicate shorts.',ar:'علامات الحرق قرب مكونات الطاقة تشير غالبًا إلى دوائر قصر.'}, tip:{en:'Use a magnifier for small details.',ar:'استخدم مكبرًا للتفاصيل الصغيرة.'}},
-     {title:{en:'Voltage probing',ar:'فحص الفولت'}, subtitle:{en:'Measure critical voltages on each rail.',ar:'قِس الفولتات الحرجة على كل خط.'}, example:{en:'Compare regulator output to expected voltage.',ar:'قارن خرج المنظم بالفولت المتوقع.'}, tip:{en:'Probe directly and avoid shorts with the tip.',ar:'افحص مباشرة وتجنب الشورت بطرف المجس.'}},
-     {title:{en:'Known-good compare',ar:'المقارنة بلوحة سليمة'}, subtitle:{en:'Use a working board as reference.',ar:'استخدم لوحة سليمة كمرجع.'}, example:{en:'Matching readings confirm the line is good.',ar:'القراءات المتطابقة تؤكد أن الخط جيد.'}, tip:{en:'Compare identical model and revision boards.',ar:'قارن فقط لوحات بنفس الموديل والإصدار.'}},
-     {title:{en:'Short detection',ar:'اكتشاف الشورت'}, subtitle:{en:'Find low resistance paths with continuity mode.',ar:'ابحث عن المسارات منخفضة المقاومة بوضع الاستمرارية.'}, example:{en:'A beep across power and ground indicates a short.',ar:'الصفارة بين الطاقة والأرضي تشير إلى شورت.'}, tip:{en:'Disconnect components to isolate the faulty area.',ar:'افصل المكونات لعزل المنطقة الخاطئة.'}},
-     {title:{en:'Fault isolation',ar:'عزل العطل'}, subtitle:{en:'Work step by step from symptom to root cause.',ar:'اعمل خطوة بخطوة من العرض حتى السبب الجذري.'}, example:{en:'Start with power, then move to signal issues.',ar:'ابدأ بالطاقة ثم انتقل إلى مشاكل الإشارة.'}, tip:{en:'Document readings to avoid repeating steps.',ar:'وثق القراءات لتجنب تكرار الخطوات.'}}
-  ], quiz:[
-     {question:{en:'What is the first diagnostic step?',ar:'ما هي الخطوة الأولى في التشخيص؟'}, options:[{en:'Replace the chip',ar:'استبدل الشريحة'},{en:'Visual inspection',ar:'الفحص البصري'},{en:'Use hot air',ar:'استخدم الهواء الساخن'}], answer:1},
-     {question:{en:'A short between power and ground shows:',ar:'الشورت بين الطاقة والأرضي يظهر:'}, options:[{en:'Beep in continuity mode',ar:'صفارة في وضع الاستمرارية'},{en:'High resistance',ar:'مقاومة عالية'},{en:'No result',ar:'لا نتيجة'}], answer:0},
-     {question:{en:'Known-good comparison verifies:',ar:'المقارنة بلوحة سليمة تتحقق من:'}, options:[{en:'Expected voltages',ar:'الفولتات المتوقعة'},{en:'Speaker volume',ar:'مستوى الصوت'},{en:'Battery health',ar:'صحة البطارية'}], answer:0}
-  ]},
-  {id:'faults', title:{en:'Common Faults',ar:'الأعطال الشائعة'}, description:{en:'Learn the most frequent phone board failures.',ar:'تعلم أكثر أعطال لوحات الهواتف شيوعًا.'}, levels:[
-     {title:{en:'No power',ar:'لا يوجد طاقة'}, subtitle:{en:'Check battery, fuse and power switches.',ar:'افحص البطارية والفيوز ومفاتيح الطاقة.'}, example:{en:'A blown fuse is a common no-power cause.',ar:'الفيوز المحروق سبب شائع لانعدام الطاقة.'}, tip:{en:'Verify the fuse before changing ICs.',ar:'تحقق من الفيوز قبل تغيير الشرائح.'}},
-     {title:{en:'No display',ar:'لا توجد شاشة'}, subtitle:{en:'Inspect the display connector and backlight.',ar:'افحص موصل الشاشة والإضاءة الخلفية.'}, example:{en:'A loose flex cable can produce a black screen.',ar:'كابل فليكس مفكوك يمكن أن ينتج شاشة سوداء.'}, tip:{en:'Use a flashlight to distinguish backlight faults.',ar:'استخدم مصباحًا لتمييز أعطال الإضاءة الخلفية.'}},
-     {title:{en:'No charge',ar:'لا يشحن'}, subtitle:{en:'Check USB port, VBUS and charging IC.',ar:'افحص منفذ USB وVBUS وشريحة الشحن.'}, example:{en:'Corroded pins often cut charging current.',ar:'البنات المتآكلة غالبًا تقطع الشحن حتى لو كانت البطارية جيدة.'}, tip:{en:'Clean the port before diagnosing the IC.',ar:'نظف المنفذ قبل تشخيص الشريحة.'}},
-     {title:{en:'No audio',ar:'لا يوجد صوت'}, subtitle:{en:'Inspect speaker line and audio codec power.',ar:'افحص خط السماعة وطاقة كودك الصوت.'}, example:{en:'A disconnected speaker flex can mute sound.',ar:'فليكس السماعة المفصول يمكن أن يكتم الصوت.'}, tip:{en:'Test with a known-good speaker.',ar:'اختبر بسماعة سليمة.'}},
-     {title:{en:'Touch failure',ar:'فشل اللمس'}, subtitle:{en:'Check the touch controller and screen cable.',ar:'افحص وحدة تحكم اللمس وكابل الشاشة.'}, example:{en:'A torn touchscreen cable can cause no response.',ar:'كابل شاشة ممزق يمكن أن يسبب عدم استجابة.'}, tip:{en:'Do not flex the cable while testing.',ar:'لا تثن الكابل أثناء الفحص.'}}
-  ], quiz:[
-     {question:{en:'A black screen often means:',ar:'الشاشة السوداء غالبًا تعني:'}, options:[{en:'Battery problem',ar:'مشكلة بطارية'},{en:'Display or backlight issue',ar:'مشكلة شاشة أو إضاءة خلفية'},{en:'Software only',ar:'سوفتوير فقط'}], answer:1},
-     {question:{en:'No charging can be caused by:',ar:'عدم الشحن يمكن أن ينتج عن:'}, options:[{en:'Dirty USB port',ar:'منفذ USB متسخ'},{en:'High volume',ar:'مستوى صوت مرتفع'},{en:'Clean screen',ar:'شاشة نظيفة'}], answer:0},
-     {question:{en:'Touch issues often start with:',ar:'مشاكل اللمس غالبًا تبدأ بـ:'}, options:[{en:'Broken touch flex',ar:'فليكس اللمس المكسور'},{en:'Bad battery',ar:'بطارية سيئة'},{en:'Speaker issue',ar:'مشكلة سماعة'}], answer:0}
-  ]},
-  {id:'techniques', title:{en:'Repair Techniques',ar:'تقنيات الإصلاح'}, description:{en:'Use advanced repair methods for board recovery.',ar:'استخدم تقنيات إصلاح متقدمة لاستعادة اللوحة.'}, levels:[
-     {title:{en:'Jumper repair',ar:'إصلاح الجمبر'}, subtitle:{en:'Replace damaged traces with thin wire.',ar:'استبدل المسارات التالفة بسلك رفيع.'}, example:{en:'A lifted trace can be bridged with enameled wire.',ar:'يمكن جسر مسار مرفوع بسلك معزول.'}, tip:{en:'Keep the wire tight and insulated.',ar:'اجعل السلك مشدودًا ومعزولًا.'}},
-     {title:{en:'Flex replacement',ar:'استبدال الفلكس'}, subtitle:{en:'Replace damaged connectors and flex cables.',ar:'استبدل الموصلات والفلكسات التالفة.'}, example:{en:'A torn charging flex can be replaced safely.',ar:'يمكن استبدال فليكس الشحن الممزق بأمان.'}, tip:{en:'Organize screws and keep flex direction clear.',ar:'نظم البراغي واجعل اتجاه الفليكس واضحًا.'}},
-     {title:{en:'Reflow basics',ar:'أساسيات الريفلو'}, subtitle:{en:'Use hot air for reflowing solder joints.',ar:'استخدم الهواء الساخن لإعادة تدفق اللحام.'}, example:{en:'Reflowing a cold joint can restore connectivity.',ar:'إعادة تدفق وصلة باردة قد تستعيد الاتصال.'}, tip:{en:'Avoid overheating nearby ICs.',ar:'تجنب حرارة زائدة للمكونات المجاورة.'}},
-     {title:{en:'Cleaning contacts',ar:'تنظيف الموصلات'}, subtitle:{en:'Use IPA and brushes for corrosion removal.',ar:'استخدم IPA وفرشاة لإزالة التآكل.'}, example:{en:'Dirty contacts often cause intermittent faults.',ar:'الموصلات المتسخة غالبًا تسبب أعطال متقطعة.'}, tip:{en:'Let the board dry completely before powering on.',ar:'دع اللوحة تجف تمامًا قبل التشغيل.'}},
-     {title:{en:'Thermal control',ar:'التحكم الحراري'}, subtitle:{en:'Manage heat during soldering and removal.',ar:'تحكم في الحرارة أثناء اللحام والإزالة.'}, example:{en:'Use heat shields to protect plastic parts.',ar:'استخدم دروع حرارة لحماية الأجزاء البلاستيكية.'}, tip:{en:'Lower temperature and longer time is safer.',ar:'درجة حرارة أقل ووقت أطول أكثر أمانًا.'}}
-  ], quiz:[
-     {question:{en:'A jumper wire is used to:',ar:'يستخدم سلك الجمبر لـ:'}, options:[{en:'Connect broken traces',ar:'ربط المسارات المكسورة'},{en:'Clean the screen',ar:'تنظيف الشاشة'},{en:'Measure voltage',ar:'قياس الفولت'}], answer:0},
-     {question:{en:'What protects nearby parts during hot air work?',ar:'ما الذي يحمي الأجزاء المجاورة أثناء الهواء الساخن؟'}, options:[{en:'Kapton tape',ar:'شريط كابتون'},{en:'Sandpaper',ar:'ورق الصنفرة'},{en:'Glue',ar:'الغراء'}], answer:0},
-     {question:{en:'After cleaning with IPA, you should:',ar:'بعد التنظيف بالـIPA يجب:'}, options:[{en:'Turn on immediately',ar:'شغله فورًا'},{en:'Let it dry',ar:'دعه يجف'},{en:'Cover it',ar:'غطيه'}], answer:1}
-  ]},
-  {id:'cases', title:{en:'Practical Cases',ar:'الحالات العملية'}, description:{en:'Apply knowledge to real repair scenarios.',ar:'طبق المعرفة في سيناريوهات إصلاح حقيقية.'}, levels:[
-     {title:{en:'No charge case',ar:'حالة عدم الشحن'}, subtitle:{en:'Diagnose a phone that does not respond to USB.',ar:'شخص حالة هاتف لا يستجيب لـUSB.'}, example:{en:'A bad charging coil often shows no VBUS.',ar:'غالبًا ما يظهر ملف الشحن السيئ عدم وجود VBUS.'}, tip:{en:'Start with the port and fuse before the IC.',ar:'ابدأ بالمنفذ والفيوز قبل الشريحة.'}},
-     {title:{en:'Black screen case',ar:'حالة الشاشة السوداء'}, subtitle:{en:'Inspect display path and backlight circuit.',ar:'افحص مسار الشاشة ودائرة الإضاءة الخلفية.'}, example:{en:'A damaged display connector can hide a good panel.',ar:'موصل شاشة تالف قد يخفي لوحة سليمة.'}, tip:{en:'Check the display cable before replacing the screen.',ar:'افحص كابل الشاشة قبل استبدالها.'}},
-     {title:{en:'No audio case',ar:'حالة عدم الصوت'}, subtitle:{en:'Test speaker line and audio IC power.',ar:'اختبر خط السماعة وطاقة شريحة الصوت.'}, example:{en:'A disconnected speaker flex can mute sound.',ar:'فليكس السماعة المفصول يمكن أن يكتم الصوت.'}, tip:{en:'Use a known-good speaker for comparison.',ar:'استخدم سماعة سليمة للمقارنة.'}},
-     {title:{en:'Camera fault',ar:'عطل الكاميرا'}, subtitle:{en:'Verify MIPI and camera power lines.',ar:'تحقق من خطوط طاقة الكاميرا وMIPI.'}, example:{en:'A broken camera flex can cause no image.',ar:'كابل كاميرا مكسور يمكن أن يسبب عدم ظهور الصورة.'}, tip:{en:'Inspect the connector pins carefully.',ar:'افحص بنات الموصل بعناية.'}},
-     {title:{en:'Battery drain',ar:'تفريغ البطارية'}, subtitle:{en:'Find a short or power leak on the board.',ar:'ابحث عن شورت أو تسرب طاقة على اللوحة.'}, example:{en:'A leaking capacitor may draw current when off.',ar:'المكثف المتسرب قد يسحب تيارًا وهو مطفأ.'}, tip:{en:'Measure current draw with a proper power supply.',ar:'قِس سحب التيار بمزود طاقة مناسب.'}}
-  ], quiz:[
-     {question:{en:'A black screen with sound likely means:',ar:'شاشة سوداء مع صوت تعني على الأرجح:'}, options:[{en:'Broken speaker',ar:'سماعة مكسورة'},{en:'Display or backlight issue',ar:'مشكلة شاشة أو إضاءة خلفية'},{en:'Battery issue',ar:'مشكلة بطارية'}], answer:1},
-     {question:{en:'A phone that will not charge may have:',ar:'هاتف لا يشحن قد يكون لديه:'}, options:[{en:'Bad charging coil',ar:'ملف شحن تالف'},{en:'Clean battery',ar:'بطارية نظيفة'},{en:'Perfect screen',ar:'شاشة مثالية'}], answer:0},
-     {question:{en:'Camera not detected often starts with:',ar:'عدم اكتشاف الكاميرا غالبًا يبدأ بـ:'}, options:[{en:'Audio IC',ar:'شريحة الصوت'},{en:'Camera flex and power',ar:'فليكس الكاميرا والطاقة'},{en:'Battery connector',ar:'موصل البطارية'}], answer:1}
-  ]},
-  {id:'expert', title:{en:'Expert Level',ar:'المستوى المتقدم'}, description:{en:'Advanced diagnosis and repair for experienced technicians.',ar:'تشخيص وإصلاح متقدم للفنيين ذوي الخبرة.'}, levels:[
-     {title:{en:'PMIC workflow',ar:'سير عمل PMIC'}, subtitle:{en:'Inspect input, enable and output rails.',ar:'افحص المدخل وإشارات التفعيل ومخارج الطاقة.'}, example:{en:'A dead PMIC often shows no secondary rails.',ar:'PMIC الميت غالبًا لا يظهر خطوطًا ثانوية.'}, tip:{en:'Compare the PMIC area with schematics.',ar:'قارن منطقة PMIC بالمخططات.'}},
-     {title:{en:'Storage faults',ar:'أعطال التخزين'}, subtitle:{en:'Check NAND power and data lines.',ar:'افحص طاقة NAND وخطوط البيانات.'}, example:{en:'A bad storage chip can prevent boot completely.',ar:'شريحة تخزين سيئة تمنع الإقلاع تمامًا.'}, tip:{en:'Inspect BGA balls and surrounding filters.',ar:'افحص كرات BGA والفلاتر المحيطة.'}},
-     {title:{en:'CPU boot lines',ar:'خطوط إقلاع المعالج'}, subtitle:{en:'Verify clocks, reset and power enable.',ar:'تحقق من الساعة والريست وتفعيل الطاقة.'}, example:{en:'Missing clock can stop the processor from starting.',ar:'غياب الساعة قد يمنع المعالج من البدء.'}, tip:{en:'Use the correct scope probe if available.',ar:'استخدم مجس راسم مناسب إن توفر.'}},
-     {title:{en:'RF and antenna',ar:'RF والهوائي'}, subtitle:{en:'Inspect RF paths and antenna connections.',ar:'افحص مسارات RF وتوصيلات الهوائي.'}, example:{en:'A broken antenna track can kill reception.',ar:'مسار هوائي مكسور يمكن أن يقتل الاستقبال.'}, tip:{en:'Avoid touching RF filters with bare hands.',ar:'تجنب لمس فلاتر RF بالأيدي العارية.'}},
-     {title:{en:'Thermal damage',ar:'تلف الحرارة'}, subtitle:{en:'Check for overheated chips and burned traces.',ar:'افحص الشرائح الساخنة والمسارات المحروقة.'}, example:{en:'Dark areas often point to heat damage.',ar:'المناطق الداكنة غالبًا تشير إلى تلف حراري.'}, tip:{en:'Cool the board gradually to prevent warpage.',ar:'برد اللوحة تدريجياً لتجنب الالتواء.'}}
-  ], quiz:[
-     {question:{en:'PMIC diagnosis starts with:',ar:'تشخيص PMIC يبدأ بـ:'}, options:[{en:'Display test',ar:'اختبار الشاشة'},{en:'VBAT and enable signals',ar:'VBAT وإشارات التفعيل'},{en:'Speaker check',ar:'اختبار السماعة'}], answer:1},
-     {question:{en:'Storage faults usually affect:',ar:'أعطال التخزين عادة تؤثر على:'}, options:[{en:'Boot process',ar:'عملية الإقلاع'},{en:'Screen brightness',ar:'سطوع الشاشة'},{en:'Audio quality',ar:'جودة الصوت'}], answer:0},
-     {question:{en:'RF issues can come from:',ar:'مشاكل RF يمكن أن تأتي من:'}, options:[{en:'Broken antenna track',ar:'مسار هوائي مكسور'},{en:'Bad battery',ar:'بطارية سيئة'},{en:'Dirty screen',ar:'شاشة متسخة'}], answer:0}
-  ]}
-];
-let state = loadState();
-let currentChapter = null;
-let currentLevel = null;
-let currentQuiz = null;
-let quizIndex = 0;
-let quizScore = 0;
-function loadState(){
-  const saved = localStorage.getItem(storageKeys.state);
-  if(!saved) return {xp:0, completedLevels:{}, quizPassed:[], unlocked:['tools']};
-  try{return JSON.parse(saved);}catch{return {xp:0, completedLevels:{}, quizPassed:[], unlocked:['tools']};}
-}
-function saveState(){localStorage.setItem(storageKeys.state, JSON.stringify(state));}
-function saveLang(){localStorage.setItem(storageKeys.lang, stateLang);}
-let stateLang = localStorage.getItem(storageKeys.lang) || 'en';
-function t(key){return translations[stateLang][key] || '';}
-function txt(item){
-  if(!item) return '';
-  return item[stateLang] ?? item.en ?? '';
-}
-function isUnlocked(id){return state.unlocked.includes(id);} 
-function completedLevels(chapter){return state.completedLevels[chapter.id] || [];}
-function levelDone(chapter,index){return completedLevels(chapter).includes(index);}
-function nextAvailableLevel(chapter){const done=completedLevels(chapter);return chapter.levels.findIndex((_,i)=>!done.includes(i));}
-function chapterPercent(chapter){return Math.round((completedLevels(chapter).length/chapter.levels.length)*100);} 
-function chapterQuizReady(chapter){return completedLevels(chapter).length===chapter.levels.length;}
-function chapterPassed(chapter){return state.quizPassed.includes(chapter.id);}
-function unlockChapter(id){if(!state.unlocked.includes(id)){state.unlocked.push(id); saveState();}}
-function unlockNextChapter(currentId){const index=chapters.findIndex(item=>item.id===currentId); if(index!==-1 && index<chapters.length-1){unlockChapter(chapters[index+1].id);}}
-function addXP(amount){state.xp += amount; saveState();}
-function showToast(message){const toast=document.createElement('div');toast.className='toast';toast.textContent=message;document.body.appendChild(toast);setTimeout(()=>toast.remove(),2400);}
-function openSosModal(){const modal=document.getElementById('sosModal');modal.classList.add('active');document.getElementById('sosMessage').focus();}
-function closeSosModal(){const modal=document.getElementById('sosModal');modal.classList.remove('active');document.getElementById('sosMessage').value='';}
-function setDir(){document.documentElement.lang=stateLang;document.documentElement.dir=translations[stateLang].dir;}
-function renderCurrentPage(){setDir(); document.getElementById('langButton').textContent=stateLang.toUpperCase(); renderHome(); if(document.getElementById('chapterPage').classList.contains('active')) renderChapter(); if(document.getElementById('levelPage').classList.contains('active')) renderLevel(); if(document.getElementById('quizPage').classList.contains('active')) renderQuiz(); updateTelegramButton(); document.getElementById('sosLabel').textContent=t('sos'); document.getElementById('sosModalTitle').textContent=t('sos');}
-function updateTelegramButton(){if(!tg || !tg.MainButton) return; tg.MainButton.setText(t('telegramMain')); if(document.getElementById('homePage').classList.contains('active')){tg.MainButton.show();} else {tg.MainButton.hide();}}
-function showPage(id){document.querySelectorAll('.page').forEach(page=>page.classList.remove('active'));document.getElementById(id).classList.add('active'); renderCurrentPage();}
-function openChapter(id){currentChapter = getChapterById(id); currentLevel = nextAvailableLevel(currentChapter); renderChapter(); showPage('chapterPage');}
-function getChapterById(id){return chapters.find(ch=>ch.id===id);} 
-function renderHome(){document.getElementById('heroTitle').textContent=t('hero');document.getElementById('heroSubtitle').textContent=t('homeText');document.getElementById('xpLabel').textContent=t('xp');document.getElementById('xpValue').textContent=state.xp;document.getElementById('progressLabel').textContent=t('progress');const totalLevels=chapters.reduce((sum,c)=>sum+c.levels.length,0);const doneLevels=chapters.reduce((sum,c)=>sum+completedLevels(c).length,0);const percent=totalLevels?Math.round((doneLevels/totalLevels)*100):0;document.getElementById('progressText').textContent=`${percent}%`;document.getElementById('globalProgress').style.width=`${percent}%`;document.getElementById('homeSectionTitle').textContent=t('homeTitle');document.getElementById('homeSectionText').textContent=t('homeText');document.getElementById('chapterCount').textContent=chapters.length;document.getElementById('chapterCountLabel').textContent=t('chapterProgress');document.getElementById('topStatus').textContent=`${t('progress')}: ${percent}%`;const grid=document.getElementById('chapterGrid');grid.innerHTML='';chapters.forEach(ch=>{const card=document.createElement('button');card.type='button';card.className='branch-card'+(isUnlocked(ch.id)?'':' locked');if(isUnlocked(ch.id)){card.onclick=()=>openChapter(ch.id);} const progress=`${completedLevels(ch).length}/${ch.levels.length}`;const lockLabel=isUnlocked(ch.id)?t('chapterOpen'):t('chapterLocked');card.innerHTML=`<strong>${txt(ch.title)}</strong><small>${txt(ch.description)}</small><span class="badge">${progress} • ${lockLabel}</span>`;grid.appendChild(card);});}
-function renderChapter(){document.getElementById('chapterTitle').textContent=txt(currentChapter.title);document.getElementById('chapterText').textContent=txt(currentChapter.description);document.getElementById('backToHomeButton').textContent=t('back');const levelList=document.getElementById('levelList');levelList.innerHTML='';const nextLevelIndex=nextAvailableLevel(currentChapter);currentChapter.levels.forEach((level,index)=>{const item=document.createElement('button');item.type='button';item.className='level-item'+((index!==nextLevelIndex && !levelDone(currentChapter,index))?' locked':''); if(!(index!==nextLevelIndex && !levelDone(currentChapter,index))){item.onclick=()=>openLevel(index);} const status=levelDone(currentChapter,index)?t('chapterDone'):index===nextLevelIndex?t('levelReady'):t('chapterLocked'); item.innerHTML=`<div><h3>${txt(level.title)}</h3><small>${txt(level.subtitle)}</small></div><div class="level-tag">${status}</div>`;levelList.appendChild(item);});document.getElementById('startLevelButton').textContent=t('chapterStart');document.getElementById('chapterQuizButton').textContent=t('chapterQuiz');document.getElementById('chapterQuizButton').disabled = !chapterQuizReady(currentChapter);document.getElementById('chapterQuizButton').title = chapterQuizReady(currentChapter) ? '' : t('quizLocked');}
-function openLevel(index){currentLevel=index; renderLevel(); showPage('levelPage');}
-function renderLevel(){const level=currentChapter.levels[currentLevel];document.getElementById('levelTitle').textContent=txt(level.title);document.getElementById('levelSubtitle').textContent=txt(level.subtitle);document.getElementById('tipLabel').textContent=t('levelTip');document.getElementById('levelTip').textContent=txt(level.tip);document.getElementById('completeLevelButton').textContent=levelDone(currentChapter,currentLevel)?t('next'):t('complete');document.getElementById('returnToChapterButton').textContent=t('back');}
-function completeLevel(chapterId,index){const chapter=getChapterById(chapterId); if(levelDone(chapter,index)) {const next=index+1; if(next<chapter.levels.length){currentLevel=next; renderLevel();} else {showToast(t('levelCompleted')); showPage('chapterPage'); renderChapter(); renderHome();} return;} const completed=completedLevels(chapter);if(!completed.includes(index)){completed.push(index);} state.completedLevels[chapter.id]=completed;addXP(15);saveState(); showToast(t('levelCompleted')); renderLevel(); renderChapter(); renderHome();}
-function openQuiz(chapterId){currentChapter=getChapterById(chapterId);currentQuiz=currentChapter.quiz;quizIndex=0;quizScore=0;renderQuiz();showPage('quizPage');}
-function renderQuiz(){document.getElementById('quizTitle').textContent=`${t('quiz')} • ${txt(currentChapter.title)}`;document.getElementById('quizSubtitle').textContent=t('quizSubtitle');const card=document.getElementById('quizCard');card.innerHTML='';const q=currentQuiz[quizIndex];const question=document.createElement('div');question.innerHTML=`<h3>${txt(q.question)}</h3>`;card.appendChild(question);const options=document.createElement('div');options.className='options';q.options.forEach((opt,i)=>{const btn=document.createElement('button');btn.type='button';btn.className='option-button';btn.innerHTML=`${txt(opt)}`;btn.onclick=()=>answerQuiz(i);options.appendChild(btn);});card.appendChild(options);const actions=document.getElementById('quizActions');actions.innerHTML='';}
-function answerQuiz(answerIndex){const q=currentQuiz[quizIndex];const buttons=[...document.querySelectorAll('.option-button')];buttons.forEach((btn,i)=>{btn.classList.add('disabled'); if(i===q.answer){btn.classList.add('correct');} if(i===answerIndex && i!==q.answer){btn.classList.add('wrong');}}); if(answerIndex===q.answer){quizScore++; showToast(t('correct'));} else {showToast(t('wrong'));} setTimeout(()=>{quizIndex++; if(quizIndex>=currentQuiz.length){finishQuiz();} else {renderQuiz();}},600);}
-function finishQuiz(){const card=document.getElementById('quizCard');const actions=document.getElementById('quizActions');const passed = quizScore >= Math.ceil(currentQuiz.length * 0.7); card.innerHTML=`<h3>${t('quizResult')}</h3><p>${t('quizScore')}: ${quizScore}/${currentQuiz.length}</p><p>${passed? t('quizPass'): t('quizFail')}</p>`;actions.innerHTML='';const btn=document.createElement('button');btn.type='button';btn.className='button primary-button';btn.textContent=passed? t('quizReturn'):t('quizRetry'); btn.onclick=()=>{ if(passed){if(!state.quizPassed.includes(currentChapter.id)){state.quizPassed.push(currentChapter.id);} addXP(30); unlockNextChapter(currentChapter.id); saveState(); showPage('chapterPage'); renderChapter(); renderHome(); } else {quizIndex=0;quizScore=0; renderQuiz(); }};actions.appendChild(btn);}
-function continueLearning(){
-  const chapter = chapters.find(ch => isUnlocked(ch.id));
-  if(!chapter){
-    openChapter(chapters[0].id);
-    return;
-  }
-  openChapter(chapter.id);
-}
-function init(){setDir(); document.getElementById('langButton').textContent=stateLang.toUpperCase(); document.getElementById('langButton').addEventListener('click', ()=>{stateLang = stateLang==='en'?'ar':'en'; saveLang(); renderCurrentPage();}); document.getElementById('backToHomeButton').addEventListener('click', ()=>{showPage('homePage');}); document.getElementById('returnToChapterButton').addEventListener('click', ()=>{showPage('chapterPage');}); document.getElementById('startLevelButton').addEventListener('click', ()=>{if(currentChapter){const next=nextAvailableLevel(currentChapter); if(next!==-1) openLevel(next);}}); document.getElementById('completeLevelButton').addEventListener('click', ()=>{if(currentChapter!==null && currentLevel!==null){completeLevel(currentChapter.id, currentLevel);}}); document.getElementById('chapterQuizButton').addEventListener('click', ()=>{if(currentChapter && chapterQuizReady(currentChapter)){openQuiz(currentChapter.id);}}); document.getElementById('sosButton').addEventListener('click', openSosModal); document.getElementById('sosCancelButton').addEventListener('click', closeSosModal); document.getElementById('sosSendButton').addEventListener('click', ()=>{const message=document.getElementById('sosMessage').value.trim()||t('sos'); window.open('https://t.me/c/3919937885/2?text=' + encodeURIComponent(message), '_blank'); closeSosModal();}); document.getElementById('menuButton').addEventListener('click', ()=>{showToast('Menu coming soon');}); if(tg && tg.MainButton){tg.ready(); tg.MainButton.setText(t('telegramMain')); tg.MainButton.show(); tg.onEvent('mainButtonClicked', ()=>{ if(document.getElementById('homePage').classList.contains('active')) continueLearning(); });}
- renderCurrentPage(); }
-init();
-</script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+```
+
+---
+
+## 2️⃣ Fichier `style.css`
+
+```css
+/* ============================================
+   SMART REPAIR ACADEMY - STYLES COMPLETS
+   ============================================ */
+
+:root {
+    --tg-bg: var(--tg-theme-bg-color, #1c1c1e);
+    --tg-text: var(--tg-theme-text-color, #ffffff);
+    --tg-hint: var(--tg-theme-hint-color, #999999);
+    --tg-link: var(--tg-theme-link-color, #3390ec);
+    --tg-button: var(--tg-theme-button-color, #3390ec);
+    --tg-button-text: var(--tg-theme-button-text-color, #ffffff);
+    --tg-secondary: var(--tg-theme-secondary-bg-color, #2c2c2e);
+
+    --primary: #3390ec;
+    --success: #34c759;
+    --warning: #ff9500;
+    --danger: #ff3b30;
+    --card-bg: #2c2c2e;
+    --border: #3a3a3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--tg-bg);
+    color: var(--tg-text);
+    min-height: 100vh;
+    padding-bottom: 80px;
+    overflow-x: hidden;
+}
+
+/* Navigation Bottom */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--tg-secondary);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--tg-hint);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.nav-btn.active {
+    color: var(--primary);
+    background: rgba(51, 144, 236, 0.1);
+}
+
+.nav-btn .icon {
+    font-size: 20px;
+}
+
+.nav-btn .label {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* Pages */
+.pages-container {
+    padding: 20px;
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-header {
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.page-header .subtitle {
+    color: var(--tg-hint);
+    font-size: 14px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Cards */
+.welcome-card, .course-info-card, .profile-card, .result-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background: var(--tg-secondary);
+    border-radius: 12px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--tg-hint);
+    margin-top: 5px;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    background: var(--tg-secondary);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary), var(--success));
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 12px;
+    color: var(--tg-hint);
+    text-align: right;
+}
+
+/* Quick Actions */
+.quick-actions h3, .recent-activity h3 {
+    margin: 20px 0 15px;
+    font-size: 18px;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.action-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--tg-text);
+    transition: all 0.3s;
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+    background: var(--tg-secondary);
+}
+
+.action-btn span:first-child {
+    font-size: 24px;
+}
+
+.action-btn span:last-child {
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Courses Grid */
+.courses-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.course-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+}
+
+.course-card:active {
+    transform: scale(0.98);
+}
+
+.course-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.course-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.course-card p {
+    font-size: 13px;
+    color: var(--tg-hint);
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge.beginner { background: #34c759; color: #000; }
+.badge.intermediate { background: #ff9500; color: #000; }
+.badge.advanced { background: #ff3b30; color: #fff; }
+.badge.expert { background: #af52de; color: #fff; }
+
+.course-meta {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--tg-hint);
+}
+
+/* Level Filter */
+.level-filter {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--tg-text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Chapters List */
+.chapters-list {
+    margin-top: 20px;
+}
+
+.chapter-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--border);
+}
+
+.chapter-item.completed {
+    border-color: var(--success);
+}
+
+.chapter-item.completed .chapter-status {
+    color: var(--success);
+}
+
+.chapter-number {
+    background: var(--primary);
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.chapter-info {
+    flex: 1;
+}
+
+.chapter-info h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.chapter-info p {
+    font-size: 12px;
+    color: var(--tg-hint);
+}
+
+.chapter-status {
+    font-size: 18px;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary, .btn-success {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--tg-button-text);
+}
+
+.btn-secondary {
+    background: var(--card-bg);
+    color: var(--tg-text);
+    border: 1px solid var(--border);
+}
+
+.btn-success {
+    background: var(--success);
+    color: #fff;
+}
+
+.btn-primary:active, .btn-secondary:active, .btn-success:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+}
+
+.chapter-navigation {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.chapter-navigation button {
+    flex: 1;
+}
+
+/* Chapter Content */
+.chapter-content {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.chapter-content h2 {
+    font-size: 20px;
+    margin: 20px 0 10px;
+    color: var(--primary);
+}
+
+.chapter-content h3 {
+    font-size: 17px;
+    margin: 15px 0 8px;
+}
+
+.chapter-content p {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: var(--tg-text);
+}
+
+.chapter-content ul, .chapter-content ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.chapter-content li {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.chapter-content .warning-box {
+    background: rgba(255, 59, 48, 0.1);
+    border-left: 4px solid var(--danger);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.chapter-content .tip-box {
+    background: rgba(52, 199, 89, 0.1);
+    border-left: 4px solid var(--success);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.chapter-content .info-box {
+    background: rgba(51, 144, 236, 0.1);
+    border-left: 4px solid var(--primary);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+/* Components Grid */
+.components-grid, .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.component-card, .tool-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+}
+
+.component-card:active, .tool-card:active {
+    transform: scale(0.98);
+}
+
+.component-icon, .tool-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.component-card h4, .tool-card h4 {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.component-card p, .tool-card p {
+    font-size: 11px;
+    color: var(--tg-hint);
+}
+
+/* Search Box */
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--tg-text);
+    font-size: 14px;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Category Tabs */
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.category-tab {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--tg-text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.category-tab.active {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Component/Tool Detail */
+.component-detail-card, .tool-detail-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.component-symbol {
+    font-size: 50px;
+    background: var(--tg-secondary);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.tool-icon {
+    font-size: 50px;
+    background: var(--tg-secondary);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.component-category, .tool-category {
+    font-size: 12px;
+    color: var(--tg-hint);
+    margin-top: 5px;
+}
+
+.tool-price {
+    font-size: 14px;
+    color: var(--success);
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.info-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.info-section h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.info-section p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.info-section ul {
+    padding-left: 20px;
+}
+
+.info-section li {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.values-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.values-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.values-table td:first-child {
+    color: var(--tg-hint);
+}
+
+/* Quiz Styles */
+.quiz-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+}
+
+.quiz-card:active {
+    transform: scale(0.98);
+}
+
+.quiz-icon {
+    font-size: 35px;
+}
+
+.quiz-info h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.quiz-info p {
+    font-size: 12px;
+    color: var(--tg-hint);
+}
+
+.quiz-progress {
+    margin-bottom: 20px;
+}
+
+.question-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.question-card h3 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.answers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-btn {
+    background: var(--tg-secondary);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: left;
+    color: var(--tg-text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.answer-btn:active {
+    transform: scale(0.98);
+}
+
+.answer-btn.correct {
+    border-color: var(--success);
+    background: rgba(52, 199, 89, 0.1);
+}
+
+.answer-btn.wrong {
+    border-color: var(--danger);
+    background: rgba(255, 59, 48, 0.1);
+}
+
+.quiz-feedback {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.quiz-feedback.correct {
+    background: rgba(52, 199, 89, 0.1);
+    border: 1px solid var(--success);
+    display: block;
+}
+
+.quiz-feedback.wrong {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid var(--danger);
+    display: block;
+}
+
+.score-display {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.score-value {
+    font-size: 60px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.score-total {
+    font-size: 24px;
+    color: var(--tg-hint);
+}
+
+/* Profile */
+.profile-card {
+    text-align: center;
+}
+
+.profile-avatar {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.profile-card h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.profile-card p {
+    color: var(--tg-hint);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.level-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.achievements-section, .settings-section {
+    margin-top: 25px;
+}
+
+.achievements-section h3, .settings-section h3 {
+    margin-bottom: 15px;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.badge-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px 10px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.badge-item.locked {
+    opacity: 0.4;
+}
+
+.badge-item .badge-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.badge-item .badge-name {
+    font-size: 10px;
+    color: var(--tg-hint);
+}
+
+.settings-btn {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--tg-text);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-content {
+    background: var(--tg-bg);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--tg-text);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 360px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .components-grid, .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--tg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+```
+
+---
+
+## 3️⃣ Fichier `data.js` (CONTENU ÉDUCATIF COMPLET)
+
+```javascript
+/* ============================================
+   DONNÉES COMPLÈTES - SMART REPAIR ACADEMY
+   ============================================ */
+
+const COURSES_DATA = [
+    {
+        id: 1,
+        title: "Introduction à la Réparation Mobile",
+        level: "beginner",
+        levelName: "Débutant",
+        duration: "2h 30min",
+        description: "Les bases essentielles pour commencer dans la réparation de smartphones. Apprenez les fondamentaux de l'électronique mobile.",
+        chapters: [
+            {
+                id: 1,
+                title: "Sécurité et Environnement de Travail",
+                duration: "20 min",
+                content: `
+                    <h2>🛡️ Sécurité et  Environnement de Travail</h2>
+
+                    <h3>1.1 Équipements de Protection Individuelle (EPI)</h3>
+                    <p>Avant toute intervention, protégez-vous et protégez le device :</p>
+                    <ul>
+                        <li>🥽  <strong>Lunettes de protection</strong> - Contre les projections de composants</li>
+                        <li>🧤 <strong>Gants antistatiques</strong> - Protection ESD (ElectroStatic Discharge)</li>
+                        <li>😷 <strong>Masque de protection</strong> - Contre les fumées de soudure</li>
+                        <li>🧥 <strong>Blouse antistatique</strong> - Pour les interventions sur carte mère</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>ATTENTION:</strong> Une décharge électrostatique de seulement 100V peut endommager définitivement un composant électronique!
+                    </div>
+
+                    <h3>1.2 Organisation du Poste de Travail</h3>
+                    <p>Un espace bien organisé = réparations efficaces :</p>
+                    <ol>
+                        <li><strong>Tapis antistatique</strong> - Obligatoire pour toute manipulation de carte mère</li>
+                        <li><strong>Bracelet antistatique</strong> - À porter en permanence</li>
+                        <li><strong>Bacs de rangement</strong> - Pour vis et petits composants (organisez par modèle!)</li>
+                        <li><strong>Éclairage adapté</strong> - Loupe avec LED intégrée recommandée</li>
+                        <li><strong>Ventilation</strong> - Extracteur de fumées pour la soudure</li>
+                    </ol>
+
+                    <h3>1.3 Manipulation des Batteries</h3>
+                    <p>Les batteries Li-ion présentent des risques spécifiques :</p>
+                    <ul>
+                        <li>🔋 Ne jamais percer ou plier une batterie</li>
+                        <li>🔋 Stocker dans un sac ignifuge</li>
+                        <li>🔋 En cas de gonflement : manipuler avec extrême précaution</li>
+                        <li>🔋 Température idéale de stockage : 15-25°C</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE PRO:</strong> Gardez toujours un extincteur Classe D à proximité pour les incendies de batteries lithium!
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Outils Essentiels du Réparateur",
+                duration: "25 min",
+                content: `
+                    <h2>🛠️ O utils Essentiels du Réparateur</h2>
+
+                    <h3>2.1 Outils de Démontage</h3>
+                    <table class="values-table">
+                        <tr><td>Ouvre-plastique</td><td>Pour ouvrir les clips sans abîmer</td></tr>
+                        <tr><td>Ventouses</td><td>Pour soulever l'écran</td></tr>
+                        <tr><td>Spatules métal</td><td>Pour décoller les batteries</td></tr>
+                        <tr><td>Tournevis précision</td><td>Pentalobe, Phillips, Torx</td></tr>
+                    </table>
+
+                    <h3>2.2 Outils de Soudure</h3>
+                    <ul>
+                        <li><strong>Fer à souder</strong> - Température réglable (300-400°C)</li>
+                        <li><strong>Station à air chaud</strong> - Pour composants SMD</li>
+                        <li><strong>Pâte à souder</strong> - No-Clean recommandée</li>
+                        <li><strong>Étain</strong> - Diamètre 0.3mm à 0.5mm pour mobile</li>
+                        <li><strong>Tresse à dessouder</strong> - Pour retirer l'ancien étain</li>
+                    </ul>
+
+                    <h3>2.3 Outils de Diagnostic</h3>
+                    <ul>
+                        <li><strong>Alimentation de laboratoire</strong> - 0-5V, 0-3A minimum</li>
+                        <li><strong>Multimètre</strong> - Mode continuité et diode essentiel</li>
+                        <li><strong>Microscope USB</strong> - Grossissement 50x à 1000x</li>
+                        <li><strong>Testeur de batterie</strong> - Pour vérifier capacité réelle</li>
+                    </ul>
+
+                    <div class="info-box">
+                        📊 <strong>INVESTISSEMENT DÉPART:</strong> Comptez environ 500-800€ pour un kit complet professionnel.
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "Architecture d'un Smartphone",
+                duration: "30 min",
+                content: `
+                    <h2>📱 Architecture d'un Smartphone</h2>
+
+                    <h3>3.1 Les Blocs Fonctionnels</h3>
+                    <p>Un smartphone se divise en plusieurs sous-ensembles :</p>
+                    <ol>
+                        <li><strong>Bloc Alimentation</strong> - Batterie, PMIC, circuits de charge</li>
+                        <li><strong>Bloc Processeur</strong> - CPU, GPU, RAM (souvent empilés)</li>
+                        <li><strong>Bloc Communication</strong> - Antennes, modem RF, WiFi, Bluetooth</li>
+                        <li><strong>Bloc Audio</strong> - Haut-parleur, microphone, codec audio</li>
+                        <li><strong>Bloc Affichage</strong> - Écran, tactile, rétroéclairage</li>
+                        <li><strong>Bloc Caméra</strong> - Capteurs, stabilisation, flash</li>
+                    </ol>
+
+                    <h3>3.2 La Carte Mère (Logic Board)</h3>
+                    <p>Deux architectures principales :</p>
+                    <ul>
+                        <li><strong>Single-layer</strong> - Tous composants sur une face (Android entrée de gamme)</li>
+                        <li><strong>Double-layer (Sandwich)</strong> - Deux PCB connectés par BGA (iPhone, haut de gamme)</li>
+                    </ul>
+
+                    <h3>3.3 Connecteurs Principaux</h3>
+                    <table class="values-table">
+                        <tr><td>Connecteur batterie</td><td>20-40 pins, B2B connector</td></tr>
+                        <tr><td>Connecteur écran</td><td>30-60 pins, souvent multiple</td></tr>
+                        <tr><td>Connecteur charge</td><td>USB-C ou Lightning, 16-24 pins</td></tr>
+                        <tr><td>Connecteurs antennes</td><td>IPEX/U.FL, très fragiles</td></tr>
+                    </table>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE:</strong> Toujours déconnecter la batterie en PREMIER avant toute manipulation interne!
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Diagnostic de Base",
+                duration: "25 min",
+                content: `
+                    <h2>🔍 Diagnostic de Base</h2>
+
+                    <h3>4.1 La Méthode en 5 Étapes</h3>
+                    <ol>
+                        <li><strong>Interview client</strong> - Comprendre l'historique de la panne</li>
+                        <li><strong>Inspection visuelle</strong> - Dégâts, oxydation, composants brûlés</li>
+                        <li><strong>Test d'alimentation</strong> - Consommation au démarrage</li>
+                        <li><strong>Test des fonctions</strong> - Audio, tactile, caméra, réseaux</li>
+                        <li><strong>Diagnostic électronique</strong> - Mesures sur la carte</li>
+                    </ol>
+
+                    <h3>4.2 Lecture de la Consommation</h3>
+                    <p>Avec une alimentation de laboratoire, observez :</p>
+                    <ul>
+                        <li><strong>0.00A</strong> - Court-circuit ou batterie déconnectée</li>
+                        <li><strong>0.01-0.05A</strong> - Veille normale (phone éteint)</li>
+                        <li><strong>0.1-0.3A</strong> - Démarrage normal</li>
+                        <li><strong>0.5A+</strong> - Court-circuit probable</li>
+                        <li><strong>1.0A+</strong> - Court-circuit majeur (PMIC/CPU)</li>
+                    </ul>
+
+                    <h3>4.3 Points de Test Critiques</h3>
+                    <p>Les tensions à vérifier en priorité :</p>
+                    <table class="values-table">
+                        <tr><td>VCC_MAIN</td><td>3.8V - Alimentation principale</td></tr>
+                        <tr><td>VCC_CPU</td><td>0.8-1.2V - Coeur du processeur</td></tr>
+                        <tr><td>VCC_RAM</td><td>1.2V - Mémoire vive</td></tr>
+                        <tr><td>VCC_DISPLAY</td><td>5.5V - Rétroéclairage</td></tr>
+                    </table>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>ATTENTION:</strong> Un court-circuit sur VCC_CPU signifie souvent un CPU HS. Vérifiez avant de condamner!
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "Remplacement d'Écran",
+                duration: "30 min",
+                content: `
+                    <h2>📱 Remplacement d'Écran</h2>
+
+                    <h3>5.1 Préparation</h3>
+                    <ul>
+                        <li>🔧 Avoir le bon écran (tester avant collage!)</li>
+                        <li>🔋 Déconnecter la batterie</li>
+                        <li>🌡️  Chauffer les bords (80-100°C, 2-3 min)</li>
+                        <li>🧹 Netto yer l'ancien adhésif</li>
+                    </ul>
+
+                    <h3>5.2 Procédure iPhone</h3>
+                    <ol>
+                        <li>Retirer les 2 vis Pentalobe près du port de charge</li>
+                        <li>Appliquer ventouse et ouvrir avec spatule</li>
+                        <li>Dévisser le cache connecteurs (2-5 vis)</li>
+                        <li>Déconnecter : Batterie → Écran → Tactile → Face ID</li>
+                        <li>Transférer écouteur/capteurs sur nouvel écran</li>
+                        <li>Reconnecter dans l'ordre inverse</li>
+                        <li>Tester AVANT de coller</li>
+                        <li>Appliquer nouvel adhésif et fermer</li>
+                    </ol>
+
+                    <h3>5.3 Procédure Android</h3>
+                    <p>Varie selon le modèle, mais principes similaires :</p>
+                    <ul>
+                        <li>Chaleur + ventouse pour ouvrir</li>
+                        <li>Attention aux nappes fragiles</li>
+                        <li>Certains modèles nécessitent démontage arrière d'abord</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE PRO:</strong> Pour les écrans OLED, utilisez un support de maintien pendant le collage pour éviter les bulles!
+                    </div>
+
+                    <h3>5.4 Problèmes Courants</h3>
+                    <ul>
+                        <li><strong>Écran noir</strong> - Connecteur mal enclenché</li>
+                        <li><strong>Tactile ne répond pas</strong> - Nappe tactile endommagée</li>
+                        <li><strong>True Tone perdu (iPhone)</strong> - Programmer avec JC/JCID</li>
+                        <li><strong>Bandes verticales</strong> - Écran défectueux ou connecteur oxydé</li>
+                    </ul>
+                `
+            }
+        ]
+    },
+    {
+        id: 2,
+        title: "Électronique Appliquée au Mobile",
+        level: "intermediate",
+        levelName: "Intermédiaire",
+        duration: "4h 00min",
+        description: "Comprendre l'électronique des smartphones pour diagnostiquer et réparer au niveau composant.",
+        chapters: [
+            {
+                id: 1,
+                title: "Les Composants SMD",
+                duration: "35 min",
+                content: `
+                    <h2>🔌 Les Composants SMD (Surface Mount Device)</h2>
+
+                    <h3>1.1 Résistances SMD</h3>
+                    <p>Marquage et valeurs :</p>
+                    <ul>
+                        <li><strong>3 chiffres</strong> - 102 = 10 × 10² = 1000Ω = 1kΩ</li>
+                        <li><strong>4 chiffres</strong> - 1002 = 100 × 10² = 10000Ω = 10kΩ</li>
+                        <li><strong>Avec R</strong> - 4R7 = 4.7Ω, R10 = 0.1Ω</li>
+                    </ul>
+                    <p>Tailles courantes : 0402, 0603, 0805 (en pouces)</p>
+
+                    <h3>1.2 Condensateurs SMD</h3>
+                    <p>Les plus nombreux sur une carte mère (500-1000+):</p>
+                    <ul>
+                        <li><strong>Céramique multicouche</strong> - Découplage, filtrage</li>
+                        <li><strong>Pas de marquage</strong> - Tester avec multimètre</li>
+                        <li><strong>Défaut courant</strong> - Court-circuit (0Ω)</li>
+                    </ul>
+
+                    <h3>1.3 Bobines/Inductances</h3>
+                    <p>Pour les circuits d'alimentation :</p>
+                    <ul>
+                        <li><strong>Marquage</strong> - Valeur en μH (ex: 1R0 = 1μH)</li>
+                        <li><strong>Rôle</strong> - Filtrage, stockage énergie</li>
+                        <li><strong>Test</strong> - Doit avoir continuité (0-5Ω)</li>
+                    </ul>
+
+                    <h3>1.4 Diodes et LEDs</h3>
+                    <ul>
+                        <li><strong>Diode de protection</strong> - Sens du courant</li>
+                        <li><strong>LED de rétroéclairage</strong> - En série (tension élevée)</li>
+                        <li><strong>Test mode diode</strong> - 0.5-0.7V dans un sens</li>
+                    </ul>
+
+                    <div class="info-box">
+                        📊 <strong>FACT:</strong> Un iPhone contient plus de 1500 composants SMD sur sa carte mère!
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Circuits d'Alimentation (PMIC)",
+                duration: "40 min",
+                content: `
+                    <h2>⚡ Circuits d'Alimentation (PMIC)</h2>
+
+                    <h3>2.1 Rôle du PMIC</h3>
+                    <p>Power Management IC - Le coeur de l'alimentation :</p>
+                    <ul>
+                        <li>Convertit 3.8V batterie en multiples tensions</li>
+                        <li>Gère la charge de la batterie</li>
+                        <li>Contrôle la séquence de démarrage</li>
+                        <li>Protège contre surtensions/surchauffe</li>
+                    </ul>
+
+                    <h3>2.2 Tensions Générées</h3>
+                    <table class="values-table">
+                        <tr><td>VCC_MAIN</td><td>3.8V</td><td>Alimentation générale</td></tr>
+                        <tr><td>VCC_CPU</td><td>0.8-1.2V</td><td>Coeur processeur</td></tr>
+                        <tr><td>VCC_GPU</td><td>0.7-1.0V</td><td>Processeur graphique</td></tr>
+                        <tr><td>VCC_RAM</td><td>1.2V</td><td>Mémoire vive</td></tr>
+                        <tr><td>VCC_IO</td><td>1.8V</td><td>Entrées/Sorties</td></tr>
+                        <tr><td>VCC_DISPLAY</td><td>5.5V</td><td>Rétroéclairage</td></tr>
+                        <tr><td>VCC_CAMERA</td><td>2.8V</td><td>Capteurs caméra</td></tr>
+                    </table>
+
+                    <h3>2.3 Diagnostic PMIC</h3>
+                    <ol>
+                        <li>Vérifier tension d'entrée (batterie)</li>
+                        <li>Checker les courts-circuits sur chaque ligne</li>
+                        <li>Tester les signaux d'enable (EN)</li>
+                        <li>Vérifier l'oscillateur (cristal)</li>
+                        <li>Contrôler la température (thermographie)</li>
+                    </ol>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>ATTENTION:</strong> Un PMIC défectueux peut endommager le CPU! Testez avant de remplacer.
+                    </div>
+
+                    <h3>2.4 Remplacement PMIC</h3>
+                    <ul>
+                        <li>Température : 350-380°C</li>
+                        <li>Flux de qualité obligatoire</li>
+                        <li>Alignement parfait des billes BGA</li>
+                        <li>Reflow profilé recommandé</li>
+                    </ul>
+                `
+            },
+            {
+                id: 3,
+                title: "Circuits de Charge",
+                duration: "30 min",
+                content: `
+                    <h2>🔋 Circuits de Charge</h2>
+
+                    <h3>3.1 Architecture de Charge</h3>
+                    <ol>
+                        <li><strong>Connecteur de charge</strong> - USB-C / Lightning</li>
+                        <li><strong>IC de charge</strong> - Gère le courant/tension</li>
+                        <li><strong>Fusible de protection</strong> - Coupe en cas de surintensité</li>
+                        <li><strong>Bobine de charge</strong> - Filtrage</li>
+                        <li><strong>Batterie</strong> - Stockage énergie</li>
+                    </ol>
+
+                    <h3>3.2 Protocoles de Charge</h3>
+                    <table class="values-table">
+                        <tr><td>USB 2.0</td><td>5V / 0.5A</td><td>2.5W</td></tr>
+                        <tr><td>USB BC 1.2</td><td>5V / 1.5A</td><td>7.5W</td></tr>
+                        <tr><td>Quick Charge</td><td>5-20V / 3A</td><td>60W</td></tr>
+                        <tr><td>USB-PD</td><td>5-20V / 5A</td><td>100W</td></tr>
+                        <tr><td>SuperVOOC</td><td>10V / 6.5A</td><td>65W</td></tr>
+                    </table>
+
+                    <h3>3.3 Pannes Courantes</h3>
+                    <ul>
+                        <li><strong>"Accessoire non supporté"</strong> - Pin de données HS</li>
+                        <li><strong>Charge lente</strong> - IC de charge défectueux</li>
+                        <li><strong>Ne charge pas</strong> - Fusible ouvert / Connecteur HS</li>
+                        <li><strong>Charge puis s'arrête</strong> - Batterie ou protection thermique</li>
+                    </ul>
+
+                    <h3>3.4 Mesures à Effectuer</h3>
+                    <ol>
+                        <li>VCC_CHG (5V) sur connecteur</li>
+                        <li>Continuité vers IC de charge</li>
+                        <li>Tension batterie (3.7-4.2V)</li>
+                        <li>Signal ID/CC pour négociation</li>
+                    </ol>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE:</strong> Un connecteur de charge oxydé cause 40% des problèmes de charge! Nettoyez avant de remplacer.
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Circuits Audio",
+                duration: "25 min",
+                content: `
+                    <h2>🔊 Circuits Audio</h2>
+
+                    <h3>4.1 Chaîne Audio Complète</h3>
+                    <ul>
+                        <li><strong>Microphone(s)</strong> - Principal, secondaire, écouteur</li>
+                        <li><strong>Codec Audio</strong> - Conversion analogique/numérique</li>
+                        <li><strong>Amplificateur</strong> - Pour haut-parleur</li>
+                        <li><strong>Haut-parleur</strong> - Son principal</li>
+                        <li><strong>Écouteur</strong> - Appels téléphoniques</li>
+                        <li><strong>Vibreur</strong> - Retour haptique</li>
+                    </ul>
+
+                    <h3>4.2 Diagnostic Microphone</h3>
+                    <ol>
+                        <li>Tester avec enregistreur vocal</li>
+                        <li>Vérifier alimentation (2V typique)</li>
+                        <li>Checker ligne de données</li>
+                        <li>Remplacer si nécessaire (polaire!)</li>
+                    </ol>
+
+                    <h3>4.3 Diagnostic Haut-parleur</h3>
+                    <ul>
+                        <li>Test de sonnerie à volume max</li>
+                        <li>Mesure résistance (4-8Ω typique)</li>
+                        <li>Vérifier connecteur et nappe</li>
+                        <li>Nettoyer les grilles (souvent bouchées)</li>
+                    </ul>
+
+                    <h3>4.4 Problème "Mode Écouteur"</h3>
+                    <p>iPhone reste en mode écouteur après appel :</p>
+                    <ul>
+                        <li>Nettoyer connecteur de charge (débris)</li>
+                        <li>Vérifier capteur de proximité</li>
+                        <li>Flex audio défectueux (iPhone 7/7+)</li>
+                        <li>Problème audio IC (maladie connue)</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>iPhone 7:</strong> Le problème audio IC est très courant. Symptôme : bouton home ne répond pas + mode écouteur bloqué.
+                    </div>
+                `
+            }
+        ]
+    },
+    {
+        id: 3,
+        title: "Réparation de Carte Mère",
+        level: "advanced",
+        levelName: "Avancé",
+        duration: "6h 00min",
+        description: "Techniques avancées de micro-soudure et réparation au niveau composant.",
+        chapters: [
+            {
+                id: 1,
+                title: "Techniques de Micro-soudure",
+                duration: "45 min",
+                content: `
+                    <h2>🔥 Techniques de Micro-soudure</h2>
+
+                    <h3>1.1 Équipement Requis</h3>
+                    <ul>
+                        <li><strong>Station à air chaud</strong> - Quick 861DW recommandée</li>
+                        <li><strong>Fer à souder précis</strong> - Pointe 0.2-0.5mm</li>
+                        <li><strong>Microscope</strong> - 20x minimum, 50x recommandé</li>
+                        <li><strong>Flux de qualité</strong> - Amtech NC-559 ou équivalent</li>
+                        <li><strong>Étain</strong> - 0.3mm avec flux intégré</li>
+                        <li><strong>Tapis silicone</strong> - Résistant à 400°C</li>
+                    </ul>
+
+                    <h3>1.2 Soudure de Résistances/Condensateurs</h3>
+                    <ol>
+                        <li>Appliquer flux sur les pads</li>
+                        <li>Positionner le composant avec pince</li>
+                        <li>Air chaud : 350°C, débit moyen</li>
+                        <li>Attendre que le composant "flotte"</li>
+                        <li>Laisser refroidir sans bouger</li>
+                        <li>Nettoyer le flux résiduel</li>
+                    </ol>
+
+                    <h3>1.3 Soudure de Connecteurs</h3>
+                    <ul>
+                        <li>Température plus basse : 300-320°C</li>
+                        <li>Protéger les composants autour avec kapton</li>
+                        <li>Chauffer uniformément tous les pins</li>
+                        <li>Vérifier l'alignement avant refroidissement</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE PRO:</strong> Utilisez du flux en gel pour maintenir les petits composants en place pendant la soudure!
+                    </div>
+
+                    <h3>1.4 Erreurs à Éviter</h3>
+                    <ul>
+                        <li>❌ Température trop élevée (délaminage)</li>
+                        <li>❌ Trop de flux (résidus corrosifs)</li>
+                        <li>❌ Bouger le composant pendant refroidissement</li>
+                        <li>❌ Pas de protection thermique autour</li>
+                    </ul>
+                `
+            },
+            {
+                id: 2,
+                title: "Remplacement de CPU et RAM",
+                duration: "60 min",
+                content: `
+                    <h2>🧠 Remplacement de CPU et RAM</h2>
+
+                    <h3>2.1 Quand Remplacer?</h3>
+                    <ul>
+                        <li>Court-circuit confirmé sur VCC_CPU</li>
+                        <li>Phone bootloop après chute</li>
+                        <li>Problème de baseband (iPhone)</li>
+                        <li>RAM défectueuse (plantages aléatoires)</li>
+                    </ul>
+
+                    <h3>2.2 Procédure CPU (BGA)</h3>
+                    <ol>
+                        <li><strong>Préparation</strong> - Flux, gabarit, billes neuves</li>
+                        <li><strong>Dessoudage</strong> - 380°C, mouvement circulaire</li>
+                        <li><strong>Nettoyage</strong> - Tresse + alcool isopropylique</li>
+                        <li><strong>Rebillage</strong> - Gabarit + étain + four ou air chaud</li>
+                        <li><strong>Alignement</strong> - Microscope, marques d'orientation</li>
+                        <li><strong>Resoudage</strong> - Profil de température précis</li>
+                        <li><strong>Test</strong> - Alimentation, démarrage</li>
+                    </ol>
+
+                    <h3>2.3 Swap CPU (iPhone)</h3>
+                    <p>Le CPU est lié à la baseband - procédure spéciale :</p>
+                    <ul>
+                        <li>Sauvegarder EEPROM de l'ancien CPU</li>
+                        <li>Transférer sur le nouveau CPU</li>
+                        <li>Sinon : baseband ne fonctionnera pas</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>ATTENTION:</strong> Le remplacement de CPU est une opération irréversible. Entraînez-vous sur des cartes HS d'abord!
+                    </div>
+
+                    <h3>2.4 Empilement CPU/RAM</h3>
+                    <p>Sur les modèles récents, CPU et RAM sont empilés :</p>
+                    <ul>
+                        <li>Dessouder l'ensemble</li>
+                        <li>Séparer CPU et RAM (délicat!)</li>
+                        <li>Rebiller chaque composant</li>
+                        <li>Empiler et souder ensemble</li>
+                        <li>Replacer sur la carte mère</li>
+                    </ul>
+                `
+            },
+            {
+                id: 3,
+                title: "Réparation de Lignes Coupées",
+                duration: "40 min",
+                content: `
+                    <h2>🔗 Réparation de Lignes Coupées</h2>
+
+                    <h3>3.1 Identifier la Coupure</h3>
+                    <ul>
+                        <li>Inspection visuelle au microscope</li>
+                        <li>Test de continuité multimètre</li>
+                        <li>Schéma électrique pour tracer la ligne</li>
+                        <li>Point de test le plus proche</li>
+                    </ul>
+
+                    <h3>3.2 Méthode du Fil Émaillé</h3>
+                    <ol>
+                        <li>Gratter le vernis de protection</li>
+                        <li>Préparer fil émaillé 0.03-0.05mm</li>
+                        <li>Souder une extrémité au point A</li>
+                        <li>Faire passer le fil jusqu'au point B</li>
+                        <li>Souder l'autre extrémité</li>
+                        <li>Vernis UV pour isolation</li>
+                    </ol>
+
+                    <h3>3.3 Méthode du Jumper sur Composant</h3>
+                    <p>Si la ligne passe sous un composant :</p>
+                    <ul>
+                        <li>Utiliser le composant comme pont</li>
+                        <li>Souder sur les pads adjacents</li>
+                        <li>Plus rapide mais moins élégant</li>
+                    </ul>
+
+                    <h3>3.4 Réparation de Pads Arrachés</h3>
+                    <ol>
+                        <li>Gratter la zone autour du pad</li>
+                        <li>Trouver la ligne de cuivre sous-jacente</li>
+                        <li>Souder un fil directement sur le cuivre</li>
+                        <li>Reconstruire le pad avec étain</li>
+                        <li>Isoler avec vernis</li>
+                    </ol>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE:</strong> Le fil émaillé de bobine de transformateur est parfait pour les jumpers!
+                    </div>
+                `
+            }
+        ]
+    },
+    {
+        id: 4,
+        title: "Diagnostic Avancé et Dépannage",
+        level: "expert",
+        levelName: "Expert",
+        duration: "5h 00min",
+        description: "Méthodologies de diagnostic complexe et résolution de pannes rares.",
+        chapters: [
+            {
+                id: 1,
+                title: "Analyse de Schémas Électriques",
+                duration: "50 min",
+                content: `
+                    <h2>📐 Analyse de Schémas Électriques</h2>
+
+                    <h3>1.1 Où Trouver les Schémas</h3>
+                    <ul>
+                        <li><strong>ZXW Tool</strong> - Payant, très complet</li>
+                        <li><strong>JC Programmer</strong> - Avec outil de diagnostic</li>
+                        <li><strong>Borneo Schematics</strong> - Gratuit, communauté</li>
+                        <li><strong>WuXinji</strong> - Schémas détaillés</li>
+                    </ul>
+
+                    <h3>1.2 Lire un Schéma</h3>
+                    <ul>
+                        <li><strong>Blocks diagram</strong> - Vue d'ensemble</li>
+                        <li><strong>Schematic</strong> - Détail des connexions</li>
+                        <li><strong>Boardview</strong> - Position physique des composants</li>
+                        <li><strong>Reference designators</strong> - R101, C2045, U302...</li>
+                    </ul>
+
+                    <h3>1.3 Conventions de Nommage</h3>
+                    <table class="values-table">
+                        <tr><td>R</td><td>Résistance</td></tr>
+                        <tr><td>C</td><td>Condensateur</td></tr>
+                        <tr><td>L</td><td>Bobine/Inductance</td></tr>
+                        <tr><td>D</td><td>Diode</td></tr>
+                        <tr><td>Q</td><td>Transistor</td></tr>
+                        <tr><td>U</td><td>Circuit Intégré</td></tr>
+                        <tr><td>F</td><td>Fusible</td></tr>
+                        <tr><td>J</td><td>Connecteur</td></tr>
+                    </table>
+
+                    <h3>1.4 Tracer une Ligne</h3>
+                    <ol>
+                        <li>Identifier le point de départ</li>
+                        <li>Suivre le net label sur le schéma</li>
+                        <li>Repérer tous les composants connectés</li>
+                        <li>Localiser sur le boardview</li>
+                        <li>Tester la continuité physique</li>
+                    </ol>
+
+                    <div class="info-box">
+                        📊 <strong>PRO TIP:</strong> Apprenez à utiliser les outils de recherche de schéma par nom de composant - gain de temps énorme!
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Utilisation de l'Oscilloscope",
+                duration: "45 min",
+                content: `
+                    <h2>📈 Utilisation de l'Oscilloscope</h2>
+
+                    <h3>2.1 Pourquoi un Oscilloscope?</h3>
+                    <p>Le multimètre ne montre que la tension moyenne. L'oscilloscope révèle :</p>
+                    <ul>
+                        <li>Les signaux de communication (I2C, SPI, UART)</li>
+                        <li>Les parasites et bruits sur l'alimentation</li>
+                        <li>Les signaux d'horloge (clock)</li>
+                        <li>Les problèmes intermittents</li>
+                    </ul>
+
+                    <h3>2.2 Signaux à Observer</h3>
+                    <table class="values-table">
+                        <tr><td>Crystal oscillators</td><td>19.2MHz, 26MHz, 32.768kHz</td></tr>
+                        <tr><td>I2C Bus</td><td>SDA, SCL - 100kHz to 400kHz</td></tr>
+                        <tr><td>MIPI Display</td><td>Signaux différentiels haute vitesse</td></tr>
+                        <tr><td>Power rails</td><td>Ripple et noise sur alimentations</td></tr>
+                    </table>
+
+                    <h3>2.3 Diagnostic de Démarrage</h3>
+                    <ol>
+                        <li>Observer la séquence de power-on</li>
+                        <li>Vérifier chaque tension dans l'ordre</li>
+                        <li>Checker les signaux d'enable</li>
+                        <li>Observer le clock du CPU</li>
+                        <li>Monitorer les lignes I2C de boot</li>
+                    </ol>
+
+                    <div class="tip-box">
+                        💡 <strong>ASTUCE:</strong> Un oscilloscope USB (Hantek, DSO) suffit pour débuter. Investissez dans un bon plus tard.
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "Pannes Complexes et Solutions",
+                duration: "55 min",
+                content: `
+                    <h2>🔧 Pannes Complexes et Solutions</h2>
+
+                    <h3>3.1 Phone Mort (No Power)</h3>
+                    <p>Checklist complète :</p>
+                    <ol>
+                        <li>Batterie (tension > 3.5V)</li>
+                        <li>Connecteur de charge</li>
+                        <li>Fusible de batterie</li>
+                        <li>PMIC (tensions de sortie)</li>
+                        <li>Court-circuit sur VCC_MAIN</li>
+                        <li>CPU (dernier recours)</li>
+                    </ol>
+
+                    <h3>3.2 Bootloop Infini</h3>
+                    <ul>
+                        <li><strong>Software</strong> - DFU mode, restore</li>
+                        <li><strong>NAND</strong> - Mémoire corrompue</li>
+                        <li><strong>PMIC</strong> - Séquence de boot incorrecte</li>
+                        <li><strong>CPU</strong> - Soudure froide ou HS</li>
+                    </ul>
+
+                    <h3>3.3 Pas de Réseau (No Service)</h3>
+                    <ol>
+                        <li>Vérifier IMEI (null = baseband HS)</li>
+                        <li>Checker antennes et connecteurs IPEX</li>
+                        <li>PA RF (Power Amplifier)</li>
+                        <li>Baseband CPU</li>
+                        <li>Crystal 26MHz</li>
+                    </ol>
+
+                    <h3>3.4 Écran Noir mais Phone Fonctionne</h3>
+                    <ul>
+                        <li>Test avec lampe (rétroéclairage HS?)</li>
+                        <li>VCC_DISPLAY (5.5V typique)</li>
+                        <li>Boost converter pour backlight</li>
+                        <li>Connecteur écran</li>
+                        <li>Écran lui-même</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>IMPORTANT:</strong> Toujours éliminer les causes simples avant de suspecter le CPU!
+                    </div>
+                `
+            }
+        ]
+    }
+];
+
+// COMPOSANTS ÉLECTRONIQUES
+const COMPONENTS_DATA = [
+    {
+        id: 1,
+        name: "Résistance",
+        symbol: "⚡",
+        category: "Passif",
+        description: "Composant qui limite le passage du courant électrique. Mesurée en Ohms (Ω).",
+        function: "Limite le courant, divise la tension, protège les composants sensibles.",
+        repair: "Se remplace facilement. Vérifier la valeur avec multimètre. Un changement de valeur indique un problème dans le circuit.",
+        problems: ["Valeur changée", "Ouvert (infini)", "Brûlé (visible)"],
+        values: [["Type", "Valeurs courantes"], ["SMD", "1Ω à 10MΩ"], ["Puissance", "1/16W à 1/4W"]]
+    },
+    {
+        id: 2,
+        name: "Condensateur",
+        symbol: "⚬",
+        category: "Passif",
+        description: "Stocke et libère l'énergie électrique. Filtre les parasites et stabilise les tensions.",
+        function: "Filtrage, découplage, stockage d'énergie, timing dans les circuits.",
+        repair: "Très nombreux sur les cartes (500-1000+). Souvent en court-circuit. Tester en mode continuité.",
+        problems: ["Court-circuit (0Ω)", "Ouvert", "Fuite de capacité"],
+        values: [["Type", "Valeurs courantes"], ["Céramique", "1pF à 100μF"], ["Tension", "4V à 50V"]]
+    },
+    {
+        id: 3,
+        name: "Bobine / Inductance",
+        symbol: "〰",
+        category: "Passif",
+        description: "Stocke l'énergie dans un champ magnétique. Utilisée dans les alimentations à découpage.",
+        function: "Filtrage haute fréquence, conversion DC-DC, stockage d'énergie.",
+        repair: "Doit avoir continuité (0-5Ω). Si ouvert, le circuit ne fonctionne pas. Rarement défectueux.",
+        problems: ["Ouvert (cassé)", "Saturation", "Désoudé"],
+        values: [["Type", "Valeurs courantes"], ["SMD", "0.47μH à 100μH"], ["Courant", "0.5A à 5A"]]
+    },
+    {
+        id: 4,
+        name: "Diode",
+        symbol: "▷|",
+        category: "Semi-conducteur",
+        description: "Permet le passage du courant dans un seul sens. Protège contre les inversions de polarité.",
+        function: "Redressement, protection, régulation de tension (Zener).",
+        repair: "Tester en mode diode. 0.5-0.7V dans un sens, OL dans l'autre. Court-circuit = HS.",
+        problems: ["Court-circuit", "Ouvert", "Fuite de courant"],
+        values: [["Type", "Tension"], ["Signal", "0.7V"], ["Zener", "3.3V à 30V"], ["Schottky", "0.3V"]]
+    },
+    {
+        id: 5,
+        name: "Transistor",
+        symbol: "⚛",
+        category: "Semi-conducteur",
+        description: "Amplifie ou commute les signaux électriques. Base de l'électronique moderne.",
+        function: "Amplification, commutation, régulation de courant.",
+        repair: "3 pins : Base, Collecteur, Émetteur (BJT) ou Gate, Drain, Source (MOSFET). Tester chaque junction.",
+        problems: ["Court-circuit BE/CE", "Gate percée (MOSFET)", "Gain réduit"],
+        values: [["Type", "Usage"], ["BJT", "Signal faible"], ["MOSFET", "Puissance"], ["FET", "Commutation"]]
+    },
+    {
+        id: 6,
+        name: "PMIC",
+        symbol: "🔋",
+        category: "Circuit Intégré",
+        description: "Power Management IC - Gère toutes les alimentations du smartphone.",
+        function: "Conversion de tension, gestion de charge, distribution power, séquence de boot.",
+        repair: "Composant critique. Nécessite station à air chaud. Vérifier toutes les tensions de sortie avant remplacement.",
+        problems: ["Tension manquante", "Séquence boot incorrecte", "Surchauffe"],
+        values: [["Sorties", "8 à 20 lignes"], ["Tensions", "0.8V à 5.5V"], ["Température", "350-380°C soudure"]]
+    },
+    {
+        id: 7,
+        name: "CPU / Processeur",
+        symbol: "🧠",
+        category: "Circuit Intégré",
+        description: "Cerveau du smartphone. Exécute le système d'exploitation et les applications.",
+        function: "Traitement des données, contrôle de tous les sous-systèmes.",
+        repair: "BGA, nécessite équipement professionnel. Souvent empilé avec la RAM. Irréversible.",
+        problems: ["Court-circuit VCC_CPU", "Soudure froide", "Overheat"],
+        values: [["Type", "BGA"], ["Billes", "200-500+"], ["Température", "380-400°C"]]
+    },
+    {
+        id: 8,
+        name: "Mémoire (RAM/ROM)",
+        symbol: "💾",
+        category: "Circuit Intégré",
+        description: "Stockage des données. RAM (volatile) et ROM/NAND (permanent).",
+        function: "RAM : Mémoire de travail. ROM : Stockage système et données.",
+        repair: "Empilée avec CPU sur modèles récents. Nécessite swap complet. Données perdues si remplacée.",
+        problems: ["Corruption données", "Court-circuit", "Dessoudage"],
+        values: [["RAM", "4GB à 12GB"], ["ROM", "64GB à 512GB"], ["Type", "LPDDR4/5, UFS"]]
+    },
+    {
+        id: 9,
+        name: "Connecteur B2B",
+        symbol: "🔌",
+        category: "Connectique",
+        description: "Board-to-Board connector. Relie les nappes et sous-ensembles.",
+        function: "Connexion électrique entre PCB et flex cables.",
+        repair: "Fragile! Pins facilement tordus. Remplacer avec soin. Nettoyer les contacts.",
+        problems: ["Pins tordus", "Oxydation", "Dessoudé", "Plastique cassé"],
+        values: [["Pins", "20 à 60"], ["Pitch", "0.3mm à 0.5mm"], ["Hauteur", "0.8mm à 2mm"]]
+    },
+    {
+        id: 10,
+        name: "Fusible",
+        symbol: "⛓",
+        category: "Protection",
+        description: "Protège le circuit contre les surintensités. S'ouvre en cas de problème.",
+        function: "Protection contre courts-circuits et surcharges.",
+        repair: "Doit avoir 0Ω. Si ouvert, chercher la cause AVANT de remplacer. Sinon il sautera à nouveau.",
+        problems: ["Ouvert (normal en panne)", "Valeur augmentée", "Corrosion"],
+        values: [["Courant", "0.5A à 5A"], ["Tension", "6V à 30V"], ["Type", "Fast-blow"]]
+    },
+    {
+        id: 11,
+        name: "Crystal Oscillator",
+        symbol: "📡",
+        category: "Actif",
+        description: "Génère le signal d'horloge pour synchroniser les circuits.",
+        function: "Référence de fréquence pour CPU, baseband, audio.",
+        repair: "Fréquences courantes : 19.2MHz, 26MHz, 32.768kHz. Tester avec oscilloscope.",
+        problems: ["Fréquence incorrecte", "Pas d'oscillation", "Dérive"],
+        values: [["Fréquence", "19.2/26/32.768 MHz"], ["Tolérance", "±10 à ±50 ppm"], ["Load", "8-12pF"]]
+    },
+    {
+        id: 12,
+        name: "Amplificateur RF",
+        symbol: "📶",
+        category: "Circuit Intégré",
+        description: "Amplifie les signaux radio pour les communications (4G, 5G, WiFi).",
+        function: "Boost du signal avant émission, amplification en réception.",
+        repair: "Situé près des antennes. Sensible à la chaleur. Remplacement délicat.",
+        problems: ["Pas de réseau", "Signal faible", "Surchauffe"],
+        values: [["Fréquence", "700MHz à 6GHz"], ["Gain", "20-30 dB"], ["Power", "28-33 dBm"]]
+    }
+];
+
+// OUTILS DE RÉPARATION
+const TOOLS_DATA = [
+    {
+        id: 1,
+        name: "Fer à Souder",
+        icon: "🔥",
+        category: "Soudure",
+        price: "30-150€",
+        description: "Outil de base pour la soudure de composants. Température réglable essentielle.",
+        usage: ["Soudure de composants through-hole", "Retouche de connecteurs", "Jumper wires"],
+        tips: ["Température : 300-350°C pour mobile", "Utiliser pointe fine (0.2-0.5mm)", "Nettoyer la pointe régulièrement", "Éteindre quand non utilisé"],
+        where: "Quick, Hakko, Pinecil, TS100"
+    },
+    {
+        id: 2,
+        name: "Station à Air Chaud",
+        icon: "💨",
+        category: "Soudure",
+        price: "150-500€",
+        description: "Indispensable pour les composants SMD et BGA. Chauffe uniformément.",
+        usage: ["Dessoudage composants SMD", "Remplacement PMIC/CPU", "Collage d'écrans"],
+        tips: ["350-380°C pour SMD", "400°C pour BGA", "Distance : 2-3cm", "Mouvement circulaire constant"],
+        where: "Quick 861DW (pro), AOYUE, Mechanic"
+    },
+    {
+        id: 3,
+        name: "Microscope USB",
+        icon: "🔬",
+        category: "Inspection",
+        price: "50-300€",
+        description: "Grossissement pour voir les petits composants. Essentiel pour micro-soudure.",
+        usage: ["Inspection de composants", "Alignement BGA", "Vérification de soudures"],
+        tips: ["20x minimum, 50x recommandé", "Éclairage LED intégré important", "Support stable obligatoire"],
+        where: "Andonstar, Amscope, Omano"
+    },
+    {
+        id: 4,
+        name: "Alimentation de Laboratoire",
+        icon: "⚡",
+        category: "Diagnostic",
+        price: "80-200€",
+        description: "Alimente le phone en contrôlant tension et courant. Outil de diagnostic principal.",
+        usage: ["Test de consommation", "Détection de courts-circuits", "Boot sans batterie"],
+        tips: ["0-5V, 0-3A minimum", "Mode CC/CV utile", "Observer l'aiguille au démarrage"],
+        where: "Ridgeway, Uni-T, Siglent"
+    },
+    {
+        id: 5,
+        name: "Multimètre",
+        icon: "📊",
+        category: "Diagnostic",
+        price: "30-150€",
+        description: "Mesure tension, résistance, continuité. L'outil le plus utilisé.",
+        usage: ["Test de continuité", "Mesure de tensions", "Vérification de composants"],
+        tips: ["Mode diode essentiel", "Pointes fines pour SMD", "Auto-range pratique"],
+        where: "Fluke (pro), Uni-T, Aneng"
+    },
+    {
+        id: 6,
+        name: "Kit de Démontage",
+        icon: "🧰",
+        category: "Démontage",
+        price: "20-50€",
+        description: "Ensemble d'outils pour ouvrir les smartphones sans les abîmer.",
+        usage: ["Ouverture de devices", "Déconnexion de nappes", "Retrait de vis"],
+        tips: ["Ventouses de qualité", "Outils plastique pour ne pas rayer", "Aimant pour vis"],
+        where: "iFixit, Xiaomi, Generic"
+    },
+    {
+        id: 7,
+        name: "Tapis Antistatique",
+        icon: "🛡️",
+        category: "Protection",
+        price: "30-80€",
+        description: "Protège les composants contre les décharges électrostatiques (ESD).",
+        usage: ["Surface de travail", "Protection ESD", "Organisation"],
+        tips: ["Relier à la terre", "Nettoyer régulièrement", "Bracelet ESD obligatoire"],
+        where: "iFixit, Weller, Generic"
+    },
+    {
+        id: 8,
+        name: "Pâte à Souder",
+        icon: "🧴",
+        category: "Consommable",
+        price: "15-40€",
+        description: "Facilite la soudure et protège les composants de la chaleur.",
+        usage: ["Soudure SMD", "Protection thermique", "Maintien de composants"],
+        tips: ["No-Clean recommandé", "Conserver au réfrigérateur", "AMTECH NC-559 référence"],
+        where: ["AMTECH", "Kingbo", "Mechanic"]
+    },
+    {
+        id: 9,
+        name: "Programmeur JC/JCID",
+        icon: "💻",
+        category: "Programmation",
+        price: "100-300€",
+        description: "Programme les données (True Tone, Face ID, batterie) après remplacement.",
+        usage: ["True Tone iPhone", "Données batterie", "Face ID transfer"],
+        tips: ["Compatible avec modèles récents", "Mise à jour régulière", "Sauvegarder avant remplacement"],
+        where: "JC Programmer, JCID, QianLi"
+    },
+    {
+        id: 10,
+        name: "Séparateur d'Écran",
+        icon: "✂️",
+        category: "Démontage",
+        price: "150-400€",
+        description: "Machine pour séparer la vitre de l'écran OLED/LCD. Pour recyclage d'écrans.",
+        usage: ["Séparation vitre/OLED", "Recyclage d'écrans", "Économie sur pièces"],
+        tips: ["Température contrôlée", "Fil de coupe fin", "Pratique requise"],
+        where: "Sunshine, OCA, Generic"
+    }
+];
+
+// QUIZ DATA
+const QUIZ_DATA = {
+    general: [
+        { q: "Quelle est la première chose à faire avant d'ouvrir un smartphone?", a: ["Déconnecter la batterie", "Enlever les vis", "Chauffer l'écran", "Retirer la SIM"], correct: 0 },
+        { q: "Quelle température pour souder des composants SMD?", a: ["200-250°C", "300-350°C", "400-450°C", "500-550°C"], correct: 1 },
+        { q: "Que signifie ESD?", a: ["Electronic System Device", "ElectroStatic Discharge", "Energy Supply Device", "Electronic Safety Standard"], correct: 1 },
+        { q: "Quelle tension d'une batterie Li-ion fully charged?", a: ["3.0V", "3.7V", "4.2V", "5.0V"], correct: 2 },
+        { q: "Quel outil pour détecter un court-circuit?", a: ["Oscilloscope", "Alimentation de labo", "Fer à souder", "Ventouse"], correct: 1 },
+        { q: "Que faire si une batterie est gonflée?", a: ["La percer", "La continuer à utiliser", "La remplacer immédiatement", "La mettre au congélateur"], correct: 2 },
+        { q: "Quel est le rôle du PMIC?", a: ["Gérer l'affichage", "Gérer l'alimentation", "Gérer l'audio", "Gérer la caméra"], correct: 1 },
+        { q: "Quelle est la connectique Lightning d'Apple?", a: ["16 pins", "24 pins", "30 pins", "8 pins"], correct: 3 },
+        { q: "Que signifie BGA?", a: ["Ball Grid Array", "Battery Grid Array", "Board Gate Array", "Basic Gate Array"], correct: 0 },
+        { q: "Quel gaz utiliser pour nettoyer une carte?", a: ["Air comprimé", "Alcool isopropylique", "Eau distillée", "Acétone"], correct: 1 }
+    ],
+    components: [
+        { q: "Quelle est la fonction d'une résistance?", a: ["Stocker l'énergie", "Limiter le courant", "Amplifier le signal", "Commuter le courant"], correct: 1 },
+        { q: "Comment tester un condensateur?", a: ["Mode résistance", "Mode continuité", "Mode diode", "Mode capacitance"], correct: 1 },
+        { q: "Que signifie SMD?", a: ["Surface Mount Device", "System Main Device", "Single Mode Device", "Standard Mount Device"], correct: 0 },
+        { q: "Quelle tension typique pour VCC_CPU?", a: ["0.8-1.2V", "3.3V", "5.0V", "12V"], correct: 0 },
+        { q: "Combien de condensateurs sur une carte mère iPhone?", a: ["10-50", "100-200", "500-1000+", "5000+"], correct: 2 },
+        { q: "Quel composant génère le clock?", a: ["Résistance", "Crystal oscillator", "Condensateur", "Diode"], correct: 1 },
+        { q: "Que fait une diode?", a: ["Amplifie", "Stocke", "Laisse passer dans un sens", "Commute"], correct: 2 },
+        { q: "Quelle est la valeur 102 sur une résistance?", a: ["102Ω", "1kΩ", "10kΩ", "100Ω"], correct: 1 },
+        { q: "Le PMIC gère combien de tensions environ?", a: ["1-2", "5-10", "8-20", "50+"], correct: 2 },
+        { q: "Quel composant est le plus fragile?", a: ["Résistance", "Condensateur", "Connecteur B2B", "Bobine"], correct: 2 }
+    ],
+    tools: [
+        { q: "Quelle station à air chaud est la référence pro?", a: ["AOYUE 968", "Quick 861DW", "Generic 850", "Hakko FX951"], correct: 1 },
+        { q: "Quel grossissement minimum pour un microscope?", a: ["5x", "10x", "20x", "50x"], correct: 2 },
+        { q: "Quelle pâte à souder est la référence?", a: ["Generic", "AMTECH NC-559", "Colle époxy", "Flux liquide"], correct: 1 },
+        { q: "Quel outil pour ouvrir un iPhone?", a: ["Tournevis", "Ventouse + spatule", "Marteau", "Pince"], correct: 1 },
+        { q: "Quelle température pour le BGA?", a: ["300°C", "350°C", "380-400°C", "450°C"], correct: 2 },
+        { q: "Que mesure une alimentation de lab?", a: ["Tension uniquement", "Courant uniquement", "Tension et courant", "Fréquence"], correct: 2 },
+        { q: "Quel outil pour True Tone?", a: ["Multimètre", "JC Programmer", "Fer à souder", "Ventouse"], correct: 1 },
+        { q: "Pourquoi un tapis antistatique?", a: ["Confort", "Protection ESD", "Esthétique", "Chaleur"], correct: 1 },
+        { q: "Quelle pointe de fer pour mobile?", a: ["5mm", "3mm", "0.2-0.5mm", "10mm"], correct: 2 },
+        { q: "Oscilloscope utile pour?", a: ["Visser", "Voir les signaux", "Chauffer", "Couper"], correct: 1 }
+    ],
+    diagnostic: [
+        { q: "Consommation 0.00A au démarrage = ?", a: ["Normal", "Court-circuit", "Batterie déconnectée", "Les deux derniers"], correct: 3 },
+        { q: "Phone bootloop = cause possible?", a: ["NAND", "PMIC", "CPU", "Toutes"], correct: 3 },
+        { q: "Pas de réseau, IMEI null = ?", a: ["Antenne HS", "Baseband HS", "SIM HS", "Écran HS"], correct: 1 },
+        { q: "Écran noir mais phone vibre = ?", a: ["Écran HS", "Rétroéclairage HS", "Connecteur HS", "Toutes"], correct: 3 },
+        { q: "Mode écouteur bloqué (iPhone 7) = ?", a: ["Audio IC", "Écran", "Batterie", "Bouton home"], correct: 0 },
+        { q: "Charge lente = cause?", a: ["Connecteur", "IC charge", "Câble", "Toutes"], correct: 3 },
+        { q: "VCC_MAIN = quelle tension?", a: ["1.2V", "3.8V", "5.0V", "12V"], correct: 1 },
+        { q: "Ordre de déconnexion?", a: ["Écran d'abord", "Batterie d'abord", "Au hasard", "Peu importe"], correct: 1 },
+        { q: "Ligne coupée = réparation?", a: ["Jumper wire", "Remplacer carte", "Jeter", "Colle"], correct: 0 },
+        { q: "Outils pour schémas?", a: ["ZXW", "Borneo", "WuXinji", "Tous"], correct: 3 }
+    ]
+};
+
+// Export for use
+window.COURSES_DATA = COURSES_DATA;
+window.COMPONENTS_DATA = COMPONENTS_DATA;
+window.TOOLS_DATA = TOOLS_DATA;
+window.QUIZ_DATA = QUIZ_DATA;

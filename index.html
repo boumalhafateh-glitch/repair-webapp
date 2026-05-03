@@ -148,6 +148,19 @@ button:disabled{opacity:.4;cursor:not-allowed;}
 
     <div class="footer" id="footerText"></div>
 </div>
+function getComponentImage(id){
+    const images = {
+        resistor: "https://i.imgur.com/8QfQZQF.png",
+        capacitor: "https://i.imgur.com/6YbQZQm.png",
+        diode: "https://i.imgur.com/3fZQZQp.png",
+        coil: "https://i.imgur.com/2QZQZQa.png",
+        fuse: "https://i.imgur.com/1QZQZQb.png",
+        connector: "https://i.imgur.com/9QZQZQc.png",
+        ic: "https://i.imgur.com/5QZQZQd.png"
+    };
+
+    return images[id] || "";
+}
 
 <script>
 const branches = [

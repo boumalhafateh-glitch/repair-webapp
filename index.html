@@ -4,450 +4,274 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Master Repair Academy</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
     --bg:#080808;
     --surface:#111;
-    --surface-2:#1b1b1b;
     --line:#303030;
     --gold:#f2c94c;
     --cyan:#38bdf8;
     --green:#27c46b;
     --muted:#9b9b9b;
     --soft:#dedede;
-    --danger:#b00020;
 }
+
 *{box-sizing:border-box;}
+
 body{
     margin:0;
     min-height:100vh;
     color:#fff;
-    font-family:"Manrope","IBM Plex Sans Arabic",Arial,sans-serif;
-    background: radial-gradient(circle at top left,rgba(56,189,248,.16),transparent 28%), radial-gradient(circle at top right,rgba(242,201,76,.16),transparent 30%), linear-gradient(180deg,#0d0d0d,#050505);
+    font-family:"Manrope","IBM Plex Sans Arabic",Arial;
+    background: linear-gradient(180deg,#0d0d0d,#050505);
 }
-body[dir="rtl"]{direction:rtl;}
+
 .app{max-width:560px;margin:auto;padding:16px;}
-.topbar{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;gap:10px;margin-bottom:16px;}
-.icon-btn,.lang-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:#121212;color:#fff;font-weight:900;cursor:pointer;}
-.lang-btn{color:var(--gold);}
+
+.topbar{
+    display:grid;
+    grid-template-columns:42px 1fr 42px;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn,.lang-btn{
+    width:42px;height:42px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#111;
+    color:#fff;
+    cursor:pointer;
+    font-weight:900;
+}
+
 .logo{text-align:center;}
-.logo-mark{width:34px;height:34px;margin:0 auto 5px;border-radius:12px;border:1px solid rgba(56,189,248,.55);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:900;box-shadow:0 0 18px rgba(56,189,248,.26);}
-.logo h1{margin:0;font-size:17px;font-weight:900;letter-spacing:.6px;color:#eafaff;text-shadow:0 0 8px rgba(56,189,248,.48);}
-.logo h1 span{color:var(--gold);}
-.status{font-size:11px;color:var(--muted);font-weight:700;}
-.page{display:none;animation:fade .18s ease-out;}
+
+.page{display:none;}
 .page.active{display:block;}
-@keyframes fade{from{opacity:.4;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.hero,.panel,.branch-card,.lesson-card{border:1px solid var(--line);border-radius:18px;background:rgba(20,20,20,.95);padding:18px;margin-bottom:14px;box-shadow:0 18px 40px rgba(0,0,0,.22);}
-.title{margin:0;font-size:22px;font-weight:900;line-height:1.2;}
-.subtitle{margin:10px 0 0;color:var(--soft);font-size:14px;line-height:1.65;font-weight:600;}
-.progress-wrap{height:12px;border-radius:999px;background:#080808;border:1px solid var(--line);overflow:hidden;margin-top:16px;}
-.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--green));transition:width .4s ease;}
-button{min-height:46px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#111;color:#fff;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;transition:transform .2s ease,background .2s ease;}
-button:hover:not(:disabled){transform:translateY(-1px);}
-button:disabled{opacity:.4;cursor:not-allowed;}
-.primary{background:linear-gradient(135deg,var(--gold),#ffe08a);color:#111;}
-.secondary{background:#161616;color:#fff;}
-.danger{background:linear-gradient(180deg,var(--danger),#780015);}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
-.stat{border:1px solid var(--line);border-radius:14px;background:#141414;padding:14px;text-align:center;}
-.stat strong{display:block;color:var(--gold);font-size:20px;}
-.stat small{display:block;color:var(--muted);font-size:12px;margin-top:4px;}
-.branch-list{display:grid;gap:12px;}
-.branch-card{cursor:pointer;transition:border-color .2s,transform .2s;position:relative;text-align:left;}
-.branch-card:hover{transform:translateY(-2px);border-color:rgba(56,189,248,.65);}
-.branch-card h3{margin:0 0 8px;font-size:18px;}
-.branch-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5;}
-.badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 10px;border-radius:999px;background:rgba(242,201,76,.12);color:var(--gold);font-size:12px;font-weight:900;}
-.lesson-card{display:grid;gap:14px;}
-.lesson-card h3{margin:0;font-size:20px;}
-.lesson-card p{margin:0;color:var(--soft);font-size:14px;line-height:1.7;}
-.lesson-meta{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;}
-.lesson-meta small{color:var(--muted);font-size:13px;}
-.lesson-points{display:grid;gap:10px;margin-top:10px;}
-.point{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;background:#0f0f0f;}
-.point strong{display:block;margin-bottom:6px;font-size:14px;color:var(--gold);}
-.point span{display:block;color:var(--soft);font-size:13px;line-height:1.6;}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(20,20,20,.96);border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:#fff;font-weight:700;box-shadow:0 14px 40px rgba(0,0,0,.35);z-index:1000;opacity:0;animation:toastIn .25s forwards;}
-@keyframes toastIn{to{opacity:1;}}
-.footer{color:#777;font-size:11px;text-align:center;padding:18px 0 6px;font-weight:700;}
-@media(max-width:400px){.topbar{grid-template-columns:38px 1fr 38px;} .app{padding:14px;}}
+
+.hero,.panel,.lesson-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    background:#121212;
+    margin-bottom:12px;
+}
+
+.title{font-size:20px;font-weight:900;}
+
+button{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:#111;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.primary{background:var(--gold);color:#000;}
+
+.progress-wrap{
+    height:10px;
+    background:#000;
+    border-radius:999px;
+    margin-top:10px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--cyan),var(--gold));
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-    <div class="topbar">
-        <button class="icon-btn" onclick="goHome()" aria-label="Home">⌂</button>
-        <div class="logo">
-            <div class="logo-mark" aria-hidden="true">⌁</div>
-            <h1><span>MASTER</span> REPAIR</h1>
-            <div class="status" id="telegramStatus"></div>
-        </div>
-        <button class="lang-btn" id="langButton" onclick="toggleLanguage()">AR</button>
+
+<!-- TOP -->
+<div class="topbar">
+    <button class="icon-btn" onclick="goHome()">⌂</button>
+    <div class="logo">
+        <h2>MASTER REPAIR</h2>
     </div>
-
-    <div id="home" class="page active">
-        <div class="hero">
-            <h2 class="title" id="heroTitle"></h2>
-            <p class="subtitle" id="heroText"></p>
-            <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
-            <p class="subtitle" id="progressText"></p>
-        </div>
-
-        <div class="stats">
-            <div class="stat"><strong id="doneCount">0</strong><small id="completedLabel"></small></div>
-            <div class="stat"><strong id="totalCount">0</strong><small id="stepsLabel"></small></div>
-        </div>
-
-        <button class="primary" onclick="continueLearning()" id="continueButton"></button>
-
-        <div class="section-title">
-            <h3 id="branchesTitle"></h3>
-            <p class="subtitle" id="branchesSubtitle"></p>
-        </div>
-
-        <div id="branchList" class="branch-list"></div>
-    </div>
-
-    <div id="branchPage" class="page">
-        <div class="panel">
-            <h2 class="title" id="branchTitle"></h2>
-            <p class="subtitle" id="branchDesc"></p>
-            <div class="lesson-meta">
-                <small id="branchProgress"></small>
-                <span class="badge" id="branchNext"></span>
-            </div>
-        </div>
-
-        <div class="lesson-card" id="branchLessonCard"></div>
-        <button class="primary" id="branchActionButton" onclick="openLesson(currentLessonIndex)"></button>
-        <button class="secondary" onclick="goHome()" id="branchBackButton"></button>
-    </div>
-
-    <div id="lessonPage" class="page">
-        <div class="panel">
-            <h2 class="title" id="lessonBranchTitle"></h2>
-            <p class="subtitle" id="lessonTitle"></p>
-            <div class="lesson-meta">
-                <small id="lessonStatus"></small>
-                <span class="badge" id="lessonPosition"></span>
-            </div>
-        </div>
-
-        <div class="lesson-card" id="lessonCard">
-            <p class="subtitle" id="lessonDesc"></p>
-            <div class="lesson-points" id="lessonPoints"></div>
-        </div>
-
-        <button class="primary" id="lessonDoneButton" onclick="toggleLessonDone()"></button>
-        <button class="secondary" id="lessonContinueButton" onclick="continueBranch()"></button>
-    </div>
-
-    <div class="footer" id="footerText"></div>
+    <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">AR</button>
 </div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+
+    <div class="hero">
+        <h2 id="heroTitle"></h2>
+        <p id="heroText"></p>
+
+        <div class="progress-wrap">
+            <div class="progress" id="progressBar"></div>
+        </div>
+    </div>
+
+    <button class="primary" onclick="continueLearning()" id="continueBtn"></button>
+
+    <div id="branchList"></div>
+
+</div>
+
+<!-- LESSON -->
+<div id="lesson" class="page">
+
+    <div class="panel">
+        <h2 id="lessonTitle"></h2>
+        <p id="lessonDesc"></p>
+    </div>
+
+    <div class="lesson-card" id="lessonPoints"></div>
+
+    <button class="primary" onclick="toggleDone()" id="doneBtn"></button>
+    <button onclick="goHome()">Back</button>
+
+</div>
+
+</div>
+
+<script>
+/* ================= DATA ================= */
+
+const branches = [
+{
+    id:"tools",
+    title:{en:"Tools",ar:"الأدوات"},
+    desc:{en:"Basic tools",ar:"الأدوات الأساسية"},
+    lessons:[
+        {
+            id:"multimeter",
+            title:{en:"Multimeter",ar:"الملتيميتر"},
+            desc:{en:"Measure voltage safely",ar:"قياس الفولت"},
+            points:[
+                {en:"Use correct mode",ar:"استعمل الوضع الصحيح"},
+                {en:"Check continuity",ar:"فحص الاستمرارية"}
+            ]
+        }
+    ]
+}
+];
+
+/* ================= STATE ================= */
+
+let lang = localStorage.getItem("lang") || "en";
+let currentLesson = null;
+
+/* ================= UI TEXT ================= */
+
+const ui = {
+en:{
+    heroTitle:"Learn step by step",
+    heroText:"Continue your repair training",
+    continue:"Continue",
+    done:"Done",
+    completed:"Completed"
+},
+ar:{
+    heroTitle:"تعلم خطوة خطوة",
+    heroText:"واصل التدريب",
+    continue:"متابعة",
+    done:"إنهاء",
+    completed:"تم"
+}
+};
+
+const t = (k)=>ui[lang][k];
+
+/* ================= IMAGE HELPER ================= */
+
 function getComponentImage(id){
     const images = {
-        resistor: "https://i.imgur.com/8QfQZQF.png",
-        capacitor: "https://i.imgur.com/6YbQZQm.png",
-        diode: "https://i.imgur.com/3fZQZQp.png",
-        coil: "https://i.imgur.com/2QZQZQa.png",
-        fuse: "https://i.imgur.com/1QZQZQb.png",
-        connector: "https://i.imgur.com/9QZQZQc.png",
-        ic: "https://i.imgur.com/5QZQZQd.png"
+        resistor:"https://i.imgur.com/8QfQZQF.png",
+        capacitor:"https://i.imgur.com/6YbQZQm.png",
+        diode:"https://i.imgur.com/3fZQZQp.png"
     };
-
     return images[id] || "";
 }
 
-<script>
-const branches = [
-    {
-        id: "tools",
-        title: {en: "Repair Tools", ar: "أدوات الإصلاح"},
-        desc: {en: "Start with the essential tools for safe phone repair.", ar: "ابدأ بالأدوات الأساسية لإصلاح الهاتف بأمان."},
-        lessons: [
-            {id: "screwdriver", title:{en:"Screwdrivers",ar:"المفكات"}, desc:{en:"Choose the right bit and track each screw by position.",ar:"اختر مقاس المفك المناسب ونظم البراغي حسب مكانها."}, points:[{en:"Keep screws organized.",ar:"نظم البراغي."},{en:"Use the right bit size.",ar:"استخدم مقاس المفك الصحيح."}]},
-            {id: "multimeter", title:{en:"Multimeter Basics",ar:"أساسيات الملتيميتر"}, desc:{en:"Measure voltage, continuity and diode drops safely.",ar:"قِس الفولت والاستمرارية وقياسات الدايود بأمان."}, points:[{en:"Turn the meter off after use.",ar:"أطفئ الجهاز بعد الاستخدام."},{en:"Use the correct mode.",ar:"استخدم الوضع الصحيح."}]},
-            {id: "soldering", title:{en:"Soldering Skills",ar:"مهارات اللحام"}, desc:{en:"Keep the tip clean, use flux and control the temperature.",ar:"حافظ على رأس الكاوية نظيفًا واستخدم الفلكس وتحكَّم في الحرارة."}, points:[{en:"Clean the tip often.",ar:"نظف الرأس كثيرًا."},{en:"Avoid too much pressure.",ar:"تجنب الضغط الزائد."}]}
-        ]
-    },
-    {
-        id: "components",
-        title: {en: "Core Components", ar: "المكونات الأساسية"},
-        desc: {en: "Learn the parts you will test most often.", ar: "تعلم القطع التي ستفحصها غالبًا."},
-        lessons: [
-            {id: "resistor", title:{en:"Resistor",ar:"المقاومة"}, image:"resistor SMD.jfif", desc:{en:"A resistor limits current and protects circuits.",ar:"المقاومة تحد التيار وتحمي الدائرة."}, points:[{en:"Measure resistance with power off.",ar:"قِس المقاومة مع فصل الطاقة."},{en:"A bad resistor can stop the board.",ar:"المقاومة التالفة قد توقف اللوحة."}]},
-            {id: "capacitor", title:{en:"Capacitor",ar:"المكثف"}, desc:{en:"A capacitor stores energy and filters noise.",ar:"المكثف يخزن الطاقة وينقي التشويش."}, points:[{en:"Check for short circuits.",ar:"افحص وجود دارة قصر."},{en:"Discharge before testing.",ar:"افرغ الشحنة قبل الفحص."}]}
-        ]
-    },
-    {
-        id: "systems",
-        title: {en: "Board Systems", ar: "أنظمة اللوحة"},
-        desc: {en: "Understand how power and signals move on a phone board.", ar: "افهم كيف تتحرك الطاقة والإشارات على اللوحة."},
-        lessons: [
-            {id: "power", title:{en:"Power Flow",ar:"تدفق الطاقة"}, desc:{en:"Follow voltage from battery to the main IC.",ar:"تتبع الفولت من البطارية إلى المعالج الرئيسي."}, points:[{en:"Check VBAT and power rails.",ar:"افحص VBAT وخطوط الطاقة."},{en:"A missing rail often prevents booting.",ar:"غياب خط غالبًا يمنع الإقلاع."}]},
-            {id: "display", title:{en:"Display System",ar:"نظام الشاشة"}, desc:{en:"Learn the common causes of no image.",ar:"تعرف على أسباب عدم ظهور الصورة."}, points:[{en:"Inspect the connector first.",ar:"افحص الموصل أولًا."},{en:"Check display power and data lines.",ar:"افحص طاقة الشاشة وخطوط البيانات."}]}
-        ]
-    }
-];
-
-const ui = {
-    en: {
-        dir:"ltr",
-        langButton:"AR",
-        status:"Browser mode",
-        heroTitle:"One lesson at a time",
-        heroText:"Open the next lesson in the branch. Complete it, then continue.",
-        completed:"Completed",
-        steps:"Total lessons",
-        continue:"Continue learning",
-        branchesTitle:"Learning paths",
-        branchesSubtitle:"Choose one path and cover each lesson step by step.",
-        resume:"Resume lesson",
-        start:"Start lesson",
-        next:"Continue",
-        done:"Mark as completed",
-        completedMessage:"Lesson completed!",
-        branchComplete:"Branch complete!",
-        footer:"Master Repair Academy"
-    },
-    ar:{
-        dir:"rtl",
-        langButton:"EN",
-        status:"وضع المتصفح",
-        heroTitle:"درس واحد في كل مرة",
-        heroText:"افتح الدرس التالي في الفرع. أكمله ثم تابع.",
-        completed:"مكتمل",
-        steps:"إجمالي الدروس",
-        continue:"متابعة التعلم",
-        branchesTitle:"مسارات التعلم",
-        branchesSubtitle:"اختر مسارًا واغطي كل درس خطوة بخطوة.",
-        resume:"استئناف الدرس",
-        start:"ابدأ الدرس",
-        next:"تابع",
-        done:"علّم أنه منتهي",
-        completedMessage:"تم الدرس!",
-        branchComplete:"اكتمل الفرع!",
-        footer:"Master Repair Academy"
-    }
-};
-
-let currentLang = localStorage.getItem("repair_academy_lang") || "en";
-let currentBranchId = null;
-let currentLessonIndex = 0;
-
-function tr(key){return ui[currentLang][key];}
-function txt(obj){return obj[currentLang];}
-
-function doneIds(){
-    return JSON.parse(localStorage.getItem("repair_academy_done") || "[]");
-}
-
-function saveDone(key){
-    const done = doneIds();
-    if(!done.includes(key)){
-        done.push(key);
-        localStorage.setItem("repair_academy_done", JSON.stringify(done));
-    }
-}
-
-function getBranch(id){
-    return branches.find(branch => branch.id === id);
-}
-
-function getBranchProgress(branch){
-    const done = doneIds();
-    const completed = branch.lessons.filter((lesson,index) => done.includes(`${branch.id}_${index}`)).length;
-    return {completed, total: branch.lessons.length};
-}
-
-function getNextLessonIndex(branch){
-    const done = doneIds();
-    return branch.lessons.findIndex((lesson,index) => !done.includes(`${branch.id}_${index}`));
-}
+/* ================= RENDER HOME ================= */
 
 function renderHome(){
-    const completedLessons = branches.reduce((sum, branch) => sum + getBranchProgress(branch).completed, 0);
-    const totalLessons = branches.reduce((sum, branch) => sum + branch.lessons.length, 0);
-    const percent = totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0;
-
-    document.documentElement.lang = currentLang;
-    document.documentElement.dir = tr('dir');
-    document.body.dir = tr('dir');
-    document.getElementById("heroTitle").textContent = tr("heroTitle");
-    document.getElementById("heroText").textContent = tr("heroText");
-    document.getElementById("doneCount").textContent = completedLessons;
-    document.getElementById("totalCount").textContent = totalLessons;
-    document.getElementById("completedLabel").textContent = tr("completed");
-    document.getElementById("stepsLabel").textContent = tr("steps");
-    document.getElementById("continueButton").textContent = tr("continue");
-    document.getElementById("branchesTitle").textContent = tr("branchesTitle");
-    document.getElementById("branchesSubtitle").textContent = tr("branchesSubtitle");
-    document.getElementById("langButton").textContent = tr("langButton");
-    document.getElementById("telegramStatus").textContent = tr("status");
-    document.getElementById("footerText").textContent = tr("footer");
-
-    document.getElementById("progressText").textContent = `${percent}% ${tr("completed")}`;
-    document.getElementById("progressBar").style.width = `${percent}%`;
+    document.getElementById("heroTitle").textContent = t("heroTitle");
+    document.getElementById("heroText").textContent = t("heroText");
+    document.getElementById("continueBtn").textContent = t("continue");
+    document.getElementById("langBtn").textContent = lang==="en"?"AR":"EN";
 
     const list = document.getElementById("branchList");
     list.innerHTML = "";
 
-    branches.forEach(branch => {
-        const progress = getBranchProgress(branch);
-        const card = document.createElement("button");
-        card.className = "branch-card";
-        card.onclick = () => openBranch(branch.id);
-        card.innerHTML = `
-            <h3>${txt(branch.title)}</h3>
-            <p>${txt(branch.desc)}</p>
-            <div class="badge">${progress.completed}/${progress.total}</div>
-        `;
-        list.appendChild(card);
+    branches.forEach(b=>{
+        const div = document.createElement("button");
+        div.textContent = b.title[lang];
+        div.onclick = ()=>openLesson(b.lessons[0]);
+        list.appendChild(div);
+    });
+
+    document.getElementById("progressBar").style.width = "30%";
+}
+
+/* ================= LESSON ================= */
+
+function openLesson(lesson){
+    currentLesson = lesson;
+
+    document.getElementById("home").classList.remove("active");
+    document.getElementById("lesson").classList.add("active");
+
+    document.getElementById("lessonTitle").textContent = lesson.title[lang];
+    document.getElementById("lessonDesc").textContent = lesson.desc[lang];
+    document.getElementById("doneBtn").textContent = t("done");
+
+    const box = document.getElementById("lessonPoints");
+    box.innerHTML = "";
+
+    lesson.points.forEach(p=>{
+        const div = document.createElement("div");
+        div.innerHTML = `<b>${p[lang]}</b>`;
+        box.appendChild(div);
     });
 }
 
-function showPage(id){
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0,0);
-}
+/* ================= ACTIONS ================= */
 
-function openBranch(branchId){
-    currentBranchId = branchId;
-    const branch = getBranch(branchId);
-    const nextLessonIndex = getNextLessonIndex(branch);
-    currentLessonIndex = nextLessonIndex === -1 ? branch.lessons.length - 1 : nextLessonIndex;
-    renderBranch();
-    showPage('branchPage');
-}
-
-function renderBranch(){
-    const branch = getBranch(currentBranchId);
-    const progress = getBranchProgress(branch);
-    const nextLessonIndex = getNextLessonIndex(branch);
-    const currentIndex = nextLessonIndex === -1 ? branch.lessons.length - 1 : nextLessonIndex;
-    const lesson = branch.lessons[currentIndex];
-    const remaining = progress.total - progress.completed - 1;
-    const isBranchComplete = progress.completed === progress.total;
-
-    document.getElementById('branchTitle').textContent = txt(branch.title);
-    document.getElementById('branchDesc').textContent = txt(branch.desc);
-    document.getElementById('branchProgress').textContent = `${progress.completed}/${progress.total} ${tr('completed')}`;
-    document.getElementById('branchNext').textContent = isBranchComplete ? tr('branchComplete') : `${remaining + 1} ${tr('next')}`;
-
-    document.getElementById('branchLessonCard').innerHTML = `
-        <h3>${txt(lesson.title)}</h3>
-        <p>${txt(lesson.desc)}</p>
-        <div class="lesson-meta"><small>${tr('start')}</small><span class="badge">${currentIndex + 1}/${branch.lessons.length}</span></div>
-    `;
-
-    document.getElementById('branchActionButton').textContent = isBranchComplete ? tr('branchComplete') : tr('start');
-    document.getElementById('branchBackButton').textContent = tr('back');
-}
-
-function openLesson(index){
-    currentLessonIndex = index;
-    renderLesson();
-    showPage('lessonPage');
-}
-
-function renderLesson(){
-    const branch = getBranch(currentBranchId);
-    const lesson = branch.lessons[currentLessonIndex];
-    const lessonKey = `${branch.id}_${currentLessonIndex}`;
-    const done = doneIds().includes(lessonKey);
-    const nextIndex = getNextLessonIndex(branch);
-    const hasNext = nextIndex !== -1 && nextIndex > currentLessonIndex;
-
-    document.getElementById('lessonBranchTitle').textContent = txt(branch.title);
-    document.getElementById('lessonTitle').textContent = txt(lesson.title);
-    document.getElementById('lessonDesc').textContent = txt(lesson.desc);
-    document.getElementById('lessonStatus').textContent = done ? tr('completed') : tr('start');
-    document.getElementById('lessonPosition').textContent = `${currentLessonIndex + 1}/${branch.lessons.length}`;
-    document.getElementById('lessonDoneButton').textContent = done ? tr('next') : tr('done');
-    document.getElementById('lessonContinueButton').textContent = hasNext ? tr('next') : tr('back');
-    document.getElementById('lessonContinueButton').disabled = !done && !hasNext;
-
-    // Afficher l'image du composant si elle existe
-    let imageHtml = '';
-    if(lesson.image){
-        imageHtml = `<div style="text-align:center;margin-bottom:12px;"><img src='${lesson.image}' alt='${txt(lesson.title)}' style='max-width:120px;max-height:80px;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.18);background:#222;padding:4px;'></div>`;
-    }
-    document.getElementById('lessonPoints').innerHTML = imageHtml + lesson.points.map(point => `
-        <div class="point">
-            <strong>${point.en}</strong>
-            <span>${point.ar}</span>
-        </div>
-    `).join('');
-
-    document.getElementById('lessonContinueButton').onclick = () => {
-        if(done && hasNext){
-            openLesson(nextIndex);
-        } else {
-            goHome();
-        }
-    };
-}
-
-function toggleLessonDone(){
-    const branch = getBranch(currentBranchId);
-    const lessonKey = `${branch.id}_${currentLessonIndex}`;
-    saveDone(lessonKey);
-    showToast(tr('completedMessage'));
-    renderLesson();
-    renderHome();
-}
-
-function continueBranch(){
-    const branch = getBranch(currentBranchId);
-    const nextIndex = getNextLessonIndex(branch);
-    if(nextIndex !== -1){
-        openLesson(nextIndex);
-    } else {
-        showToast(tr('branchComplete'));
-        goHome();
-    }
+function toggleDone(){
+    alert("Lesson completed");
+    goHome();
 }
 
 function continueLearning(){
-    for(const branch of branches){
-        const nextIndex = getNextLessonIndex(branch);
-        if(nextIndex !== -1){
-            openBranch(branch.id);
-            return;
-        }
-    }
-    if(branches.length) openBranch(branches[0].id);
-}
-
-function toggleLanguage(){
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    localStorage.setItem('repair_academy_lang', currentLang);
-    renderHome();
-    if(document.getElementById('branchPage').classList.contains('active')) renderBranch();
-    if(document.getElementById('lessonPage').classList.contains('active')) renderLesson();
+    openLesson(branches[0].lessons[0]);
 }
 
 function goHome(){
+    document.getElementById("lesson").classList.remove("active");
+    document.getElementById("home").classList.add("active");
     renderHome();
-    showPage('home');
 }
 
-function showToast(message){
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2400);
+function toggleLanguage(){
+    lang = lang==="en"?"ar":"en";
+    localStorage.setItem("lang",lang);
+    renderHome();
 }
 
-window.addEventListener('load', () => {
-    renderHome();
-});
+/* ================= START ================= */
+
+renderHome();
+
 </script>
+
 </body>
 </html>
